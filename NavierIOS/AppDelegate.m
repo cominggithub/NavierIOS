@@ -22,7 +22,7 @@
     CLLocationCoordinate2D accton = CLLocationCoordinate2DMake(23.099313,120.284371);
     
 
-    NSLog(@"%@\n", [[NSBundle mainBundle] bundleIdentifier]);
+    NSLog(@"%@", [[NSBundle mainBundle] bundleIdentifier]);
     
     [GMSServices provideAPIKey:GOOGLE_API_Key];
     [NaviUtil setGoogleAPIKey:GOOGLE_API_Key];
