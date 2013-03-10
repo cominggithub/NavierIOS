@@ -62,4 +62,13 @@
     
     [NaviQueryManager planRouteStartLocation:ncku EndLocation:accton];
 }
+
+- (IBAction)pressTextRoute:(id)sender
+{
+    [NaviQueryManager planRouteStartLocationText:@"成大" EndLocationText:@"台南一中"];
+}
+- (void)viewDidUnload {
+
+    [super viewDidUnload];
+}
 @end

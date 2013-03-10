@@ -13,4 +13,6 @@
 
 - (IBAction)pressPlace:(id)sender;
 - (IBAction)pressRoute:(id)sender;
+- (IBAction)pressTextRoute:(id)sender;
+
 @end

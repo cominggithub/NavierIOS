@@ -26,6 +26,7 @@
     
     [GMSServices provideAPIKey:GOOGLE_API_Key];
     [NaviUtil setGoogleAPIKey:GOOGLE_API_Key];
+    [NaviUtil setGooglePlaceAPIKey:GOOGLE_PLACE_API_Key];
     [NaviUtil init];
     linmso([NSString encodeStringWithCoordinate:ncku]);
     linmso([NSString encodeStringWithCoordinate:accton]);
