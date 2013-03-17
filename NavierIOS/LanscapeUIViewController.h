@@ -11,7 +11,6 @@
 
 
 @interface LanscapeUIViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIButton *updateButton;
-- (IBAction)updateButtonClick:(id)sender;
+
 
 @end

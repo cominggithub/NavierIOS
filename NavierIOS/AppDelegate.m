@@ -17,19 +17,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    
-    CLLocationCoordinate2D ncku = CLLocationCoordinate2DMake(22.996501,120.216678);
-    CLLocationCoordinate2D accton = CLLocationCoordinate2DMake(23.099313,120.284371);
-    
-
     NSLog(@"%@", [[NSBundle mainBundle] bundleIdentifier]);
     
     [GMSServices provideAPIKey:GOOGLE_API_Key];
     [NaviUtil setGoogleAPIKey:GOOGLE_API_Key];
     [NaviUtil setGooglePlaceAPIKey:GOOGLE_PLACE_API_Key];
     [NaviUtil init];
-    linmso([NSString encodeStringWithCoordinate:ncku]);
-    linmso([NSString encodeStringWithCoordinate:accton]);
+    [User save];
     
     return YES;
 }

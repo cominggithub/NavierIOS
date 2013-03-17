@@ -67,6 +67,9 @@
 {
     [NaviQueryManager planRouteStartLocationText:@"成大" EndLocationText:@"台南一中"];
 }
+
+- (IBAction)pressNaviHUD:(id)sender {
+}
 - (void)viewDidUnload {
 
     [super viewDidUnload];

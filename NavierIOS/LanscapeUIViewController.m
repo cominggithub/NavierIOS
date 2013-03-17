@@ -62,7 +62,7 @@
 }
 
 - (IBAction)updateButtonClick:(id)sender {
-    GuideRouteUIView* view = [[[self view] subviews] objectAtIndex:0];
+    GuideRouteUIView* view = (GuideRouteUIView*)[self view];
     [view timerTimeout];
 }
 @end
