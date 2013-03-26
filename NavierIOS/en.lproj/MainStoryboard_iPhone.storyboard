@@ -284,10 +284,14 @@
         </class>
         <class className="LanscapeUIViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LanscapeUIViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="updateButtonClick:"/>
+            </relationships>
         </class>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
+                <relationship kind="action" name="pressNaviHUD:"/>
                 <relationship kind="action" name="pressPlace:"/>
                 <relationship kind="action" name="pressRoute:"/>
                 <relationship kind="action" name="pressTextRoute:"/>
@@ -300,6 +304,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="HiI-Mf-hsV"/>
+        <segue reference="9RC-HF-zd3"/>
     </inferredMetricsTieBreakers>
 </document>
