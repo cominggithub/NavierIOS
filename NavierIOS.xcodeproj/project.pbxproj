@@ -159,6 +159,7 @@
 		2B9A437516DB99D900FD1A54 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9A437416DB99D900FD1A54 /* SystemConfiguration.framework */; };
 		2B9A437816DB9B5F00FD1A54 /* GoogleMapUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9A437716DB9B5F00FD1A54 /* GoogleMapUIViewController.m */; };
 		2B9A437B16DBA0BC00FD1A54 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9A437A16DBA0BC00FD1A54 /* CoreText.framework */; };
+		2BCFE04317031BE200636F58 /* RouteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCFE04217031BE200636F58 /* RouteTableViewController.m */; };
 		2BD8CE7B1701E9A800BDA678 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD8CE771701E9A800BDA678 /* icon-72.png */; };
 		2BD8CE7C1701E9A800BDA678 /* icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD8CE781701E9A800BDA678 /* icon-72@2x.png */; };
 		2BD8CE7D1701E9A800BDA678 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD8CE791701E9A800BDA678 /* icon.png */; };
@@ -359,6 +360,8 @@
 		2B9A437716DB9B5F00FD1A54 /* GoogleMapUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoogleMapUIViewController.m; path = NavierIOS/GoogleMapUIViewController.m; sourceTree = "<group>"; };
 		2B9A437A16DBA0BC00FD1A54 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		2BB1185B16E31683003BB39E /* GoogleAPIKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoogleAPIKey.h; sourceTree = "<group>"; };
+		2BCFE04117031BE200636F58 /* RouteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteTableViewController.h; sourceTree = "<group>"; };
+		2BCFE04217031BE200636F58 /* RouteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteTableViewController.m; sourceTree = "<group>"; };
 		2BD8CE771701E9A800BDA678 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72.png"; sourceTree = "<group>"; };
 		2BD8CE781701E9A800BDA678 /* icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72@2x.png"; sourceTree = "<group>"; };
 		2BD8CE791701E9A800BDA678 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
@@ -598,6 +601,8 @@
 				2B9A433316DB955F00FD1A54 /* MainStoryboard_iPad.storyboard */,
 				2B9A433616DB955F00FD1A54 /* ViewController.h */,
 				2B9A433716DB955F00FD1A54 /* ViewController.m */,
+				2BCFE04117031BE200636F58 /* RouteTableViewController.h */,
+				2BCFE04217031BE200636F58 /* RouteTableViewController.m */,
 				2B9A431F16DB955F00FD1A54 /* Supporting Files */,
 				2BB1185B16E31683003BB39E /* GoogleAPIKey.h */,
 			);
@@ -914,6 +919,7 @@
 				2B9A433816DB955F00FD1A54 /* ViewController.m in Sources */,
 				2B9A437816DB9B5F00FD1A54 /* GoogleMapUIViewController.m in Sources */,
 				2B6CBF9116DFA6050095CBD4 /* LanscapeUIViewController.m in Sources */,
+				2BCFE04317031BE200636F58 /* RouteTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

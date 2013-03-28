@@ -172,7 +172,7 @@
     {
         UIView *tmpView = [[self.view subviews] objectAtIndex:i];
         logClass(tmpView);
-        logInfo(@"%@", tmpView);
+        logInfo(M_NONE, @"%@", tmpView);
         
     }
 

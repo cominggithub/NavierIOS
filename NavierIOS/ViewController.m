@@ -48,10 +48,10 @@
 
     
     // This function can be called with any number (even 0) or type of objects, as long as you terminate it with "nil":
-    logWarning(@"foo", [NSNumber numberWithInt:4], @"bar", nil);
-    logInfo(@"foo", [NSNumber numberWithInt:4], @"bar", nil);
-    logDebug(@"foo", [NSNumber numberWithInt:4], @"bar", nil);
-    logError(@"foo", [NSNumber numberWithInt:4], @"bar", nil);
+    logWarning(M_NONE, @"foo", [NSNumber numberWithInt:4], @"bar", nil);
+    logInfo(M_NONE, @"foo", [NSNumber numberWithInt:4], @"bar", nil);
+    logDebug(M_NONE, @"foo", [NSNumber numberWithInt:4], @"bar", nil);
+    logError(M_NONE, @"foo", [NSNumber numberWithInt:4], @"bar", nil);
     
 }
 
