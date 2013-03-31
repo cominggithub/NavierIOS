@@ -18,7 +18,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
@@ -26,6 +26,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    locationSimulator = [[LocationSimulator alloc] init];
+    locationSimulator.timeInterval = 1;
+    locationSimulator.locationPoints = [[NaviQueryManager getRoute] getRoutePolyLineCLLocationCoordinate2D];
+//    locationSimulator.delegate = (GuideRouteUIView*)self.view;
+//    [locationSimulator start];
+    
 	// Do any additional setup after loading the view.
 }
 
@@ -63,6 +70,12 @@
 
 - (IBAction)updateButtonClick:(id)sender {
     GuideRouteUIView* view = (GuideRouteUIView*)[self view];
-    [view timerTimeout];
+    [view locationUpdate:locationSimulator.getNextLocation];
 }
+
+- (void)handleNotification:(NSNotification*)note
+{
+
+}
+
 @end

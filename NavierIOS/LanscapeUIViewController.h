@@ -11,6 +11,10 @@
 
 
 @interface LanscapeUIViewController : UIViewController
-
+{
+    LocationManager* locationManager;
+    LocationSimulator *locationSimulator;
+    
+}
 
 @end

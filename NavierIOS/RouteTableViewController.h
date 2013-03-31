@@ -10,6 +10,10 @@
 #import <NaviUtil/NaviUtil.h>
 
 @interface RouteTableViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+{
+    
+    
+}
 
 @property (weak, nonatomic) IBOutlet UITableView *routePointTable;
 @property (nonatomic, strong) Route *route;

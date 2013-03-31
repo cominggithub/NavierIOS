@@ -82,4 +82,9 @@
 {
     [self dismissModalViewControllerAnimated:YES];
 }
+
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return toInterfaceOrientation == UIInterfaceOrientationLandscapeRight;
+}
+
 @end

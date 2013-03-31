@@ -9,7 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <NaviUtil/NaviUtil.h>
 
+
 @interface ViewController : UIViewController
+{
+    LocationManager* locationManager;
+    LocationSimulator *locationSimulator;
+}
 
 - (IBAction)pressPlace:(id)sender;
 - (IBAction)pressRoute:(id)sender;

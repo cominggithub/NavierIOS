@@ -16,7 +16,12 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
+    // Custom initialization
+
+//    locationManager.delegate = self;
+    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -48,10 +53,10 @@
 
     
     // This function can be called with any number (even 0) or type of objects, as long as you terminate it with "nil":
-    logWarning(M_NONE, @"foo", [NSNumber numberWithInt:4], @"bar", nil);
-    logInfo(M_NONE, @"foo", [NSNumber numberWithInt:4], @"bar", nil);
-    logDebug(M_NONE, @"foo", [NSNumber numberWithInt:4], @"bar", nil);
-    logError(M_NONE, @"foo", [NSNumber numberWithInt:4], @"bar", nil);
+    mlogWarning(NONE, @"foo", [NSNumber numberWithInt:4], @"bar", nil);
+    mlogInfo(NONE, @"foo", [NSNumber numberWithInt:4], @"bar", nil);
+    mlogDebug(NONE, @"foo", [NSNumber numberWithInt:4], @"bar", nil);
+    mlogError(NONE, @"foo", [NSNumber numberWithInt:4], @"bar", nil);
     
 }
 
@@ -61,6 +66,8 @@
     CLLocationCoordinate2D accton   = CLLocationCoordinate2DMake(23.099313,120.284371);
     
     [NaviQueryManager planRouteStartLocation:ncku EndLocation:accton];
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:PLAN_ROUTE_DONE object:nil];
 }
 
 - (IBAction)pressTextRoute:(id)sender
@@ -74,4 +81,8 @@
 
     [super viewDidUnload];
 }
+
+
+
+
 @end
