@@ -165,6 +165,7 @@
 		2BD8CE7D1701E9A800BDA678 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD8CE791701E9A800BDA678 /* icon.png */; };
 		2BD8CE7E1701E9A800BDA678 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD8CE7A1701E9A800BDA678 /* icon@2x.png */; };
 		2BD8CE811701EB7500BDA678 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD8CE801701EB7500BDA678 /* Default.png */; };
+		2BECCE241709B78100F58CE0 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BECCE231709B78100F58CE0 /* iAd.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -367,6 +368,7 @@
 		2BD8CE791701E9A800BDA678 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		2BD8CE7A1701E9A800BDA678 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		2BD8CE801701EB7500BDA678 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		2BECCE231709B78100F58CE0 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,6 +376,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BECCE241709B78100F58CE0 /* iAd.framework in Frameworks */,
 				2B6CBFFE16DFAA180095CBD4 /* libNaviUtil.a in Frameworks */,
 				2B9A437B16DBA0BC00FD1A54 /* CoreText.framework in Frameworks */,
 				2B9A437516DB99D900FD1A54 /* SystemConfiguration.framework in Frameworks */,
@@ -567,6 +570,7 @@
 		2B9A431716DB955F00FD1A54 /* frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2BECCE231709B78100F58CE0 /* iAd.framework */,
 				2B6CBFF316DFAA030095CBD4 /* NaviUtil.xcodeproj */,
 				2B9A437A16DBA0BC00FD1A54 /* CoreText.framework */,
 				2B9A436616DB998000FD1A54 /* GLKit.framework */,

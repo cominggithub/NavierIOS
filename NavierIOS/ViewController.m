@@ -23,6 +23,16 @@
 //    locationManager.delegate = self;
     
 	// Do any additional setup after loading the view, typically from a nib.
+
+/* disable banner */
+#if 0
+    ADBannerView *adView = [[ADBannerView alloc] initWithFrame:CGRectZero];
+    adView.requiredContentSizeIdentifiers = [NSSet setWithObject:ADBannerContentSizeIdentifierLandscape];
+    adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierLandscape;
+    adView.delegate = self;
+    [self.view addSubview:adView];
+#endif
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,7 +92,51 @@
     [super viewDidUnload];
 }
 
+#if 0
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    if (!self.bannerIsVisible)
+    {
+        [UIView beginAnimations:@"animateAdBannerOn" context:NULL];
+        // Assumes the banner view is just off the bottom of the screen.
+        banner.frame = CGRectOffset(banner.frame, 0, -banner.frame.size.height);
+        [UIView commitAnimations];
+        self.bannerIsVisible = YES;
+    }
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    logo(error.description);
+    if (self.bannerIsVisible)
+    {
+        [UIView beginAnimations:@"animateAdBannerOff" context:NULL];
+        // Assumes the banner view is placed at the bottom of the screen.
+        banner.frame = CGRectOffset(banner.frame, 0, banner.frame.size.height);
+        [UIView commitAnimations];
+        self.bannerIsVisible = NO;
+    }
+}
 
 
+- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
+{
+    NSLog(@"Banner view is beginning an ad action");
+    BOOL shouldExecuteAction = [self allowActionToRun]; // your application implements this method
+    if (!willLeave && shouldExecuteAction)
+    {
+        // insert code here to suspend any services that might conflict with the advertisement
+    }
+    return shouldExecuteAction;
+    
+    return false;
+}
 
+
+- (void)bannerViewActionDidFinish:(ADBannerView *)banner
+{
+    logfn();
+}
+
+#endif
 @end
