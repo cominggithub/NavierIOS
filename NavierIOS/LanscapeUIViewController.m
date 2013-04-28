@@ -78,4 +78,9 @@
 
 }
 
+- (IBAction)tagAction:(id)sender
+{
+    GuideRouteUIView* view = (GuideRouteUIView*)[self view];
+    [view locationUpdate:locationSimulator.getNextLocation];
+}
 @end

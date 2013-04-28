@@ -75,7 +75,8 @@
     CLLocationCoordinate2D ncku     = CLLocationCoordinate2DMake(22.996501,120.216678);
     CLLocationCoordinate2D accton   = CLLocationCoordinate2DMake(23.099313,120.284371);
     
-    [NaviQueryManager planRouteStartLocation:ncku EndLocation:accton];
+//    [NaviQueryManager planRouteStartLocation:ncku EndLocation:accton];
+      [NaviQueryManager planRouteStartLocationText:@"高雄" EndLocationText:@"花蓮"];
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:PLAN_ROUTE_DONE object:nil];
 }
