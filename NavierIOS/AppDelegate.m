@@ -17,6 +17,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     NSLog(@"%@", [[NSBundle mainBundle] bundleIdentifier]);
     
     [GMSServices provideAPIKey:GOOGLE_API_Key];
@@ -26,6 +27,12 @@
     [User save];
     
     return YES;
+}
+
+void uncaughtExceptionHandler(NSException *exception) {
+    NSLog(@"CRASH: %@", exception);
+    NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
+    // Internal error reporting
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

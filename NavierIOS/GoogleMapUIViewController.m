@@ -109,6 +109,14 @@
     
 }
 
+- (IBAction)pressHomeButton:(id)sender
+{
+    [self dismissModalViewControllerAnimated:true];
+}
+
+- (IBAction)pressSearchButton:(id)sender {
+}
+
 
 - (GMSMapView *)mapView {
     if (mapView_ == nil) {
@@ -149,33 +157,13 @@
 
 - (void)viewDidLoad
 {
+    UIView *firstSubview;
     [super viewDidLoad];
-//    NSMutableArray *viewArray = [NSMutableArray arrayWithArray: [self.view subviews]];
-    int i=0;
-
 
     
-    
-    
-
-    for(i=0; i<[self.view subviews].count; i++)
-    {
-        UIView *tmpView = [[self.view subviews] objectAtIndex:i];
-        logClass(tmpView);
-
-    }
-    
-    [self.view insertSubview:self.mapView atIndex:0];
-    
-    printf("\n\n");
-    for(i=0; i<[self.view subviews].count; i++)
-    {
-        UIView *tmpView = [[self.view subviews] objectAtIndex:i];
-        logClass(tmpView);
-        mlogInfo(NONE, @"%@", tmpView);
-        
-    }
-
+    [self.view dumpView];
+    firstSubview = [self.view.subviews objectAtIndex:0];
+    [firstSubview insertSubview:self.mapView atIndex:0];
     
 //    self.view = mapView_;
 	// Do any additional setup after loading the view.

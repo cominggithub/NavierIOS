@@ -75,8 +75,11 @@
     CLLocationCoordinate2D ncku     = CLLocationCoordinate2DMake(22.996501,120.216678);
     CLLocationCoordinate2D accton   = CLLocationCoordinate2DMake(23.099313,120.284371);
     
-//    [NaviQueryManager planRouteStartLocation:ncku EndLocation:accton];
-      [NaviQueryManager planRouteStartLocationText:@"高雄" EndLocationText:@"花蓮"];
+    CLLocationCoordinate2D yufon = CLLocationCoordinate2DMake(22.987968, 120.227315);
+    CLLocationCoordinate2D ampin = CLLocationCoordinate2DMake(22.994664, 120.142965);
+    
+    [NaviQueryManager planRouteStartLocation:yufon EndLocation:ampin];
+//     [NaviQueryManager planRouteStartLocationText:@"高雄" EndLocationText:@"花蓮"];
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:PLAN_ROUTE_DONE object:nil];
 }

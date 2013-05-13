@@ -10,11 +10,14 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import <NaviUtil/NaviUtil.h>
 
+
 @interface GoogleMapUIViewController : UIViewController
 /** GMSMapView managed by this controller. */
 - (IBAction)pressRouteButton:(id)sender;
 - (IBAction)pressZoomOutButton:(id)sender;
 - (IBAction)pressZoomInButton:(id)sender;
+- (IBAction)pressHomeButton:(id)sender;
+- (IBAction)pressSearchButton:(id)sender;
 @property (nonatomic, readonly, strong) GMSMapView *mapView;
 @property (nonatomic) int zoomLevel;
 @end

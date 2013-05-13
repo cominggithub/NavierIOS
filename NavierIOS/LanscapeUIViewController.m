@@ -69,8 +69,10 @@
 }
 
 - (IBAction)updateButtonClick:(id)sender {
+
     GuideRouteUIView* view = (GuideRouteUIView*)[self view];
-    [view locationUpdate:locationSimulator.getNextLocation];
+    locationSimulator.delegate = view;
+    [locationSimulator start];
 }
 
 - (void)handleNotification:(NSNotification*)note
