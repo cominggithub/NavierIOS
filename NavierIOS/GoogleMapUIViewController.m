@@ -18,7 +18,8 @@
 
 @implementation GoogleMapUIViewController
 {
-    GMSMapView *mapView_;
+    GMSMapView *_mapView;
+    NSMutableArray *_places;
 }
 
 @synthesize zoomLevel = _zoomLevel;
@@ -28,7 +29,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-
+        _places = [[NSMutableArray alloc] initWithCapacity:0];
     }
     return self;
 }
@@ -55,7 +56,7 @@
     GMSPolylineOptions *pathOptions;
     GMSMutablePath *path;
     
-    [mapView_ clear];
+    [_mapView clear];
     
     
     pathOptions = [GMSPolylineOptions options];
@@ -72,16 +73,16 @@
     pathOptions.width = 10.f;
     pathOptions.geodesic = NO;
     
-    [mapView_ addPolylineWithOptions:pathOptions];
+    [_mapView addPolylineWithOptions:pathOptions];
     
     
 
-    [mapView_ animateToLocation:startOptions.position];
-    [mapView_ animateToZoom:self.zoomLevel];
+    [_mapView animateToLocation:startOptions.position];
+    [_mapView animateToZoom:self.zoomLevel];
     
     
-    [mapView_ addMarkerWithOptions:startOptions];
-    [mapView_ addMarkerWithOptions:endOptions];
+    [_mapView addMarkerWithOptions:startOptions];
+    [_mapView addMarkerWithOptions:endOptions];
     
     
     
@@ -92,7 +93,7 @@
     if(self.zoomLevel > 2)
     {
         self.zoomLevel--;
-        [mapView_ animateToZoom:self.zoomLevel];
+        [_mapView animateToZoom:self.zoomLevel];
         logi(self.zoomLevel);
     }
 }
@@ -103,7 +104,7 @@
     if(self.zoomLevel < 21)
     {
         self.zoomLevel++;
-        [mapView_ animateToZoom:self.zoomLevel];
+        [_mapView animateToZoom:self.zoomLevel];
         logi(self.zoomLevel);
     }
     
@@ -118,19 +119,20 @@
 }
 
 
-- (GMSMapView *)mapView {
-    if (mapView_ == nil) {
+-(GMSMapView *) mapView
+{
+    if (_mapView == nil) {
         self.zoomLevel = 12;
         // Create a default GMSMapView, showcasing Australia.
-        mapView_ = [[GMSMapView alloc] initWithFrame:CGRectMake(0, 0, 480, 320)];
+        _mapView = [[GMSMapView alloc] initWithFrame:CGRectMake(0, 0, 480, 320)];
         
         //-37.819487
         //longitude:144.965699
         //
         //
-        mapView_.camera = [GMSCameraPosition cameraWithLatitude:23.845650
+        _mapView.camera = [GMSCameraPosition cameraWithLatitude:23.845650
                                                       longitude:120.893555
-//        mapView_.camera = [GMSCameraPosition cameraWithLatitude:-37.819487
+//        _mapView.camera = [GMSCameraPosition cameraWithLatitude:-37.819487
 //                                                      longitude:144.965699
 
                                                            zoom:self.zoomLevel
@@ -139,24 +141,36 @@
                            ];
         
 
-        mapView_.myLocationEnabled = YES;
+        _mapView.myLocationEnabled = YES;
         
         
         GMSMarkerOptions *options = [[GMSMarkerOptions alloc] init];
         options.position = CLLocationCoordinate2DMake(23.845650, 120.893555);
         options.title = @"宜蘭";
         options.snippet = @"台灣";
-        [mapView_ addMarkerWithOptions:options];
+        [_mapView addMarkerWithOptions:options];
 
         
     }
     
+    return _mapView;
+}
 
-    return mapView_;
+-(void) viewWillAppear:(BOOL)animated
+{
+    logfn();
+    logo(self.placeToSearch);
+    if(self.placeToSearch != nil && self.placeToSearch.length > 0)
+    {
+        
+        [self searchPlace:self.placeToSearch];
+    }
+    self.placeToSearch = nil;
 }
 
 - (void)viewDidLoad
 {
+
     UIView *firstSubview;
     [super viewDidLoad];
 
@@ -165,7 +179,7 @@
     firstSubview = [self.view.subviews objectAtIndex:0];
     [firstSubview insertSubview:self.mapView atIndex:0];
     
-//    self.view = mapView_;
+//    self.view = _mapView;
 	// Do any additional setup after loading the view.
 }
 
@@ -177,6 +191,41 @@
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return toInterfaceOrientation == UIInterfaceOrientationLandscapeRight;
+}
+
+-(void) searchPlace:(NSString*) place
+{
+    DownloadRequest *dr = [NaviQueryManager getPlaceSearchDownloadRequest:place];
+    dr.delegate = self;
+    [NaviQueryManager download:dr];
+
+}
+
+-(void) refresh
+{
+    for(Place* p in _places)
+    {
+        
+    }
+}
+
+-(void) downloadRequestStatusChange: (DownloadRequest*) downloadRequest
+{
+    if(downloadRequest.status == kDownloadStatus_Finished)
+    {
+        NSArray* places = [Place parseJson:downloadRequest.filePath];
+//        [self updateSearchedPlace:places];
+    }
+}
+
+-(void) updateSearchedPlace:(NSArray*) places
+{
+    for(Place* p in places)
+    {
+        [_places addObject:p];
+    }
+    
+    [self refresh];
 }
 
 @end

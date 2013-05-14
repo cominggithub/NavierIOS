@@ -60,14 +60,6 @@
     {
         printf("%s\n", [[[places objectAtIndex:i] description] UTF8String]);
     }
-
-    
-    // This function can be called with any number (even 0) or type of objects, as long as you terminate it with "nil":
-    mlogWarning(NONE, @"foo", [NSNumber numberWithInt:4], @"bar", nil);
-    mlogInfo(NONE, @"foo", [NSNumber numberWithInt:4], @"bar", nil);
-    mlogDebug(NONE, @"foo", [NSNumber numberWithInt:4], @"bar", nil);
-    mlogError(NONE, @"foo", [NSNumber numberWithInt:4], @"bar", nil);
-    
 }
 
 - (IBAction)pressRoute:(id)sender

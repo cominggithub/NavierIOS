@@ -381,6 +381,7 @@
                                         </state>
                                         <connections>
                                             <action selector="pressSearchButton:" destination="F6q-Dq-rDZ" eventType="touchUpInside" id="z9d-bQ-2wP"/>
+                                            <segue destination="kia-zl-eow" kind="modal" id="yq5-CV-yRs"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -471,7 +472,7 @@
             <objects>
                 <viewController id="kia-zl-eow" customClass="PlaceSearchViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vSR-UD-dan">
-                        <rect key="frame" x="0.0" y="20" width="568" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ZB8-2H-8O9">
@@ -487,7 +488,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="568" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xa9-cz-GEY">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xa9-cz-GEY">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="Sry-4E-nPT"/>
                                                     </constraints>

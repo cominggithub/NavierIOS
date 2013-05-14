@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GoogleMapUIViewController.h"
 
 @interface PlaceSearchViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITextField *placeTextField;
 - (IBAction)preeSearchButton:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *placeTableView;
+
 
 @end

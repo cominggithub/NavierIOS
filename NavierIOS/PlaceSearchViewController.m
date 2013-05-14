@@ -28,6 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.placeTextField.text = [SystemManager getLanguageString:@""];
 	// Do any additional setup after loading the view.
 }
 
@@ -40,18 +41,25 @@
 - (IBAction)preeSearchButton:(id)sender
 {
     NSString *placeToSearch = self.placeTextField.text;
-    [User addSearchedPlace:placeToSearch];
+    if(![self.placeTextField.text isEqualToString:[SystemManager getLanguageString:@""]])
+    {
+
+        GoogleMapUIViewController* gc = (GoogleMapUIViewController*) self.presentingViewController;
+        [User addSearchedPlace:placeToSearch];
+        [User save];
+        gc.placeToSearch = [NSString stringWithString:placeToSearch];
+    }
+    
+    [self dismissModalViewControllerAnimated:true];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"RoutePointCell";
+    static NSString *CellIdentifier = @"PlaceCell";
     UILabel *placeLabel;
-    
     UITableViewCell *cell = [self.placeTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    placeLabel         = (UILabel*)[cell viewWithTag:0];
+    placeLabel         = (UILabel*)[cell viewWithTag:2];
     placeLabel.text    = [User getSearchPlaceByIndex:indexPath.row];
-    
     return cell;
 }
 
@@ -64,8 +72,6 @@
     [self setPlaceTextField:nil];
     [self setPlaceTableView:nil];
     [super viewDidUnload];
-    
-
     
 }
 @end
