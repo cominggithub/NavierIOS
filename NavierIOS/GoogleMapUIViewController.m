@@ -198,7 +198,10 @@
     DownloadRequest *dr = [NaviQueryManager getPlaceSearchDownloadRequest:place];
     dr.delegate = self;
     [NaviQueryManager download:dr];
-
+    if (nil != place && place.length > 0)
+    {
+        self.titleLabel.text = place;
+    }
 }
 
 -(void) refresh
@@ -228,4 +231,8 @@
     [self refresh];
 }
 
+- (void)viewDidUnload {
+    [self setTitleLabel:nil];
+    [super viewDidUnload];
+}
 @end

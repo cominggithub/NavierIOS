@@ -437,11 +437,22 @@
                                             <action selector="pressHomeButton:" destination="F6q-Dq-rDZ" eventType="touchUpInside" id="Ggz-84-0HS"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Msg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXP-hU-fTA">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="377" id="J6U-f6-7KW"/>
+                                            <constraint firstAttribute="height" constant="35" id="c1N-vx-Tw9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="u6l-Iw-Syw" firstAttribute="top" secondItem="dbV-yq-37j" secondAttribute="top" type="default" id="8fH-fJ-SaB"/>
                                     <constraint firstItem="u6l-Iw-Syw" firstAttribute="bottom" secondItem="dbV-yq-37j" secondAttribute="bottom" type="default" id="F6y-tH-erK"/>
+                                    <constraint firstItem="uXP-hU-fTA" firstAttribute="top" secondItem="dbV-yq-37j" secondAttribute="top" constant="6" id="PT1-F8-m8Q"/>
+                                    <constraint firstAttribute="centerX" secondItem="uXP-hU-fTA" secondAttribute="centerX" type="user" id="S90-HT-nsT"/>
                                     <constraint firstItem="TO2-3r-xYQ" firstAttribute="leading" secondItem="dbV-yq-37j" secondAttribute="leading" constant="7" id="ah4-gb-sUD"/>
                                     <constraint firstItem="TO2-3r-xYQ" firstAttribute="bottom" secondItem="dbV-yq-37j" secondAttribute="bottom" type="default" id="mr6-tn-f6t"/>
                                     <constraint firstItem="TO2-3r-xYQ" firstAttribute="top" secondItem="dbV-yq-37j" secondAttribute="top" type="default" id="oMn-nk-tSr"/>
@@ -462,6 +473,9 @@
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <connections>
+                        <outlet property="titleLabel" destination="uXP-hU-fTA" id="nI7-KI-FzB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="atE-gi-cck" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -518,6 +532,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="pressPlaceTextField:" destination="kia-zl-eow" eventType="touchDown" id="gam-zi-ea6"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zfF-1A-xYl" userLabel="search button">
                                 <constraints>
@@ -629,6 +646,7 @@
                 <relationship kind="action" name="pressSearchButton:"/>
                 <relationship kind="action" name="pressZoomInButton:"/>
                 <relationship kind="action" name="pressZoomOutButton:"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="GuideRouteUIView" superclassName="UIView">
@@ -644,6 +662,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaceSearchViewController.h"/>
             <relationships>
                 <relationship kind="action" name="preeSearchButton:"/>
+                <relationship kind="action" name="pressPlaceTextField:"/>
                 <relationship kind="outlet" name="placeTableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="placeTextField" candidateClass="UITextField"/>
             </relationships>
@@ -662,7 +681,6 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
-                <relationship kind="action" name="pressNaviHUD:"/>
                 <relationship kind="action" name="pressPlace:"/>
                 <relationship kind="action" name="pressRoute:"/>
                 <relationship kind="action" name="pressTextRoute:"/>

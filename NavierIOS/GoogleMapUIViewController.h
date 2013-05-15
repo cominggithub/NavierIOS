@@ -22,6 +22,7 @@
 @property (nonatomic, readonly, strong) GMSMapView *mapView;
 @property (nonatomic) int zoomLevel;
 @property (strong, nonatomic) NSString* placeToSearch;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 -(void) downloadRequestStatusChange: (DownloadRequest*) downloadRequest;
 @end

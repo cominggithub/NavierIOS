@@ -40,17 +40,7 @@
 
 - (IBAction)preeSearchButton:(id)sender
 {
-    NSString *placeToSearch = self.placeTextField.text;
-    if(![self.placeTextField.text isEqualToString:[SystemManager getLanguageString:@""]])
-    {
-
-        GoogleMapUIViewController* gc = (GoogleMapUIViewController*) self.presentingViewController;
-        [User addSearchedPlace:placeToSearch];
-        [User save];
-        gc.placeToSearch = [NSString stringWithString:placeToSearch];
-    }
-    
-    [self dismissModalViewControllerAnimated:true];
+    [self dismissAndSearchPlace:self.placeTextField.text];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -63,6 +53,27 @@
     return cell;
 }
 
+- (void)tableView: (UITableView *)tableView didSelectRowAtIndexPath: (NSIndexPath *)indexPath
+{
+    [self dismissAndSearchPlace:[User getSearchPlaceByIndex:indexPath.row]];
+}
+
+- (void) dismissAndSearchPlace:(NSString*) place
+{
+    if(place != nil && place.length > 0)
+    {
+        if(![place isEqualToString:[SystemManager getLanguageString:@""]])
+        {
+        
+            GoogleMapUIViewController* gc = (GoogleMapUIViewController*) self.presentingViewController;
+            [User addSearchedPlace:[place trim]];
+            [User save];
+            gc.placeToSearch = [NSString stringWithString:place];
+        }
+    }
+    
+    [self dismissModalViewControllerAnimated:true];
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return User.searchedPlaces.count;
@@ -73,5 +84,20 @@
     [self setPlaceTableView:nil];
     [super viewDidUnload];
     
+}
+- (IBAction)pressPlaceTextField:(id)sender
+{
+    logfn();
+    if(self.placeTextField.text != nil && self.placeTextField.text.length > 0)
+    {
+        logfn();
+        if([self.placeTextField.text isEqualToString:[SystemManager getLanguageString:@""]])
+        {
+            logfn();
+            self.placeTextField.text = @"";
+        }
+        logfn();
+        
+    }
 }
 @end

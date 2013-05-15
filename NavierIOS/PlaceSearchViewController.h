@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *placeTextField;
 - (IBAction)preeSearchButton:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *placeTableView;
+- (IBAction)pressPlaceTextField:(id)sender;
 
 
 @end
