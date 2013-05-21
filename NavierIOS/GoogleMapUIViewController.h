@@ -11,7 +11,7 @@
 #import <NaviUtil/NaviUtil.h>
 
 
-@interface GoogleMapUIViewController : UIViewController<DownloadRequestDelegate>
+@interface GoogleMapUIViewController : UIViewController<DownloadRequestDelegate, GMSMapViewDelegate>
 
 /** GMSMapView managed by this controller. */
 - (IBAction)pressRouteButton:(id)sender;
@@ -23,6 +23,14 @@
 @property (nonatomic) int zoomLevel;
 @property (strong, nonatomic) NSString* placeToSearch;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *navigationButton;
+@property (weak, nonatomic) IBOutlet UIButton *placeButton;
+- (IBAction)pressNavigationButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *pressPlaceButton;
+
+
+
 
 -(void) downloadRequestStatusChange: (DownloadRequest*) downloadRequest;
+-(void) mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate;
 @end

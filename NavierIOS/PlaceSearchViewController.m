@@ -28,7 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.placeTextField.text = [SystemManager getLanguageString:@""];
+    self.placeTextField.text = [SystemManager getLanguageString:@"Place to search"];
 	// Do any additional setup after loading the view.
 }
 
@@ -62,7 +62,7 @@
 {
     if(place != nil && place.length > 0)
     {
-        if(![place isEqualToString:[SystemManager getLanguageString:@""]])
+        if(![place isEqualToString:[SystemManager getLanguageString:@"Place to search"]])
         {
         
             GoogleMapUIViewController* gc = (GoogleMapUIViewController*) self.presentingViewController;
@@ -87,17 +87,12 @@
 }
 - (IBAction)pressPlaceTextField:(id)sender
 {
-    logfn();
     if(self.placeTextField.text != nil && self.placeTextField.text.length > 0)
     {
-        logfn();
-        if([self.placeTextField.text isEqualToString:[SystemManager getLanguageString:@""]])
+        if([self.placeTextField.text isEqualToString:[SystemManager getLanguageString:@"Place to search"]])
         {
-            logfn();
             self.placeTextField.text = @"";
         }
-        logfn();
-        
     }
 }
 @end
