@@ -19,8 +19,7 @@
 - (IBAction)pressZoomInButton:(id)sender;
 - (IBAction)pressHomeButton:(id)sender;
 - (IBAction)pressSearchButton:(id)sender;
-@property (nonatomic, readonly, strong) GMSMapView *mapView;
-@property (nonatomic) int zoomLevel;
+
 @property (strong, nonatomic) NSString* placeToSearch;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *navigationButton;
