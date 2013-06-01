@@ -7,8 +7,7 @@
 //
 
 #import "PlaceSearchViewController.h"
-#import "Log.h"
-#import "User.h"
+#import <NaviUtil/NaviUtil.h>
 
 @interface PlaceSearchViewController ()
 
@@ -66,7 +65,7 @@
         {
         
             GoogleMapUIViewController* gc = (GoogleMapUIViewController*) self.presentingViewController;
-            [User addSearchedPlace:[place trim]];
+            [User addSearchedLocation:[place trim]];
             [User save];
             gc.placeToSearch = [NSString stringWithString:place];
         }
@@ -76,7 +75,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return User.searchedPlaces.count;
+    return User.searchedLocations.count;
 }
 
 - (void)viewDidUnload {

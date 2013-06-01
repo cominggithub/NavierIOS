@@ -7,7 +7,7 @@
 //
 
 #import "GoogleMapUIViewController.h"
-
+#import "SavePlaceViewController.h"
 
 @interface GoogleMapUIViewController ()
 @end
@@ -38,15 +38,18 @@
     DownloadRequest *routeDownloadRequest;
     DownloadRequest *searchPlaceDownloadRequest;
     
+    SavePlaceViewController *savePlaceViewController;
+    
+    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        logfn();
         // Custom initialization
-        searchedPlaces = [[NSMutableArray alloc] initWithCapacity:0];
-        isRouteChanged = false;
+
     }
     return self;
 }
@@ -85,7 +88,9 @@
     [self dismissModalViewControllerAnimated:true];
 }
 
-- (IBAction)pressSearchButton:(id)sender {
+- (IBAction)pressSearchButton:(id)sender
+{
+    
 }
 
 
@@ -146,6 +151,8 @@
     [firstSubview insertSubview:self.mapView atIndex:0];
     searchedPlaces = [[NSMutableArray alloc] initWithCapacity:0];
 
+
+    
     textFont = [UIFont boldSystemFontOfSize:14.0];
     navigationText = [SystemManager getLanguageString:@"Navigation"];
     placeText = [SystemManager getLanguageString:@"Place"];
@@ -154,7 +161,11 @@
     
     [self addMarkMenu];
 
-    [self.view dumpView];
+    savePlaceViewController = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass
+                               ([SavePlaceViewController class])];
+    isRouteChanged = false;
+    
+//  [self.view dumpView];
 }
 
 -(void) addMarkMenu
@@ -248,6 +259,13 @@
 }
 
 - (IBAction)pressNavigationButton:(id)sender {
+}
+
+- (IBAction)pressTestButton:(id)sender
+{
+    Place *p = [Place newPlace:@"AA" Address:@"bb" Location:CLLocationCoordinate2DMake(1, 2)];
+    [self saveAsHome:p];
+    
 }
 
 -(void) downloadRequestStatusChange: (DownloadRequest*) downloadRequest
@@ -500,7 +518,8 @@
 
 -(void) saveAsHome:(Place*)p
 {
-    
+    savePlaceViewController.currentPlace = p;
+    [self presentModalViewController:savePlaceViewController animated:YES];
 }
 
 -(void) saveAsOffice:(Place*)p

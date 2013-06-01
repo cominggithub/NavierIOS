@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *placeButton;
 - (IBAction)pressNavigationButton:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *pressPlaceButton;
+- (IBAction)pressTestButton:(id)sender;
 
 
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B036BBC1759CCEF003E4683 /* SavePlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B036BBB1759CCEF003E4683 /* SavePlaceViewController.m */; };
 		2B18AA8A1748758A00277F52 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B18AA891748758A00277F52 /* GoogleMaps.framework */; };
 		2B18AA8C174875B200277F52 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2B18AA8B174875B200277F52 /* GoogleMaps.bundle */; };
 		2B18AA8E174877BC00277F52 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B18AA8D174877BC00277F52 /* libc++.dylib */; };
@@ -241,6 +242,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B036BBA1759CCEF003E4683 /* SavePlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavePlaceViewController.h; sourceTree = "<group>"; };
+		2B036BBB1759CCEF003E4683 /* SavePlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavePlaceViewController.m; sourceTree = "<group>"; };
 		2B18AA891748758A00277F52 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		2B18AA8B174875B200277F52 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../../ios/framework/GoogleMaps-iOS-1.3.0/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
 		2B18AA8D174877BC00277F52 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
@@ -731,6 +734,8 @@
 				2BCFE04217031BE200636F58 /* RouteTableViewController.m */,
 				2B8C5CAB174134B700260836 /* PlaceSearchViewController.h */,
 				2B8C5CAC174134B700260836 /* PlaceSearchViewController.m */,
+				2B036BBA1759CCEF003E4683 /* SavePlaceViewController.h */,
+				2B036BBB1759CCEF003E4683 /* SavePlaceViewController.m */,
 				2B9A431F16DB955F00FD1A54 /* Supporting Files */,
 				2BB1185B16E31683003BB39E /* GoogleAPIKey.h */,
 				2BE1CE6B174BA5830053995F /* MarkMenu.xib */,
@@ -1090,6 +1095,7 @@
 				2B6CBF9116DFA6050095CBD4 /* LanscapeUIViewController.m in Sources */,
 				2BCFE04317031BE200636F58 /* RouteTableViewController.m in Sources */,
 				2B8C5CAD174134B700260836 /* PlaceSearchViewController.m in Sources */,
+				2B036BBC1759CCEF003E4683 /* SavePlaceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
