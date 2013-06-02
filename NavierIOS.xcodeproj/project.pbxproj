@@ -8,9 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		2B036BBC1759CCEF003E4683 /* SavePlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B036BBB1759CCEF003E4683 /* SavePlaceViewController.m */; };
+		2B17CE1F175B203A00F478A6 /* 0410-03simpletheme-02-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B17CE1D175B203A00F478A6 /* 0410-03simpletheme-02-1.png */; };
+		2B17CE20175B203A00F478A6 /* 0410-03simpletheme-02-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B17CE1E175B203A00F478A6 /* 0410-03simpletheme-02-2.png */; };
+		2B17CE54175B344A00F478A6 /* Blue_car_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B17CE52175B344A00F478A6 /* Blue_car_marker.png */; };
+		2B17CE55175B344A00F478A6 /* Blue_car_marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B17CE53175B344A00F478A6 /* Blue_car_marker@2x.png */; };
+		2B17CE59175B3E7500F478A6 /* home_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B17CE57175B3E7500F478A6 /* home_marker.png */; };
+		2B17CE5A175B3E7500F478A6 /* home_marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B17CE58175B3E7500F478A6 /* home_marker@2x.png */; };
+		2B17CE5D175B3E8100F478A6 /* office_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B17CE5B175B3E8100F478A6 /* office_marker.png */; };
+		2B17CE5E175B3E8100F478A6 /* office_marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B17CE5C175B3E8100F478A6 /* office_marker@2x.png */; };
+		2B17CE61175B3E8E00F478A6 /* favor_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B17CE5F175B3E8D00F478A6 /* favor_marker.png */; };
+		2B17CE62175B3E8E00F478A6 /* favor_marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B17CE60175B3E8E00F478A6 /* favor_marker@2x.png */; };
 		2B18AA8A1748758A00277F52 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B18AA891748758A00277F52 /* GoogleMaps.framework */; };
 		2B18AA8C174875B200277F52 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2B18AA8B174875B200277F52 /* GoogleMaps.bundle */; };
 		2B18AA8E174877BC00277F52 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B18AA8D174877BC00277F52 /* libc++.dylib */; };
+		2B4B3121175AF25800426D60 /* SelectPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4B3120175AF25800426D60 /* SelectPlaceViewController.m */; };
 		2B698653174786540000BB2D /* Map-Marker-Push-Pin--Right-Chartreuse_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B698652174786510000BB2D /* Map-Marker-Push-Pin--Right-Chartreuse_32.png */; };
 		2B69865B174787A00000BB2D /* searched_place_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B6986591747879B0000BB2D /* searched_place_icon.png */; };
 		2B69865C174787A00000BB2D /* searched_place_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B69865A1747879E0000BB2D /* searched_place_icon@2x.png */; };
@@ -244,9 +255,21 @@
 /* Begin PBXFileReference section */
 		2B036BBA1759CCEF003E4683 /* SavePlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavePlaceViewController.h; sourceTree = "<group>"; };
 		2B036BBB1759CCEF003E4683 /* SavePlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavePlaceViewController.m; sourceTree = "<group>"; };
+		2B17CE1D175B203A00F478A6 /* 0410-03simpletheme-02-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "0410-03simpletheme-02-1.png"; sourceTree = "<group>"; };
+		2B17CE1E175B203A00F478A6 /* 0410-03simpletheme-02-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "0410-03simpletheme-02-2.png"; sourceTree = "<group>"; };
+		2B17CE52175B344A00F478A6 /* Blue_car_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_car_marker.png; sourceTree = "<group>"; };
+		2B17CE53175B344A00F478A6 /* Blue_car_marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Blue_car_marker@2x.png"; sourceTree = "<group>"; };
+		2B17CE57175B3E7500F478A6 /* home_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_marker.png; sourceTree = "<group>"; };
+		2B17CE58175B3E7500F478A6 /* home_marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_marker@2x.png"; sourceTree = "<group>"; };
+		2B17CE5B175B3E8100F478A6 /* office_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = office_marker.png; sourceTree = "<group>"; };
+		2B17CE5C175B3E8100F478A6 /* office_marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "office_marker@2x.png"; sourceTree = "<group>"; };
+		2B17CE5F175B3E8D00F478A6 /* favor_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favor_marker.png; sourceTree = "<group>"; };
+		2B17CE60175B3E8E00F478A6 /* favor_marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favor_marker@2x.png"; sourceTree = "<group>"; };
 		2B18AA891748758A00277F52 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		2B18AA8B174875B200277F52 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../../ios/framework/GoogleMaps-iOS-1.3.0/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
 		2B18AA8D174877BC00277F52 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		2B4B311F175AF25800426D60 /* SelectPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPlaceViewController.h; sourceTree = "<group>"; };
+		2B4B3120175AF25800426D60 /* SelectPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPlaceViewController.m; sourceTree = "<group>"; };
 		2B698652174786510000BB2D /* Map-Marker-Push-Pin--Right-Chartreuse_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Map-Marker-Push-Pin--Right-Chartreuse_32.png"; sourceTree = "<group>"; };
 		2B6986591747879B0000BB2D /* searched_place_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searched_place_icon.png; sourceTree = "<group>"; };
 		2B69865A1747879E0000BB2D /* searched_place_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searched_place_icon@2x.png"; sourceTree = "<group>"; };
@@ -508,6 +531,14 @@
 		2B7929D017007FC300353349 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2B17CE5F175B3E8D00F478A6 /* favor_marker.png */,
+				2B17CE60175B3E8E00F478A6 /* favor_marker@2x.png */,
+				2B17CE5B175B3E8100F478A6 /* office_marker.png */,
+				2B17CE5C175B3E8100F478A6 /* office_marker@2x.png */,
+				2B17CE57175B3E7500F478A6 /* home_marker.png */,
+				2B17CE58175B3E7500F478A6 /* home_marker@2x.png */,
+				2B17CE1D175B203A00F478A6 /* 0410-03simpletheme-02-1.png */,
+				2B17CE1E175B203A00F478A6 /* 0410-03simpletheme-02-2.png */,
 				2B6986591747879B0000BB2D /* searched_place_icon.png */,
 				2B69865A1747879E0000BB2D /* searched_place_icon@2x.png */,
 				2B698652174786510000BB2D /* Map-Marker-Push-Pin--Right-Chartreuse_32.png */,
@@ -529,6 +560,8 @@
 				2BC61A5B173E498800990DA7 /* ic_alert.png */,
 				2BC61A5C173E498800990DA7 /* ic_autopanel.png */,
 				2BC61A5D173E498800990DA7 /* ic_circle_logo.png */,
+				2B17CE52175B344A00F478A6 /* Blue_car_marker.png */,
+				2B17CE53175B344A00F478A6 /* Blue_car_marker@2x.png */,
 				2BC61A5E173E498800990DA7 /* ic_config_touched.png */,
 				2BC61A5F173E498800990DA7 /* ic_config.png */,
 				2BC61A60173E498800990DA7 /* ic_fling.png */,
@@ -736,6 +769,8 @@
 				2B8C5CAC174134B700260836 /* PlaceSearchViewController.m */,
 				2B036BBA1759CCEF003E4683 /* SavePlaceViewController.h */,
 				2B036BBB1759CCEF003E4683 /* SavePlaceViewController.m */,
+				2B4B311F175AF25800426D60 /* SelectPlaceViewController.h */,
+				2B4B3120175AF25800426D60 /* SelectPlaceViewController.m */,
 				2B9A431F16DB955F00FD1A54 /* Supporting Files */,
 				2BB1185B16E31683003BB39E /* GoogleAPIKey.h */,
 				2BE1CE6B174BA5830053995F /* MarkMenu.xib */,
@@ -1054,6 +1089,16 @@
 				2B69865C174787A00000BB2D /* searched_place_icon@2x.png in Resources */,
 				2B18AA8C174875B200277F52 /* GoogleMaps.bundle in Resources */,
 				2BE1CE6C174BA5830053995F /* MarkMenu.xib in Resources */,
+				2B17CE1F175B203A00F478A6 /* 0410-03simpletheme-02-1.png in Resources */,
+				2B17CE20175B203A00F478A6 /* 0410-03simpletheme-02-2.png in Resources */,
+				2B17CE54175B344A00F478A6 /* Blue_car_marker.png in Resources */,
+				2B17CE55175B344A00F478A6 /* Blue_car_marker@2x.png in Resources */,
+				2B17CE59175B3E7500F478A6 /* home_marker.png in Resources */,
+				2B17CE5A175B3E7500F478A6 /* home_marker@2x.png in Resources */,
+				2B17CE5D175B3E8100F478A6 /* office_marker.png in Resources */,
+				2B17CE5E175B3E8100F478A6 /* office_marker@2x.png in Resources */,
+				2B17CE61175B3E8E00F478A6 /* favor_marker.png in Resources */,
+				2B17CE62175B3E8E00F478A6 /* favor_marker@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1096,6 +1141,7 @@
 				2BCFE04317031BE200636F58 /* RouteTableViewController.m in Sources */,
 				2B8C5CAD174134B700260836 /* PlaceSearchViewController.m in Sources */,
 				2B036BBC1759CCEF003E4683 /* SavePlaceViewController.m in Sources */,
+				2B4B3121175AF25800426D60 /* SelectPlaceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

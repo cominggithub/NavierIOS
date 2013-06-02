@@ -10,9 +10,7 @@
 #import <NaviUtil/NaviUtil.h>
 
 @interface SavePlaceViewController ()
-{
-    NSArray* locationArray;
-}
+
 @end
 
 @implementation SavePlaceViewController
@@ -93,6 +91,7 @@
     nameLabel.text      = place.name;
     addressLabel.text   = place.address;
     
+    logo(place);
     return cell;
 }
 
@@ -122,30 +121,28 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ( nil != locationArray )
-        return locationArray.count;
-
+    switch (self.savePlaceType)
+    {
+        case kSavePlaceType_Home:
+            logi(User.homeLocations.count);
+            return User.homeLocations.count;
+        case kSavePlaceType_Office:
+            logi(User.officeLocations.count);
+            return User.officeLocations.count;
+        case kSavePlaceType_Favor:
+            logi(User.favorLocations.count);
+            return User.favorLocations.count;
+        default:
+            return 0;
+    }
+    
     return 0;
+    
 }
 
 -(void) setType:(kSavePlaceType) type
 {
     self.savePlaceType = type;
-    switch (self.savePlaceType)
-    {
-        case kSavePlaceType_Home:
-            locationArray = User.homeLocations;
-            break;
-        case kSavePlaceType_Office:
-            locationArray = User.officeLocations;
-            break;
-        case kSavePlaceType_Favor:
-            locationArray = User.favorLocations;
-            break;
-        default:
-            break;
-    }
-
 }
 -(void) updateFromCurrentPlace
 {

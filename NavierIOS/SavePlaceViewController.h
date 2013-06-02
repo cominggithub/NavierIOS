@@ -27,5 +27,6 @@ typedef enum
 @property (nonatomic) kSavePlaceType savePlaceType;
 - (IBAction)pressSaveButton:(id)sender;
 - (IBAction)pressBackButton:(id)sender;
+-(void) setType:(kSavePlaceType) type;
 
 @end
