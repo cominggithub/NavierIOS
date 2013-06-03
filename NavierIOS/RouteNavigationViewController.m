@@ -1,32 +1,32 @@
 //
-//  LanscapeUIViewController.m
-//  GoogleDirection
+//  RouteNavigationViewController.m
+//  NavierIOS
 //
-//  Created by Coming on 13/1/12.
+//  Created by Coming on 13/6/3.
 //  Copyright (c) 2013年 Coming. All rights reserved.
 //
 
-#import "LanscapeUIViewController.h"
+#import "RouteNavigationViewController.h"
 
-@interface LanscapeUIViewController ()
+@interface RouteNavigationViewController ()
 
 @end
 
-@implementation LanscapeUIViewController
+@implementation RouteNavigationViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-
+        
     }
     return self;
 }
 
--(void) startRouteNavigationFrom:(Place*) s To:(Place*) e
+-(void) startRouteNavigationFrom:(Place*) startPlace To:(Place*) endPlace
 {
     GuideRouteUIView* view = (GuideRouteUIView*)[self view];
-    [view startRouteNavigationFrom:s To:e];
+    [view startRouteNavigationFrom:startPlace To:endPlace];
 }
 
 - (void)viewDidLoad
@@ -36,8 +36,8 @@
     locationSimulator = [[LocationSimulator alloc] init];
     locationSimulator.timeInterval = 1;
     locationSimulator.locationPoints = [[NaviQueryManager getRoute] getRoutePolyLineCLLocationCoordinate2D];
-//    locationSimulator.delegate = (GuideRouteUIView*)self.view;
-//    [locationSimulator start];
+    //    locationSimulator.delegate = (GuideRouteUIView*)self.view;
+    //    [locationSimulator start];
     
 	// Do any additional setup after loading the view.
     
@@ -76,7 +76,7 @@
 }
 
 - (IBAction)updateButtonClick:(id)sender {
-
+    
     GuideRouteUIView* view = (GuideRouteUIView*)[self view];
     locationSimulator.delegate = view;
     [locationSimulator start];
@@ -84,7 +84,7 @@
 
 - (void)handleNotification:(NSNotification*)note
 {
-
+    
 }
 
 - (IBAction)tagAction:(id)sender
@@ -92,4 +92,5 @@
     GuideRouteUIView* view = (GuideRouteUIView*)[self view];
     [view locationUpdate:locationSimulator.getNextLocation];
 }
+
 @end

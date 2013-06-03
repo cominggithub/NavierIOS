@@ -51,11 +51,6 @@
 }
 
 
-
-
-
-
-
 -(void) addMarkMenu
 {
     UIView *subView;
@@ -65,7 +60,7 @@
     
     CGRect frame;
     frame.origin.x = 480;
-    frame.origin.y = 0;
+    frame.origin.y = 28;
     //    frame.size = self.scrIcon.frame.size;
     frame.size.width = 200;
     frame.size.height = 480;
@@ -111,7 +106,7 @@
 {
     GMSMarker *marker;
     
-    if ( nil == p || p == routeStartPlace || p == routeEndPlace)
+    if (nil == p)
         return;
     
     marker          = [[GMSMarker alloc] init];
@@ -119,7 +114,15 @@
     marker.snippet  = p.address;
     marker.position = p.coordinate;
     
-    if ( p.placeType == kPlaceType_Home)
+    if (p.placeRouteType == kPlaceRouteType_Start)
+    {
+        marker.icon     = [UIImage imageNamed:@"Blue_car_marker.png"];
+    }
+    else if (p.placeRouteType == kPlaceRouteType_End)
+    {
+        marker.icon     = [UIImage imageNamed:@"Map-Marker-Chequered-Flag-Right-Chartreuse_marker.png"];
+    }
+    else if ( p.placeType == kPlaceType_Home)
     {
         marker.icon     = [UIImage imageNamed:@"home_marker.png"];
     }
@@ -176,7 +179,7 @@
     
     for (Place *p in markerPlaces)
     {
-        if (p.coordinate.latitude == marker.position.latitude && p.coordinate.longitude == marker.position.longitude)
+        if (true == [GeoUtil isCLLocationCoordinate2DEqual:p.coordinate To:marker.position])
             return p;
     }
     
@@ -188,6 +191,7 @@
     isShowMarkMenu = false;
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:.4];
+    logfns("mark menu: (%f, %f) (%f, %f)\n", markMenu.frame.origin.x, markMenu.frame.origin.y, markMenu.frame.size.width, markMenu.frame.size.height);
     markMenu.frame = CGRectOffset( markMenu.frame, 100, 0 ); // offset by an amount
     [UIView commitAnimations];
     
@@ -299,7 +303,7 @@
         if ( kGoogleJsonStatus_Ok == status)
         {
             currentRoute = [Route parseJson:routeDownloadRequest.filePath];
-            [self refresh];
+            [self refresh:false];
         }
         else
         {
@@ -357,14 +361,14 @@
 {
     [self setRouteStart:selectedPlace];
     [self hideMarkMenu];
-    [self refresh];
+    [self refresh:false];
 }
 
 -(IBAction) pressSetEndButton:(id) sender
 {
     [self setRouteEnd:selectedPlace];
     [self hideMarkMenu];
-    [self updateRoute];
+    [self refresh:false];
 }
 
 -(IBAction) pressSaveAsHomeButton:(id) sender
@@ -455,7 +459,7 @@
     
 }
 
--(void) refresh
+-(void) refresh:(bool) moveCamera
 {
     Place* firstPlace = nil;
     [self clearMapAll];
@@ -471,10 +475,14 @@
     
     [self updateUserConfiguredLocation];
     [self updateRoute];
-    if (nil != routeStartPlace)
-        [self moveToPlace:routeStartPlace];
-    else if (nil != firstPlace)
-        [self moveToPlace:firstPlace];
+    
+    if (moveCamera)
+    {
+        if (nil != routeStartPlace)
+            [self moveToPlace:routeStartPlace];
+        else if (nil != firstPlace)
+            [self moveToPlace:firstPlace];
+    }
 }
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -484,10 +492,10 @@
 -(void) showMarkMenu
 {
     isShowMarkMenu = true;
-    logfn();
     [self updateMarkMenu];
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:.4];
+    logfns("mark menu: (%f, %f) (%f, %f)\n", markMenu.frame.origin.x, markMenu.frame.origin.y, markMenu.frame.size.width, markMenu.frame.size.height);
     markMenu.frame = CGRectOffset( markMenu.frame, -100, 0 ); // offset by an amount
     [UIView commitAnimations];
 }
@@ -507,20 +515,34 @@
 
 -(void) setRouteStart:(Place*) p
 {
+    if ([routeEndPlace isCoordinateEqualTo:p])
+    {
+        routeEndPlace = nil;
+    }
+    
     if (![routeStartPlace isCoordinateEqualTo:p])
     {
-        isRouteChanged  = true;
-        routeStartPlace = p;
+        isRouteChanged                  = true;
+        routeStartPlace.placeRouteType  = kPlaceRouteType_None;
+        routeStartPlace                 = p;
+        routeStartPlace.placeRouteType  = kPlaceRouteType_Start;
         [self planRoute];
     }
 }
 
--(void) setRouteEnd:(Place*)p
+-(void) setRouteEnd:(Place*) p
 {
+    if ([routeStartPlace isCoordinateEqualTo:p])
+    {
+        routeStartPlace = nil;
+    }
+    
     if (![routeEndPlace isCoordinateEqualTo:p])
     {
-        isRouteChanged  = true;
-        routeEndPlace   = p;
+        isRouteChanged                  = true;
+        routeEndPlace.placeRouteType    = kPlaceRouteType_None;
+        routeEndPlace                   = p;
+        routeEndPlace.placeRouteType    = kPlaceRouteType_End;
         [self planRoute];
     }
     
@@ -572,30 +594,19 @@
     NSArray *routePoints;
     GMSPolyline *polyLine;
     GMSMutablePath *path;
-    GMSMarker *routeStart;
-    GMSMarker *routeEnd;
     
     if (nil != routeStartPlace)
     {
-        routeStart          = [[GMSMarker alloc] init];
-        routeStart.position = routeStartPlace.coordinate;
-        //        routeStart.icon     = [UIImage imageNamed:@"Blue_car_marker.png"];
-        routeStart.icon     = [UIImage imageNamed:@"Blue_car_marker.png"];
-        routeStart.map      = mapView;
+        [self addPlaceToMapMaker:routeStartPlace];
     }
     
     if (nil != routeEndPlace)
     {
-        routeEnd            = [[GMSMarker alloc] init];
-        routeEnd.position   = routeEndPlace.coordinate;
-        routeEnd.icon       = [UIImage imageNamed:@"Map-Marker-Chequered-Flag-Right-Chartreuse_marker.png"];
-        routeEnd.map        = mapView;
+        [self addPlaceToMapMaker:routeEndPlace];
     }
-    
-    logo(currentRoute);
+
     if (nil == currentRoute || nil == routeStartPlace || nil == routeEndPlace)
     {
-        logfns("empty route points");
         return;
     }
     
@@ -607,7 +618,6 @@
     
     for(CLLocation *location in routePoints)
     {
-        logfns("route point: (%.7f %.7f)\n", location.coordinate.latitude, location.coordinate.longitude);
         [path addCoordinate:location.coordinate];
     }
     
@@ -652,7 +662,7 @@
         
     }
     
-    [self refresh];
+    [self refresh:true];
 }
 -(void) viewWillAppear:(BOOL)animated
 {
@@ -662,7 +672,7 @@
         [self searchPlace:self.placeToSearch];
     }
     self.placeToSearch = nil;
-    [self refresh];
+    [self refresh:false];
 }
 - (void)viewDidLoad
 {

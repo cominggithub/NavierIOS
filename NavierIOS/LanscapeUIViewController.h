@@ -16,5 +16,5 @@
     LocationSimulator *locationSimulator;
     
 }
-
+-(void) startRouteNavigationFrom:(Place*) s To:(Place*) e;
 @end

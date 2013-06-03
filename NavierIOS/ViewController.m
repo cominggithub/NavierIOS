@@ -7,9 +7,12 @@
 //
 
 #import "ViewController.h"
-
+#import "RouteNavigationViewController.h"
 @interface ViewController ()
-
+{
+    RouteNavigationViewController *routeNavigationViewController;
+    
+}
 @end
 
 @implementation ViewController
@@ -36,6 +39,10 @@
     self.selectPlaceTableView.backgroundColor = [UIColor clearColor];
     self.selectPlaceTableView.opaque = NO;
     self.selectPlaceTableView.backgroundView = nil;
+    
+    routeNavigationViewController = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass
+                                 ([RouteNavigationViewController class])];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -180,8 +187,30 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+  //  logfns("select %d/%d\n", indexPath.section, indexPath.row);
+//    [self dismissModalViewControllerAnimated:TRUE];
+
+    Place* routeStartPlace;
+    Place* routeEndPlace;
     
-    [self dismissModalViewControllerAnimated:TRUE];
+    routeStartPlace = [LocationManager getCurrentPlace];
+    
+    switch (indexPath.section)
+    {
+        case 0:
+            routeEndPlace = [User getHomeLocationByIndex:indexPath.row];
+            break;
+        case 1:
+            routeEndPlace = [User getOfficeLocationByIndex:indexPath.row];
+            break;
+        case 2:
+            routeEndPlace = [User getFavorLocationByIndex:indexPath.row];
+            break;
+    }
+    
+    [routeNavigationViewController startRouteNavigationFrom:routeStartPlace To:routeEndPlace];
+    [self presentModalViewController:routeNavigationViewController animated:YES];
+
 }
 
 

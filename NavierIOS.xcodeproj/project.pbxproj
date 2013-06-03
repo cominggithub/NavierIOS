@@ -27,6 +27,7 @@
 		2B69865C174787A00000BB2D /* searched_place_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B69865A1747879E0000BB2D /* searched_place_icon@2x.png */; };
 		2B6CBF9116DFA6050095CBD4 /* LanscapeUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6CBF9016DFA6050095CBD4 /* LanscapeUIViewController.m */; };
 		2B6CBFFE16DFAA180095CBD4 /* libNaviUtil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6CBFF916DFAA040095CBD4 /* libNaviUtil.a */; };
+		2B76744A175CDD91008E6566 /* RouteNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B767449175CDD91008E6566 /* RouteNavigationViewController.m */; };
 		2B792A5017007FC300353349 /* about50.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7929D117007FC300353349 /* about50.png */; };
 		2B792A5117007FC300353349 /* account50.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7929D217007FC300353349 /* account50.png */; };
 		2B792A5217007FC300353349 /* addstar50.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7929D317007FC300353349 /* addstar50.png */; };
@@ -276,6 +277,8 @@
 		2B6CBF8F16DFA6050095CBD4 /* LanscapeUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanscapeUIViewController.h; sourceTree = "<group>"; };
 		2B6CBF9016DFA6050095CBD4 /* LanscapeUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanscapeUIViewController.m; sourceTree = "<group>"; };
 		2B6CBFF316DFAA030095CBD4 /* NaviUtil.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NaviUtil.xcodeproj; path = ../NaviUtil/NaviUtil.xcodeproj; sourceTree = "<group>"; };
+		2B767448175CDD91008E6566 /* RouteNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteNavigationViewController.h; sourceTree = "<group>"; };
+		2B767449175CDD91008E6566 /* RouteNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteNavigationViewController.m; sourceTree = "<group>"; };
 		2B7929D117007FC300353349 /* about50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about50.png; sourceTree = "<group>"; };
 		2B7929D217007FC300353349 /* account50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = account50.png; sourceTree = "<group>"; };
 		2B7929D317007FC300353349 /* addstar50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addstar50.png; sourceTree = "<group>"; };
@@ -755,6 +758,8 @@
 		2B9A431E16DB955F00FD1A54 /* NavierIOS */ = {
 			isa = PBXGroup;
 			children = (
+				2B767448175CDD91008E6566 /* RouteNavigationViewController.h */,
+				2B767449175CDD91008E6566 /* RouteNavigationViewController.m */,
 				2B6CBF8F16DFA6050095CBD4 /* LanscapeUIViewController.h */,
 				2B6CBF9016DFA6050095CBD4 /* LanscapeUIViewController.m */,
 				2B9A432716DB955F00FD1A54 /* AppDelegate.h */,
@@ -1142,6 +1147,7 @@
 				2B8C5CAD174134B700260836 /* PlaceSearchViewController.m in Sources */,
 				2B036BBC1759CCEF003E4683 /* SavePlaceViewController.m in Sources */,
 				2B4B3121175AF25800426D60 /* SelectPlaceViewController.m in Sources */,
+				2B76744A175CDD91008E6566 /* RouteNavigationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
