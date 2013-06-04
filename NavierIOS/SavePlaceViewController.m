@@ -54,13 +54,13 @@
     switch (self.savePlaceType)
     {
         case kSavePlaceType_Home:
-            [User addHomeLocation:self.currentPlace];
+            [User addHomePlace:self.currentPlace];
             break;
         case kSavePlaceType_Office:
-            [User addOfficeLocation:self.currentPlace];
+            [User addOfficePlace:self.currentPlace];
             break;
         case kSavePlaceType_Favor:
-            [User addFavorLocation:self.currentPlace];
+            [User addFavorPlace:self.currentPlace];
             break;
         default:
             break;
@@ -85,33 +85,16 @@
     UITableViewCell *cell;
 
     cell                = [self.savePlaceTableView dequeueReusableCellWithIdentifier:@"SavePlaceCell"];
-    place               = (Place*) [self getPlaceByIndex:indexPath.row];
-    nameLabel           = (UILabel*)[cell viewWithTag:3];
-    addressLabel        = (UILabel*)[cell viewWithTag:4];
-    nameLabel.text      = place.name;
-    addressLabel.text   = place.address;
-    
-    logo(place);
-    return cell;
-}
-
--(Place*) getPlaceByIndex:(int) index
-{
-    switch (self.savePlaceType)
+    place               = [User getPlaceBySection:indexPath.section index:indexPath.row];
+    if (nil != place)
     {
-        case kSavePlaceType_Home:
-            return [User getHomeLocationByIndex:index];
-        case kSavePlaceType_Office:
-            return [User getOfficeLocationByIndex:index];
-        case kSavePlaceType_Favor:
-            return [User getFavorLocationByIndex:index];
-        default:
-            return nil;
-            break;
+        nameLabel           = (UILabel*)[cell viewWithTag:3];
+        addressLabel        = (UILabel*)[cell viewWithTag:4];
+        nameLabel.text      = place.name;
+        addressLabel.text   = place.address;
     }
     
-    return nil;
-    
+    return cell;
 }
 
 -(void)tableView: (UITableView *)tableView didSelectRowAtIndexPath: (NSIndexPath *)indexPath
@@ -121,23 +104,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    switch (self.savePlaceType)
-    {
-        case kSavePlaceType_Home:
-            logi(User.homeLocations.count);
-            return User.homeLocations.count;
-        case kSavePlaceType_Office:
-            logi(User.officeLocations.count);
-            return User.officeLocations.count;
-        case kSavePlaceType_Favor:
-            logi(User.favorLocations.count);
-            return User.favorLocations.count;
-        default:
-            return 0;
-    }
-    
-    return 0;
-    
+    return [User getPlaceCountBySection:section];
 }
 
 -(void) setType:(kSavePlaceType) type

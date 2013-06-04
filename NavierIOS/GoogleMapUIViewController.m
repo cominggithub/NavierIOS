@@ -573,19 +573,19 @@
 {
     int i;
     
-    for(i=0; i<User.homeLocations.count; i++)
+    for(i=0; i<User.homePlaces.count; i++)
     {
-        [self addPlaceToMapMaker:[User getHomeLocationByIndex:i]];
+        [self addPlaceToMapMaker:[User getHomePlaceByIndex:i]];
     }
     
-    for(i=0; i<User.officeLocations.count; i++)
+    for(i=0; i<User.officePlaces.count; i++)
     {
-        [self addPlaceToMapMaker:[User getOfficeLocationByIndex:i]];
+        [self addPlaceToMapMaker:[User getOfficePlaceByIndex:i]];
     }
     
-    for(i=0; i<User.favorLocations.count; i++)
+    for(i=0; i<User.favorPlaces.count; i++)
     {
-        [self addPlaceToMapMaker:[User getFavorLocationByIndex:i]];
+        [self addPlaceToMapMaker:[User getFavorPlaceByIndex:i]];
     }
 }
 

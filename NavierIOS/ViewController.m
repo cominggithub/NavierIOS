@@ -74,8 +74,8 @@
 
 - (IBAction)pressRoute:(id)sender
 {
-    CLLocationCoordinate2D ncku     = CLLocationCoordinate2DMake(22.996501,120.216678);
-    CLLocationCoordinate2D accton   = CLLocationCoordinate2DMake(23.099313,120.284371);
+//    CLLocationCoordinate2D ncku     = CLLocationCoordinate2DMake(22.996501,120.216678);
+//    CLLocationCoordinate2D accton   = CLLocationCoordinate2DMake(23.099313,120.284371);
     
     CLLocationCoordinate2D yufon = CLLocationCoordinate2DMake(22.987968, 120.227315);
     CLLocationCoordinate2D ampin = CLLocationCoordinate2DMake(22.994664, 120.142965);
@@ -110,16 +110,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    switch (section)
-    {
-        case 0:
-            return User.homeLocations.count;
-        case 1:
-            return User.officeLocations.count;
-        case 2:
-            return User.favorLocations.count;
-    }
-    return 0;
+    return [User getPlaceCountBySection:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -129,9 +120,12 @@
     UITableViewCell *cell;
     
     cell                = [self.selectPlaceTableView dequeueReusableCellWithIdentifier:@"SelectPlaceCell"];
-    place               = (Place*) [self getPlaceAtSection:indexPath.section index:indexPath.row];
-    nameLabel           = (UILabel*)[cell viewWithTag:3];
-    nameLabel.text      = place.name;
+    place               = [User getPlaceBySection:indexPath.section index:indexPath.row];
+    if (nil != place)
+    {
+        nameLabel           = (UILabel*)[cell viewWithTag:3];
+        nameLabel.text      = place.name;
+    }
 
     
     return cell;
@@ -195,42 +189,15 @@
     
     routeStartPlace = [LocationManager getCurrentPlace];
     
-    switch (indexPath.section)
-    {
-        case 0:
-            routeEndPlace = [User getHomeLocationByIndex:indexPath.row];
-            break;
-        case 1:
-            routeEndPlace = [User getOfficeLocationByIndex:indexPath.row];
-            break;
-        case 2:
-            routeEndPlace = [User getFavorLocationByIndex:indexPath.row];
-            break;
-    }
+    routeEndPlace = [User getPlaceBySection:indexPath.section index:indexPath.row];
     
-    [routeNavigationViewController startRouteNavigationFrom:routeStartPlace To:routeEndPlace];
-    [self presentModalViewController:routeNavigationViewController animated:YES];
+    if (nil != routeStartPlace && nil != routeEndPlace && ![routeStartPlace isCoordinateEqualTo:routeEndPlace])
+    {
+        [routeNavigationViewController startRouteNavigationFrom:routeStartPlace To:routeEndPlace];
+        [self presentModalViewController:routeNavigationViewController animated:YES];
+    }
 
 }
-
-
-
-- (Place*)getPlaceAtSection:(int)section index:(int) index
-{
-    switch (section)
-    {
-        case 0:
-            return [User getHomeLocationByIndex:index];
-        case 1:
-            return [User getOfficeLocationByIndex:index];
-        case 2:
-            return [User getFavorLocationByIndex:index];
-    }
-    
-    return nil;
-    
-}
-
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {

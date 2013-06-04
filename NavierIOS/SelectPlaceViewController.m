@@ -51,16 +51,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    switch (section)
-    {
-        case 0:
-            return User.homeLocations.count;
-        case 1:
-            return User.officeLocations.count;
-        case 2:
-            return User.favorLocations.count;
-    }
-    return 0;
+    return [User getPlaceCountBySection:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -71,11 +62,14 @@
     UITableViewCell *cell;
     
     cell                = [self.selectPlaceTableView dequeueReusableCellWithIdentifier:@"SelectPlaceCell"];
-    place               = (Place*) [self getPlaceAtSection:indexPath.section index:indexPath.row];
-    nameLabel           = (UILabel*)[cell viewWithTag:3];
-    addressLabel        = (UILabel*)[cell viewWithTag:4];
-    nameLabel.text      = place.name;
-    addressLabel.text   = place.address;
+    place               = [User getPlaceBySection:indexPath.section index:indexPath.row];
+    if (nil != place)
+    {
+        nameLabel           = (UILabel*)[cell viewWithTag:3];
+        addressLabel        = (UILabel*)[cell viewWithTag:4];
+        nameLabel.text      = place.name;
+        addressLabel.text   = place.address;
+    }
     
     return cell;
 }
@@ -138,23 +132,6 @@
     [self setSelectPlaceView:nil];
     [self setSelectPlaceTableView:nil];
     [super viewDidUnload];
-}
-
-
-- (Place*)getPlaceAtSection:(int)section index:(int) index
-{
-    switch (section)
-    {
-        case 0:
-            return [User getHomeLocationByIndex:index];
-        case 1:
-            return [User getOfficeLocationByIndex:index];
-        case 2:
-            return [User getFavorLocationByIndex:index];
-    }
-    
-    return nil;
-            
 }
 
 

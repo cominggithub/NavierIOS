@@ -65,7 +65,7 @@
         {
         
             GoogleMapUIViewController* gc = (GoogleMapUIViewController*) self.presentingViewController;
-            [User addSearchedLocation:[place trim]];
+            [User addSearchedPlace:[place trim]];
             [User save];
             gc.placeToSearch = [NSString stringWithString:place];
         }
@@ -75,7 +75,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return User.searchedLocations.count;
+    return User.searchedPlaces.count;
 }
 
 - (void)viewDidUnload {
