@@ -11,9 +11,11 @@
 
 @interface RouteNavigationViewController : UIViewController
 {
-    LocationManager* locationManager;
-    LocationSimulator *locationSimulator;
+
     
 }
+@property (weak, nonatomic) IBOutlet UIButton *autoButton;
+- (IBAction)pressAutoButton:(id)sender;
+- (IBAction)pressStepButton:(id)sender;
 -(void) startRouteNavigationFrom:(Place*) startPlace To:(Place*) endPlace;
 @end

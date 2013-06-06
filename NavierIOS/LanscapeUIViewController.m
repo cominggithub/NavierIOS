@@ -33,11 +33,7 @@
 {
     [super viewDidLoad];
     
-    locationSimulator = [[LocationSimulator alloc] init];
-    locationSimulator.timeInterval = 1;
-    locationSimulator.locationPoints = [[NaviQueryManager getRoute] getRoutePolyLineCLLocationCoordinate2D];
-//    locationSimulator.delegate = (GuideRouteUIView*)self.view;
-//    [locationSimulator start];
+
     
 	// Do any additional setup after loading the view.
     
