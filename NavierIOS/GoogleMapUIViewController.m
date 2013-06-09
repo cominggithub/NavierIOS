@@ -14,6 +14,7 @@
 @interface GoogleMapUIViewController ()
 {
     NSMutableArray *markerPlaces;
+    int markMenuOffset;
 }
 @end
 
@@ -59,13 +60,15 @@
     NSArray *xibContents = [[NSBundle mainBundle] loadNibNamed:@"MarkMenu" owner:self options:nil];
     
     CGRect frame;
+    
     frame.origin.x = 480;
     frame.origin.y = 28;
     //    frame.size = self.scrIcon.frame.size;
     frame.size.width = 200;
-    frame.size.height = 480;
+    frame.size.height = 460;
     
-    markMenu = [xibContents lastObject]; //safer than objectAtIndex:0
+    markMenu = [xibContents lastObject];
+    
     markMenu.frame = frame;
     
     markMenuNameLabel           =  (UILabel *)[markMenu viewWithTag:1];
@@ -192,7 +195,7 @@
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:.4];
     logfns("mark menu: (%f, %f) (%f, %f)\n", markMenu.frame.origin.x, markMenu.frame.origin.y, markMenu.frame.size.width, markMenu.frame.size.height);
-    markMenu.frame = CGRectOffset( markMenu.frame, 100, 0 ); // offset by an amount
+    markMenu.frame = CGRectOffset( markMenu.frame, markMenuOffset, 0 ); // offset by an amount
     [UIView commitAnimations];
     
 }
@@ -267,7 +270,10 @@
 - (void)mapView:(GMSMapView *)tmapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
     CGPoint point = [tmapView.projection pointForCoordinate: coordinate];
     mlogDebug(GOOGLE_MAP_UIVIEWCONTROLLER, @"Google Map tapped at (%f,%f) on screen (%.0f, %.0f)", coordinate.latitude, coordinate.longitude, point.x, point.y);
-
+    if (true == isShowMarkMenu)
+    {
+        [self hideMarkMenu];
+    }
 }
 
 
@@ -496,7 +502,7 @@
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:.4];
     logfns("mark menu: (%f, %f) (%f, %f)\n", markMenu.frame.origin.x, markMenu.frame.origin.y, markMenu.frame.size.width, markMenu.frame.size.height);
-    markMenu.frame = CGRectOffset( markMenu.frame, -100, 0 ); // offset by an amount
+    markMenu.frame = CGRectOffset( markMenu.frame, (-1)*markMenuOffset, 0 ); // offset by an amount
     [UIView commitAnimations];
 }
 
@@ -635,8 +641,8 @@
     if (nil != selectedPlace)
     {
         logo(selectedPlace);
-        markMenuNameLabel.text      = selectedPlace.name;
-        markMenuSnippetLabel.text   = selectedPlace.address;
+//        markMenuNameLabel.text      = selectedPlace.name;
+//        markMenuSnippetLabel.text   = selectedPlace.address;
     }
 }
 
@@ -693,8 +699,10 @@
     
     
     textFont = [UIFont boldSystemFontOfSize:14.0];
-    navigationText = [SystemManager getLanguageString:@"Navigation"];
+    navigationText = [SystemManager getLanguageString:@"Navigate"];
+//    navigationText = [SystemManager getLanguageString:@"導航"];
     placeText = [SystemManager getLanguageString:@"Place"];
+//    placeText = [SystemManager getLanguageString:@"地點"];
     [self.navigationButton setTitle:navigationText forState:UIControlStateNormal];
     [self.placeButton setTitle:placeText forState:UIControlStateNormal];
     
@@ -706,6 +714,7 @@
     selectPlaceViewController = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass
                                  ([SelectPlaceViewController class])];
     isRouteChanged = false;
+    markMenuOffset = 80;
     
     //  [self.view dumpView];
 }
