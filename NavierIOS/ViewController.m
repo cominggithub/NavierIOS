@@ -110,7 +110,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [User getPlaceCountBySection:section];
+    return [User getPlaceCountBySectionMode: kSectionMode_Home_Office_Favor_SearchedText Section:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -120,7 +120,9 @@
     UITableViewCell *cell;
     
     cell                = [self.selectPlaceTableView dequeueReusableCellWithIdentifier:@"SelectPlaceCell"];
-    place               = [User getPlaceBySection:indexPath.section index:indexPath.row];
+    place               = [User getPlaceBySectionMode:kSectionMode_Home_Office_Favor_SearchedText
+                                              Section:indexPath.section
+                                                Index:indexPath.row];
     if (nil != place)
     {
         nameLabel           = (UILabel*)[cell viewWithTag:3];
@@ -189,7 +191,9 @@
     
     routeStartPlace = [LocationManager getCurrentPlace];
     
-    routeEndPlace = [User getPlaceBySection:indexPath.section index:indexPath.row];
+    routeEndPlace = [User getPlaceBySectionMode:kSectionMode_Home_Office_Favor_SearchedText
+                                        Section:indexPath.section
+                                           Index:indexPath.row];
     
     if (nil != routeStartPlace && nil != routeEndPlace && ![routeStartPlace isCoordinateEqualTo:routeEndPlace])
     {
@@ -286,4 +290,9 @@
 }
 
 #endif
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [self.selectPlaceTableView reloadData];
+}
 @end

@@ -375,7 +375,7 @@
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Msg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXP-hU-fTA" userLabel="Msg">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="304" id="qXh-sR-Ow9"/>
+                                            <constraint firstAttribute="width" constant="206" id="zF3-Im-OVW"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -390,18 +390,21 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="pressPlaceButton:" destination="F6q-Dq-rDZ" eventType="touchUpInside" id="W0a-tD-2jV"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration" label="Top"/>
                                 <constraints>
+                                    <constraint firstItem="uXP-hU-fTA" firstAttribute="centerX" secondItem="dbV-yq-37j" secondAttribute="centerX" type="default" id="1Mv-OL-Ugq"/>
                                     <constraint firstAttribute="trailing" secondItem="Ojl-Oe-bju" secondAttribute="trailing" constant="8" id="1vq-84-6tt"/>
                                     <constraint firstItem="qGw-Kk-Lou" firstAttribute="centerY" secondItem="uXP-hU-fTA" secondAttribute="centerY" type="default" id="4YH-nK-Kxi"/>
                                     <constraint firstItem="Ojl-Oe-bju" firstAttribute="leading" secondItem="qGw-Kk-Lou" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="7Eh-l2-pAm"/>
                                     <constraint firstItem="TO2-3r-xYQ" firstAttribute="leading" secondItem="dbV-yq-37j" secondAttribute="leading" type="default" id="B7R-2I-O2B"/>
                                     <constraint firstItem="TO2-3r-xYQ" firstAttribute="top" secondItem="dbV-yq-37j" secondAttribute="top" type="default" id="Bae-oW-jAV"/>
                                     <constraint firstItem="uXP-hU-fTA" firstAttribute="bottom" secondItem="dbV-yq-37j" secondAttribute="bottom" type="default" id="LKK-zF-Qa9"/>
-                                    <constraint firstItem="uXP-hU-fTA" firstAttribute="centerX" secondItem="dbV-yq-37j" secondAttribute="centerX" type="default" id="NUV-L7-pps"/>
                                     <constraint firstItem="qGw-Kk-Lou" firstAttribute="baseline" secondItem="Ojl-Oe-bju" secondAttribute="baseline" type="default" id="jnx-LW-kno"/>
                                     <constraint firstItem="uXP-hU-fTA" firstAttribute="top" secondItem="dbV-yq-37j" secondAttribute="top" type="default" id="yCR-ai-alf"/>
                                 </constraints>
@@ -899,8 +902,14 @@
             <relationships>
                 <relationship kind="action" name="pressHomeButton:"/>
                 <relationship kind="action" name="pressNavigationButton:"/>
+                <relationship kind="action" name="pressPlaceButton:"/>
                 <relationship kind="action" name="pressRouteButton:"/>
+                <relationship kind="action" name="pressSaveAsFavorButton:"/>
+                <relationship kind="action" name="pressSaveAsHomeButton:"/>
+                <relationship kind="action" name="pressSaveAsOfficeButton:"/>
                 <relationship kind="action" name="pressSearchButton:"/>
+                <relationship kind="action" name="pressSetEndButton:"/>
+                <relationship kind="action" name="pressSetStartButton:"/>
                 <relationship kind="action" name="pressTestButton:"/>
                 <relationship kind="action" name="pressZoomInButton:"/>
                 <relationship kind="action" name="pressZoomOutButton:"/>
@@ -964,6 +973,7 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
+                <relationship kind="action" name="pressNaviHUD:"/>
                 <relationship kind="action" name="pressPlace:"/>
                 <relationship kind="action" name="pressRoute:"/>
                 <relationship kind="action" name="pressTextRoute:"/>

@@ -9,12 +9,14 @@
 #import "GoogleMapUIViewController.h"
 #import "SavePlaceViewController.h"
 #import "SelectPlaceViewController.h"
+#import "RouteNavigationViewController.h"
 
 
 @interface GoogleMapUIViewController ()
 {
     NSMutableArray *markerPlaces;
     int markMenuOffset;
+    RouteNavigationViewController *routeNavigationViewController;
 }
 @end
 
@@ -191,15 +193,28 @@
 }
 -(void) hideMarkMenu
 {
-    isShowMarkMenu = false;
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:.4];
-    logfns("mark menu: (%f, %f) (%f, %f)\n", markMenu.frame.origin.x, markMenu.frame.origin.y, markMenu.frame.size.width, markMenu.frame.size.height);
-    markMenu.frame = CGRectOffset( markMenu.frame, markMenuOffset, 0 ); // offset by an amount
-    [UIView commitAnimations];
+    if (true == isShowMarkMenu)
+    {
+        isShowMarkMenu = false;
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:.4];
+        logfns("mark menu: (%f, %f) (%f, %f)\n", markMenu.frame.origin.x, markMenu.frame.origin.y, markMenu.frame.size.width, markMenu.frame.size.height);
+        markMenu.frame = CGRectOffset( markMenu.frame, markMenuOffset, 0 ); // offset by an amount
+        [UIView commitAnimations];
+    }
     
 }
 
+-(bool) isPlaceInSearchedPlaces:(Place*) place
+{
+    for (Place* p in searchedPlaces)
+    {
+        if ( [p isCoordinateEqualTo:place])
+            return true;
+    }
+    
+    return false;
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -253,14 +268,10 @@
     selectedPlace = [self getPlaceByGMSMarker:marker];
     
     logo(selectedPlace);
-    if (false == isShowMarkMenu)
-    {
-        [self showMarkMenu];
-    }
-    else
-    {
-        [self updateMarkMenu];
-    }
+    
+    [self showMarkMenu];
+    [self updateMarkMenu];
+    
     return NO;
 }
 
@@ -277,13 +288,13 @@
 }
 
 
-
-
-
-
-
-
-- (IBAction)pressNavigationButton:(id)sender {
+- (IBAction)pressNavigationButton:(id)sender
+{
+    if (nil != routeStartPlace && nil != routeEndPlace && ![routeStartPlace isCoordinateEqualTo:routeEndPlace])
+    {
+        [routeNavigationViewController startRouteNavigationFrom:routeStartPlace To:routeEndPlace];
+        [self presentModalViewController:routeNavigationViewController animated:YES];
+    }
 }
 
 - (IBAction)pressTestButton:(id)sender
@@ -294,8 +305,6 @@
     [self presentModalViewController:selectPlaceViewController animated:YES];
     
 }
-
-
 
 -(void) processRouteDownloadRequestStatusChange
 {
@@ -309,7 +318,7 @@
         if ( kGoogleJsonStatus_Ok == status)
         {
             currentRoute = [Route parseJson:routeDownloadRequest.filePath];
-            [self refresh:false];
+            [self refresh];
         }
         else
         {
@@ -367,14 +376,14 @@
 {
     [self setRouteStart:selectedPlace];
     [self hideMarkMenu];
-    [self refresh:false];
+    [self refresh];
 }
 
 -(IBAction) pressSetEndButton:(id) sender
 {
     [self setRouteEnd:selectedPlace];
     [self hideMarkMenu];
-    [self refresh:false];
+    [self refresh];
 }
 
 -(IBAction) pressSaveAsHomeButton:(id) sender
@@ -465,30 +474,29 @@
     
 }
 
--(void) refresh:(bool) moveCamera
+- (IBAction)pressPlaceButton:(id)sender
 {
-    Place* firstPlace = nil;
+    [self hideMarkMenu];
+    selectPlaceViewController.searchedPlaces = searchedPlaces;
+    [self presentModalViewController:selectPlaceViewController animated:YES];
+
+}
+
+
+-(void) refresh
+{
     [self clearMapAll];
     
     for(Place* p in searchedPlaces)
     {
-        if (firstPlace == nil)
+        if (routeStartPlace != p && routeEndPlace != p)
         {
-            firstPlace = p;
+            [self addPlaceToMapMaker:p];
         }
-        [self addPlaceToMapMaker:p];
     }
     
     [self updateUserConfiguredLocation];
     [self updateRoute];
-    
-    if (moveCamera)
-    {
-        if (nil != routeStartPlace)
-            [self moveToPlace:routeStartPlace];
-        else if (nil != firstPlace)
-            [self moveToPlace:firstPlace];
-    }
 }
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -497,13 +505,16 @@
 
 -(void) showMarkMenu
 {
-    isShowMarkMenu = true;
-    [self updateMarkMenu];
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:.4];
-    logfns("mark menu: (%f, %f) (%f, %f)\n", markMenu.frame.origin.x, markMenu.frame.origin.y, markMenu.frame.size.width, markMenu.frame.size.height);
-    markMenu.frame = CGRectOffset( markMenu.frame, (-1)*markMenuOffset, 0 ); // offset by an amount
-    [UIView commitAnimations];
+    if (false == isShowMarkMenu)
+    {
+        isShowMarkMenu = true;
+        [self updateMarkMenu];
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:.4];
+        logfns("mark menu: (%f, %f) (%f, %f)\n", markMenu.frame.origin.x, markMenu.frame.origin.y, markMenu.frame.size.width, markMenu.frame.size.height);
+        markMenu.frame = CGRectOffset( markMenu.frame, (-1)*markMenuOffset, 0 ); // offset by an amount
+        [UIView commitAnimations];
+    }
 }
 
 -(void) searchPlace:(NSString*) place
@@ -556,23 +567,33 @@
 
 -(void) saveAsHome:(Place*)p
 {
+    p.placeType = kPlaceType_Home;
     savePlaceViewController.currentPlace = p;
-    [savePlaceViewController setType:kSavePlaceType_Home];
     [self presentModalViewController:savePlaceViewController animated:YES];
 }
 
 -(void) saveAsOffice:(Place*)p
 {
+    p.placeType = kPlaceType_Office;
     savePlaceViewController.currentPlace = p;
-    [savePlaceViewController setType:kSavePlaceType_Office];
     [self presentModalViewController:savePlaceViewController animated:YES];
 }
 
 -(void) saveAsFavor:(Place*)p
 {
+    p.placeType = kPlaceType_Favor;
     savePlaceViewController.currentPlace = p;
-    [savePlaceViewController setType:kSavePlaceType_Favor];
     [self presentModalViewController:savePlaceViewController animated:YES];
+}
+
+-(void) selectPlace:(Place*) p sender:(SelectPlaceViewController*) s
+{
+    logfn();
+    if (nil == p)
+        return;
+    [self refresh];
+    [self moveToPlace:p];
+    
 }
 
 - (void) updateUserConfiguredLocation
@@ -649,6 +670,7 @@
 -(void) updateSearchedPlace:(NSArray*) places
 {
     int i=0;
+    Place* firstPlace = nil;
     if ( places.count < 1)
     {
         self.titleLabel.text = [SystemManager getLanguageString:@"Search fail"];
@@ -664,22 +686,27 @@
     {
         Place *p = [places objectAtIndex:i];
         /* add the first search result no matter what */
-        [searchedPlaces addObject:p];
-        
+        if (false == [self isPlaceInSearchedPlaces:p])
+        {
+            [searchedPlaces addObject:p];
+            if (nil == firstPlace)
+                firstPlace = p;
+        }
     }
     
-    [self refresh:true];
+    [self refresh];
+    [self moveToPlace:firstPlace];
 }
 -(void) viewWillAppear:(BOOL)animated
 {
     if(self.placeToSearch != nil && self.placeToSearch.length > 0)
     {
-        
         [self searchPlace:self.placeToSearch];
     }
-    self.placeToSearch = nil;
-    [self refresh:false];
+
+    [self refresh];
 }
+
 - (void)viewDidLoad
 {
     NSString* navigationText;
@@ -708,11 +735,15 @@
     
     [self addMarkMenu];
     
-    savePlaceViewController = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass
-                               ([SavePlaceViewController class])];
+    savePlaceViewController         = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass
+                                        ([SavePlaceViewController class])];
+    selectPlaceViewController       = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass
+                                       ([SelectPlaceViewController class])];
+    routeNavigationViewController   = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass
+                                     ([RouteNavigationViewController class])];
     
-    selectPlaceViewController = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass
-                                 ([SelectPlaceViewController class])];
+    selectPlaceViewController.delegate          = self;
+    logo(selectPlaceViewController.delegate);
     isRouteChanged = false;
     markMenuOffset = 80;
     

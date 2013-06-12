@@ -49,23 +49,10 @@
 {
     self.currentPlace = nil;
 }
+
 - (IBAction)pressSaveButton:(id)sender
 {
-    switch (self.savePlaceType)
-    {
-        case kSavePlaceType_Home:
-            [User addHomePlace:self.currentPlace];
-            break;
-        case kSavePlaceType_Office:
-            [User addOfficePlace:self.currentPlace];
-            break;
-        case kSavePlaceType_Favor:
-            [User addFavorPlace:self.currentPlace];
-            break;
-        default:
-            break;
-    }
-    
+    [User addPlaceBySectionMode:self.sectionMode Section:0 Place:self.currentPlace];
     
     [User save];
     [self.savePlaceTableView reloadData];
@@ -85,7 +72,11 @@
     UITableViewCell *cell;
 
     cell                = [self.savePlaceTableView dequeueReusableCellWithIdentifier:@"SavePlaceCell"];
-    place               = [User getPlaceBySection:indexPath.section index:indexPath.row];
+
+    place = [User getPlaceBySectionMode:kSectionMode_Home_Office_Favor
+                                Section:indexPath.section
+                                  Index:indexPath.row];
+    
     if (nil != place)
     {
         nameLabel           = (UILabel*)[cell viewWithTag:3];
@@ -104,13 +95,33 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [User getPlaceCountBySection:section];
+    return [User getPlaceCountBySectionMode:kSectionMode_Home_Office_Favor
+                                    Section:section];
 }
 
--(void) setType:(kSavePlaceType) type
+-(void) viewWillAppear:(BOOL)animated
 {
-    self.savePlaceType = type;
+    if (nil != self.currentPlace)
+    {
+        switch (self.currentPlace.placeType)
+        {
+            case kPlaceType_Home:
+                self.sectionMode = kSectionMode_Home;
+                break;
+            case kPlaceType_Office:
+                self.sectionMode = kSectionMode_Office;
+                break;
+            case kPlaceType_Favor:
+                self.sectionMode = kSectionMode_Favor;
+                break;
+            default:
+                self.sectionMode = kSectionMode_Home;
+                break;
+        }
+    }
+        
 }
+
 -(void) updateFromCurrentPlace
 {
     if( nil != self.currentPlace)

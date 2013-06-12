@@ -9,16 +9,17 @@
 #import <UIKit/UIKit.h>
 #import <GoogleMaps/GoogleMaps.h>
 #import <NaviUtil/NaviUtil.h>
+#import "SelectPlaceViewController.h"
 
 
-@interface GoogleMapUIViewController : UIViewController<DownloadRequestDelegate, GMSMapViewDelegate>
+@interface GoogleMapUIViewController : UIViewController<DownloadRequestDelegate, GMSMapViewDelegate, SelectPlaceViewControllerDelegate>
 
 /** GMSMapView managed by this controller. */
-- (IBAction)pressRouteButton:(id)sender;
 - (IBAction)pressZoomOutButton:(id)sender;
 - (IBAction)pressZoomInButton:(id)sender;
 - (IBAction)pressHomeButton:(id)sender;
 - (IBAction)pressSearchButton:(id)sender;
+- (IBAction)pressPlaceButton:(id)sender;
 
 @property (strong, nonatomic) NSString* placeToSearch;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -33,4 +34,5 @@
 
 -(void) downloadRequestStatusChange: (DownloadRequest*) downloadRequest;
 -(void) mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate;
+-(void) selectPlace:(Place*) p sender:(SelectPlaceViewController*) s;
 @end

@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <NaviUtil/NaviUtil.h>
+@class SelectPlaceViewController;
+
+@protocol SelectPlaceViewControllerDelegate <NSObject>
+-(void) selectPlace:(Place*) p sender:(SelectPlaceViewController*) s;
+@end
 
 @interface SelectPlaceViewController : UITableViewController
 @property (strong, nonatomic) IBOutlet UITableView *selectPlaceView;
 @property (strong, nonatomic) IBOutlet UITableView *selectPlaceTableView;
+@property (weak, nonatomic) NSArray* searchedPlaces;
+@property (weak, nonatomic) id<SelectPlaceViewControllerDelegate> delegate;
 
 @end

@@ -34,6 +34,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -45,13 +46,20 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
+    if (nil != self.searchedPlaces && self.searchedPlaces.count > 0)
+        return 4;
     return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [User getPlaceCountBySection:section];
+    if (nil != self.searchedPlaces && self.searchedPlaces.count > 0 && section == 3)
+        return self.searchedPlaces.count;
+    
+    return [User getPlaceCountBySectionMode:kSectionMode_Home_Office_Favor_Searched
+                                    Section:section];
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -61,8 +69,20 @@
     UILabel *addressLabel;
     UITableViewCell *cell;
     
-    cell                = [self.selectPlaceTableView dequeueReusableCellWithIdentifier:@"SelectPlaceCell"];
-    place               = [User getPlaceBySection:indexPath.section index:indexPath.row];
+
+    cell = [self.selectPlaceTableView dequeueReusableCellWithIdentifier:@"SelectPlaceCell"];
+    
+    if ( 3 > indexPath.section)
+    {
+        place = [User getPlaceBySectionMode:kSectionMode_Home_Office_Favor_Searched
+                                    Section:indexPath.section
+                                      Index:indexPath.row];
+    }
+    else
+    {
+        place = [self.searchedPlaces objectAtIndex:indexPath.row];
+    }
+
     if (nil != place)
     {
         nameLabel           = (UILabel*)[cell viewWithTag:3];
@@ -125,6 +145,21 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     
+    logfn();
+    Place *selectedPlace;
+    selectedPlace = [User getPlaceBySectionMode:kSectionMode_Home_Office_Favor_Searched
+                                        Section:indexPath.section
+                                          Index:indexPath.row];
+    if (nil != selectedPlace)
+    {
+        logfn();
+        logo(self.delegate);
+        if(self.delegate != nil && [self.delegate respondsToSelector:@selector(selectPlace:sender:)])
+        {
+            logfn();
+            [self.delegate selectPlace: selectedPlace sender: self];
+        }
+    }
     [self dismissModalViewControllerAnimated:TRUE];
 }
 
@@ -145,6 +180,8 @@
             return [SystemManager getLanguageString:@"Office"];
         case 2:
             return [SystemManager getLanguageString:@"Favor"];
+        case 3:
+            return [SystemManager getLanguageString:@"Searched Place"];
     }
     
     return @"";
@@ -171,5 +208,6 @@
     
     return view;
 }
+
 
 @end
