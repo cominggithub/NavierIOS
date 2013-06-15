@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -448,7 +448,7 @@
                         <color key="separatorColor" red="0.46639307699999999" green="1" blue="0.36276355440000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SelectPlaceCell" id="rcN-vo-xNv">
-                                <rect key="frame" x="0.0" y="46" width="480" height="45"/>
+                                <rect key="frame" x="0.0" y="46" width="480" height="46"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="10" y="1" width="460" height="43"/>
@@ -617,10 +617,14 @@
         <scene sceneID="g9u-3f-uyk">
             <objects>
                 <viewController storyboardIdentifier="RouteNavigationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Xzj-X4-qTo" customClass="RouteNavigationViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="zmG-m5-PIL" customClass="GuideRouteUIView">
-                        <rect key="frame" x="0.0" y="20" width="480" height="300"/>
+                    <view key="view" contentMode="scaleToFill" id="zmG-m5-PIL" userLabel="View Container">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bqm-QF-JXZ" customClass="GuideRouteUIView">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration" label="GuideRouteUIView"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WB0-1I-F7Z">
                                 <color key="backgroundColor" red="0.36995835110000003" green="0.58896097089999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -660,10 +664,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="Bqm-QF-JXZ" firstAttribute="trailing" secondItem="zmG-m5-PIL" secondAttribute="trailing" type="default" id="0oG-jc-N2N"/>
                             <constraint firstAttribute="bottom" secondItem="Ll1-bB-jzp" secondAttribute="bottom" constant="6" id="1Ki-rm-CYZ"/>
-                            <constraint firstAttribute="trailing" secondItem="Ll1-bB-jzp" secondAttribute="trailing" constant="9" id="6nY-ca-cd9"/>
                             <constraint firstItem="Ll1-bB-jzp" firstAttribute="trailing" secondItem="WB0-1I-F7Z" secondAttribute="trailing" type="default" id="G4M-S4-XGF"/>
+                            <constraint firstItem="Bqm-QF-JXZ" firstAttribute="leading" secondItem="zmG-m5-PIL" secondAttribute="leading" type="default" id="GfD-MS-gSw"/>
+                            <constraint firstItem="Bqm-QF-JXZ" firstAttribute="bottom" secondItem="zmG-m5-PIL" secondAttribute="bottom" type="default" id="Tow-3S-Vha"/>
+                            <constraint firstItem="Bqm-QF-JXZ" firstAttribute="top" secondItem="zmG-m5-PIL" secondAttribute="top" type="default" id="aRk-Rz-mY6"/>
                             <constraint firstItem="Ll1-bB-jzp" firstAttribute="leading" secondItem="WB0-1I-F7Z" secondAttribute="leading" type="default" id="ioR-CB-Gol"/>
+                            <constraint firstAttribute="trailing" secondItem="WB0-1I-F7Z" secondAttribute="trailing" constant="9" id="kWH-R6-FaJ"/>
                             <constraint firstItem="Ll1-bB-jzp" firstAttribute="top" secondItem="WB0-1I-F7Z" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="pb2-EJ-vfM"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -672,9 +680,11 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="hQd-Ln-iQF"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="autoButton" destination="WB0-1I-F7Z" id="yzB-op-GB8"/>
+                        <outlet property="guideRouteUIView" destination="Bqm-QF-JXZ" id="l14-8K-Kbc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gzZ-F2-72A" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -903,13 +913,7 @@
                 <relationship kind="action" name="pressHomeButton:"/>
                 <relationship kind="action" name="pressNavigationButton:"/>
                 <relationship kind="action" name="pressPlaceButton:"/>
-                <relationship kind="action" name="pressRouteButton:"/>
-                <relationship kind="action" name="pressSaveAsFavorButton:"/>
-                <relationship kind="action" name="pressSaveAsHomeButton:"/>
-                <relationship kind="action" name="pressSaveAsOfficeButton:"/>
                 <relationship kind="action" name="pressSearchButton:"/>
-                <relationship kind="action" name="pressSetEndButton:"/>
-                <relationship kind="action" name="pressSetStartButton:"/>
                 <relationship kind="action" name="pressTestButton:"/>
                 <relationship kind="action" name="pressZoomInButton:"/>
                 <relationship kind="action" name="pressZoomOutButton:"/>
@@ -940,6 +944,7 @@
                 <relationship kind="action" name="pressAutoButton:"/>
                 <relationship kind="action" name="pressStepButton:"/>
                 <relationship kind="outlet" name="autoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="guideRouteUIView" candidateClass="GuideRouteUIView"/>
             </relationships>
         </class>
         <class className="RouteTableViewController" superclassName="UIViewController">
@@ -973,7 +978,6 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
-                <relationship kind="action" name="pressNaviHUD:"/>
                 <relationship kind="action" name="pressPlace:"/>
                 <relationship kind="action" name="pressRoute:"/>
                 <relationship kind="action" name="pressTextRoute:"/>

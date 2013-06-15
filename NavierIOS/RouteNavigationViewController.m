@@ -16,47 +16,54 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
+    logfn();
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
+        logo(self.guideRouteUIView);
     }
     return self;
 }
 
 -(IBAction) pressAutoButton:(id)sender
 {
-    GuideRouteUIView* view = (GuideRouteUIView*)[self view];
-    if (false == view.isAutoSimulatorLocationUpdateStarted)
+    logfn();
+    logo(self.guideRouteUIView);
+    if (false == self.guideRouteUIView.isAutoSimulatorLocationUpdateStarted)
     {
         [self.autoButton setTitle:@"Stop" forState:UIControlStateNormal];
-        [view autoSimulatorLocationUpdateStart];
+        [self.guideRouteUIView autoSimulatorLocationUpdateStart];
 
     }
     else
     {
         [self.autoButton setTitle:@"Auto" forState:UIControlStateNormal];
-        [view autoSimulatorLocationUpdateStop];
+        [self.guideRouteUIView autoSimulatorLocationUpdateStop];
 
     }
 }
 
 -(IBAction) pressStepButton:(id)sender
 {
-    GuideRouteUIView* view = (GuideRouteUIView*)[self view];
-    [view autoSimulatorLocationUpdateStop];
-    [view triggerLocationUpdate];
+    logfn();
+    logo(self.guideRouteUIView);
+    [self.guideRouteUIView autoSimulatorLocationUpdateStop];
+    [self.guideRouteUIView triggerLocationUpdate];
 }
 
 -(void) startRouteNavigationFrom:(Place*) startPlace To:(Place*) endPlace
 {
-    GuideRouteUIView* view = (GuideRouteUIView*)[self view];
-    [view startRouteNavigationFrom:startPlace To:endPlace];
+
+    logfn();
+    logo(self.guideRouteUIView);
+    [self.guideRouteUIView startRouteNavigationFrom:startPlace To:endPlace];
+    logfn();
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    logfn();
+    logo(self.guideRouteUIView);
     //    locationSimulator.delegate = (GuideRouteUIView*)self.view;
     //    [locationSimulator start];
     
@@ -88,11 +95,12 @@
 
 - (IBAction)tagAction:(id)sender
 {
-
+    logfn();
 }
 
 - (void)viewDidUnload {
     [self setAutoButton:nil];
+    [self setGuideRouteUIView:nil];
     [super viewDidUnload];
 }
 @end

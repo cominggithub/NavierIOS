@@ -197,8 +197,9 @@
     
     if (nil != routeStartPlace && nil != routeEndPlace && ![routeStartPlace isCoordinateEqualTo:routeEndPlace])
     {
-        [routeNavigationViewController startRouteNavigationFrom:routeStartPlace To:routeEndPlace];
+
         [self presentModalViewController:routeNavigationViewController animated:YES];
+        [routeNavigationViewController startRouteNavigationFrom:routeStartPlace To:routeEndPlace];
     }
 
 }

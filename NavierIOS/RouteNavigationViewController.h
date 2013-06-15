@@ -18,4 +18,7 @@
 - (IBAction)pressAutoButton:(id)sender;
 - (IBAction)pressStepButton:(id)sender;
 -(void) startRouteNavigationFrom:(Place*) startPlace To:(Place*) endPlace;
+@property (weak, nonatomic) IBOutlet GuideRouteUIView *guideRouteUIView;
+
+
 @end
