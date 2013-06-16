@@ -26,6 +26,7 @@
 		2B1E034E176C8FF100CA7172 /* turn_right45.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1E0349176C8FF100CA7172 /* turn_right45.png */; };
 		2B1E034F176C8FF100CA7172 /* turn_right90.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1E034A176C8FF100CA7172 /* turn_right90.png */; };
 		2B1E0350176C8FF100CA7172 /* turn_straight.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1E034B176C8FF100CA7172 /* turn_straight.png */; };
+		2B3907F1176D6B0A00E5F428 /* RouteGuideMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3907F0176D6B0A00E5F428 /* RouteGuideMenu.xib */; };
 		2B4B3121175AF25800426D60 /* SelectPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4B3120175AF25800426D60 /* SelectPlaceViewController.m */; };
 		2B698653174786540000BB2D /* Map-Marker-Push-Pin--Right-Chartreuse_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B698652174786510000BB2D /* Map-Marker-Push-Pin--Right-Chartreuse_32.png */; };
 		2B69865B174787A00000BB2D /* searched_place_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B6986591747879B0000BB2D /* searched_place_icon.png */; };
@@ -279,6 +280,7 @@
 		2B1E0349176C8FF100CA7172 /* turn_right45.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = turn_right45.png; sourceTree = "<group>"; };
 		2B1E034A176C8FF100CA7172 /* turn_right90.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = turn_right90.png; sourceTree = "<group>"; };
 		2B1E034B176C8FF100CA7172 /* turn_straight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = turn_straight.png; sourceTree = "<group>"; };
+		2B3907F0176D6B0A00E5F428 /* RouteGuideMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RouteGuideMenu.xib; sourceTree = "<group>"; };
 		2B4B311F175AF25800426D60 /* SelectPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPlaceViewController.h; sourceTree = "<group>"; };
 		2B4B3120175AF25800426D60 /* SelectPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPlaceViewController.m; sourceTree = "<group>"; };
 		2B698652174786510000BB2D /* Map-Marker-Push-Pin--Right-Chartreuse_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Map-Marker-Push-Pin--Right-Chartreuse_32.png"; sourceTree = "<group>"; };
@@ -794,6 +796,7 @@
 				2B9A431F16DB955F00FD1A54 /* Supporting Files */,
 				2BB1185B16E31683003BB39E /* GoogleAPIKey.h */,
 				2BE1CE6B174BA5830053995F /* MarkMenu.xib */,
+				2B3907F0176D6B0A00E5F428 /* RouteGuideMenu.xib */,
 			);
 			path = NavierIOS;
 			sourceTree = "<group>";
@@ -1124,6 +1127,7 @@
 				2B1E034E176C8FF100CA7172 /* turn_right45.png in Resources */,
 				2B1E034F176C8FF100CA7172 /* turn_right90.png in Resources */,
 				2B1E0350176C8FF100CA7172 /* turn_straight.png in Resources */,
+				2B3907F1176D6B0A00E5F428 /* RouteGuideMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
