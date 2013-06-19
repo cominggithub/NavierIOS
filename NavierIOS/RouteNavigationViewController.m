@@ -160,8 +160,8 @@
 
 -(IBAction) pressAutoButton:(id)sender
 {
-    logfn();
-    logo(self.guideRouteUIView);
+
+
     if (false == self.guideRouteUIView.isAutoSimulatorLocationUpdateStarted)
     {
         [self.autoButton setTitle:@"Stop" forState:UIControlStateNormal];
@@ -178,8 +178,6 @@
 
 -(IBAction) pressStepButton:(id)sender
 {
-    logfn();
-    logo(self.guideRouteUIView);
     [self.guideRouteUIView autoSimulatorLocationUpdateStop];
     [self.guideRouteUIView triggerLocationUpdate];
 }

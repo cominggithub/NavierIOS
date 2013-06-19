@@ -16,11 +16,12 @@
     LocationManager* locationManager;
     LocationSimulator *locationSimulator;
 }
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 
 - (IBAction)pressPlace:(id)sender;
 - (IBAction)pressRoute:(id)sender;
 - (IBAction)pressTextRoute:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *selectPlaceTableView;
-
+@property (nonatomic) bool bannerIsVisible;
 
 @end

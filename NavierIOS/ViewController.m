@@ -11,11 +11,13 @@
 @interface ViewController ()
 {
     RouteNavigationViewController *routeNavigationViewController;
-    
+    ADBannerView *adView;
 }
 @end
 
 @implementation ViewController
+
+
 
 - (void)viewDidLoad
 {
@@ -28,13 +30,22 @@
 	// Do any additional setup after loading the view, typically from a nib.
 
 /* disable banner */
-#if 0
-    ADBannerView *adView = [[ADBannerView alloc] initWithFrame:CGRectZero];
+
+    
+    if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)]) {
+        adView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
+    } else {
+        adView = [[ADBannerView alloc] init];
+    }
+    
+//    adView = [[ADBannerView alloc] initWithFrame:CGRectZero];
     adView.requiredContentSizeIdentifiers = [NSSet setWithObject:ADBannerContentSizeIdentifierLandscape];
     adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierLandscape;
     adView.delegate = self;
+
+
     [self.view addSubview:adView];
-#endif
+    [self layoutAnimated:NO];
 
     self.selectPlaceTableView.backgroundColor = [UIColor clearColor];
     self.selectPlaceTableView.opaque = NO;
@@ -96,9 +107,14 @@
 - (void)viewDidUnload {
 
     [self setSelectPlaceTableView:nil];
+    [self setContentView:nil];
     [super viewDidUnload];
 }
 
+-(void) viewDidAppear:(BOOL)animated
+{
+    [self layoutAnimated:NO];
+}
 /* for UITableView */
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -243,29 +259,57 @@
 
 }
 
+#pragma mark - Banner
 
-#if 0
+- (void)layoutAnimated:(BOOL)animated
+{
+    NSLog(@"layoutAnimated:%d", animated);
+    // As of iOS 6.0, the banner will automatically resize itself based on its width.
+    // To support iOS 5.0 however, we continue to set the currentContentSizeIdentifier appropriately.
+    CGRect contentFrame = self.view.bounds;
+
+    CGRect bannerFrame = adView.frame;
+    if (adView.bannerLoaded) {
+        logfn();
+//        contentFrame.size.height -= adView.frame.size.height;
+//        bannerFrame.origin.y = contentFrame.size.height;
+          bannerFrame.origin.y = 0;
+          contentFrame.origin.y = bannerFrame.size.height;
+    } else {
+        logfn();
+        bannerFrame.origin.y = -bannerFrame.size.height;
+    }
+//    adView.frame = bannerFrame;
+//    _contentView.frame = contentFrame;
+
+    [UIView animateWithDuration:animated ? 0.25 : 0.0 animations:^{
+        _contentView.frame = contentFrame;
+//        [_contentView layoutIfNeeded];
+        adView.frame = bannerFrame;
+    }];
+
+}
+
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
+    logfn();
     if (!self.bannerIsVisible)
     {
-        [UIView beginAnimations:@"animateAdBannerOn" context:NULL];
+//        [UIView beginAnimations:@"animateAdBannerOn" context:NULL];
         // Assumes the banner view is just off the bottom of the screen.
-        banner.frame = CGRectOffset(banner.frame, 0, -banner.frame.size.height);
-        [UIView commitAnimations];
+//        banner.frame = CGRectOffset(banner.frame, 0, -banner.frame.size.height);
+//        [UIView commitAnimations];
+        [self layoutAnimated:YES];
         self.bannerIsVisible = YES;
     }
 }
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
 {
+    logfn();
     logo(error.description);
     if (self.bannerIsVisible)
     {
-        [UIView beginAnimations:@"animateAdBannerOff" context:NULL];
-        // Assumes the banner view is placed at the bottom of the screen.
-        banner.frame = CGRectOffset(banner.frame, 0, banner.frame.size.height);
-        [UIView commitAnimations];
         self.bannerIsVisible = NO;
     }
 }
@@ -273,16 +317,20 @@
 
 - (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
 {
+    logfn();
     NSLog(@"Banner view is beginning an ad action");
-    BOOL shouldExecuteAction = [self allowActionToRun]; // your application implements this method
+    BOOL shouldExecuteAction = true; // your application implements this method
+    
     if (!willLeave && shouldExecuteAction)
     {
         // insert code here to suspend any services that might conflict with the advertisement
     }
+    
     return shouldExecuteAction;
     
     return false;
 }
+
 
 
 - (void)bannerViewActionDidFinish:(ADBannerView *)banner
@@ -290,10 +338,11 @@
     logfn();
 }
 
-#endif
+
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    logfn();
     [self.selectPlaceTableView reloadData];
 }
 @end
