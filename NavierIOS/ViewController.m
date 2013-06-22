@@ -263,30 +263,51 @@
 
 - (void)layoutAnimated:(BOOL)animated
 {
-    NSLog(@"layoutAnimated:%d", animated);
     // As of iOS 6.0, the banner will automatically resize itself based on its width.
     // To support iOS 5.0 however, we continue to set the currentContentSizeIdentifier appropriately.
     CGRect contentFrame = self.view.bounds;
 
     CGRect bannerFrame = adView.frame;
     if (adView.bannerLoaded) {
-        logfn();
 //        contentFrame.size.height -= adView.frame.size.height;
 //        bannerFrame.origin.y = contentFrame.size.height;
-          bannerFrame.origin.y = 0;
-          contentFrame.origin.y = bannerFrame.size.height;
+        logfn();
+        bannerFrame.origin.y  = 0;
+        contentFrame.origin.y = bannerFrame.size.height;
     } else {
         logfn();
-        bannerFrame.origin.y = -bannerFrame.size.height;
+        contentFrame.origin.y = 0;
+        bannerFrame.origin.y  = -bannerFrame.size.height;
     }
-//    adView.frame = bannerFrame;
-//    _contentView.frame = contentFrame;
+    
+//    NSLayoutConstraint *con1 = [NSLayoutConstraint constraintWithItem:_contentView attribute:NS relatedBy:0 toItem:self.view attribute:NSLayoutAttributeLeading multiplier:1 constant:114];
+    
+    adView.frame = bannerFrame;
+    _contentView.frame = contentFrame;
 
+    logfns("ad:(%.0f, %.0f), contentView:(%.0f, %.0f)\n",
+           adView.frame.origin.x,
+           adView.frame.origin.y,
+           _contentView.frame.origin.x,
+           _contentView.frame.origin.y
+           );
+    
+    [_contentView layoutIfNeeded];
+//    [_contentView setNeedsDisplay];
+    logfns("ad:(%.0f, %.0f), contentView:(%.0f, %.0f)\n",
+           adView.frame.origin.x,
+           adView.frame.origin.y,
+           _contentView.frame.origin.x,
+           _contentView.frame.origin.y
+           );
+    
+#if 0
     [UIView animateWithDuration:animated ? 0.25 : 0.0 animations:^{
         _contentView.frame = contentFrame;
-//        [_contentView layoutIfNeeded];
+        [_contentView layoutIfNeeded];
         adView.frame = bannerFrame;
     }];
+#endif
 
 }
 

@@ -153,6 +153,8 @@
 		2B792ACD17007FC300353349 /* trans_driving.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B792A4E17007FC300353349 /* trans_driving.png */; };
 		2B792ACE17007FC300353349 /* trans_walking.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B792A4F17007FC300353349 /* trans_walking.png */; };
 		2B8C5CAD174134B700260836 /* PlaceSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8C5CAC174134B700260836 /* PlaceSearchViewController.m */; };
+		2B9351091775433600721094 /* DebugMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9351081775433600721094 /* DebugMenuViewController.m */; };
+		2B93510C177546B500721094 /* DebugMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B93510B177546B500721094 /* DebugMenu.xib */; };
 		2B9A431916DB955F00FD1A54 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9A431816DB955F00FD1A54 /* UIKit.framework */; };
 		2B9A431B16DB955F00FD1A54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9A431A16DB955F00FD1A54 /* Foundation.framework */; };
 		2B9A431D16DB955F00FD1A54 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9A431C16DB955F00FD1A54 /* CoreGraphics.framework */; };
@@ -411,6 +413,9 @@
 		2B792A4F17007FC300353349 /* trans_walking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trans_walking.png; sourceTree = "<group>"; };
 		2B8C5CAB174134B700260836 /* PlaceSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceSearchViewController.h; sourceTree = "<group>"; };
 		2B8C5CAC174134B700260836 /* PlaceSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceSearchViewController.m; sourceTree = "<group>"; };
+		2B9351071775433600721094 /* DebugMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugMenuViewController.h; sourceTree = "<group>"; };
+		2B9351081775433600721094 /* DebugMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugMenuViewController.m; sourceTree = "<group>"; };
+		2B93510B177546B500721094 /* DebugMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DebugMenu.xib; sourceTree = "<group>"; };
 		2B9A431516DB955F00FD1A54 /* Navier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B9A431816DB955F00FD1A54 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2B9A431A16DB955F00FD1A54 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -775,6 +780,8 @@
 		2B9A431E16DB955F00FD1A54 /* NavierIOS */ = {
 			isa = PBXGroup;
 			children = (
+				2B9351071775433600721094 /* DebugMenuViewController.h */,
+				2B9351081775433600721094 /* DebugMenuViewController.m */,
 				2B767448175CDD91008E6566 /* RouteNavigationViewController.h */,
 				2B767449175CDD91008E6566 /* RouteNavigationViewController.m */,
 				2B6CBF8F16DFA6050095CBD4 /* LanscapeUIViewController.h */,
@@ -797,6 +804,7 @@
 				2BB1185B16E31683003BB39E /* GoogleAPIKey.h */,
 				2BE1CE6B174BA5830053995F /* MarkMenu.xib */,
 				2B3907F0176D6B0A00E5F428 /* RouteGuideMenu.xib */,
+				2B93510B177546B500721094 /* DebugMenu.xib */,
 			);
 			path = NavierIOS;
 			sourceTree = "<group>";
@@ -1128,6 +1136,7 @@
 				2B1E034F176C8FF100CA7172 /* turn_right90.png in Resources */,
 				2B1E0350176C8FF100CA7172 /* turn_straight.png in Resources */,
 				2B3907F1176D6B0A00E5F428 /* RouteGuideMenu.xib in Resources */,
+				2B93510C177546B500721094 /* DebugMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1172,6 +1181,7 @@
 				2B036BBC1759CCEF003E4683 /* SavePlaceViewController.m in Sources */,
 				2B4B3121175AF25800426D60 /* SelectPlaceViewController.m in Sources */,
 				2B76744A175CDD91008E6566 /* RouteNavigationViewController.m in Sources */,
+				2B9351091775433600721094 /* DebugMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

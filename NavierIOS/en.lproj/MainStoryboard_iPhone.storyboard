@@ -39,7 +39,7 @@
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="30" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="W0Z-xY-Meg">
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="233" id="M7k-AZ-xJA"/>
+                                            <constraint firstAttribute="height" constant="283" id="32O-uI-e2E"/>
                                             <constraint firstAttribute="width" constant="300" id="Vxw-cq-yt9"/>
                                         </constraints>
                                         <prototypes>
@@ -86,25 +86,46 @@
                                             <segue destination="F6q-Dq-rDZ" kind="modal" id="8N7-oX-CSt"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQs-qv-abD">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="48" id="ZgE-PB-X9k"/>
+                                            <constraint firstAttribute="height" constant="48" id="ahJ-Fb-4NV"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" type="user" id="bn1-B5-P7Z"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="48" type="user" id="vLq-fu-46T"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Button" image="setting.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="dZh-Ie-r5c" kind="modal" id="1OQ-2g-QIB"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="joT-59-HDP" firstAttribute="top" secondItem="RCQ-8t-oDQ" secondAttribute="top" type="default" id="1bJ-sc-tUa"/>
                                     <constraint firstItem="joT-59-HDP" firstAttribute="leading" secondItem="RCQ-8t-oDQ" secondAttribute="leading" type="default" id="8l0-bv-BzU"/>
+                                    <constraint firstItem="pQs-qv-abD" firstAttribute="centerY" secondItem="Esx-Gh-y9e" secondAttribute="centerY" type="default" id="NhS-jV-lKq"/>
                                     <constraint firstItem="W0Z-xY-Meg" firstAttribute="leading" secondItem="Esx-Gh-y9e" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="WBN-Ak-4Ty"/>
                                     <constraint firstItem="Esx-Gh-y9e" firstAttribute="top" secondItem="RCQ-8t-oDQ" secondAttribute="top" type="default" id="a8e-lL-znF"/>
                                     <constraint firstItem="jde-ul-7lF" firstAttribute="trailing" secondItem="joT-59-HDP" secondAttribute="trailing" type="default" id="fRw-ax-d4R"/>
                                     <constraint firstItem="jde-ul-7lF" firstAttribute="bottom" secondItem="RCQ-8t-oDQ" secondAttribute="bottom" type="default" id="kU1-mk-d7B"/>
-                                    <constraint firstItem="W0Z-xY-Meg" firstAttribute="top" secondItem="RCQ-8t-oDQ" secondAttribute="top" constant="37" id="qI0-Jf-9LV"/>
+                                    <constraint firstItem="W0Z-xY-Meg" firstAttribute="bottom" secondItem="RCQ-8t-oDQ" secondAttribute="bottom" type="default" id="onf-HU-N9e"/>
                                     <constraint firstItem="joT-59-HDP" firstAttribute="bottom" secondItem="RCQ-8t-oDQ" secondAttribute="bottom" type="default" id="tgi-UI-A9h"/>
                                     <constraint firstItem="Esx-Gh-y9e" firstAttribute="leading" secondItem="RCQ-8t-oDQ" secondAttribute="leading" constant="8" id="xOp-Rh-GAL"/>
+                                    <constraint firstAttribute="trailing" secondItem="pQs-qv-abD" secondAttribute="trailing" constant="25" id="zBg-6k-KmX"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="RCQ-8t-oDQ" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="R5V-bb-S1y"/>
-                            <constraint firstAttribute="trailing" secondItem="RCQ-8t-oDQ" secondAttribute="trailing" constant="-6" id="m7k-9W-mc0"/>
+                            <constraint firstAttribute="trailing" secondItem="RCQ-8t-oDQ" secondAttribute="trailing" type="user" id="m7k-9W-mc0"/>
                             <constraint firstItem="RCQ-8t-oDQ" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="nnn-e3-e79"/>
                             <constraint firstItem="RCQ-8t-oDQ" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="o1z-WN-wvl"/>
                         </constraints>
@@ -120,6 +141,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-136" y="254"/>
+        </scene>
+        <!--Debug Menu View Controller-->
+        <scene sceneID="MAb-Ls-P1t">
+            <objects>
+                <viewController id="dZh-Ie-r5c" customClass="DebugMenuViewController" sceneMemberID="viewController">
+                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="xev-1m-m9E">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4sT-tK-llY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-102" y="-1010"/>
         </scene>
         <!--Route Table View Controller-->
         <scene sceneID="KIL-EH-YIK">
@@ -463,7 +501,7 @@
                         <color key="separatorColor" red="0.46639307699999999" green="1" blue="0.36276355440000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SelectPlaceCell" id="rcN-vo-xNv">
-                                <rect key="frame" x="0.0" y="46" width="480" height="45"/>
+                                <rect key="frame" x="0.0" y="46" width="480" height="46"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="10" y="1" width="460" height="43"/>
@@ -920,8 +958,16 @@
         <image name="icon.png" width="57" height="57"/>
         <image name="minus_remove_green.png" width="128" height="128"/>
         <image name="plus_add_green.png" width="128" height="128"/>
+        <image name="setting.png" width="128" height="128"/>
     </resources>
     <classes>
+        <class className="DebugMenuViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DebugMenuViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="pressLogoButton:"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
         <class className="GoogleMapUIViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GoogleMapUIViewController.h"/>
             <relationships>
