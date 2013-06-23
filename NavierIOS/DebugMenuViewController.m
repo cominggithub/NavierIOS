@@ -55,6 +55,7 @@
     NSDictionary *views = NSDictionaryOfVariableBindings(debugMenuView);
     
     [self.view addSubview:debugMenuView];
+    
     [debugMenuView setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     [self.view addConstraints:
@@ -127,13 +128,6 @@
     debugMenuIsDebugRouteDrawSwitch.on  = SystemConfig.isDebugRouteDraw;
     debugMenuIsManualPlaceSwitch.on     = SystemConfig.isManualPlace;
     
-//    debugMenuIsDebugSwitch.on           = true;
-//    debugMenuIsAdSwitch.on              = true;
-//    debugMenuIsDebugRouteDrawSwitch.on  = true;
-//    debugMenuIsManualPlaceSwitch.on     = true;
-
-    
-
 }
 
 -(void) uiValueChanged:(id) sender

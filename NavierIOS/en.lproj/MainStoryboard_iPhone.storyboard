@@ -14,11 +14,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RCQ-8t-oDQ" userLabel="Content View">
                                 <subviews>
-                                    <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleToFill" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="joT-59-HDP">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="480" id="4jd-VA-OQM"/>
-                                        </constraints>
-                                    </imageView>
+                                    <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleToFill" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="joT-59-HDP"/>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Esx-Gh-y9e" userLabel="HomeButton">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="64" id="RrV-yB-fLk"/>
@@ -109,12 +105,13 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="joT-59-HDP" firstAttribute="top" secondItem="RCQ-8t-oDQ" secondAttribute="top" type="default" id="1bJ-sc-tUa"/>
+                                    <constraint firstItem="jde-ul-7lF" firstAttribute="bottom" secondItem="RCQ-8t-oDQ" secondAttribute="bottom" type="default" id="5wp-mV-Ggq"/>
                                     <constraint firstItem="joT-59-HDP" firstAttribute="leading" secondItem="RCQ-8t-oDQ" secondAttribute="leading" type="default" id="8l0-bv-BzU"/>
+                                    <constraint firstItem="jde-ul-7lF" firstAttribute="trailing" secondItem="RCQ-8t-oDQ" secondAttribute="trailing" type="default" id="9IQ-o7-iv7"/>
                                     <constraint firstItem="pQs-qv-abD" firstAttribute="centerY" secondItem="Esx-Gh-y9e" secondAttribute="centerY" type="default" id="NhS-jV-lKq"/>
                                     <constraint firstItem="W0Z-xY-Meg" firstAttribute="leading" secondItem="Esx-Gh-y9e" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="WBN-Ak-4Ty"/>
                                     <constraint firstItem="Esx-Gh-y9e" firstAttribute="top" secondItem="RCQ-8t-oDQ" secondAttribute="top" type="default" id="a8e-lL-znF"/>
                                     <constraint firstItem="jde-ul-7lF" firstAttribute="trailing" secondItem="joT-59-HDP" secondAttribute="trailing" type="default" id="fRw-ax-d4R"/>
-                                    <constraint firstItem="jde-ul-7lF" firstAttribute="bottom" secondItem="RCQ-8t-oDQ" secondAttribute="bottom" type="default" id="kU1-mk-d7B"/>
                                     <constraint firstItem="W0Z-xY-Meg" firstAttribute="bottom" secondItem="RCQ-8t-oDQ" secondAttribute="bottom" type="default" id="onf-HU-N9e"/>
                                     <constraint firstItem="joT-59-HDP" firstAttribute="bottom" secondItem="RCQ-8t-oDQ" secondAttribute="bottom" type="default" id="tgi-UI-A9h"/>
                                     <constraint firstItem="Esx-Gh-y9e" firstAttribute="leading" secondItem="RCQ-8t-oDQ" secondAttribute="leading" constant="8" id="xOp-Rh-GAL"/>
@@ -321,164 +318,179 @@
         <!--Google MapUI View Controller-->
         <scene sceneID="YaZ-hm-EnA">
             <objects>
-                <viewController id="F6q-Dq-rDZ" customClass="GoogleMapUIViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Kmh-TZ-QM8" userLabel="View Containner">
+                <viewController modalTransitionStyle="flipHorizontal" id="F6q-Dq-rDZ" customClass="GoogleMapUIViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Kmh-TZ-QM8">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view autoresizesSubviews="NO" tag="10" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jp9-kZ-Gqn" userLabel="GoogleMap">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="St4-f1-Rws" userLabel="ContentView">
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKO-Qm-BCL" userLabel="plus">
+                                    <view autoresizesSubviews="NO" tag="10" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jp9-kZ-Gqn" userLabel="GoogleMapView">
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKO-Qm-BCL" userLabel="plus">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" type="user" id="9Z9-zD-VzN"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <state key="normal" title="Button" image="plus_add_green.png">
+                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="pressZoomInButton:" destination="F6q-Dq-rDZ" eventType="touchUpInside" id="D5T-in-1bh"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U8n-be-bbh" userLabel="minus">
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="48" type="user" id="Xuo-IV-7Je"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <state key="normal" title="Button" image="minus_remove_green.png">
+                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="pressZoomOutButton:" destination="F6q-Dq-rDZ" eventType="touchUpInside" id="qPl-vm-hIw"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0My-uk-NwJ" userLabel="search button">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="aXN-1f-GTI"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <state key="normal" title="SearchButton" image="ic_search1.png">
+                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="pressSearchButton:" destination="F6q-Dq-rDZ" eventType="touchUpInside" id="z9d-bQ-2wP"/>
+                                                    <segue destination="kia-zl-eow" kind="modal" id="yq5-CV-yRs"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <accessibility key="accessibilityConfiguration" label="GoogleMap">
+                                            <bool key="isElement" value="NO"/>
+                                        </accessibility>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="48" type="user" id="9Z9-zD-VzN"/>
+                                            <constraint firstAttribute="bottom" secondItem="U8n-be-bbh" secondAttribute="bottom" constant="6" type="user" id="82L-3E-zho"/>
+                                            <constraint firstItem="0My-uk-NwJ" firstAttribute="width" secondItem="ZKO-Qm-BCL" secondAttribute="width" type="user" id="OU2-y9-cER"/>
+                                            <constraint firstItem="U8n-be-bbh" firstAttribute="leading" secondItem="ZKO-Qm-BCL" secondAttribute="leading" type="default" id="Pra-GW-e3p"/>
+                                            <constraint firstItem="U8n-be-bbh" firstAttribute="width" secondItem="ZKO-Qm-BCL" secondAttribute="width" type="user" id="Qf4-dN-j3e"/>
+                                            <constraint firstItem="ZKO-Qm-BCL" firstAttribute="leading" secondItem="0My-uk-NwJ" secondAttribute="leading" type="default" id="RUp-N2-diD"/>
+                                            <constraint firstItem="U8n-be-bbh" firstAttribute="top" secondItem="ZKO-Qm-BCL" secondAttribute="bottom" type="user" id="T1O-Xt-b8i"/>
+                                            <constraint firstItem="0My-uk-NwJ" firstAttribute="top" secondItem="Jp9-kZ-Gqn" secondAttribute="top" constant="20" symbolic="YES" type="user" id="TTj-EI-6WQ"/>
+                                            <constraint firstItem="U8n-be-bbh" firstAttribute="height" secondItem="ZKO-Qm-BCL" secondAttribute="height" type="user" id="sEf-kn-nbc"/>
+                                            <constraint firstItem="ZKO-Qm-BCL" firstAttribute="leading" secondItem="Jp9-kZ-Gqn" secondAttribute="leading" constant="420" id="yI1-r4-ZWj"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Button" image="plus_add_green.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="pressZoomInButton:" destination="F6q-Dq-rDZ" eventType="touchUpInside" id="D5T-in-1bh"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U8n-be-bbh" userLabel="minus">
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dbV-yq-37j" userLabel="Top" colorLabel="IBBuiltInLabel-Red">
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ojl-Oe-bju" userLabel="Navigation">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                <state key="normal" title="Navigation">
+                                                    <color key="titleColor" red="0.30932388709999997" green="0.99444703199999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="pressNavigationButton:" destination="F6q-Dq-rDZ" eventType="touchUpInside" id="CUB-us-Ikq"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TO2-3r-xYQ" userLabel="HomeButton">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="31" id="Ix0-KL-pCQ"/>
+                                                    <constraint firstAttribute="width" constant="32" type="user" id="ghS-jA-OSA"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <state key="normal" title="Button" image="icon.png">
+                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="pressHomeButton:" destination="F6q-Dq-rDZ" eventType="touchUpInside" id="Ggz-84-0HS"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Msg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXP-hU-fTA" userLabel="Msg">
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="206" id="zF3-Im-OVW"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGw-Kk-Lou" userLabel="Place">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                <state key="normal" title="Place">
+                                                    <color key="titleColor" red="0.30932388709999997" green="0.99444703199999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="pressPlaceButton:" destination="F6q-Dq-rDZ" eventType="touchUpInside" id="W0a-tD-2jV"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <accessibility key="accessibilityConfiguration" label="Top"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="48" type="user" id="Xuo-IV-7Je"/>
+                                            <constraint firstItem="uXP-hU-fTA" firstAttribute="centerX" secondItem="dbV-yq-37j" secondAttribute="centerX" type="default" id="1Mv-OL-Ugq"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ojl-Oe-bju" secondAttribute="trailing" constant="8" id="1vq-84-6tt"/>
+                                            <constraint firstItem="qGw-Kk-Lou" firstAttribute="centerY" secondItem="uXP-hU-fTA" secondAttribute="centerY" type="default" id="4YH-nK-Kxi"/>
+                                            <constraint firstItem="Ojl-Oe-bju" firstAttribute="leading" secondItem="qGw-Kk-Lou" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="7Eh-l2-pAm"/>
+                                            <constraint firstItem="TO2-3r-xYQ" firstAttribute="leading" secondItem="dbV-yq-37j" secondAttribute="leading" type="default" id="B7R-2I-O2B"/>
+                                            <constraint firstItem="TO2-3r-xYQ" firstAttribute="top" secondItem="dbV-yq-37j" secondAttribute="top" type="default" id="Bae-oW-jAV"/>
+                                            <constraint firstItem="uXP-hU-fTA" firstAttribute="bottom" secondItem="dbV-yq-37j" secondAttribute="bottom" type="default" id="LKK-zF-Qa9"/>
+                                            <constraint firstItem="qGw-Kk-Lou" firstAttribute="baseline" secondItem="Ojl-Oe-bju" secondAttribute="baseline" type="default" id="jnx-LW-kno"/>
+                                            <constraint firstAttribute="height" constant="32" type="user" id="lML-ci-39D"/>
+                                            <constraint firstItem="uXP-hU-fTA" firstAttribute="top" secondItem="dbV-yq-37j" secondAttribute="top" type="default" id="yCR-ai-alf"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Button" image="minus_remove_green.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="pressZoomOutButton:" destination="F6q-Dq-rDZ" eventType="touchUpInside" id="qPl-vm-hIw"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0My-uk-NwJ" userLabel="search button">
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="48" id="aXN-1f-GTI"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="SearchButton" image="ic_search1.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="pressSearchButton:" destination="F6q-Dq-rDZ" eventType="touchUpInside" id="z9d-bQ-2wP"/>
-                                            <segue destination="kia-zl-eow" kind="modal" id="yq5-CV-yRs"/>
-                                        </connections>
-                                    </button>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <accessibility key="accessibilityConfiguration" label="GoogleMap">
-                                    <bool key="isElement" value="NO"/>
-                                </accessibility>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="0My-uk-NwJ" firstAttribute="leading" secondItem="ZKO-Qm-BCL" secondAttribute="leading" type="default" id="3SW-Lk-gTi"/>
-                                    <constraint firstAttribute="bottom" secondItem="U8n-be-bbh" secondAttribute="bottom" constant="6" type="user" id="82L-3E-zho"/>
-                                    <constraint firstItem="0My-uk-NwJ" firstAttribute="width" secondItem="ZKO-Qm-BCL" secondAttribute="width" type="user" id="OU2-y9-cER"/>
-                                    <constraint firstItem="U8n-be-bbh" firstAttribute="leading" secondItem="ZKO-Qm-BCL" secondAttribute="leading" type="default" id="Pra-GW-e3p"/>
-                                    <constraint firstItem="U8n-be-bbh" firstAttribute="width" secondItem="ZKO-Qm-BCL" secondAttribute="width" type="user" id="Qf4-dN-j3e"/>
-                                    <constraint firstItem="U8n-be-bbh" firstAttribute="top" secondItem="ZKO-Qm-BCL" secondAttribute="bottom" type="user" id="T1O-Xt-b8i"/>
-                                    <constraint firstAttribute="trailing" secondItem="0My-uk-NwJ" secondAttribute="trailing" constant="12" id="WRb-Sz-uoJ"/>
-                                    <constraint firstItem="0My-uk-NwJ" firstAttribute="top" secondItem="Jp9-kZ-Gqn" secondAttribute="top" constant="9" id="olo-QG-9tx"/>
-                                    <constraint firstItem="U8n-be-bbh" firstAttribute="height" secondItem="ZKO-Qm-BCL" secondAttribute="height" type="user" id="sEf-kn-nbc"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dbV-yq-37j" userLabel="Top" colorLabel="IBBuiltInLabel-Red">
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ojl-Oe-bju" userLabel="Navigation">
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                        <state key="normal" title="Navigation">
-                                            <color key="titleColor" red="0.30932388709999997" green="0.99444703199999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="pressNavigationButton:" destination="F6q-Dq-rDZ" eventType="touchUpInside" id="CUB-us-Ikq"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TO2-3r-xYQ" userLabel="HomeButton">
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="31" id="Ix0-KL-pCQ"/>
-                                            <constraint firstAttribute="width" constant="32" type="user" id="ghS-jA-OSA"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Button" image="icon.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="pressHomeButton:" destination="F6q-Dq-rDZ" eventType="touchUpInside" id="Ggz-84-0HS"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Msg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXP-hU-fTA" userLabel="Msg">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="206" id="zF3-Im-OVW"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGw-Kk-Lou" userLabel="Place">
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                        <state key="normal" title="Place">
-                                            <color key="titleColor" red="0.30932388709999997" green="0.99444703199999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="pressPlaceButton:" destination="F6q-Dq-rDZ" eventType="touchUpInside" id="W0a-tD-2jV"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <accessibility key="accessibilityConfiguration" label="Top"/>
-                                <constraints>
-                                    <constraint firstItem="uXP-hU-fTA" firstAttribute="centerX" secondItem="dbV-yq-37j" secondAttribute="centerX" type="default" id="1Mv-OL-Ugq"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ojl-Oe-bju" secondAttribute="trailing" constant="8" id="1vq-84-6tt"/>
-                                    <constraint firstItem="qGw-Kk-Lou" firstAttribute="centerY" secondItem="uXP-hU-fTA" secondAttribute="centerY" type="default" id="4YH-nK-Kxi"/>
-                                    <constraint firstItem="Ojl-Oe-bju" firstAttribute="leading" secondItem="qGw-Kk-Lou" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="7Eh-l2-pAm"/>
-                                    <constraint firstItem="TO2-3r-xYQ" firstAttribute="leading" secondItem="dbV-yq-37j" secondAttribute="leading" type="default" id="B7R-2I-O2B"/>
-                                    <constraint firstItem="TO2-3r-xYQ" firstAttribute="top" secondItem="dbV-yq-37j" secondAttribute="top" type="default" id="Bae-oW-jAV"/>
-                                    <constraint firstItem="uXP-hU-fTA" firstAttribute="bottom" secondItem="dbV-yq-37j" secondAttribute="bottom" type="default" id="LKK-zF-Qa9"/>
-                                    <constraint firstItem="qGw-Kk-Lou" firstAttribute="baseline" secondItem="Ojl-Oe-bju" secondAttribute="baseline" type="default" id="jnx-LW-kno"/>
-                                    <constraint firstItem="uXP-hU-fTA" firstAttribute="top" secondItem="dbV-yq-37j" secondAttribute="top" type="default" id="yCR-ai-alf"/>
+                                    <constraint firstAttribute="bottom" secondItem="Jp9-kZ-Gqn" secondAttribute="bottom" type="user" id="CaI-Pq-feY"/>
+                                    <constraint firstItem="dbV-yq-37j" firstAttribute="trailing" secondItem="St4-f1-Rws" secondAttribute="trailing" type="default" id="Lyr-vt-6HT"/>
+                                    <constraint firstItem="Jp9-kZ-Gqn" firstAttribute="trailing" secondItem="St4-f1-Rws" secondAttribute="trailing" type="default" id="NE4-Kx-fmU"/>
+                                    <constraint firstItem="Jp9-kZ-Gqn" firstAttribute="leading" secondItem="St4-f1-Rws" secondAttribute="leading" type="default" id="NlG-5u-HHQ"/>
+                                    <constraint firstItem="dbV-yq-37j" firstAttribute="top" secondItem="St4-f1-Rws" secondAttribute="top" type="user" id="Rfg-yA-Zt1"/>
+                                    <constraint firstItem="dbV-yq-37j" firstAttribute="leading" secondItem="St4-f1-Rws" secondAttribute="leading" type="user" id="db9-2e-0fi"/>
+                                    <constraint firstItem="dbV-yq-37j" firstAttribute="leading" secondItem="St4-f1-Rws" secondAttribute="leading" type="user" id="hOA-sn-OOl"/>
+                                    <constraint firstItem="Jp9-kZ-Gqn" firstAttribute="top" secondItem="St4-f1-Rws" secondAttribute="top" constant="20" symbolic="YES" type="default" id="tph-yp-0Dj"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Jp9-kZ-Gqn" firstAttribute="leading" secondItem="Kmh-TZ-QM8" secondAttribute="leading" type="user" id="9AP-14-22l"/>
-                            <constraint firstItem="dbV-yq-37j" firstAttribute="trailing" secondItem="Kmh-TZ-QM8" secondAttribute="trailing" type="user" id="AZP-Tz-4Hl"/>
-                            <constraint firstItem="Jp9-kZ-Gqn" firstAttribute="trailing" secondItem="Kmh-TZ-QM8" secondAttribute="trailing" type="default" id="CMk-vz-rmL"/>
-                            <constraint firstItem="Jp9-kZ-Gqn" firstAttribute="bottom" secondItem="Kmh-TZ-QM8" secondAttribute="bottom" type="default" id="CYa-2t-q5M"/>
-                            <constraint firstItem="Jp9-kZ-Gqn" firstAttribute="top" secondItem="Kmh-TZ-QM8" secondAttribute="top" constant="28" id="I4n-Ii-hxL"/>
-                            <constraint firstItem="dbV-yq-37j" firstAttribute="top" secondItem="Kmh-TZ-QM8" secondAttribute="top" type="user" id="c4Y-bs-CYN"/>
-                            <constraint firstItem="dbV-yq-37j" firstAttribute="leading" secondItem="Kmh-TZ-QM8" secondAttribute="leading" type="user" id="hXH-sR-Ngv"/>
-                            <constraint firstItem="Jp9-kZ-Gqn" firstAttribute="top" secondItem="dbV-yq-37j" secondAttribute="bottom" type="user" id="yjJ-kB-APL"/>
+                            <constraint firstItem="St4-f1-Rws" firstAttribute="leading" secondItem="Kmh-TZ-QM8" secondAttribute="leading" type="user" id="LxI-NY-tE5"/>
+                            <constraint firstItem="St4-f1-Rws" firstAttribute="bottom" secondItem="Kmh-TZ-QM8" secondAttribute="bottom" type="user" id="XHg-dn-WdM"/>
+                            <constraint firstAttribute="trailing" secondItem="St4-f1-Rws" secondAttribute="trailing" type="user" id="cVO-rz-kwn"/>
+                            <constraint firstItem="St4-f1-Rws" firstAttribute="bottom" secondItem="Kmh-TZ-QM8" secondAttribute="bottom" type="user" id="eiJ-6l-0ha"/>
+                            <constraint firstItem="St4-f1-Rws" firstAttribute="top" secondItem="Kmh-TZ-QM8" secondAttribute="top" type="user" id="kra-HB-Xkd"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="contentView" destination="St4-f1-Rws" id="RK5-Vg-HeG"/>
+                        <outlet property="googleMapView" destination="Jp9-kZ-Gqn" id="dOa-ZC-yhg"/>
                         <outlet property="navigationButton" destination="Ojl-Oe-bju" id="AZh-w9-CIX"/>
                         <outlet property="placeButton" destination="qGw-Kk-Lou" id="ij1-Mt-fuW"/>
                         <outlet property="pressPlaceButton" destination="qGw-Kk-Lou" id="bWg-JV-Ud2"/>
@@ -501,7 +513,7 @@
                         <color key="separatorColor" red="0.46639307699999999" green="1" blue="0.36276355440000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SelectPlaceCell" id="rcN-vo-xNv">
-                                <rect key="frame" x="0.0" y="46" width="480" height="46"/>
+                                <rect key="frame" x="0.0" y="46" width="480" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="10" y="1" width="460" height="43"/>
@@ -974,16 +986,15 @@
                 <relationship kind="action" name="pressHomeButton:"/>
                 <relationship kind="action" name="pressNavigationButton:"/>
                 <relationship kind="action" name="pressPlaceButton:"/>
-                <relationship kind="action" name="pressRouteButton:"/>
                 <relationship kind="action" name="pressSaveAsFavorButton:"/>
                 <relationship kind="action" name="pressSaveAsHomeButton:"/>
-                <relationship kind="action" name="pressSaveAsOfficeButton:"/>
                 <relationship kind="action" name="pressSearchButton:"/>
-                <relationship kind="action" name="pressSetEndButton:"/>
                 <relationship kind="action" name="pressSetStartButton:"/>
                 <relationship kind="action" name="pressTestButton:"/>
                 <relationship kind="action" name="pressZoomInButton:"/>
                 <relationship kind="action" name="pressZoomOutButton:"/>
+                <relationship kind="outlet" name="contentView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="googleMapView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="navigationButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="placeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="pressPlaceButton" candidateClass="UIButton"/>
@@ -1045,7 +1056,6 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
-                <relationship kind="action" name="pressNaviHUD:"/>
                 <relationship kind="action" name="pressPlace:"/>
                 <relationship kind="action" name="pressRoute:"/>
                 <relationship kind="action" name="pressTextRoute:"/>

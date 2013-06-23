@@ -12,6 +12,8 @@
 {
     RouteNavigationViewController *routeNavigationViewController;
     ADBannerView *adView;
+    NSArray* adShowLayoutConstriants;
+    NSArray* adHideLayoutConstriants;
 }
 @end
 
@@ -19,34 +21,14 @@
 
 
 
+
 - (void)viewDidLoad
 {
     
     [super viewDidLoad];
-    // Custom initialization
 
-//    locationManager.delegate = self;
+    [self addBanner:self.contentView];
     
-	// Do any additional setup after loading the view, typically from a nib.
-
-/* disable banner */
-
-    
-    if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)]) {
-        adView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
-    } else {
-        adView = [[ADBannerView alloc] init];
-    }
-    
-//    adView = [[ADBannerView alloc] initWithFrame:CGRectZero];
-    adView.requiredContentSizeIdentifiers = [NSSet setWithObject:ADBannerContentSizeIdentifierLandscape];
-    adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierLandscape;
-    adView.delegate = self;
-
-
-    [self.view addSubview:adView];
-    [self layoutAnimated:NO];
-
     self.selectPlaceTableView.backgroundColor = [UIColor clearColor];
     self.selectPlaceTableView.opaque = NO;
     self.selectPlaceTableView.backgroundView = nil;
@@ -113,7 +95,7 @@
 
 -(void) viewDidAppear:(BOOL)animated
 {
-    [self layoutAnimated:NO];
+    [self showAdAnimated:NO];
 }
 /* for UITableView */
 
@@ -205,7 +187,7 @@
     Place* routeStartPlace;
     Place* routeEndPlace;
     
-    routeStartPlace = [LocationManager getCurrentPlace];
+    routeStartPlace = LocationManager.currentPlace;
     
     routeEndPlace = [User getPlaceBySectionMode:kSectionMode_Home_Office_Favor_SearchedText
                                         Section:indexPath.section
@@ -261,77 +243,126 @@
 
 #pragma mark - Banner
 
-- (void)layoutAnimated:(BOOL)animated
+-(void) addBanner:(UIView*) contentView
 {
-    // As of iOS 6.0, the banner will automatically resize itself based on its width.
-    // To support iOS 5.0 however, we continue to set the currentContentSizeIdentifier appropriately.
-    CGRect contentFrame = self.view.bounds;
-
-    CGRect bannerFrame = adView.frame;
-    if (adView.bannerLoaded) {
-//        contentFrame.size.height -= adView.frame.size.height;
-//        bannerFrame.origin.y = contentFrame.size.height;
-        logfn();
-        bannerFrame.origin.y  = 0;
-        contentFrame.origin.y = bannerFrame.size.height;
+    
+    if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)]) {
+        adView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
     } else {
-        logfn();
-        contentFrame.origin.y = 0;
-        bannerFrame.origin.y  = -bannerFrame.size.height;
+        adView = [[ADBannerView alloc] init];
     }
     
-//    NSLayoutConstraint *con1 = [NSLayoutConstraint constraintWithItem:_contentView attribute:NS relatedBy:0 toItem:self.view attribute:NSLayoutAttributeLeading multiplier:1 constant:114];
+    //    adView = [[ADBannerView alloc] initWithFrame:CGRectZero];
+    adView.requiredContentSizeIdentifiers   = [NSSet setWithObject:ADBannerContentSizeIdentifierLandscape];
+    adView.currentContentSizeIdentifier     = ADBannerContentSizeIdentifierLandscape;
+    adView.delegate     = self;
+    contentView         = self.contentView;
+    NSDictionary *views = NSDictionaryOfVariableBindings(adView, contentView);
     
-    adView.frame = bannerFrame;
-    _contentView.frame = contentFrame;
+    [adView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [contentView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    
+    logfns("\n-------------------------------------- before ad view\n");
+    [self.view dumpConstraint];
+    
+    [self.view addSubview:adView];
+    
+    logfns("\n-------------------------------------- after ad view\n");
+    [self.view dumpConstraint];
+    
+    
+    for(NSLayoutConstraint *c in self.view.constraints)
+    {
+        logfns("self.view: 0x%X \n", (int)self.view);
+        logfns("contentView 0x%X \n", (int)contentView);
+        
+        NSLog(@"first item: %@:0x%X, second item: %@:0x%X, fa: %d, sa: %d\n",
+              c.firstItem, (int)c.firstItem, c.secondItem, (int)c.secondItem,
+              c.firstAttribute, c.secondAttribute
+              );
+        if (c.firstItem == contentView && c.secondItem == self.view && c.firstAttribute == NSLayoutAttributeTop)
+        {
+            logfns("matched\n");
+            [self.view removeConstraint:c];
+        }
+    }
+    
+    logfns("\n--------------------------------------\n");
+    [self.view dumpConstraint];
+    
+    [self.view  addConstraints:
+     [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[adView]|"
+                                             options:0
+                                             metrics:nil
+                                               views:views]];
+    
+    
+    adShowLayoutConstriants = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(0)-[adView]-0-[contentView(288)]-0-|"
+                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                      metrics:nil
+                                                                        views:views];
+    
+    adHideLayoutConstriants = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(-32)-[adView]-0-[contentView(320)]-0-|"
+                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                      metrics:nil
+                                                                        views:views];
+    
+    [self.view addConstraints:adShowLayoutConstriants];
+    //    [self.view addConstraints:adHideLayoutConstriants];
+    
+    
+    [self.view layoutIfNeeded];
+    
+    logfns("\n-------------------------------------- finally\n");
+    [self.view dumpConstraint];
+    
+    [self showAdAnimated:NO];
+    
+    
+}
 
-    logfns("ad:(%.0f, %.0f), contentView:(%.0f, %.0f)\n",
-           adView.frame.origin.x,
-           adView.frame.origin.y,
-           _contentView.frame.origin.x,
-           _contentView.frame.origin.y
-           );
-    
-    [_contentView layoutIfNeeded];
-//    [_contentView setNeedsDisplay];
-    logfns("ad:(%.0f, %.0f), contentView:(%.0f, %.0f)\n",
-           adView.frame.origin.x,
-           adView.frame.origin.y,
-           _contentView.frame.origin.x,
-           _contentView.frame.origin.y
-           );
-    
-#if 0
-    [UIView animateWithDuration:animated ? 0.25 : 0.0 animations:^{
-        _contentView.frame = contentFrame;
-        [_contentView layoutIfNeeded];
-        adView.frame = bannerFrame;
-    }];
-#endif
+- (void)showAdAnimated:(BOOL)animated
+{
 
+    if (adView.bannerLoaded)
+    {
+        [self.view removeConstraints:adHideLayoutConstriants];
+        [self.view addConstraints:adShowLayoutConstriants];
+    } else
+    {
+        [self.view removeConstraints:adShowLayoutConstriants];
+        [self.view addConstraints:adHideLayoutConstriants];
+    }
+    
+    if (animated)
+    {
+        [UIView animateWithDuration:0.5 animations:^{[self.view layoutIfNeeded];}];
+    }
+   
 }
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
-    logfn();
     if (!self.bannerIsVisible)
     {
 //        [UIView beginAnimations:@"animateAdBannerOn" context:NULL];
         // Assumes the banner view is just off the bottom of the screen.
 //        banner.frame = CGRectOffset(banner.frame, 0, -banner.frame.size.height);
 //        [UIView commitAnimations];
-        [self layoutAnimated:YES];
         self.bannerIsVisible = YES;
+        [self showAdAnimated:YES];
+
     }
 }
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
 {
-    logfn();
     logo(error.description);
     if (self.bannerIsVisible)
     {
         self.bannerIsVisible = NO;
+        [self showAdAnimated:YES];
     }
 }
 
@@ -356,14 +387,12 @@
 
 - (void)bannerViewActionDidFinish:(ADBannerView *)banner
 {
-    logfn();
-}
 
+}
 
 
 -(void) viewWillAppear:(BOOL)animated
 {
-    logfn();
     [self.selectPlaceTableView reloadData];
 }
 @end

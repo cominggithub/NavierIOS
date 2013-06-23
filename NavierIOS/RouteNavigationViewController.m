@@ -36,11 +36,6 @@
     routeGuideMenu = [xibContents lastObject];
     
     routeGuideMenuOffset = 100;
-//    frame.origin.x = 0;
-//    frame.origin.y = 0;
-    //    frame.size = self.scrIcon.frame.size;
-//    frame.size.width = 277;
-//    frame.size.height = 127;
     
     logfns("RouteGuideMenu: frame: (%.0f, %.0f) (%.0f, %.0f), bounds: (%.0f, %.0f) (%.0f, %.0f)\n",
            routeGuideMenu.frame.origin.x,
