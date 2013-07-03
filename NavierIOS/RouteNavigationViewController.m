@@ -48,6 +48,7 @@
            routeGuideMenu.bounds.size.height
            );
     
+    
 //    routeGuideMenu.frame = frame;
 //    subView = [xibContents lastObject];
 
