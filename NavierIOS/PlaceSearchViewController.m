@@ -65,7 +65,7 @@
         {
         
             GoogleMapUIViewController* gc = (GoogleMapUIViewController*) self.presentingViewController;
-            [User addSearchedPlace:[place trim]];
+            [User addSearchedPlaceText:[place trim]];
             [User save];
             gc.placeToSearch = [NSString stringWithString:place];
         }

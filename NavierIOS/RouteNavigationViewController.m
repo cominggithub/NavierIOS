@@ -197,17 +197,13 @@
 -(void) startRouteNavigationFrom:(Place*) startPlace To:(Place*) endPlace
 {
 
-    logfn();
-    logo(self.guideRouteUIView);
     [self.guideRouteUIView startRouteNavigationFrom:startPlace To:endPlace];
-    logfn();
+
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    logfn();
-    logo(self.guideRouteUIView);
     [self addRouteGuideMenu];
     //    locationSimulator.delegate = (GuideRouteUIView*)self.view;
     //    [locationSimulator start];

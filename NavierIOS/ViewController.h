@@ -22,6 +22,6 @@
 - (IBAction)pressRoute:(id)sender;
 - (IBAction)pressTextRoute:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *selectPlaceTableView;
-@property (nonatomic) bool bannerIsVisible;
+@property (nonatomic) BOOL bannerIsVisible;
 
 @end

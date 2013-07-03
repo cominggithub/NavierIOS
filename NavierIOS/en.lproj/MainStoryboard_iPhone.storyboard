@@ -1,9 +1,58 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
+        <!--Car Panel View Controller-->
+        <scene sceneID="J48-FA-XMy">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" id="Djb-fT-2kR" customClass="CarPanelViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lAs-tZ-wsu">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EzA-On-QKf" userLabel="ContentView">
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="car panel 1.png" translatesAutoresizingMaskIntoConstraints="NO" id="v9U-6E-X35">
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="dN8-8M-nWO" appends="YES" id="Jew-j1-dD0"/>
+                                        </connections>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="v9U-6E-X35" firstAttribute="leading" secondItem="EzA-On-QKf" secondAttribute="leading" type="default" id="2Rp-kX-Eh1"/>
+                                    <constraint firstItem="v9U-6E-X35" firstAttribute="top" secondItem="EzA-On-QKf" secondAttribute="top" type="default" id="88V-vr-KNl"/>
+                                    <constraint firstItem="v9U-6E-X35" firstAttribute="trailing" secondItem="EzA-On-QKf" secondAttribute="trailing" type="default" id="ocE-do-UoM"/>
+                                    <constraint firstItem="v9U-6E-X35" firstAttribute="bottom" secondItem="EzA-On-QKf" secondAttribute="bottom" type="default" id="tjn-xV-gfS"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="dN8-8M-nWO" appends="YES" id="yfd-xK-2m8"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EzA-On-QKf" firstAttribute="leading" secondItem="lAs-tZ-wsu" secondAttribute="leading" type="default" id="414-lp-QiT"/>
+                            <constraint firstItem="EzA-On-QKf" firstAttribute="trailing" secondItem="lAs-tZ-wsu" secondAttribute="trailing" type="default" id="Ae0-Co-y8Y"/>
+                            <constraint firstItem="EzA-On-QKf" firstAttribute="top" secondItem="lAs-tZ-wsu" secondAttribute="top" type="default" id="HEU-0h-98s"/>
+                            <constraint firstItem="EzA-On-QKf" firstAttribute="bottom" secondItem="lAs-tZ-wsu" secondAttribute="bottom" type="default" id="gaf-h0-ZIZ"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OmP-S3-EhU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="dN8-8M-nWO">
+                    <connections>
+                        <action selector="tagAction:" destination="Djb-fT-2kR" id="g26-VP-B28"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-105" y="-276"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="5">
             <objects>
@@ -101,6 +150,25 @@
                                             <segue destination="dZh-Ie-r5c" kind="modal" id="1OQ-2g-QIB"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLl-eM-9SY">
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="129" type="user" id="9Bl-ER-rSO"/>
+                                            <constraint firstAttribute="width" constant="128" id="Tg3-p0-WD0"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="128" type="user" id="dT5-pX-9aC"/>
+                                            <constraint firstAttribute="height" constant="129" type="user" id="kts-0u-aoa"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Button" image="Green_car.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="Djb-fT-2kR" kind="modal" id="YjY-S5-THF"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
@@ -108,10 +176,12 @@
                                     <constraint firstItem="jde-ul-7lF" firstAttribute="bottom" secondItem="RCQ-8t-oDQ" secondAttribute="bottom" type="default" id="5wp-mV-Ggq"/>
                                     <constraint firstItem="joT-59-HDP" firstAttribute="leading" secondItem="RCQ-8t-oDQ" secondAttribute="leading" type="default" id="8l0-bv-BzU"/>
                                     <constraint firstItem="jde-ul-7lF" firstAttribute="trailing" secondItem="RCQ-8t-oDQ" secondAttribute="trailing" type="default" id="9IQ-o7-iv7"/>
+                                    <constraint firstItem="gLl-eM-9SY" firstAttribute="trailing" secondItem="RCQ-8t-oDQ" secondAttribute="trailing" type="default" id="BKD-3a-c0j"/>
                                     <constraint firstItem="pQs-qv-abD" firstAttribute="centerY" secondItem="Esx-Gh-y9e" secondAttribute="centerY" type="default" id="NhS-jV-lKq"/>
+                                    <constraint firstItem="joT-59-HDP" firstAttribute="trailing" secondItem="RCQ-8t-oDQ" secondAttribute="trailing" type="default" id="QPY-hO-Xd6"/>
                                     <constraint firstItem="W0Z-xY-Meg" firstAttribute="leading" secondItem="Esx-Gh-y9e" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="WBN-Ak-4Ty"/>
+                                    <constraint firstItem="gLl-eM-9SY" firstAttribute="top" secondItem="RCQ-8t-oDQ" secondAttribute="top" constant="79" id="ZWW-Z9-gKX"/>
                                     <constraint firstItem="Esx-Gh-y9e" firstAttribute="top" secondItem="RCQ-8t-oDQ" secondAttribute="top" type="default" id="a8e-lL-znF"/>
-                                    <constraint firstItem="jde-ul-7lF" firstAttribute="trailing" secondItem="joT-59-HDP" secondAttribute="trailing" type="default" id="fRw-ax-d4R"/>
                                     <constraint firstItem="W0Z-xY-Meg" firstAttribute="bottom" secondItem="RCQ-8t-oDQ" secondAttribute="bottom" type="default" id="onf-HU-N9e"/>
                                     <constraint firstItem="joT-59-HDP" firstAttribute="bottom" secondItem="RCQ-8t-oDQ" secondAttribute="bottom" type="default" id="tgi-UI-A9h"/>
                                     <constraint firstItem="Esx-Gh-y9e" firstAttribute="leading" secondItem="RCQ-8t-oDQ" secondAttribute="leading" constant="8" id="xOp-Rh-GAL"/>
@@ -513,7 +583,7 @@
                         <color key="separatorColor" red="0.46639307699999999" green="1" blue="0.36276355440000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SelectPlaceCell" id="rcN-vo-xNv">
-                                <rect key="frame" x="0.0" y="46" width="480" height="45"/>
+                                <rect key="frame" x="0.0" y="46" width="480" height="46"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="10" y="1" width="460" height="43"/>
@@ -744,7 +814,6 @@
                             <outletCollection property="gestureRecognizers" destination="nfb-U0-Fgz" appends="YES" id="Iej-II-lZF"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="hQd-Ln-iQF"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
@@ -964,8 +1033,10 @@
     </scenes>
     <resources>
         <image name="Blue_car.png" width="128" height="128"/>
+        <image name="Green_car.png" width="128" height="128"/>
         <image name="bg.jpg" width="1280" height="800"/>
         <image name="btn2_search.png" width="50" height="50"/>
+        <image name="car panel 1.png" width="4734" height="2667"/>
         <image name="ic_search1.png" width="96" height="96"/>
         <image name="icon.png" width="57" height="57"/>
         <image name="minus_remove_green.png" width="128" height="128"/>
@@ -973,6 +1044,12 @@
         <image name="setting.png" width="128" height="128"/>
     </resources>
     <classes>
+        <class className="CarPanelViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CarPanelViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="tagAction:"/>
+            </relationships>
+        </class>
         <class className="DebugMenuViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DebugMenuViewController.h"/>
             <relationships>
@@ -986,10 +1063,7 @@
                 <relationship kind="action" name="pressHomeButton:"/>
                 <relationship kind="action" name="pressNavigationButton:"/>
                 <relationship kind="action" name="pressPlaceButton:"/>
-                <relationship kind="action" name="pressSaveAsFavorButton:"/>
-                <relationship kind="action" name="pressSaveAsHomeButton:"/>
                 <relationship kind="action" name="pressSearchButton:"/>
-                <relationship kind="action" name="pressSetStartButton:"/>
                 <relationship kind="action" name="pressTestButton:"/>
                 <relationship kind="action" name="pressZoomInButton:"/>
                 <relationship kind="action" name="pressZoomOutButton:"/>
@@ -1056,6 +1130,7 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
+                <relationship kind="action" name="pressNaviHUD:"/>
                 <relationship kind="action" name="pressPlace:"/>
                 <relationship kind="action" name="pressRoute:"/>
                 <relationship kind="action" name="pressTextRoute:"/>

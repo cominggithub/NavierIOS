@@ -22,6 +22,13 @@
 
 
 
+-(BOOL) bannerIsVisible
+{
+    logfn();
+    
+    return SystemConfig.isAd && _bannerIsVisible;
+}
+
 - (void)viewDidLoad
 {
     
@@ -174,6 +181,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    logfn();
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
@@ -187,18 +195,22 @@
     Place* routeStartPlace;
     Place* routeEndPlace;
     
-    routeStartPlace = LocationManager.currentPlace;
+    routeStartPlace = [LocationManager currentPlace];
     
     routeEndPlace = [User getPlaceBySectionMode:kSectionMode_Home_Office_Favor_SearchedText
                                         Section:indexPath.section
                                            Index:indexPath.row];
     
+    logo(routeStartPlace);
     if (nil != routeStartPlace && nil != routeEndPlace && ![routeStartPlace isCoordinateEqualTo:routeEndPlace])
     {
+        logfn();
 
         [self presentModalViewController:routeNavigationViewController animated:YES];
         [routeNavigationViewController startRouteNavigationFrom:routeStartPlace To:routeEndPlace];
     }
+
+    logfn();
 
 }
 

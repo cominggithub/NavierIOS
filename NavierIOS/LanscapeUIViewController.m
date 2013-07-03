@@ -86,6 +86,6 @@
 - (IBAction)tagAction:(id)sender
 {
     GuideRouteUIView* view = (GuideRouteUIView*)[self view];
-    [view locationUpdate:locationSimulator.getNextLocation];
+    [view locationUpdate:locationSimulator.getNextLocation Speed:0 Distance:0];
 }
 @end
