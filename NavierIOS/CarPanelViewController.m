@@ -8,6 +8,9 @@
 
 #import "CarPanelViewController.h"
 
+#define FILE_DEBUG FALSE
+#include <NaviUtil/Log.h>
+
 @interface CarPanelViewController ()
 
 @end

@@ -14,7 +14,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EzA-On-QKf" userLabel="ContentView">
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="car panel 1.png" translatesAutoresizingMaskIntoConstraints="NO" id="v9U-6E-X35">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="v9U-6E-X35">
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="dN8-8M-nWO" appends="YES" id="Jew-j1-dD0"/>
                                         </connections>
@@ -1036,7 +1036,6 @@
         <image name="Green_car.png" width="128" height="128"/>
         <image name="bg.jpg" width="1280" height="800"/>
         <image name="btn2_search.png" width="50" height="50"/>
-        <image name="car panel 1.png" width="4734" height="2667"/>
         <image name="ic_search1.png" width="96" height="96"/>
         <image name="icon.png" width="57" height="57"/>
         <image name="minus_remove_green.png" width="128" height="128"/>
@@ -1130,7 +1129,6 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
-                <relationship kind="action" name="pressNaviHUD:"/>
                 <relationship kind="action" name="pressPlace:"/>
                 <relationship kind="action" name="pressRoute:"/>
                 <relationship kind="action" name="pressTextRoute:"/>

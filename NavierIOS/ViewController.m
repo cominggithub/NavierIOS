@@ -8,6 +8,10 @@
 
 #import "ViewController.h"
 #import "RouteNavigationViewController.h"
+
+#define FILE_DEBUG FALSE
+#include <NaviUtil/Log.h>
+
 @interface ViewController ()
 {
     RouteNavigationViewController *routeNavigationViewController;

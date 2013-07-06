@@ -8,6 +8,9 @@
 
 #import "LanscapeUIViewController.h"
 
+#define FILE_DEBUG FALSE
+#include <NaviUtil/Log.h>
+
 @interface LanscapeUIViewController ()
 
 @end

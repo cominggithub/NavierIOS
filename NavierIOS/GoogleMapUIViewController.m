@@ -11,6 +11,8 @@
 #import "SelectPlaceViewController.h"
 #import "RouteNavigationViewController.h"
 
+#define FILE_DEBUG FALSE
+#include <NaviUtil/Log.h>
 
 @interface GoogleMapUIViewController ()
 {
@@ -285,7 +287,7 @@
 
 - (void)mapView:(GMSMapView *)tmapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
     CGPoint point = [tmapView.projection pointForCoordinate: coordinate];
-    mlogDebug(GOOGLE_MAP_UIVIEWCONTROLLER, @"Google Map tapped at (%f,%f) on screen (%.0f, %.0f)", coordinate.latitude, coordinate.longitude, point.x, point.y);
+    mlogDebug(@"Google Map tapped at (%f,%f) on screen (%.0f, %.0f)", coordinate.latitude, coordinate.longitude, point.x, point.y);
     if (true == isShowMarkMenu)
     {
         [self hideMarkMenu];

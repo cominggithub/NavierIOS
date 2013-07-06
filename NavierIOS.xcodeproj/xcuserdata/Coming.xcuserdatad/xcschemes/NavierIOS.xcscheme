@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2B9A431416DB955F00FD1A54"
-               BuildableName = "Navier.app"
+               BuildableName = "NavierHUD.app"
                BlueprintName = "NavierIOS"
                ReferencedContainer = "container:NavierIOS.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2B9A431416DB955F00FD1A54"
-            BuildableName = "Navier.app"
+            BuildableName = "NavierHUD.app"
             BlueprintName = "NavierIOS"
             ReferencedContainer = "container:NavierIOS.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2B9A431416DB955F00FD1A54"
-            BuildableName = "Navier.app"
+            BuildableName = "NavierHUD.app"
             BlueprintName = "NavierIOS"
             ReferencedContainer = "container:NavierIOS.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2B9A431416DB955F00FD1A54"
-            BuildableName = "Navier.app"
+            BuildableName = "NavierHUD.app"
             BlueprintName = "NavierIOS"
             ReferencedContainer = "container:NavierIOS.xcodeproj">
          </BuildableReference>

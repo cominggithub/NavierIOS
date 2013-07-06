@@ -11,6 +11,19 @@
 #import <NaviUtil/NaviUtil.h>
 #import "GoogleAPIKey.h"
 
+#define FILE_DEBUG FALSE
+#include <NaviUtil/Log.h>
+
+void SignalHandler(int sig)
+{
+    TFLog(@"This is where we save the application data during a signal");
+    // Save application data on crash
+}
+void uncaughtExceptionHandler(NSException *exception) {
+    TFLog(@"CRASH: %@", exception);
+    TFLog(@"Stack Trace: %@", [exception callStackSymbols]);
+    // Internal error reporting
+}
 
 @implementation AppDelegate
 
@@ -18,22 +31,33 @@
 {
     // Override point for customization after application launch.
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-    NSLog(@"%@", [[NSBundle mainBundle] bundleIdentifier]);
     
+    // create the signal action structure
+    struct sigaction newSignalAction;
+    // initialize the signal action structure
+    memset(&newSignalAction, 0, sizeof(newSignalAction));
+    // set SignalHandler as the handler in the signal action structure
+    newSignalAction.sa_handler = &SignalHandler;
+    // set SignalHandler as the handlers for SIGABRT, SIGILL and SIGBUS
+    sigaction(SIGABRT, &newSignalAction, NULL);
+    sigaction(SIGILL, &newSignalAction, NULL);
+    sigaction(SIGBUS, &newSignalAction, NULL);
+    
+
+    [TestFlight setOptions:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:@"logToConsole"]];
+    
+    [TestFlight takeOff:@"c2d1ac33-37d1-4f22-8a60-876d335e7614"];
+
     [GMSServices provideAPIKey:GOOGLE_API_Key];
     [NaviUtil setGoogleAPIKey:GOOGLE_API_Key];
     [NaviUtil setGooglePlaceAPIKey:GOOGLE_PLACE_API_Key];
     [NaviUtil init];
     [User save];
     
+    
     return YES;
 }
 
-void uncaughtExceptionHandler(NSException *exception) {
-    NSLog(@"CRASH: %@", exception);
-    NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
-    // Internal error reporting
-}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

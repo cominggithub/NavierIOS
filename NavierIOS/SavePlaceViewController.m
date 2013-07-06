@@ -9,6 +9,9 @@
 #import "SavePlaceViewController.h"
 #import <NaviUtil/NaviUtil.h>
 
+#define FILE_DEBUG FALSE
+#include <NaviUtil/Log.h>
+
 @interface SavePlaceViewController ()
 
 @end

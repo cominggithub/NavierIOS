@@ -8,6 +8,9 @@
 
 #import "RouteTableViewController.h"
 
+#define FILE_DEBUG FALSE
+#include <NaviUtil/Log.h>
+
 @interface RouteTableViewController ()
 
 @end

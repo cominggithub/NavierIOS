@@ -9,6 +9,9 @@
 #import "PlaceSearchViewController.h"
 #import <NaviUtil/NaviUtil.h>
 
+#define FILE_DEBUG FALSE
+#include <NaviUtil/Log.h>
+
 @interface PlaceSearchViewController ()
 
 @end

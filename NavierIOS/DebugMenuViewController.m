@@ -8,6 +8,9 @@
 
 #import "DebugMenuViewController.h"
 
+#define FILE_DEBUG FALSE
+#include <NaviUtil/Log.h>
+
 @interface DebugMenuViewController ()
 {
     UIView *debugMenuView;
