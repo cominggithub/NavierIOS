@@ -12,21 +12,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EzA-On-QKf" userLabel="ContentView">
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="v9U-6E-X35">
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="dN8-8M-nWO" appends="YES" id="Jew-j1-dD0"/>
-                                        </connections>
-                                    </imageView>
-                                </subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EzA-On-QKf" userLabel="ContentView" customClass="CarPanel1UIView">
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="v9U-6E-X35" firstAttribute="leading" secondItem="EzA-On-QKf" secondAttribute="leading" type="default" id="2Rp-kX-Eh1"/>
-                                    <constraint firstItem="v9U-6E-X35" firstAttribute="top" secondItem="EzA-On-QKf" secondAttribute="top" type="default" id="88V-vr-KNl"/>
-                                    <constraint firstItem="v9U-6E-X35" firstAttribute="trailing" secondItem="EzA-On-QKf" secondAttribute="trailing" type="default" id="ocE-do-UoM"/>
-                                    <constraint firstItem="v9U-6E-X35" firstAttribute="bottom" secondItem="EzA-On-QKf" secondAttribute="bottom" type="default" id="tjn-xV-gfS"/>
-                                </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="dN8-8M-nWO" appends="YES" id="yfd-xK-2m8"/>
                                 </connections>
@@ -43,6 +30,9 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="contentView" destination="EzA-On-QKf" id="ebx-8T-1qx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OmP-S3-EhU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="dN8-8M-nWO">
@@ -1043,10 +1033,14 @@
         <image name="setting.png" width="128" height="128"/>
     </resources>
     <classes>
+        <class className="CarPanel1UIView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CarPanel1UIView.h"/>
+        </class>
         <class className="CarPanelViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CarPanelViewController.h"/>
             <relationships>
                 <relationship kind="action" name="tagAction:"/>
+                <relationship kind="outlet" name="contentView" candidateClass="UIView"/>
             </relationships>
         </class>
         <class className="DebugMenuViewController" superclassName="UIViewController">
@@ -1062,7 +1056,13 @@
                 <relationship kind="action" name="pressHomeButton:"/>
                 <relationship kind="action" name="pressNavigationButton:"/>
                 <relationship kind="action" name="pressPlaceButton:"/>
+                <relationship kind="action" name="pressRouteButton:"/>
+                <relationship kind="action" name="pressSaveAsFavorButton:"/>
+                <relationship kind="action" name="pressSaveAsHomeButton:"/>
+                <relationship kind="action" name="pressSaveAsOfficeButton:"/>
                 <relationship kind="action" name="pressSearchButton:"/>
+                <relationship kind="action" name="pressSetEndButton:"/>
+                <relationship kind="action" name="pressSetStartButton:"/>
                 <relationship kind="action" name="pressTestButton:"/>
                 <relationship kind="action" name="pressZoomInButton:"/>
                 <relationship kind="action" name="pressZoomOutButton:"/>

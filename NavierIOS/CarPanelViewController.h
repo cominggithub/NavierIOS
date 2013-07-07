@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CarPanelViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 - (IBAction)tagAction:(id)sender;
 
 @end

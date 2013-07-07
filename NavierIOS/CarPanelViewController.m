@@ -7,12 +7,17 @@
 //
 
 #import "CarPanelViewController.h"
+#import <NaviUtil/NaviUtil.h>
 
 #define FILE_DEBUG FALSE
 #include <NaviUtil/Log.h>
 
 @interface CarPanelViewController ()
-
+{
+    CarPanel1UIView *_carPanel1;
+    NSTimer *_redrawTimer;
+    int _redrawInterval;
+}
 @end
 
 @implementation CarPanelViewController
@@ -21,17 +26,57 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
 
+- (void) initSelf
+{
+#if 0
+    _carPanel1 = [[CarPanel1UIView alloc] init];
+    _contentView = _carPanel1;
+
+     _carPanel1.frame = _contentView.frame;
+    [_contentView addSubview:_carPanel1];
+    
+
+    NSDictionary *views = NSDictionaryOfVariableBindings(_carPanel1);
+    
+    [_carPanel1 setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    [_contentView addConstraints:
+     [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_carPanel1]|"
+                                             options:0
+                                             metrics:nil
+                                               views:views]];
+    
+    
+    [_contentView addConstraints:
+     [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_carPanel1]|"
+                                             options:0
+                                             metrics:nil
+                                               views:views]];
+#endif
+    _redrawInterval = 0.1;
+    _redrawTimer    = nil;
+}
+
 - (void)viewDidLoad
 {
+    [self initSelf];
+    _carPanel1 = (CarPanel1UIView*)_contentView;
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
 
+-(void) viewDidAppear:(BOOL)animated
+{
+    logo(_carPanel1);
+    [_carPanel1 autoRedrawStart];
+//    [self autoRedrawStart];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -42,4 +87,32 @@
 {
     [self dismissModalViewControllerAnimated:YES];
 }
+- (void)viewDidUnload {
+    [self setContentView:nil];
+    [super viewDidUnload];
+}
+
+-(void) autoRedrawStart
+{
+    if (nil == _redrawTimer)
+    {
+        _redrawTimer = [NSTimer scheduledTimerWithTimeInterval:_redrawInterval target:self selector:@selector(redrawTimeout) userInfo:nil repeats:YES];
+    }
+}
+
+-(void) autoRedrawStop
+{
+    if (nil != _redrawTimer)
+    {
+        [_redrawTimer invalidate];
+        _redrawTimer = nil;
+    }
+}
+
+-(void) redrawTimeout
+{
+    [_carPanel1 setNeedsDisplay];
+
+}
+
 @end
