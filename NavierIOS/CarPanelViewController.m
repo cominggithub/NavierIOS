@@ -58,7 +58,7 @@
                                              metrics:nil
                                                views:views]];
 #endif
-    _redrawInterval = 0.1;
+    _redrawInterval = 0.5;
     _redrawTimer    = nil;
 }
 
@@ -114,5 +114,6 @@
     [_carPanel1 setNeedsDisplay];
 
 }
+
 
 @end
