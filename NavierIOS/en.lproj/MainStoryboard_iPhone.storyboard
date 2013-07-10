@@ -4,45 +4,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--Car Panel View Controller-->
-        <scene sceneID="J48-FA-XMy">
-            <objects>
-                <viewController modalTransitionStyle="crossDissolve" id="Djb-fT-2kR" customClass="CarPanelViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="lAs-tZ-wsu">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EzA-On-QKf" userLabel="ContentView" customClass="CarPanel1UIView">
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="dN8-8M-nWO" appends="YES" id="yfd-xK-2m8"/>
-                                </connections>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="EzA-On-QKf" firstAttribute="leading" secondItem="lAs-tZ-wsu" secondAttribute="leading" type="default" id="414-lp-QiT"/>
-                            <constraint firstItem="EzA-On-QKf" firstAttribute="trailing" secondItem="lAs-tZ-wsu" secondAttribute="trailing" type="default" id="Ae0-Co-y8Y"/>
-                            <constraint firstItem="EzA-On-QKf" firstAttribute="top" secondItem="lAs-tZ-wsu" secondAttribute="top" type="default" id="HEU-0h-98s"/>
-                            <constraint firstItem="EzA-On-QKf" firstAttribute="bottom" secondItem="lAs-tZ-wsu" secondAttribute="bottom" type="default" id="gaf-h0-ZIZ"/>
-                        </constraints>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    </view>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <connections>
-                        <outlet property="contentView" destination="EzA-On-QKf" id="ebx-8T-1qx"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OmP-S3-EhU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="dN8-8M-nWO">
-                    <connections>
-                        <action selector="tagAction:" destination="Djb-fT-2kR" id="g26-VP-B28"/>
-                    </connections>
-                </tapGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="-105" y="-276"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="5">
             <objects>
@@ -156,7 +117,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="Djb-fT-2kR" kind="modal" id="YjY-S5-THF"/>
+                                            <action selector="pressCarPanel:" destination="2" eventType="touchUpInside" id="sse-Qe-sOD"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1033,16 +994,6 @@
         <image name="setting.png" width="128" height="128"/>
     </resources>
     <classes>
-        <class className="CarPanel1UIView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CarPanel1UIView.h"/>
-        </class>
-        <class className="CarPanelViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CarPanelViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="tagAction:"/>
-                <relationship kind="outlet" name="contentView" candidateClass="UIView"/>
-            </relationships>
-        </class>
         <class className="DebugMenuViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DebugMenuViewController.h"/>
             <relationships>
@@ -1056,13 +1007,7 @@
                 <relationship kind="action" name="pressHomeButton:"/>
                 <relationship kind="action" name="pressNavigationButton:"/>
                 <relationship kind="action" name="pressPlaceButton:"/>
-                <relationship kind="action" name="pressRouteButton:"/>
-                <relationship kind="action" name="pressSaveAsFavorButton:"/>
-                <relationship kind="action" name="pressSaveAsHomeButton:"/>
-                <relationship kind="action" name="pressSaveAsOfficeButton:"/>
                 <relationship kind="action" name="pressSearchButton:"/>
-                <relationship kind="action" name="pressSetEndButton:"/>
-                <relationship kind="action" name="pressSetStartButton:"/>
                 <relationship kind="action" name="pressTestButton:"/>
                 <relationship kind="action" name="pressZoomInButton:"/>
                 <relationship kind="action" name="pressZoomOutButton:"/>
@@ -1129,6 +1074,8 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
+                <relationship kind="action" name="pressCarPanel:"/>
+                <relationship kind="action" name="pressNaviHUD:"/>
                 <relationship kind="action" name="pressPlace:"/>
                 <relationship kind="action" name="pressRoute:"/>
                 <relationship kind="action" name="pressTextRoute:"/>

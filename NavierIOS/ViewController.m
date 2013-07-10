@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "RouteNavigationViewController.h"
+#import "CarPanelViewController.h"
 
 #define FILE_DEBUG FALSE
 #include <NaviUtil/Log.h>
@@ -93,6 +94,29 @@
 - (IBAction)pressTextRoute:(id)sender
 {
     [NaviQueryManager planRouteStartLocationText:@"成大" EndLocationText:@"台南一中"];
+}
+
+- (IBAction)pressCarPanel:(id)sender
+{
+    
+    logfn();
+    // Get the storyboard named secondStoryBoard from the main bundle:
+    UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"CarPanels" bundle:nil];
+    
+
+    UIViewController *carPanel = [secondStoryBoard instantiateInitialViewController];
+    //
+    // **OR**
+    //
+    // Load the view controller with the identifier string myTabBar
+    // Change UIViewController to the appropriate class
+//    UIViewController *carPanel = (UIViewController *)[secondStoryBoard instantiateViewControllerWithIdentifier:@"CarPanel"];
+    
+    // Then push the new view controller in the usual way:
+//    [self.navigationController pushViewController:carPanel animated:YES];
+    
+    [self presentModalViewController:carPanel animated:TRUE];
+    
 }
 
 - (IBAction)pressNaviHUD:(id)sender {

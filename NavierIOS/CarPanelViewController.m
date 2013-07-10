@@ -34,8 +34,9 @@
 - (void) initSelf
 {
 #if 0
-    _carPanel1 = [[CarPanel1UIView alloc] init];
-    _contentView = _carPanel1;
+    NSArray *xibContents = [[NSBundle mainBundle] loadNibNamed:@"CarPanel1" owner:self options:nil];
+    _carPanel1      = (CarPanel1UIView*)[xibContents lastObject];
+    
 
      _carPanel1.frame = _contentView.frame;
     [_contentView addSubview:_carPanel1];
@@ -66,16 +67,16 @@
 {
     [self initSelf];
     _carPanel1 = (CarPanel1UIView*)_contentView;
+    [_carPanel1 start];
     
     [super viewDidLoad];
+
 	// Do any additional setup after loading the view.
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
-    logo(_carPanel1);
-    [_carPanel1 autoRedrawStart];
-//    [self autoRedrawStart];
+
 }
 - (void)didReceiveMemoryWarning
 {
