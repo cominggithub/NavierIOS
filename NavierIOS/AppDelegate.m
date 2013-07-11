@@ -46,8 +46,8 @@ void uncaughtExceptionHandler(NSException *exception) {
 
     [TestFlight takeOff:@"c2d1ac33-37d1-4f22-8a60-876d335e7614"];
 
-    [TestFlight setOptions:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:@"logToSTDERR"]];
-    [TestFlight setOptions:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:@"logToConsole"]];
+//    [TestFlight setOptions:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:@"logToSTDERR"]];
+//    [TestFlight setOptions:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:@"logToConsole"]];
     
     [GMSServices provideAPIKey:GOOGLE_API_Key];
     [NaviUtil setGoogleAPIKey:GOOGLE_API_Key];

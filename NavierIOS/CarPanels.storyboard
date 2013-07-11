@@ -12,17 +12,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" image="car_panel1_direction_panel_outter_circle.png" id="cdu-gD-iEJ" userLabel="car_panel1_direction_panel_outter_circle">
+                            <imageView userInteractionEnabled="NO" tag="200" contentMode="scaleToFill" image="car_panel_1_direction_panel_outer_circle.png" id="cdu-gD-iEJ" userLabel="direction_panel_outer_circle">
                                 <rect key="frame" x="248" y="0.0" width="320" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" image="car_panel1_direction_panel_inner_circle.png" id="oTb-DL-Gta" userLabel="car_panel1_direction_panel_inner_circle">
+                            <imageView userInteractionEnabled="NO" tag="201" contentMode="scaleToFill" image="car_panel_1_direction_panel_inner_circle.png" id="oTb-DL-Gta" userLabel="direction_panel_inner_circle">
                                 <rect key="frame" x="318" y="70" width="180" height="180"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" image="car_panel_1_num_0.png" id="XvE-8p-aQl" userLabel="speed_num_0">
+                                <rect key="frame" x="431" y="126" width="46" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" image="car_panel_1_num_0.png" id="o3F-9T-FVE" userLabel="speed_num_1">
+                                <rect key="frame" x="385" y="126" width="46" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" image="car_panel_1_num_0.png" id="Yqx-jA-hng" userLabel="speed_num_2">
+                                <rect key="frame" x="340" y="126" width="46" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" tag="300" contentMode="scaleToFill" image="car_panel_battery.png" id="NBG-sO-K59" userLabel="battery">
+                                <rect key="frame" x="14" y="8" width="33" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" tag="301" contentMode="scaleToFill" image="car_panel_signal.png" id="hs1-xX-yYD" userLabel="signal">
+                                <rect key="frame" x="62" y="8" width="33" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" tag="302" contentMode="scaleToFill" image="car_panel_gps.png" id="C5t-Sa-YVm" userLabel="gps">
+                                <rect key="frame" x="108" y="8" width="33" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="av3-BE-Ara" appends="YES" id="QKb-1Z-1ni"/>
+                        </connections>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -31,13 +59,22 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nfh-bn-u94" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="av3-BE-Ara">
+                    <connections>
+                        <action selector="tagAction:" destination="T9q-4k-grU" id="UWD-WC-8I6"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="80" y="-133"/>
         </scene>
     </scenes>
     <resources>
-        <image name="car_panel1_direction_panel_inner_circle.png" width="320" height="320"/>
-        <image name="car_panel1_direction_panel_outter_circle.png" width="321" height="323"/>
+        <image name="car_panel_1_direction_panel_inner_circle.png" width="320" height="320"/>
+        <image name="car_panel_1_direction_panel_outer_circle.png" width="321" height="323"/>
+        <image name="car_panel_1_num_0.png" width="46" height="67"/>
+        <image name="car_panel_battery.png" width="33" height="20"/>
+        <image name="car_panel_gps.png" width="30" height="20"/>
+        <image name="car_panel_signal.png" width="30" height="19"/>
     </resources>
     <classes>
         <class className="CarPanel1UIView" superclassName="UIView">
