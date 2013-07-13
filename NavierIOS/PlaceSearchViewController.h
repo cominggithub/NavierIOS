@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *placeTableView;
 - (IBAction)pressPlaceTextField:(id)sender;
 
+- (IBAction)pressLogoButton:(id)sender;
 
 @end

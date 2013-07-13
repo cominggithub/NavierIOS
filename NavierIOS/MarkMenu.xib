@@ -123,9 +123,13 @@
 							<string key="name">Helvetica-Bold</string>
 							<string key="family">Helvetica</string>
 							<int key="traits">2</int>
-							<double key="pointSize">14</double>
+							<double key="pointSize">12</double>
 						</object>
-						<reference key="IBUIFont" ref="884590819"/>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">Helvetica-Bold</string>
+							<double key="NSSize">12</double>
+							<int key="NSfFlags">16</int>
+						</object>
 					</object>
 					<object class="IBUIButton" id="107870711">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -180,10 +184,7 @@
 				<string key="NSFrameSize">{568, 320}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MC41AA</bytes>
-				</object>
+				<reference key="IBUIBackgroundColor" ref="597519366"/>
 				<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 					<int key="IBUIInterfaceOrientation">3</int>
 					<int key="interfaceOrientation">3</int>
@@ -451,9 +452,9 @@
 							</object>
 							<reference ref="804204411"/>
 							<reference ref="910078533"/>
-							<reference ref="916366063"/>
 							<reference ref="107870711"/>
 							<reference ref="311864856"/>
+							<reference ref="916366063"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

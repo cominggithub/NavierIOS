@@ -29,6 +29,7 @@
 
 -(void) addRouteGuideMenu
 {
+    return;
     UIView *subView;
     isShowRouteGuideMenu = false;
     
@@ -39,18 +40,6 @@
     routeGuideMenu = [xibContents lastObject];
     
     routeGuideMenuOffset = 100;
-    
-    logfns("RouteGuideMenu: frame: (%.0f, %.0f) (%.0f, %.0f), bounds: (%.0f, %.0f) (%.0f, %.0f)\n",
-           routeGuideMenu.frame.origin.x,
-           routeGuideMenu.frame.origin.y,
-           routeGuideMenu.frame.size.width,
-           routeGuideMenu.frame.size.height,
-           routeGuideMenu.bounds.origin.x,
-           routeGuideMenu.bounds.origin.y,
-           routeGuideMenu.bounds.size.width,
-           routeGuideMenu.bounds.size.height
-           );
-    
     
 //    routeGuideMenu.frame = frame;
 //    subView = [xibContents lastObject];
@@ -74,7 +63,6 @@
     routeGuideMenuHUDButton         = (UIButton *)[routeGuideMenu viewWithTag:2];
     routeGuideMenuSettingButton     = (UIButton *)[routeGuideMenu viewWithTag:3];
 
-    logo(routeGuideMenuLogoButton);
     
     [routeGuideMenuLogoButton addTarget:self
                                action:@selector(pressLogoButton:)
@@ -149,29 +137,24 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    logfn();
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        logo(self.guideRouteUIView);
+
     }
     return self;
 }
 
 -(IBAction) pressAutoButton:(id)sender
 {
-
-
     if (false == self.guideRouteUIView.isAutoSimulatorLocationUpdateStarted)
     {
         [self.autoButton setTitle:@"Stop" forState:UIControlStateNormal];
         [self.guideRouteUIView autoSimulatorLocationUpdateStart];
-
     }
     else
     {
         [self.autoButton setTitle:@"Auto" forState:UIControlStateNormal];
         [self.guideRouteUIView autoSimulatorLocationUpdateStop];
-
     }
 }
 
@@ -201,7 +184,12 @@
 -(void) startRouteNavigationFrom:(Place*) startPlace To:(Place*) endPlace
 {
 
-    [self.guideRouteUIView startRouteNavigationFrom:startPlace To:endPlace];
+    logo(startPlace);
+    logo(endPlace);
+    self.startPlace = startPlace;
+    self.endPlace   = endPlace;
+    logo(self.startPlace);
+    logo(self.endPlace);
 
 }
 
@@ -209,13 +197,18 @@
 {
     [super viewDidLoad];
     [self addRouteGuideMenu];
-    //    locationSimulator.delegate = (GuideRouteUIView*)self.view;
-    //    [locationSimulator start];
-    
-	// Do any additional setup after loading the view.
     
 }
 
+-(void) viewWillAppear:(BOOL)animated
+{
+
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [self.guideRouteUIView startRouteNavigationFrom:self.startPlace To:self.endPlace];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -249,19 +242,6 @@
 
 - (IBAction)tagAction:(id)sender
 {
-    
-    logfns("RouteGuideMenu: frame: (%.0f, %.0f) (%.0f, %.0f), bounds: (%.0f, %.0f) (%.0f, %.0f)\n",
-           routeGuideMenu.frame.origin.x,
-           routeGuideMenu.frame.origin.y,
-           routeGuideMenu.frame.size.width,
-           routeGuideMenu.frame.size.height,
-           routeGuideMenu.bounds.origin.x,
-           routeGuideMenu.bounds.origin.y,
-           routeGuideMenu.bounds.size.width,
-           routeGuideMenu.bounds.size.height
-           );
-    
-    logfn();
     if (isShowRouteGuideMenu)
     {
         [self hideRouteGuideMenu];

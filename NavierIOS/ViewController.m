@@ -10,6 +10,7 @@
 #import "RouteNavigationViewController.h"
 #import "CarPanelViewController.h"
 
+
 #define FILE_DEBUG FALSE
 #include <NaviUtil/Log.h>
 
@@ -29,9 +30,7 @@
 
 -(BOOL) bannerIsVisible
 {
-    logfn();
-    
-    return SystemConfig.isAd && _bannerIsVisible;
+    return TRUE == (SystemConfig.isAd && _bannerIsVisible);
 }
 
 - (void)viewDidLoad
@@ -47,6 +46,9 @@
     
     routeNavigationViewController = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass
                                  ([RouteNavigationViewController class])];
+    
+    logo(routeNavigationViewController);
+    logo(routeNavigationViewController.guideRouteUIView);
     
 }
 
@@ -119,17 +121,23 @@
     
 }
 
-- (IBAction)pressNaviHUD:(id)sender {
-}
 - (void)viewDidUnload {
 
     [self setSelectPlaceTableView:nil];
     [self setContentView:nil];
+    [self setCarPanel_outer_circle:nil];
+    [self setCarPanel_inner_circle:nil];
     [super viewDidUnload];
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
+    [self.carPanel_outer_circle setImageTintColor:[UIColor whiteColor]];
+    [self.carPanel_inner_circle setImageTintColor:[UIColor whiteColor]];
+    [UIAnimation runSpinAnimationOnView:self.carPanel_outer_circle duration:100 rotations:0.01 repeat:100];
+
+    [UIAnimation runSpinAnimationOnView:self.carPanel_inner_circle duration:100 rotations:0.1 repeat:100];
+    
     [self showAdAnimated:NO];
 }
 /* for UITableView */
@@ -143,7 +151,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [User getPlaceCountBySectionMode: kSectionMode_Home_Office_Favor_SearchedText Section:section];
+    return [User getPlaceCountBySectionMode: kSectionMode_Home_Office_Favor_SearchedText section:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -154,12 +162,13 @@
     
     cell                = [self.selectPlaceTableView dequeueReusableCellWithIdentifier:@"SelectPlaceCell"];
     place               = [User getPlaceBySectionMode:kSectionMode_Home_Office_Favor_SearchedText
-                                              Section:indexPath.section
-                                                Index:indexPath.row];
+                                              section:indexPath.section
+                                                index:indexPath.row];
     if (nil != place)
     {
         nameLabel           = (UILabel*)[cell viewWithTag:3];
         nameLabel.text      = place.name;
+        [nameLabel autoFontSize:16 maxWidth:280];
     }
 
     
@@ -209,7 +218,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    logfn();
+ 
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
@@ -226,19 +235,16 @@
     routeStartPlace = [LocationManager currentPlace];
     
     routeEndPlace = [User getPlaceBySectionMode:kSectionMode_Home_Office_Favor_SearchedText
-                                        Section:indexPath.section
-                                           Index:indexPath.row];
+                                        section:indexPath.section
+                                           index:indexPath.row];
     
-    logo(routeStartPlace);
     if (nil != routeStartPlace && nil != routeEndPlace && ![routeStartPlace isCoordinateEqualTo:routeEndPlace])
     {
-        logfn();
-
         [self presentModalViewController:routeNavigationViewController animated:YES];
+        logfn();
         [routeNavigationViewController startRouteNavigationFrom:routeStartPlace To:routeEndPlace];
+        logfn();
     }
-
-    logfn();
 
 }
 
@@ -266,12 +272,12 @@
     }
     
     UILabel *label = [[UILabel alloc] init];
-    label.frame = CGRectMake(0, 8, 320, 10);
+    label.frame = CGRectMake(0, 8, 320, 12);
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor whiteColor];
     label.shadowColor = [UIColor grayColor];
     label.shadowOffset = CGSizeMake(-1.0, 1.0);
-    label.font = [UIFont boldSystemFontOfSize:12];
+    label.font = [UIFont boldSystemFontOfSize:14];
     label.text = sectionTitle;
     
     UIView *view = [[UIView alloc] init];
@@ -285,6 +291,9 @@
 
 -(void) addBanner:(UIView*) contentView
 {
+    
+    if (FALSE == SystemConfig.isAd)
+        return;
     
     if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)]) {
         adView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
@@ -365,6 +374,9 @@
 - (void)showAdAnimated:(BOOL)animated
 {
 
+    if (nil == adView)
+        return;
+    
     if (adView.bannerLoaded)
     {
         [self.view removeConstraints:adHideLayoutConstriants];

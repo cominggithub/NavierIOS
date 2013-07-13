@@ -23,7 +23,7 @@
     ADBannerView *adView;
     NSArray* adShowLayoutConstriants;
     NSArray* adHideLayoutConstriants;
-    
+
 }
 @end
 
@@ -60,59 +60,7 @@
     
 }
 
-
--(void) addMarkMenu
-{
-    UIView *subView;
-    isShowMarkMenu = false;
-
-    NSArray *xibContents = [[NSBundle mainBundle] loadNibNamed:@"MarkMenu" owner:self options:nil];
-    
-    CGRect frame;
-    
-    frame.origin.x = 480;
-    frame.origin.y = 28;
-    //    frame.size = self.scrIcon.frame.size;
-    frame.size.width = 200;
-    frame.size.height = 460;
-    
-    markMenu = [xibContents lastObject];
-    
-    markMenu.frame = frame;
-    
-    markMenuNameLabel           =  (UILabel *)[markMenu viewWithTag:1];
-    markMenuSnippetLabel        =  (UILabel *)[markMenu viewWithTag:2];
-    markMenuSetStartButton      = (UIButton *)[markMenu viewWithTag:3];
-    markMenuSetEndButton        = (UIButton *)[markMenu viewWithTag:4];
-    markMenuSaveAsHomeButton    = (UIButton *)[markMenu viewWithTag:5];
-    markMenuSaveAsOfficeButton  = (UIButton *)[markMenu viewWithTag:6];
-    markMenuSaveAsFavorButton   = (UIButton *)[markMenu viewWithTag:7];
-    
-    
-    subView = self.view;
-
-    [markMenuSetStartButton addTarget:self
-                               action:@selector(pressSetStartButton:)
-                     forControlEvents:UIControlEventTouchUpInside];
-    
-    [markMenuSetEndButton addTarget:self
-                             action:@selector(pressSetEndButton:)
-                   forControlEvents:UIControlEventTouchUpInside];
-    
-    [markMenuSaveAsHomeButton addTarget:self
-                                 action:@selector(pressSaveAsHomeButton:)
-                       forControlEvents:UIControlEventTouchUpInside];
-    
-    [markMenuSaveAsOfficeButton addTarget:self
-                                   action:@selector(pressSaveAsOfficeButton:)
-                         forControlEvents:UIControlEventTouchUpInside];
-
-    [markMenuSaveAsFavorButton addTarget:self
-                                   action:@selector(pressSaveAsFavorButton:)
-                         forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:markMenu];
-}
+#pragma  mark - Controller
 
 - (void) addPlaceToMapMaker:(Place*) p
 {
@@ -154,8 +102,6 @@
     marker.map      = mapView;
     [markerPlaces addObject:p];
     
-    
-    
 }
 
 
@@ -178,6 +124,7 @@
         [self processRouteDownloadRequestStatusChange];
     }
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -198,19 +145,8 @@
     
     return nil;
 }
--(void) hideMarkMenu
-{
-    if (true == isShowMarkMenu)
-    {
-        isShowMarkMenu = false;
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:.4];
-        logfns("mark menu: (%f, %f) (%f, %f)\n", markMenu.frame.origin.x, markMenu.frame.origin.y, markMenu.frame.size.width, markMenu.frame.size.height);
-        markMenu.frame = CGRectOffset( markMenu.frame, markMenuOffset, 0 ); // offset by an amount
-        [UIView commitAnimations];
-    }
-    
-}
+
+
 
 -(bool) isPlaceInSearchedPlaces:(Place*) place
 {
@@ -247,7 +183,6 @@
         
         if (nil != currentPlace)
         {
-            logfn();
             //            GMSMarker *marker = [[GMSMarker alloc] init];
             //            marker.position = CLLocationCoordinate2DMake(currentPlace.coordinate.latitude,
             //                                                         currentPlace.coordinate.longitude);
@@ -273,9 +208,6 @@
 {
     
     selectedPlace = [self getPlaceByGMSMarker:marker];
-    
-    logo(selectedPlace);
-    
     [self showMarkMenu];
     [self updateMarkMenu];
     
@@ -286,7 +218,7 @@
 
 
 - (void)mapView:(GMSMapView *)tmapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
-    CGPoint point = [tmapView.projection pointForCoordinate: coordinate];
+
     mlogDebug(@"Google Map tapped at (%f,%f) on screen (%.0f, %.0f)", coordinate.latitude, coordinate.longitude, point.x, point.y);
     if (true == isShowMarkMenu)
     {
@@ -295,23 +227,6 @@
 }
 
 
-- (IBAction)pressNavigationButton:(id)sender
-{
-    if (nil != routeStartPlace && nil != routeEndPlace && ![routeStartPlace isCoordinateEqualTo:routeEndPlace])
-    {
-        [routeNavigationViewController startRouteNavigationFrom:routeStartPlace To:routeEndPlace];
-        [self presentModalViewController:routeNavigationViewController animated:YES];
-    }
-}
-
-- (IBAction)pressTestButton:(id)sender
-{
-    //    Place *p = [Place newPlace:@"AA" Address:@"bb" Location:CLLocationCoordinate2DMake(1, 2)];
-    //    [self saveAsHome:p];
-    
-    [self presentModalViewController:selectPlaceViewController animated:YES];
-    
-}
 
 -(void) processRouteDownloadRequestStatusChange
 {
@@ -379,38 +294,6 @@
 
 
 
--(IBAction) pressSetStartButton:(id) sender
-{
-    [self setRouteStart:selectedPlace];
-    [self hideMarkMenu];
-    [self refresh];
-}
-
--(IBAction) pressSetEndButton:(id) sender
-{
-    [self setRouteEnd:selectedPlace];
-    [self hideMarkMenu];
-    [self refresh];
-}
-
--(IBAction) pressSaveAsHomeButton:(id) sender
-{
-    [self saveAsHome:selectedPlace];
-    [self hideMarkMenu];
-}
-
--(IBAction) pressSaveAsOfficeButton:(id) sender
-{
-    [self saveAsOffice:selectedPlace];
-    [self hideMarkMenu];    
-}
-
--(IBAction) pressSaveAsFavorButton:(id) sender
-{
-    [self saveAsFavor:selectedPlace];
-    [self hideMarkMenu];
-}
-
 
 
 
@@ -424,9 +307,6 @@
         {
             if (![routeStartPlace isCoordinateEqualTo:routeEndPlace])
             {
-                logfn();
-                logo(routeStartPlace);
-                logo(routeEndPlace);
                 routeDownloadRequest = [NaviQueryManager
                                         getRouteDownloadRequestFrom:routeStartPlace.coordinate
                                         To:routeEndPlace.coordinate];
@@ -445,54 +325,29 @@
 }
 
 
-- (IBAction)pressRouteButton:(id)sender
-{
-    
-    
-}
 
-- (IBAction)pressZoomOutButton:(id)sender
+
+-(void) removePlaceFromSearchedPlace:(Place*) placeToRemove
 {
-    if(zoomLevel > 2)
+    int i;
+
+
+    for(i=0; i<searchedPlaces.count; i++)
     {
-        zoomLevel--;
-        [mapView animateToZoom:zoomLevel];
+        Place* p = (Place*)[searchedPlaces objectAtIndex:i];
+        if ([placeToRemove isCoordinateEqualTo:p])
+        {
+            [searchedPlaces removeObjectAtIndex:i];
+            i--;
+        }
     }
 }
-
-- (IBAction)pressZoomInButton:(id)sender
-{
-    
-    if(zoomLevel < 21)
-    {
-        zoomLevel++;
-        [mapView animateToZoom:zoomLevel];
-    }
-    
-}
-
-- (IBAction)pressHomeButton:(id)sender
-{
-    [self dismissModalViewControllerAnimated:true];
-}
-
-- (IBAction)pressSearchButton:(id)sender
-{
-    
-}
-
-- (IBAction)pressPlaceButton:(id)sender
-{
-    [self hideMarkMenu];
-    selectPlaceViewController.searchedPlaces = searchedPlaces;
-    [self presentModalViewController:selectPlaceViewController animated:YES];
-
-}
-
 
 -(void) refresh
 {
     [self clearMapAll];
+    
+    [self updateUserConfiguredLocation];
     
     for(Place* p in searchedPlaces)
     {
@@ -502,7 +357,7 @@
         }
     }
     
-    [self updateUserConfiguredLocation];
+    
     [self updateRoute];
 }
 
@@ -510,19 +365,7 @@
     return toInterfaceOrientation == UIInterfaceOrientationLandscapeRight;
 }
 
--(void) showMarkMenu
-{
-    if (false == isShowMarkMenu)
-    {
-        isShowMarkMenu = true;
-        [self updateMarkMenu];
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:.4];
-        logfns("mark menu: (%f, %f) (%f, %f)\n", markMenu.frame.origin.x, markMenu.frame.origin.y, markMenu.frame.size.width, markMenu.frame.size.height);
-        markMenu.frame = CGRectOffset( markMenu.frame, (-1)*markMenuOffset, 0 ); // offset by an amount
-        [UIView commitAnimations];
-    }
-}
+
 
 -(void) searchPlace:(NSString*) place
 {
@@ -537,65 +380,9 @@
     }
 }
 
--(void) setRouteStart:(Place*) p
-{
-    if ([routeEndPlace isCoordinateEqualTo:p])
-    {
-        routeEndPlace = nil;
-    }
-    
-    if (![routeStartPlace isCoordinateEqualTo:p])
-    {
-        isRouteChanged                  = true;
-        routeStartPlace.placeRouteType  = kPlaceRouteType_None;
-        routeStartPlace                 = p;
-        routeStartPlace.placeRouteType  = kPlaceRouteType_Start;
-        [self planRoute];
-    }
-}
-
--(void) setRouteEnd:(Place*) p
-{
-    if ([routeStartPlace isCoordinateEqualTo:p])
-    {
-        routeStartPlace = nil;
-    }
-    
-    if (![routeEndPlace isCoordinateEqualTo:p])
-    {
-        isRouteChanged                  = true;
-        routeEndPlace.placeRouteType    = kPlaceRouteType_None;
-        routeEndPlace                   = p;
-        routeEndPlace.placeRouteType    = kPlaceRouteType_End;
-        [self planRoute];
-    }
-    
-}
-
--(void) saveAsHome:(Place*)p
-{
-    p.placeType = kPlaceType_Home;
-    savePlaceViewController.currentPlace = p;
-    [self presentModalViewController:savePlaceViewController animated:YES];
-}
-
--(void) saveAsOffice:(Place*)p
-{
-    p.placeType = kPlaceType_Office;
-    savePlaceViewController.currentPlace = p;
-    [self presentModalViewController:savePlaceViewController animated:YES];
-}
-
--(void) saveAsFavor:(Place*)p
-{
-    p.placeType = kPlaceType_Favor;
-    savePlaceViewController.currentPlace = p;
-    [self presentModalViewController:savePlaceViewController animated:YES];
-}
 
 -(void) selectPlace:(Place*) p sender:(SelectPlaceViewController*) s
 {
-    logfn();
     if (nil == p)
         return;
     [self refresh];
@@ -610,16 +397,19 @@
     for(i=0; i<User.homePlaces.count; i++)
     {
         [self addPlaceToMapMaker:[User getHomePlaceByIndex:i]];
+        [self removePlaceFromSearchedPlace:[User getHomePlaceByIndex:i]];
     }
     
     for(i=0; i<User.officePlaces.count; i++)
     {
         [self addPlaceToMapMaker:[User getOfficePlaceByIndex:i]];
+        [self removePlaceFromSearchedPlace:[User getOfficePlaceByIndex:i]];
     }
     
     for(i=0; i<User.favorPlaces.count; i++)
     {
         [self addPlaceToMapMaker:[User getFavorPlaceByIndex:i]];
+        [self removePlaceFromSearchedPlace:[User getFavorPlaceByIndex:i]];
     }
 }
 
@@ -664,15 +454,7 @@
     
 }
 
--(void) updateMarkMenu
-{
-    if (nil != selectedPlace)
-    {
-        logo(selectedPlace);
-//        markMenuNameLabel.text      = selectedPlace.name;
-//        markMenuSnippetLabel.text   = selectedPlace.address;
-    }
-}
+
 
 -(void) updateSearchedPlace:(NSArray*) places
 {
@@ -748,10 +530,11 @@
     routeNavigationViewController   = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass
                                      ([RouteNavigationViewController class])];
     
+    logo(routeNavigationViewController);
+    logo(routeNavigationViewController.guideRouteUIView);
     selectPlaceViewController.delegate          = self;
-    logo(selectPlaceViewController.delegate);
     isRouteChanged = false;
-    markMenuOffset = 80;
+    markMenuOffset = 60;
     
     [self addBanner:self.contentView];
     [self showAdAnimated:NO];
@@ -769,10 +552,11 @@
 }
 
 
-#pragma mark - Banner
-
+#pragma  mark - Banner
 -(void) addBanner:(UIView*) contentView
 {
+    if (FALSE == SystemConfig.isAd)
+        return;
     
     if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)]) {
         adView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
@@ -852,6 +636,9 @@
 
 - (void)showAdAnimated:(BOOL)animated
 {
+    if (nil == adView)
+        return;
+    
     if (adView.bannerLoaded)
     {
         [self.view removeConstraints:adHideLayoutConstriants];
@@ -916,6 +703,275 @@
 {
     
 }
+
+#pragma  mark - MarkMenu
+
+-(void) setRouteStart:(Place*) p
+{
+    if ([routeEndPlace isCoordinateEqualTo:p])
+    {
+        routeEndPlace = nil;
+    }
+    
+    if (![routeStartPlace isCoordinateEqualTo:p])
+    {
+        isRouteChanged                  = true;
+        routeStartPlace.placeRouteType  = kPlaceRouteType_None;
+        routeStartPlace                 = p;
+        routeStartPlace.placeRouteType  = kPlaceRouteType_Start;
+        [self planRoute];
+    }
+}
+
+-(void) setRouteEnd:(Place*) p
+{
+    if ([routeStartPlace isCoordinateEqualTo:p])
+    {
+        routeStartPlace = nil;
+    }
+    
+    if (![routeEndPlace isCoordinateEqualTo:p])
+    {
+        isRouteChanged                  = true;
+        routeEndPlace.placeRouteType    = kPlaceRouteType_None;
+        routeEndPlace                   = p;
+        routeEndPlace.placeRouteType    = kPlaceRouteType_End;
+        [self planRoute];
+    }
+    
+}
+
+-(void) saveAsHome:(Place*)p
+{
+    if (p.placeType != kPlaceRouteType_None)
+    {
+        [self hideMarkMenu];
+        return;
+    }
+    savePlaceViewController.currentPlace = p;
+    savePlaceViewController.sectionMode  = kSectionMode_Home;
+    [self presentModalViewController:savePlaceViewController animated:YES];
+}
+
+-(void) saveAsOffice:(Place*)p
+{
+    if (p.placeType != kPlaceRouteType_None)
+    {
+        [self hideMarkMenu];
+        return;
+    }
+    
+    savePlaceViewController.currentPlace = p;
+    savePlaceViewController.sectionMode  = kSectionMode_Office;
+    [self presentModalViewController:savePlaceViewController animated:YES];
+}
+
+-(void) saveAsFavor:(Place*)p
+{
+
+    if (p.placeType != kPlaceRouteType_None)
+    {
+        [self hideMarkMenu];
+        return;
+    }
+    
+    savePlaceViewController.currentPlace = p;
+    savePlaceViewController.sectionMode  = kSectionMode_Favor;
+    [self presentModalViewController:savePlaceViewController animated:YES];
+}
+
+
+-(void) updateMarkMenu
+{
+    if (nil != selectedPlace)
+    {
+        
+        //        markMenuNameLabel.text      = selectedPlace.name;
+        //        markMenuSnippetLabel.text   = selectedPlace.address;
+    }
+}
+
+-(void) addMarkMenu
+{
+    UIView *subView;
+    isShowMarkMenu = false;
+    
+    NSArray *xibContents = [[NSBundle mainBundle] loadNibNamed:@"MarkMenu" owner:self options:nil];
+    
+    CGRect frame;
+    
+    frame.origin.x = 480;
+    frame.origin.y = 28;
+    //    frame.size = self.scrIcon.frame.size;
+    frame.size.width = 200;
+    frame.size.height = 460;
+    
+    markMenu = [xibContents lastObject];
+    
+    markMenu.frame = frame;
+    
+    markMenuNameLabel           =  (UILabel *)[markMenu viewWithTag:1];
+    markMenuSnippetLabel        =  (UILabel *)[markMenu viewWithTag:2];
+    markMenuSetStartButton      = (UIButton *)[markMenu viewWithTag:3];
+    markMenuSetEndButton        = (UIButton *)[markMenu viewWithTag:4];
+    markMenuSaveAsHomeButton    = (UIButton *)[markMenu viewWithTag:5];
+    markMenuSaveAsOfficeButton  = (UIButton *)[markMenu viewWithTag:6];
+    markMenuSaveAsFavorButton   = (UIButton *)[markMenu viewWithTag:7];
+    
+    
+    subView = self.view;
+    
+    [markMenuSetStartButton addTarget:self
+                               action:@selector(pressSetStartButton:)
+                     forControlEvents:UIControlEventTouchUpInside];
+    
+    [markMenuSetEndButton addTarget:self
+                             action:@selector(pressSetEndButton:)
+                   forControlEvents:UIControlEventTouchUpInside];
+    
+    [markMenuSaveAsHomeButton addTarget:self
+                                 action:@selector(pressSaveAsHomeButton:)
+                       forControlEvents:UIControlEventTouchUpInside];
+    
+    [markMenuSaveAsOfficeButton addTarget:self
+                                   action:@selector(pressSaveAsOfficeButton:)
+                         forControlEvents:UIControlEventTouchUpInside];
+    
+    [markMenuSaveAsFavorButton addTarget:self
+                                  action:@selector(pressSaveAsFavorButton:)
+                        forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:markMenu];
+}
+
+-(void) showMarkMenu
+{
+    if (false == isShowMarkMenu)
+    {
+        isShowMarkMenu = true;
+        [self updateMarkMenu];
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:.4];
+        logfns("mark menu: (%f, %f) (%f, %f)\n", markMenu.frame.origin.x, markMenu.frame.origin.y, markMenu.frame.size.width, markMenu.frame.size.height);
+        markMenu.frame = CGRectOffset( markMenu.frame, (-1)*markMenuOffset, 0 ); // offset by an amount
+        [UIView commitAnimations];
+    }
+}
+
+-(void) hideMarkMenu
+{
+    if (true == isShowMarkMenu)
+    {
+        isShowMarkMenu = false;
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:.4];
+        markMenu.frame = CGRectOffset( markMenu.frame, markMenuOffset, 0 ); // offset by an amount
+        [UIView commitAnimations];
+    }
+    
+}
+
+#pragma  mark - UI Actions
+
+- (IBAction)pressRouteButton:(id)sender
+{
+    
+    
+}
+
+- (IBAction)pressZoomOutButton:(id)sender
+{
+    if(zoomLevel > 2)
+    {
+        zoomLevel--;
+        [mapView animateToZoom:zoomLevel];
+    }
+}
+
+- (IBAction)pressZoomInButton:(id)sender
+{
+    
+    if(zoomLevel < 21)
+    {
+        zoomLevel++;
+        [mapView animateToZoom:zoomLevel];
+    }
+    
+}
+
+- (IBAction)pressHomeButton:(id)sender
+{
+    [self dismissModalViewControllerAnimated:true];
+}
+
+- (IBAction)pressSearchButton:(id)sender
+{
+    
+}
+
+- (IBAction)pressPlaceButton:(id)sender
+{
+    [self hideMarkMenu];
+    selectPlaceViewController.searchedPlaces = searchedPlaces;
+    [self presentModalViewController:selectPlaceViewController animated:YES];
+    
+}
+
+- (IBAction)pressNavigationButton:(id)sender
+{
+    if (nil != routeStartPlace && nil != routeEndPlace && ![routeStartPlace isCoordinateEqualTo:routeEndPlace])
+    {
+        logfn();
+        logo(routeNavigationViewController);
+        [routeNavigationViewController startRouteNavigationFrom:routeStartPlace To:routeEndPlace];
+        [self presentModalViewController:routeNavigationViewController animated:YES];
+        logfn();
+    }
+}
+
+- (IBAction)pressTestButton:(id)sender
+{
+    //    Place *p = [Place newPlace:@"AA" Address:@"bb" Location:CLLocationCoordinate2DMake(1, 2)];
+    //    [self saveAsHome:p];
+    
+    [self presentModalViewController:selectPlaceViewController animated:YES];
+    
+}
+
+
+-(IBAction) pressSetStartButton:(id) sender
+{
+    [self setRouteStart:selectedPlace];
+    [self hideMarkMenu];
+    [self refresh];
+}
+
+-(IBAction) pressSetEndButton:(id) sender
+{
+    [self setRouteEnd:selectedPlace];
+    [self hideMarkMenu];
+    [self refresh];
+}
+
+-(IBAction) pressSaveAsHomeButton:(id) sender
+{
+    [self saveAsHome:selectedPlace];
+    [self hideMarkMenu];
+}
+
+-(IBAction) pressSaveAsOfficeButton:(id) sender
+{
+    [self saveAsOffice:selectedPlace];
+    [self hideMarkMenu];
+}
+
+-(IBAction) pressSaveAsFavorButton:(id) sender
+{
+    [self saveAsFavor:selectedPlace];
+    [self hideMarkMenu];
+}
+
+
 
 @end
 

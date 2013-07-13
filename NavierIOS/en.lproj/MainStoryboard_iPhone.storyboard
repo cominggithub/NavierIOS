@@ -18,7 +18,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Esx-Gh-y9e" userLabel="HomeButton">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="64" id="RrV-yB-fLk"/>
-                                            <constraint firstAttribute="height" constant="64" id="tjC-tm-9fd"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="icon.png">
@@ -70,6 +69,10 @@
                                         </connections>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jde-ul-7lF">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="9Da-jO-HMC"/>
+                                            <constraint firstAttribute="width" constant="80" id="Ie9-dr-fhF"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" backgroundImage="Blue_car.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -101,40 +104,56 @@
                                             <segue destination="dZh-Ie-r5c" kind="modal" id="1OQ-2g-QIB"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLl-eM-9SY">
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t2d-gs-82q" userLabel="CarPanel">
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="car_panel_1_direction_panel_outer_circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="TkG-YI-33y">
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES" image="YES" notEnabled="YES"/>
+                                                </accessibility>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="DBG-MV-Jr4"/>
+                                                    <constraint firstAttribute="width" constant="200" id="Lgf-OZ-8tM"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="car_panel_1_direction_panel_inner_circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="7os-Xs-wng">
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES" image="YES" notEnabled="YES"/>
+                                                </accessibility>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="9VB-0D-1lQ"/>
+                                                    <constraint firstAttribute="width" constant="100" id="tRe-HF-YDy"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <gestureRecognizers/>
                                         <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="129" type="user" id="9Bl-ER-rSO"/>
-                                            <constraint firstAttribute="width" constant="128" id="Tg3-p0-WD0"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="128" type="user" id="dT5-pX-9aC"/>
-                                            <constraint firstAttribute="height" constant="129" type="user" id="kts-0u-aoa"/>
+                                            <constraint firstItem="7os-Xs-wng" firstAttribute="centerX" secondItem="TkG-YI-33y" secondAttribute="centerX" type="default" id="BR8-Lw-2s4"/>
+                                            <constraint firstItem="TkG-YI-33y" firstAttribute="top" secondItem="t2d-gs-82q" secondAttribute="top" constant="-20" id="CKT-No-aLh"/>
+                                            <constraint firstAttribute="bottom" secondItem="TkG-YI-33y" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="ajh-eq-Fin"/>
+                                            <constraint firstItem="7os-Xs-wng" firstAttribute="centerY" secondItem="TkG-YI-33y" secondAttribute="centerY" type="default" id="fUF-Ic-Bme"/>
+                                            <constraint firstItem="7os-Xs-wng" firstAttribute="leading" secondItem="t2d-gs-82q" secondAttribute="leading" constant="12" id="s6u-Bb-Mjn"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Button" image="Green_car.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
                                         <connections>
-                                            <action selector="pressCarPanel:" destination="2" eventType="touchUpInside" id="sse-Qe-sOD"/>
+                                            <outletCollection property="gestureRecognizers" destination="vGV-Rh-lvb" appends="YES" id="TaY-ey-1iC"/>
                                         </connections>
-                                    </button>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="joT-59-HDP" firstAttribute="top" secondItem="RCQ-8t-oDQ" secondAttribute="top" type="default" id="1bJ-sc-tUa"/>
-                                    <constraint firstItem="jde-ul-7lF" firstAttribute="bottom" secondItem="RCQ-8t-oDQ" secondAttribute="bottom" type="default" id="5wp-mV-Ggq"/>
                                     <constraint firstItem="joT-59-HDP" firstAttribute="leading" secondItem="RCQ-8t-oDQ" secondAttribute="leading" type="default" id="8l0-bv-BzU"/>
-                                    <constraint firstItem="jde-ul-7lF" firstAttribute="trailing" secondItem="RCQ-8t-oDQ" secondAttribute="trailing" type="default" id="9IQ-o7-iv7"/>
-                                    <constraint firstItem="gLl-eM-9SY" firstAttribute="trailing" secondItem="RCQ-8t-oDQ" secondAttribute="trailing" type="default" id="BKD-3a-c0j"/>
+                                    <constraint firstAttribute="trailing" secondItem="t2d-gs-82q" secondAttribute="trailing" constant="-50" id="9kJ-8c-63z"/>
+                                    <constraint firstItem="jde-ul-7lF" firstAttribute="bottom" secondItem="RCQ-8t-oDQ" secondAttribute="bottom" type="default" id="N2P-Kf-RSf"/>
                                     <constraint firstItem="pQs-qv-abD" firstAttribute="centerY" secondItem="Esx-Gh-y9e" secondAttribute="centerY" type="default" id="NhS-jV-lKq"/>
                                     <constraint firstItem="joT-59-HDP" firstAttribute="trailing" secondItem="RCQ-8t-oDQ" secondAttribute="trailing" type="default" id="QPY-hO-Xd6"/>
                                     <constraint firstItem="W0Z-xY-Meg" firstAttribute="leading" secondItem="Esx-Gh-y9e" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="WBN-Ak-4Ty"/>
-                                    <constraint firstItem="gLl-eM-9SY" firstAttribute="top" secondItem="RCQ-8t-oDQ" secondAttribute="top" constant="79" id="ZWW-Z9-gKX"/>
                                     <constraint firstItem="Esx-Gh-y9e" firstAttribute="top" secondItem="RCQ-8t-oDQ" secondAttribute="top" type="default" id="a8e-lL-znF"/>
+                                    <constraint firstItem="jde-ul-7lF" firstAttribute="leading" secondItem="RCQ-8t-oDQ" secondAttribute="leading" constant="360" id="fDb-d3-Ddt"/>
+                                    <constraint firstItem="t2d-gs-82q" firstAttribute="leading" secondItem="RCQ-8t-oDQ" secondAttribute="leading" constant="330" id="hEx-Xh-YvX"/>
+                                    <constraint firstItem="t2d-gs-82q" firstAttribute="top" secondItem="RCQ-8t-oDQ" secondAttribute="top" constant="64" id="oKp-NB-Jyr"/>
                                     <constraint firstItem="W0Z-xY-Meg" firstAttribute="bottom" secondItem="RCQ-8t-oDQ" secondAttribute="bottom" type="default" id="onf-HU-N9e"/>
                                     <constraint firstItem="joT-59-HDP" firstAttribute="bottom" secondItem="RCQ-8t-oDQ" secondAttribute="bottom" type="default" id="tgi-UI-A9h"/>
+                                    <constraint firstItem="t2d-gs-82q" firstAttribute="top" secondItem="pQs-qv-abD" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="vuO-aA-mAV"/>
                                     <constraint firstItem="Esx-Gh-y9e" firstAttribute="leading" secondItem="RCQ-8t-oDQ" secondAttribute="leading" constant="8" id="xOp-Rh-GAL"/>
                                     <constraint firstAttribute="trailing" secondItem="pQs-qv-abD" secondAttribute="trailing" constant="25" id="zBg-6k-KmX"/>
                                 </constraints>
@@ -152,11 +171,18 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="carPanel_inner_circle" destination="7os-Xs-wng" id="zYP-Ix-vdq"/>
+                        <outlet property="carPanel_outer_circle" destination="TkG-YI-33y" id="GCI-rV-7fB"/>
                         <outlet property="contentView" destination="RCQ-8t-oDQ" id="fut-ik-ade"/>
                         <outlet property="selectPlaceTableView" destination="W0Z-xY-Meg" id="s44-Oc-lHp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="vGV-Rh-lvb">
+                    <connections>
+                        <action selector="pressCarPanel:" destination="2" id="0jh-65-10q"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-136" y="254"/>
         </scene>
@@ -534,7 +560,7 @@
                         <color key="separatorColor" red="0.46639307699999999" green="1" blue="0.36276355440000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SelectPlaceCell" id="rcN-vo-xNv">
-                                <rect key="frame" x="0.0" y="46" width="480" height="46"/>
+                                <rect key="frame" x="0.0" y="46" width="480" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="10" y="1" width="460" height="43"/>
@@ -671,7 +697,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="pressBackButton:" destination="byo-6J-86K" eventType="touchUpInside" id="F2c-Gb-kUa"/>
+                                    <action selector="pressLogoButton:" destination="kia-zl-eow" eventType="touchUpInside" id="NMP-oz-TYu"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -984,9 +1010,10 @@
     </scenes>
     <resources>
         <image name="Blue_car.png" width="128" height="128"/>
-        <image name="Green_car.png" width="128" height="128"/>
         <image name="bg.jpg" width="1280" height="800"/>
         <image name="btn2_search.png" width="50" height="50"/>
+        <image name="car_panel_1_direction_panel_inner_circle.png" width="320" height="320"/>
+        <image name="car_panel_1_direction_panel_outer_circle.png" width="321" height="323"/>
         <image name="ic_search1.png" width="96" height="96"/>
         <image name="icon.png" width="57" height="57"/>
         <image name="minus_remove_green.png" width="128" height="128"/>
@@ -1029,6 +1056,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaceSearchViewController.h"/>
             <relationships>
                 <relationship kind="action" name="preeSearchButton:"/>
+                <relationship kind="action" name="pressLogoButton:"/>
                 <relationship kind="action" name="pressPlaceTextField:"/>
                 <relationship kind="outlet" name="placeTableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="placeTextField" candidateClass="UITextField"/>
@@ -1075,10 +1103,11 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
                 <relationship kind="action" name="pressCarPanel:"/>
-                <relationship kind="action" name="pressNaviHUD:"/>
                 <relationship kind="action" name="pressPlace:"/>
                 <relationship kind="action" name="pressRoute:"/>
                 <relationship kind="action" name="pressTextRoute:"/>
+                <relationship kind="outlet" name="carPanel_inner_circle" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="carPanel_outer_circle" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="contentView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="selectPlaceTableView" candidateClass="UITableView"/>
             </relationships>

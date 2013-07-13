@@ -40,4 +40,5 @@
 -(void) downloadRequestStatusChange: (DownloadRequest*) downloadRequest;
 -(void) mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate;
 -(void) selectPlace:(Place*) p sender:(SelectPlaceViewController*) s;
+-(void) removePlaceFromSearchedPlace:(Place*) p;
 @end

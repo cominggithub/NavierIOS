@@ -51,13 +51,13 @@
     UILabel *placeLabel;
     UITableViewCell *cell = [self.placeTableView dequeueReusableCellWithIdentifier:CellIdentifier];
     placeLabel         = (UILabel*)[cell viewWithTag:2];
-    placeLabel.text    = [User getSearchPlaceByIndex:indexPath.row];
+    placeLabel.text    = [User getSearchedPlaceTextByIndex:indexPath.row];
     return cell;
 }
 
 - (void)tableView: (UITableView *)tableView didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 {
-    [self dismissAndSearchPlace:[User getSearchPlaceByIndex:indexPath.row]];
+    [self dismissAndSearchPlace:[User getSearchedPlaceTextByIndex:indexPath.row]];
 }
 
 - (void) dismissAndSearchPlace:(NSString*) place
@@ -78,7 +78,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return User.searchedPlaces.count;
+    return User.searchedPlaceText.count;
 }
 
 - (void)viewDidUnload {
@@ -96,5 +96,10 @@
             self.placeTextField.text = @"";
         }
     }
+}
+
+- (IBAction)pressLogoButton:(id)sender
+{
+    [self dismissModalViewControllerAnimated:true];
 }
 @end

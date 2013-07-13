@@ -62,7 +62,7 @@
         return self.searchedPlaces.count;
     
     return [User getPlaceCountBySectionMode:kSectionMode_Home_Office_Favor_Searched
-                                    Section:section];
+                                    section:section];
 
 }
 
@@ -79,8 +79,8 @@
     if ( 3 > indexPath.section)
     {
         place = [User getPlaceBySectionMode:kSectionMode_Home_Office_Favor_Searched
-                                    Section:indexPath.section
-                                      Index:indexPath.row];
+                                    section:indexPath.section
+                                      index:indexPath.row];
     }
     else
     {
@@ -152,8 +152,8 @@
     logfn();
     Place *selectedPlace;
     selectedPlace = [User getPlaceBySectionMode:kSectionMode_Home_Office_Favor_Searched
-                                        Section:indexPath.section
-                                          Index:indexPath.row];
+                                        section:indexPath.section
+                                          index:indexPath.row];
     if (nil != selectedPlace)
     {
         logfn();

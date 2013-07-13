@@ -17,6 +17,8 @@
     LocationSimulator *locationSimulator;
 }
 @property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UIImageView *carPanel_outer_circle;
+@property (weak, nonatomic) IBOutlet UIImageView *carPanel_inner_circle;
 
 - (IBAction)pressPlace:(id)sender;
 - (IBAction)pressRoute:(id)sender;

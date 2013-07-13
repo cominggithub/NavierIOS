@@ -76,18 +76,6 @@
         <image name="car_panel_gps.png" width="30" height="20"/>
         <image name="car_panel_signal.png" width="30" height="19"/>
     </resources>
-    <classes>
-        <class className="CarPanel1UIView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CarPanel1UIView.h"/>
-        </class>
-        <class className="CarPanelViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CarPanelViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="tagAction:"/>
-                <relationship kind="outlet" name="contentView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -7,6 +7,7 @@
 //
 
 #import "SavePlaceViewController.h"
+#import "GoogleMapUIViewController.h"
 #import <NaviUtil/NaviUtil.h>
 
 #define FILE_DEBUG FALSE
@@ -55,9 +56,12 @@
 
 - (IBAction)pressSaveButton:(id)sender
 {
-    [User addPlaceBySectionMode:self.sectionMode Section:0 Place:self.currentPlace];
+    [User addPlaceBySectionMode:self.sectionMode section:0 place:self.currentPlace];
     
     [User save];
+    GoogleMapUIViewController* gc = (GoogleMapUIViewController*) self.presentingViewController;
+    [gc removePlaceFromSearchedPlace:self.currentPlace];
+    
     [self.savePlaceTableView reloadData];
     
 }
@@ -76,9 +80,9 @@
 
     cell                = [self.savePlaceTableView dequeueReusableCellWithIdentifier:@"SavePlaceCell"];
 
-    place = [User getPlaceBySectionMode:kSectionMode_Home_Office_Favor
-                                Section:indexPath.section
-                                  Index:indexPath.row];
+    place = [User getPlaceBySectionMode:_sectionMode
+                                section:indexPath.section
+                                  index:indexPath.row];
     
     if (nil != place)
     {
@@ -98,31 +102,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [User getPlaceCountBySectionMode:kSectionMode_Home_Office_Favor
-                                    Section:section];
-}
-
--(void) viewWillAppear:(BOOL)animated
-{
-    if (nil != self.currentPlace)
-    {
-        switch (self.currentPlace.placeType)
-        {
-            case kPlaceType_Home:
-                self.sectionMode = kSectionMode_Home;
-                break;
-            case kPlaceType_Office:
-                self.sectionMode = kSectionMode_Office;
-                break;
-            case kPlaceType_Favor:
-                self.sectionMode = kSectionMode_Favor;
-                break;
-            default:
-                self.sectionMode = kSectionMode_Home;
-                break;
-        }
-    }
-        
+    return [User getPlaceCountBySectionMode:_sectionMode
+                                    section:section];
 }
 
 -(void) updateFromCurrentPlace
@@ -134,5 +115,10 @@
     }
 }
 
+-(void) setSectionMode:(SectionMode)sectionMode
+{
+    _sectionMode = sectionMode;
+    [self.savePlaceTableView reloadData];
+}
 
 @end
