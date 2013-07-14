@@ -67,6 +67,7 @@
 {
     [self initSelf];
     _carPanel1 = (CarPanel1UIView*)_contentView;
+    [_carPanel1 start];
     [LocationManager startLocationSimulation];
     
     [super viewDidLoad];

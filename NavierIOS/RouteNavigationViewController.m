@@ -149,19 +149,22 @@
     if (false == self.guideRouteUIView.isAutoSimulatorLocationUpdateStarted)
     {
         [self.autoButton setTitle:@"Stop" forState:UIControlStateNormal];
-        [self.guideRouteUIView autoSimulatorLocationUpdateStart];
+        [LocationManager setLocationUpdateType:kLocationManagerLocationUpdateType_ManualRoute];
+        [LocationManager startLocationSimulation];
     }
     else
     {
         [self.autoButton setTitle:@"Auto" forState:UIControlStateNormal];
-        [self.guideRouteUIView autoSimulatorLocationUpdateStop];
+        [LocationManager setLocationUpdateType:kLocationManagerLocationUpdateType_ManualRoute];
+        [LocationManager stopLocationSimulation];
     }
 }
 
 -(IBAction) pressStepButton:(id)sender
 {
-    [self.guideRouteUIView autoSimulatorLocationUpdateStop];
-    [self.guideRouteUIView triggerLocationUpdate];
+    [LocationManager stopLocationSimulation];
+    [LocationManager triggerLocationUpdate];
+    
 }
 
 -(IBAction) pressLogoButton:(id) sender

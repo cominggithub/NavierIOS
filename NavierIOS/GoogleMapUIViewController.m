@@ -530,8 +530,6 @@
     routeNavigationViewController   = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass
                                      ([RouteNavigationViewController class])];
     
-    logo(routeNavigationViewController);
-    logo(routeNavigationViewController.guideRouteUIView);
     selectPlaceViewController.delegate          = self;
     isRouteChanged = false;
     markMenuOffset = 60;
@@ -786,8 +784,8 @@
     if (nil != selectedPlace)
     {
         
-        //        markMenuNameLabel.text      = selectedPlace.name;
-        //        markMenuSnippetLabel.text   = selectedPlace.address;
+        markMenuNameLabel.text      = selectedPlace.name;
+        markMenuSnippetLabel.text   = selectedPlace.address;
     }
 }
 
@@ -921,11 +919,8 @@
 {
     if (nil != routeStartPlace && nil != routeEndPlace && ![routeStartPlace isCoordinateEqualTo:routeEndPlace])
     {
-        logfn();
-        logo(routeNavigationViewController);
-        [routeNavigationViewController startRouteNavigationFrom:routeStartPlace To:routeEndPlace];
         [self presentModalViewController:routeNavigationViewController animated:YES];
-        logfn();
+        [routeNavigationViewController startRouteNavigationFrom:routeStartPlace To:routeEndPlace];
     }
 }
 

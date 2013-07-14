@@ -47,9 +47,6 @@
     routeNavigationViewController = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass
                                  ([RouteNavigationViewController class])];
     
-    logo(routeNavigationViewController);
-    logo(routeNavigationViewController.guideRouteUIView);
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -100,12 +97,8 @@
 
 - (IBAction)pressCarPanel:(id)sender
 {
-    
-    logfn();
     // Get the storyboard named secondStoryBoard from the main bundle:
     UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"CarPanels" bundle:nil];
-    
-
     UIViewController *carPanel = [secondStoryBoard instantiateInitialViewController];
     //
     // **OR**
@@ -140,6 +133,8 @@
     
     [self showAdAnimated:NO];
 }
+
+#pragma mark - Table view delegate
 /* for UITableView */
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -168,7 +163,7 @@
     {
         nameLabel           = (UILabel*)[cell viewWithTag:3];
         nameLabel.text      = place.name;
-        [nameLabel autoFontSize:16 maxWidth:280];
+//        [nameLabel autoFontSize:16 maxWidth:280];
     }
 
     
@@ -214,7 +209,7 @@
  }
  */
 
-#pragma mark - Table view delegate
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -241,9 +236,7 @@
     if (nil != routeStartPlace && nil != routeEndPlace && ![routeStartPlace isCoordinateEqualTo:routeEndPlace])
     {
         [self presentModalViewController:routeNavigationViewController animated:YES];
-        logfn();
         [routeNavigationViewController startRouteNavigationFrom:routeStartPlace To:routeEndPlace];
-        logfn();
     }
 
 }
