@@ -106,6 +106,28 @@
                                     section:section];
 }
 
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        // Begin update
+        [tableView beginUpdates];
+        
+        [User removePlaceBySectionMode:_sectionMode section:indexPath.section index:indexPath.row];
+        [User save];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
+
+        // End update
+        [tableView endUpdates];
+    }
+}
+
 -(void) updateFromCurrentPlace
 {
     if( nil != self.currentPlace)

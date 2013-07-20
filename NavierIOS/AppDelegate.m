@@ -20,8 +20,7 @@ void SignalHandler(int sig)
     // Save application data on crash
 }
 void uncaughtExceptionHandler(NSException *exception) {
-    mlogError(@"CRASH: %@", exception);
-    mlogError(@"Stack Trace: %@", [exception callStackSymbols]);
+    mlogException(exception);
     // Internal error reporting
 }
 
