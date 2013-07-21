@@ -11,18 +11,16 @@
 #import "SelectPlaceViewController.h"
 #import "RouteNavigationViewController.h"
 
-#define FILE_DEBUG FALSE
+#define FILE_DEBUG TRUE
 #include <NaviUtil/Log.h>
 
 @interface GoogleMapUIViewController ()
 {
     NSMutableArray *markerPlaces;
-    int markMenuOffset;
+
     RouteNavigationViewController *routeNavigationViewController;
     
-    ADBannerView *adView;
-    NSArray* adShowLayoutConstriants;
-    NSArray* adHideLayoutConstriants;
+
 
 }
 @end
@@ -31,8 +29,10 @@
 
 @implementation GoogleMapUIViewController
 {
+    ADBannerView *_adView;
+    int markMenuOffset;
     bool isShowMarkMenu;
-    UIView *markMenu;
+    UIView *_markMenu;
     NSMutableArray *searchedPlaces;
     Place *selectedPlace;
     Place *currentPlace;
@@ -179,7 +179,11 @@
     if (mapView == nil) {
         zoomLevel = 12;
         // Create a default GMSMapView, showcasing Australia.
-        mapView = [[GMSMapView alloc] initWithFrame:CGRectMake(0, 0, 480, 320)];
+        
+        
+        mapView = [[GMSMapView alloc] initWithFrame:CGRectMake(0, 0, self.googleMapView.frame.size.width, self.googleMapView.frame.size.height)];
+        
+        mapView.accessibilityLabel = @"mapView";
         
         if (nil != currentPlace)
         {
@@ -217,9 +221,9 @@
 
 
 
-- (void)mapView:(GMSMapView *)tmapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
+- (void)mapView:(GMSMapView *)tmapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
+{
 
-    mlogDebug(@"Google Map tapped at (%f,%f) on screen (%.0f, %.0f)", coordinate.latitude, coordinate.longitude, point.x, point.y);
     if (true == isShowMarkMenu)
     {
         [self hideMarkMenu];
@@ -356,10 +360,14 @@
     [self updateRoute];
 }
 
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    logfn();
+    [self.view dumpView];
+    
     return toInterfaceOrientation == UIInterfaceOrientationLandscapeRight;
 }
-
 
 
 -(void) searchPlace:(NSString*) place
@@ -489,14 +497,30 @@
     }
 
     [self refresh];
+    
+    logfn();
+    [self.view dumpView];
+    [self showAdAnimated:NO];
+    
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    logfn();
+    [self.view dumpView];
 }
 
 - (void)viewDidLoad
 {
+    logfn();
     NSString* navigationText;
     NSString* placeText;
     UIFont* textFont;
     [super viewDidLoad];
+    
+    
+    self.view.frame = [SystemManager lanscapeScreenRect];
+    [self.view dumpView];
     
     markerPlaces = [[NSMutableArray alloc] initWithCapacity:0];
     currentPlace = LocationManager.currentPlace;
@@ -505,8 +529,6 @@
 
     [self.googleMapView insertSubview:self.mapView atIndex:0];
     searchedPlaces = [[NSMutableArray alloc] initWithCapacity:0];
-    
-    
     
     textFont = [UIFont boldSystemFontOfSize:14.0];
     navigationText = [SystemManager getLanguageString:@"Navigate"];
@@ -517,6 +539,8 @@
     [self.placeButton setTitle:placeText forState:UIControlStateNormal];
     
     [self addMarkMenu];
+    
+    [self.view dumpView];
     
     savePlaceViewController         = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass
                                         ([SavePlaceViewController class])];
@@ -541,6 +565,8 @@
     [self setPressPlaceButton:nil];
     [self setContentView:nil];
     [self setGoogleMapView:nil];
+    [self setTopView:nil];
+    [self setZoomPanel:nil];
     [super viewDidUnload];
 }
 
@@ -551,102 +577,70 @@
     if (FALSE == SystemConfig.isAd)
         return;
     
-    if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)]) {
-        adView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
-    } else {
-        adView = [[ADBannerView alloc] init];
+    if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)])
+    {
+        _adView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
+    } else
+    {
+        _adView = [[ADBannerView alloc] init];
     }
     
     //    adView = [[ADBannerView alloc] initWithFrame:CGRectZero];
-    adView.requiredContentSizeIdentifiers   = [NSSet setWithObject:ADBannerContentSizeIdentifierLandscape];
-    adView.currentContentSizeIdentifier     = ADBannerContentSizeIdentifierLandscape;
-    adView.delegate     = self;
-    contentView         = self.contentView;
-    NSDictionary *views = NSDictionaryOfVariableBindings(adView, contentView);
-    
-    [adView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [contentView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    
-    logfns("\n-------------------------------------- before ad view\n");
-    [self.view dumpConstraint];
-    
-    [self.view addSubview:adView];
-    
-    logfns("\n-------------------------------------- after ad view\n");
-    [self.view dumpConstraint];
-    
-    
-    for(NSLayoutConstraint *c in self.view.constraints)
-    {
-        logfns("self.view: 0x%X \n", (int)self.view);
-        logfns("contentView 0x%X \n", (int)contentView);
-        
-        NSLog(@"first item: %@:0x%X, second item: %@:0x%X, fa: %d, sa: %d\n",
-              c.firstItem, (int)c.firstItem, c.secondItem, (int)c.secondItem,
-              c.firstAttribute, c.secondAttribute
-              );
-        if (c.firstItem == contentView && c.secondItem == self.view && c.firstAttribute == NSLayoutAttributeTop)
-        {
-            logfns("matched\n");
-            [self.view removeConstraint:c];
-        }
-    }
-    
-    logfns("\n--------------------------------------\n");
-    [self.view dumpConstraint];
-    
-    [self.view  addConstraints:
-     [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[adView]|"
-                                             options:0
-                                             metrics:nil
-                                               views:views]];
-    
-    
-    adShowLayoutConstriants = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(0)-[adView]-0-[contentView(288)]-0-|"
-                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                      metrics:nil
-                                                                        views:views];
-    
-    adHideLayoutConstriants = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(-32)-[adView]-0-[contentView(320)]-0-|"
-                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                      metrics:nil
-                                                                        views:views];
-    
-    [self.view addConstraints:adShowLayoutConstriants];
-    //    [self.view addConstraints:adHideLayoutConstriants];
-    
-    
-    [self.view layoutIfNeeded];
-    
-    logfns("\n-------------------------------------- finally\n");
-    [self.view dumpConstraint];
-    
+    _adView.requiredContentSizeIdentifiers      = [NSSet setWithObject:ADBannerContentSizeIdentifierLandscape];
+    _adView.currentContentSizeIdentifier        = ADBannerContentSizeIdentifierLandscape;
+    _adView.delegate                            = self;
+    _adView.accessibilityLabel                  = @"banner";
+
+    [self.view dumpView];
+    [self.view addSubview:_adView];
+    printf("----------------------------\n");
+    [self.view dumpView];
     [self showAdAnimated:NO];
-    
-    
 }
 
 - (void)showAdAnimated:(BOOL)animated
 {
-    if (nil == adView)
-        return;
     
-    if (adView.bannerLoaded)
+    printf("\n\n");
+    logfn();
+    [self.view dumpView];
+    
+    
+    if (nil == _adView)
+        return;
+    CGRect contentFrame = [SystemManager lanscapeScreenRect];
+    CGRect bannerFrame = _adView.frame;
+    CGRect zoomPanelFrame = self.zoomPanel.frame;
+    CGRect markMenuFrame = _markMenu.frame;
+    
+    if (_adView.bannerLoaded)
     {
-        [self.view removeConstraints:adHideLayoutConstriants];
-        [self.view addConstraints:adShowLayoutConstriants];
+        contentFrame.size.height    -= _adView.frame.size.height;
+        contentFrame.origin.y        = _adView.frame.size.height;
+        markMenuFrame.origin.y      -= _adView.frame.size.height;
+        bannerFrame.origin.y         = 0;
+        
     } else
     {
-        [self.view removeConstraints:adShowLayoutConstriants];
-        [self.view addConstraints:adHideLayoutConstriants];
+        bannerFrame.origin.y = -_adView.frame.size.height;
     }
+
+
     
-    if (animated)
-    {
-        [UIView animateWithDuration:0.5 animations:^{[self.view layoutIfNeeded];}];
-    }
+    printf("----------------------------\n");
     
+    [UIView animateWithDuration:animated ? 0.25 : 0.0 animations:^{
+        _contentView.frame  = contentFrame;
+        _zoomPanel.frame    = zoomPanelFrame;
+        _markMenu.frame     = markMenuFrame;
+        _adView.frame        = bannerFrame;
+        
+        [self.view dumpView];
+        
+        
+    }];
+    
+
 }
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner
@@ -793,23 +787,25 @@
     
     CGRect frame;
     
-    frame.origin.x = 480;
-    frame.origin.y = 28;
-    //    frame.size = self.scrIcon.frame.size;
+    frame.origin.x = self.view.frame.size.width;
+    frame.origin.y = self.googleMapView.frame.origin.y;
     frame.size.width = 200;
     frame.size.height = 460;
     
-    markMenu = [xibContents lastObject];
+
     
-    markMenu.frame = frame;
+    _markMenu = [xibContents lastObject];
+    _markMenu.accessibilityLabel = @"markMenu";
     
-    markMenuNameLabel           =  (UILabel *)[markMenu viewWithTag:1];
-    markMenuSnippetLabel        =  (UILabel *)[markMenu viewWithTag:2];
-    markMenuSetStartButton      = (UIButton *)[markMenu viewWithTag:3];
-    markMenuSetEndButton        = (UIButton *)[markMenu viewWithTag:4];
-    markMenuSaveAsHomeButton    = (UIButton *)[markMenu viewWithTag:5];
-    markMenuSaveAsOfficeButton  = (UIButton *)[markMenu viewWithTag:6];
-    markMenuSaveAsFavorButton   = (UIButton *)[markMenu viewWithTag:7];
+    _markMenu.frame = frame;
+    
+    markMenuNameLabel           =  (UILabel *)[_markMenu viewWithTag:1];
+    markMenuSnippetLabel        =  (UILabel *)[_markMenu viewWithTag:2];
+    markMenuSetStartButton      = (UIButton *)[_markMenu viewWithTag:3];
+    markMenuSetEndButton        = (UIButton *)[_markMenu viewWithTag:4];
+    markMenuSaveAsHomeButton    = (UIButton *)[_markMenu viewWithTag:5];
+    markMenuSaveAsOfficeButton  = (UIButton *)[_markMenu viewWithTag:6];
+    markMenuSaveAsFavorButton   = (UIButton *)[_markMenu viewWithTag:7];
     
     
     subView = self.view;
@@ -834,7 +830,7 @@
                                   action:@selector(pressSaveAsFavorButton:)
                         forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:markMenu];
+    [self.view addSubview:_markMenu];
 }
 
 -(void) showMarkMenu
@@ -845,8 +841,8 @@
         [self updateMarkMenu];
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:.4];
-        logfns("mark menu: (%f, %f) (%f, %f)\n", markMenu.frame.origin.x, markMenu.frame.origin.y, markMenu.frame.size.width, markMenu.frame.size.height);
-        markMenu.frame = CGRectOffset( markMenu.frame, (-1)*markMenuOffset, 0 ); // offset by an amount
+        logfns("mark menu: (%f, %f) (%f, %f)\n", _markMenu.frame.origin.x, _markMenu.frame.origin.y, _markMenu.frame.size.width, _markMenu.frame.size.height);
+        _markMenu.frame = CGRectOffset( _markMenu.frame, (-1)*markMenuOffset, 0 ); // offset by an amount
         [UIView commitAnimations];
     }
 }
@@ -858,7 +854,7 @@
         isShowMarkMenu = false;
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:.4];
-        markMenu.frame = CGRectOffset( markMenu.frame, markMenuOffset, 0 ); // offset by an amount
+        _markMenu.frame = CGRectOffset( _markMenu.frame, markMenuOffset, 0 ); // offset by an amount
         [UIView commitAnimations];
     }
     

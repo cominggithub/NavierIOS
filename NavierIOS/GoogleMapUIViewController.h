@@ -23,6 +23,8 @@
 - (IBAction)pressPlaceButton:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UIView *googleMapView;
+@property (weak, nonatomic) IBOutlet UIView *topView;
+@property (weak, nonatomic) IBOutlet UIView *zoomPanel;
 
 @property (strong, nonatomic) NSString* placeToSearch;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;

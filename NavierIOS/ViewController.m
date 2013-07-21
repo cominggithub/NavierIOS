@@ -15,16 +15,14 @@
 #include <NaviUtil/Log.h>
 
 @interface ViewController ()
-{
-    RouteNavigationViewController *routeNavigationViewController;
-    ADBannerView *adView;
-    NSArray* adShowLayoutConstriants;
-    NSArray* adHideLayoutConstriants;
-}
+
 @end
 
 @implementation ViewController
-
+{
+    RouteNavigationViewController *routeNavigationViewController;
+    ADBannerView *adView;
+}
 
 
 
@@ -35,10 +33,15 @@
 
 - (void)viewDidLoad
 {
-    
+    logfn();
     [super viewDidLoad];
 
+    [_contentView dumpFrame:@"contentView"];
+    
     [self addBanner:self.contentView];
+
+    logfn();
+    [_contentView dumpFrame:@"contentView"];
     
     self.selectPlaceTableView.backgroundColor = [UIColor clearColor];
     self.selectPlaceTableView.opaque = NO;
@@ -123,8 +126,19 @@
     [super viewDidUnload];
 }
 
+-(void) viewWillAppear:(BOOL)animated
+{
+    logfn();
+    [_contentView dumpFrame:@"contentView"];
+    
+    [self.selectPlaceTableView reloadData];
+}
+
 -(void) viewDidAppear:(BOOL)animated
 {
+    logfn();
+    [_contentView dumpFrame:@"contentView"];
+    
     [self.carPanel_outer_circle setImageTintColor:[UIColor whiteColor]];
     [self.carPanel_inner_circle setImageTintColor:[UIColor whiteColor]];
     [UIAnimation runSpinAnimationOnView:self.carPanel_outer_circle duration:100 rotations:0.01 repeat:100];
@@ -179,50 +193,8 @@
  }
  */
 
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
- 
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
-  //  logfns("select %d/%d\n", indexPath.section, indexPath.row);
-//    [self dismissModalViewControllerAnimated:TRUE];
 
     Place* routeStartPlace;
     Place* routeEndPlace;
@@ -284,13 +256,14 @@
 
 -(void) addBanner:(UIView*) contentView
 {
-    
     if (FALSE == SystemConfig.isAd)
         return;
     
-    if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)]) {
+    if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)])
+    {
         adView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
-    } else {
+    } else
+    {
         adView = [[ADBannerView alloc] init];
     }
     
@@ -298,92 +271,36 @@
     adView.requiredContentSizeIdentifiers   = [NSSet setWithObject:ADBannerContentSizeIdentifierLandscape];
     adView.currentContentSizeIdentifier     = ADBannerContentSizeIdentifierLandscape;
     adView.delegate     = self;
-    contentView         = self.contentView;
-    NSDictionary *views = NSDictionaryOfVariableBindings(adView, contentView);
-    
-    [adView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [contentView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    
-    logfns("\n-------------------------------------- before ad view\n");
-    [self.view dumpConstraint];
     
     [self.view addSubview:adView];
     
-    logfns("\n-------------------------------------- after ad view\n");
-    [self.view dumpConstraint];
-    
-    
-    for(NSLayoutConstraint *c in self.view.constraints)
-    {
-        logfns("self.view: 0x%X \n", (int)self.view);
-        logfns("contentView 0x%X \n", (int)contentView);
-        
-        NSLog(@"first item: %@:0x%X, second item: %@:0x%X, fa: %d, sa: %d\n",
-              c.firstItem, (int)c.firstItem, c.secondItem, (int)c.secondItem,
-              c.firstAttribute, c.secondAttribute
-              );
-        if (c.firstItem == contentView && c.secondItem == self.view && c.firstAttribute == NSLayoutAttributeTop)
-        {
-            logfns("matched\n");
-            [self.view removeConstraint:c];
-        }
-    }
-    
-    logfns("\n--------------------------------------\n");
-    [self.view dumpConstraint];
-    
-    [self.view  addConstraints:
-     [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[adView]|"
-                                             options:0
-                                             metrics:nil
-                                               views:views]];
-    
-    
-    adShowLayoutConstriants = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(0)-[adView]-0-[contentView(288)]-0-|"
-                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                      metrics:nil
-                                                                        views:views];
-    
-    adHideLayoutConstriants = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(-32)-[adView]-0-[contentView(320)]-0-|"
-                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                      metrics:nil
-                                                                        views:views];
-    
-    [self.view addConstraints:adShowLayoutConstriants];
-    //    [self.view addConstraints:adHideLayoutConstriants];
-    
-    
-    [self.view layoutIfNeeded];
-    
-    logfns("\n-------------------------------------- finally\n");
-    [self.view dumpConstraint];
-    
     [self showAdAnimated:NO];
-    
-    
 }
 
 - (void)showAdAnimated:(BOOL)animated
 {
-
     if (nil == adView)
         return;
     
+    CGRect contentFrame = self.view.bounds;
+    
+    CGRect bannerFrame = adView.frame;
+    
     if (adView.bannerLoaded)
     {
-        [self.view removeConstraints:adHideLayoutConstriants];
-        [self.view addConstraints:adShowLayoutConstriants];
+        contentFrame.size.height    -= adView.frame.size.height;
+        contentFrame.origin.y       = adView.frame.size.height;
+        bannerFrame.origin.y        = 0;
     } else
     {
-        [self.view removeConstraints:adShowLayoutConstriants];
-        [self.view addConstraints:adHideLayoutConstriants];
+        bannerFrame.origin.y = -adView.frame.size.height;
     }
     
-    if (animated)
-    {
-        [UIView animateWithDuration:0.5 animations:^{[self.view layoutIfNeeded];}];
-    }
+    [UIView animateWithDuration:animated ? 0.25 : 0.0 animations:^{
+        _contentView.frame = contentFrame;
+        [_contentView layoutIfNeeded];
+        adView.frame = bannerFrame;
+    }];
    
 }
 
@@ -391,10 +308,6 @@
 {
     if (!self.bannerIsVisible)
     {
-//        [UIView beginAnimations:@"animateAdBannerOn" context:NULL];
-        // Assumes the banner view is just off the bottom of the screen.
-//        banner.frame = CGRectOffset(banner.frame, 0, -banner.frame.size.height);
-//        [UIView commitAnimations];
         self.bannerIsVisible = YES;
         [self showAdAnimated:YES];
 
@@ -403,7 +316,7 @@
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
 {
-    logo(error.description);
+
     if (self.bannerIsVisible)
     {
         self.bannerIsVisible = NO;
@@ -414,7 +327,6 @@
 
 - (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
 {
-    logfn();
     NSLog(@"Banner view is beginning an ad action");
     BOOL shouldExecuteAction = true; // your application implements this method
     
@@ -436,8 +348,5 @@
 }
 
 
--(void) viewWillAppear:(BOOL)animated
-{
-    [self.selectPlaceTableView reloadData];
-}
+
 @end
