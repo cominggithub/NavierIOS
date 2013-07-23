@@ -611,13 +611,11 @@
     CGRect contentFrame = [SystemManager lanscapeScreenRect];
     CGRect bannerFrame = _adView.frame;
     CGRect zoomPanelFrame = self.zoomPanel.frame;
-    CGRect markMenuFrame = _markMenu.frame;
     
     if (_adView.bannerLoaded)
     {
         contentFrame.size.height    -= _adView.frame.size.height;
         contentFrame.origin.y        = _adView.frame.size.height;
-        markMenuFrame.origin.y      -= _adView.frame.size.height;
         bannerFrame.origin.y         = 0;
         
     } else
@@ -632,8 +630,7 @@
     [UIView animateWithDuration:animated ? 0.25 : 0.0 animations:^{
         _contentView.frame  = contentFrame;
         _zoomPanel.frame    = zoomPanelFrame;
-        _markMenu.frame     = markMenuFrame;
-        _adView.frame        = bannerFrame;
+        _adView.frame       = bannerFrame;
         
         [self.view dumpView];
         
@@ -780,17 +777,16 @@
 
 -(void) addMarkMenu
 {
-    UIView *subView;
     isShowMarkMenu = false;
     
     NSArray *xibContents = [[NSBundle mainBundle] loadNibNamed:@"MarkMenu" owner:self options:nil];
     
     CGRect frame;
     
-    frame.origin.x = self.view.frame.size.width;
-    frame.origin.y = self.googleMapView.frame.origin.y;
-    frame.size.width = 200;
-    frame.size.height = 460;
+    frame.origin.x      = self.view.frame.size.width;
+    frame.origin.y      = 0;
+    frame.size.width    = 200;
+    frame.size.height   = 460;
     
 
     
@@ -808,7 +804,6 @@
     markMenuSaveAsFavorButton   = (UIButton *)[_markMenu viewWithTag:7];
     
     
-    subView = self.view;
     
     [markMenuSetStartButton addTarget:self
                                action:@selector(pressSetStartButton:)
@@ -830,7 +825,7 @@
                                   action:@selector(pressSaveAsFavorButton:)
                         forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:_markMenu];
+    [self.googleMapView addSubview:_markMenu];
 }
 
 -(void) showMarkMenu

@@ -33,15 +33,9 @@
 
 - (void)viewDidLoad
 {
-    logfn();
     [super viewDidLoad];
-
-    [_contentView dumpFrame:@"contentView"];
     
     [self addBanner:self.contentView];
-
-    logfn();
-    [_contentView dumpFrame:@"contentView"];
     
     self.selectPlaceTableView.backgroundColor = [UIColor clearColor];
     self.selectPlaceTableView.opaque = NO;
@@ -128,17 +122,11 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
-    logfn();
-    [_contentView dumpFrame:@"contentView"];
-    
     [self.selectPlaceTableView reloadData];
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
-    logfn();
-    [_contentView dumpFrame:@"contentView"];
-    
     [self.carPanel_outer_circle setImageTintColor:[UIColor whiteColor]];
     [self.carPanel_inner_circle setImageTintColor:[UIColor whiteColor]];
     [UIAnimation runSpinAnimationOnView:self.carPanel_outer_circle duration:100 rotations:0.01 repeat:100];
@@ -282,7 +270,7 @@
     if (nil == adView)
         return;
     
-    CGRect contentFrame = self.view.bounds;
+    CGRect contentFrame = [SystemManager lanscapeScreenRect];
     
     CGRect bannerFrame = adView.frame;
     
@@ -327,7 +315,6 @@
 
 - (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
 {
-    NSLog(@"Banner view is beginning an ad action");
     BOOL shouldExecuteAction = true; // your application implements this method
     
     if (!willLeave && shouldExecuteAction)

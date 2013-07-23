@@ -106,6 +106,45 @@
                                     section:section];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    switch (_sectionMode)
+    {
+        case kSectionMode_Home:
+            return [SystemManager getLanguageString:@"Home"];
+        case kSectionMode_Office:
+            return [SystemManager getLanguageString:@"Office"];
+        case kSectionMode_Favor:
+            return [SystemManager getLanguageString:@"Favor"];
+        default:
+            return [SystemManager getLanguageString:@"Home?"];
+    }
+    
+    return @"Home?";
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionTitle = [self tableView:tableView titleForHeaderInSection:section];
+    if (sectionTitle == nil) {
+        return nil;
+    }
+    
+    UILabel *label = [[UILabel alloc] init];
+    label.frame = CGRectMake(0, 0, 320, 20);
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = [UIColor whiteColor];
+    label.shadowColor = [UIColor grayColor];
+    label.shadowOffset = CGSizeMake(-1.0, 1.0);
+    label.font = [UIFont boldSystemFontOfSize:16];
+    label.text = sectionTitle;
+    
+    UIView *view = [[UIView alloc] init];
+    [view addSubview:label];
+    
+    return view;
+}
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
