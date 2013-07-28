@@ -28,7 +28,7 @@
 
 -(BOOL) bannerIsVisible
 {
-    return TRUE == (SystemConfig.isAd && _bannerIsVisible);
+    return TRUE == ([SystemConfig getBOOLValue:CONFIG_IS_AD] && _bannerIsVisible);
 }
 
 - (void)viewDidLoad
@@ -43,6 +43,7 @@
     
     routeNavigationViewController = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass
                                  ([RouteNavigationViewController class])];
+    [LocationManager startMonitorLocation];
     
 }
 
@@ -117,6 +118,7 @@
     [self setContentView:nil];
     [self setCarPanel_outer_circle:nil];
     [self setCarPanel_inner_circle:nil];
+    [LocationManager stopMonitorLocation];
     [super viewDidUnload];
 }
 
@@ -244,7 +246,7 @@
 
 -(void) addBanner:(UIView*) contentView
 {
-    if (FALSE == SystemConfig.isAd)
+    if (FALSE == [SystemConfig getBOOLValue:CONFIG_IS_AD])
         return;
     
     if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)])

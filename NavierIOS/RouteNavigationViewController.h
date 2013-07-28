@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <NaviUtil/NaviUtil.h>
 
-@interface RouteNavigationViewController : UIViewController
+@interface RouteNavigationViewController : UIViewController<UITextFieldDelegate>
 {
 
     

@@ -13,7 +13,7 @@
 #import <iAd/iAd.h>
 
 
-@interface GoogleMapUIViewController : UIViewController<DownloadRequestDelegate, GMSMapViewDelegate, SelectPlaceViewControllerDelegate, ADBannerViewDelegate>
+@interface GoogleMapUIViewController : UIViewController<DownloadRequestDelegate, GMSMapViewDelegate, SelectPlaceViewControllerDelegate, ADBannerViewDelegate, LocationManagerDelegate>
 
 /** GMSMapView managed by this controller. */
 - (IBAction)pressZoomOutButton:(id)sender;
@@ -43,4 +43,8 @@
 -(void) mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate;
 -(void) selectPlace:(Place*) p sender:(SelectPlaceViewController*) s;
 -(void) removePlaceFromSearchedPlace:(Place*) p;
+
+-(void) locationUpdate:(CLLocationCoordinate2D) location Speed:(int) speed Distance:(int) distance;
+-(void) lostLocationUpdate;
+
 @end

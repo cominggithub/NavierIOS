@@ -33,32 +33,6 @@
 
 - (void) initSelf
 {
-#if 0
-    NSArray *xibContents = [[NSBundle mainBundle] loadNibNamed:@"CarPanel1" owner:self options:nil];
-    _carPanel1      = (CarPanel1UIView*)[xibContents lastObject];
-    
-
-     _carPanel1.frame = _contentView.frame;
-    [_contentView addSubview:_carPanel1];
-    
-
-    NSDictionary *views = NSDictionaryOfVariableBindings(_carPanel1);
-    
-    [_carPanel1 setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    [_contentView addConstraints:
-     [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_carPanel1]|"
-                                             options:0
-                                             metrics:nil
-                                               views:views]];
-    
-    
-    [_contentView addConstraints:
-     [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_carPanel1]|"
-                                             options:0
-                                             metrics:nil
-                                               views:views]];
-#endif
     _redrawInterval = 0.5;
     _redrawTimer    = nil;
 }
@@ -71,7 +45,10 @@
     [LocationManager startLocationSimulation];
     
     [super viewDidLoad];
-
+    
+    _carPanel1.color = SystemConfig.defaultColor;
+    self.color = SystemConfig.defaultColor;
+    [self.speedLabel setFont:[UIFont fontWithName:@"JasmineUPC" size:220]];
 	// Do any additional setup after loading the view.
 }
 
@@ -90,8 +67,30 @@
     [LocationManager stopLocationSimulation];
     [self dismissModalViewControllerAnimated:YES];
 }
+
+-(void) setColor:(UIColor*) color
+{
+    _color                      = color;
+    _speedLabel.textColor       = _color;
+    _speedUnitLabel.textColor   = _color;
+    _timeLabel.textColor        = _color;
+    _timeUnitLabel.textColor    = _color;
+    [_batteryImage setImageTintColor:_color];
+    [_gpsImage setImageTintColor:_color];
+    [_threeGImage setImageTintColor:_color];
+    [_courseFrameImage setImageTintColor:_color];
+}
 - (void)viewDidUnload {
     [self setContentView:nil];
+    [self setSpeedLabel:nil];
+    [self setSpeedUnitLabel:nil];
+    [self setTimeLabel:nil];
+    [self setSpeedUnitLabel:nil];
+    [self setTimeUnitLabel:nil];
+    [self setBatteryImage:nil];
+    [self setThreeGImage:nil];
+    [self setGpsImage:nil];
+    [self setCourseFrameImage:nil];
     [super viewDidUnload];
 }
 

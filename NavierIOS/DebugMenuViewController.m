@@ -116,20 +116,21 @@
 {
 
     [LocationManager setCurrentManualPlace:[LocationManager getManualPlaceByIndex:[debugMenuPlacePickerView selectedRowInComponent:0]]];
-    [SystemConfig setIsDebug:debugMenuIsDebugSwitch.on];
-    [SystemConfig setIsAd:debugMenuIsAdSwitch.on];
-    [SystemConfig setIsDebugRouteDraw:debugMenuIsDebugRouteDrawSwitch.on];
-    [SystemConfig setIsManualPlace:debugMenuIsManualPlaceSwitch.on];
+
+    [SystemConfig setValue:CONFIG_IS_DEBUG BOOL:debugMenuIsDebugSwitch.on];
+    [SystemConfig setValue:CONFIG_IS_AD BOOL:debugMenuIsAdSwitch.on];
+    [SystemConfig setValue:CONFIG_IS_DEBUG_ROUTE_DRAW BOOL:debugMenuIsDebugRouteDrawSwitch.on];
+    [SystemConfig setValue:CONFIG_IS_MANUAL_PLACE BOOL:debugMenuIsManualPlaceSwitch.on];
 
     
 }
 
 -(void) updateUIFromConfig
 {
-    debugMenuIsDebugSwitch.on           = SystemConfig.isDebug;
-    debugMenuIsAdSwitch.on              = SystemConfig.isAd;
-    debugMenuIsDebugRouteDrawSwitch.on  = SystemConfig.isDebugRouteDraw;
-    debugMenuIsManualPlaceSwitch.on     = SystemConfig.isManualPlace;
+    debugMenuIsDebugSwitch.on           = [SystemConfig getBOOLValue:CONFIG_IS_DEBUG];
+    debugMenuIsAdSwitch.on              = [SystemConfig getBOOLValue:CONFIG_IS_AD];
+    debugMenuIsDebugRouteDrawSwitch.on  = [SystemConfig getBOOLValue:CONFIG_IS_DEBUG_ROUTE_DRAW];
+    debugMenuIsManualPlaceSwitch.on     = [SystemConfig getBOOLValue:CONFIG_IS_MANUAL_PLACE];
     
 }
 

@@ -12,37 +12,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" tag="200" contentMode="scaleToFill" image="car_panel_1_direction_panel_outer_circle.png" id="cdu-gD-iEJ" userLabel="direction_panel_outer_circle">
-                                <rect key="frame" x="248" y="0.0" width="320" height="320"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="110" contentMode="left" text="222" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AAi-3I-fyF">
+                                <rect key="frame" x="8" y="190" width="432" height="122"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="200"/>
+                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="110" contentMode="left" text="12:34" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yfD-lt-reI">
+                                <rect key="frame" x="359" y="13" width="146" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" tag="201" contentMode="scaleToFill" image="car_panel_1_direction_panel_inner_circle.png" id="oTb-DL-Gta" userLabel="direction_panel_inner_circle">
-                                <rect key="frame" x="318" y="70" width="180" height="180"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="40"/>
+                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="110" contentMode="left" text="pm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Eh1-S6-O6P">
+                                <rect key="frame" x="513" y="-6" width="98" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" image="car_panel_1_num_0.png" id="XvE-8p-aQl" userLabel="speed_num_0">
-                                <rect key="frame" x="431" y="126" width="46" height="67"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" image="car_panel_1_num_0.png" id="o3F-9T-FVE" userLabel="speed_num_1">
-                                <rect key="frame" x="385" y="126" width="46" height="67"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" image="car_panel_1_num_0.png" id="Yqx-jA-hng" userLabel="speed_num_2">
-                                <rect key="frame" x="340" y="126" width="46" height="67"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" tag="300" contentMode="scaleToFill" image="car_panel_battery.png" id="NBG-sO-K59" userLabel="battery">
-                                <rect key="frame" x="14" y="8" width="33" height="20"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="25"/>
+                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="110" contentMode="left" text="mph" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FfS-hh-ENX">
+                                <rect key="frame" x="478" y="243" width="146" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="35"/>
+                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="battery.png" id="Hs5-PM-oL2">
+                                <rect key="frame" x="18" y="12" width="49" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" tag="301" contentMode="scaleToFill" image="car_panel_signal.png" id="hs1-xX-yYD" userLabel="signal">
-                                <rect key="frame" x="62" y="8" width="33" height="20"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="3g.png" id="531-83-izw">
+                                <rect key="frame" x="82" y="13" width="43" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" tag="302" contentMode="scaleToFill" image="car_panel_gps.png" id="C5t-Sa-YVm" userLabel="gps">
-                                <rect key="frame" x="108" y="8" width="33" height="20"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="gps.png" id="PAs-Sc-5Sh">
+                                <rect key="frame" x="150" y="12" width="27" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="course frame.png" id="BGR-7G-4fM">
+                                <rect key="frame" x="18" y="64" width="530" height="69"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -55,7 +67,15 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="batteryImage" destination="Hs5-PM-oL2" id="yuu-Ix-w6E"/>
                         <outlet property="contentView" destination="bdm-cW-Nzb" id="F3A-iI-le0"/>
+                        <outlet property="courseFrameImage" destination="BGR-7G-4fM" id="y8n-DU-X8a"/>
+                        <outlet property="gpsImage" destination="PAs-Sc-5Sh" id="du2-kl-gGs"/>
+                        <outlet property="speedLabel" destination="AAi-3I-fyF" id="aS2-yO-12b"/>
+                        <outlet property="speedUnitLabel" destination="FfS-hh-ENX" id="HIF-LR-dTy"/>
+                        <outlet property="threeGImage" destination="531-83-izw" id="fed-GI-Flh"/>
+                        <outlet property="timeLabel" destination="yfD-lt-reI" id="KTD-FQ-6kh"/>
+                        <outlet property="timeUnitLabel" destination="Eh1-S6-O6P" id="E7d-qA-mzt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nfh-bn-u94" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -69,13 +89,31 @@
         </scene>
     </scenes>
     <resources>
-        <image name="car_panel_1_direction_panel_inner_circle.png" width="320" height="320"/>
-        <image name="car_panel_1_direction_panel_outer_circle.png" width="321" height="323"/>
-        <image name="car_panel_1_num_0.png" width="46" height="67"/>
-        <image name="car_panel_battery.png" width="33" height="20"/>
-        <image name="car_panel_gps.png" width="30" height="20"/>
-        <image name="car_panel_signal.png" width="30" height="19"/>
+        <image name="3g.png" width="43" height="28"/>
+        <image name="battery.png" width="49" height="28"/>
+        <image name="course frame.png" width="452" height="69"/>
+        <image name="gps.png" width="27" height="27"/>
     </resources>
+    <classes>
+        <class className="CarPanel1UIView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CarPanel1UIView.h"/>
+        </class>
+        <class className="CarPanelViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CarPanelViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="tagAction:"/>
+                <relationship kind="outlet" name="batteryImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="contentView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="courseFrameImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="gpsImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="speedLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="speedUnitLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="threeGImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="timeUnitLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

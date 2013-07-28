@@ -19,8 +19,6 @@
     NSMutableArray *markerPlaces;
 
     RouteNavigationViewController *routeNavigationViewController;
-    
-
 
 }
 @end
@@ -38,6 +36,7 @@
     Place *currentPlace;
     Place *routeStartPlace;
     Place *routeEndPlace;
+    
     Route *currentRoute;
     
     UILabel *markMenuNameLabel;
@@ -94,9 +93,13 @@
     {
         marker.icon     = [UIImage imageNamed:@"favor_marker.png"];
     }
+    else if (p.placeRouteType == kPlaceType_CurrentPlace)
+    {
+        marker.icon     = [UIImage imageNamed:@"Current Location.png"];
+    }
     else
     {
-        marker.icon     = [UIImage imageNamed:@"default_marker.png"];
+        marker.icon     = [UIImage imageNamed:@"default_marker"];
     }
     
     marker.map      = mapView;
@@ -347,6 +350,7 @@
     [self clearMapAll];
     
     [self updateUserConfiguredLocation];
+    [self addPlaceToMapMaker:currentPlace];
     
     for(Place* p in searchedPlaces)
     {
@@ -357,14 +361,14 @@
     }
     
     
+    
     [self updateRoute];
+    
 }
 
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    logfn();
-    [self.view dumpView];
     
     return toInterfaceOrientation == UIInterfaceOrientationLandscapeRight;
 }
@@ -422,12 +426,12 @@
     GMSPolyline *polyLine;
     GMSMutablePath *path;
     
-    if (nil != routeStartPlace)
+    if (nil != routeStartPlace && currentPlace != routeStartPlace)
     {
         [self addPlaceToMapMaker:routeStartPlace];
     }
     
-    if (nil != routeEndPlace)
+    if (nil != routeEndPlace && currentPlace != routeEndPlace)
     {
         [self addPlaceToMapMaker:routeEndPlace];
     }
@@ -452,8 +456,6 @@
     polyLine.geodesic   = NO;
     polyLine.map        = mapView;
     
-    
-//    [mapView animateToLocation:routeStartPlace.coordinate];
     
 }
 
@@ -498,21 +500,17 @@
 
     [self refresh];
     
-    logfn();
-    [self.view dumpView];
     [self showAdAnimated:NO];
     
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
-    logfn();
-    [self.view dumpView];
 }
 
 - (void)viewDidLoad
 {
-    logfn();
+
     NSString* navigationText;
     NSString* placeText;
     UIFont* textFont;
@@ -520,7 +518,7 @@
     
     
     self.view.frame = [SystemManager lanscapeScreenRect];
-    [self.view dumpView];
+
     
     markerPlaces = [[NSMutableArray alloc] initWithCapacity:0];
     currentPlace = LocationManager.currentPlace;
@@ -532,15 +530,12 @@
     
     textFont = [UIFont boldSystemFontOfSize:14.0];
     navigationText = [SystemManager getLanguageString:@"Navigate"];
-//    navigationText = [SystemManager getLanguageString:@"導航"];
     placeText = [SystemManager getLanguageString:@"Place"];
-//    placeText = [SystemManager getLanguageString:@"地點"];
+    
     [self.navigationButton setTitle:navigationText forState:UIControlStateNormal];
     [self.placeButton setTitle:placeText forState:UIControlStateNormal];
     
     [self addMarkMenu];
-    
-    [self.view dumpView];
     
     savePlaceViewController         = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass
                                         ([SavePlaceViewController class])];
@@ -555,7 +550,8 @@
     
     [self addBanner:self.contentView];
     [self showAdAnimated:NO];
-    //  [self.view dumpView];
+    [LocationManager addDelegate:self];
+
 }
 
 - (void)viewDidUnload {
@@ -570,11 +566,22 @@
     [super viewDidUnload];
 }
 
+-(void) locationUpdate:(CLLocationCoordinate2D) location Speed:(int) speed Distance:(int) distance
+{
+    currentPlace = LocationManager.currentPlace;
+    [self refresh];
+}
+
+-(void) lostLocationUpdate
+{
+    
+}
+
 
 #pragma  mark - Banner
 -(void) addBanner:(UIView*) contentView
 {
-    if (FALSE == SystemConfig.isAd)
+    if (FALSE == [SystemConfig getBOOLValue:CONFIG_IS_AD])
         return;
     
     if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)])
@@ -591,21 +598,14 @@
     _adView.delegate                            = self;
     _adView.accessibilityLabel                  = @"banner";
 
-    [self.view dumpView];
+
     [self.view addSubview:_adView];
-    printf("----------------------------\n");
-    [self.view dumpView];
+
     [self showAdAnimated:NO];
 }
 
 - (void)showAdAnimated:(BOOL)animated
 {
-    
-    printf("\n\n");
-    logfn();
-    [self.view dumpView];
-    
-    
     if (nil == _adView)
         return;
     CGRect contentFrame = [SystemManager lanscapeScreenRect];
@@ -623,17 +623,10 @@
         bannerFrame.origin.y = -_adView.frame.size.height;
     }
 
-
-    
-    printf("----------------------------\n");
-    
     [UIView animateWithDuration:animated ? 0.25 : 0.0 animations:^{
         _contentView.frame  = contentFrame;
         _zoomPanel.frame    = zoomPanelFrame;
         _adView.frame       = bannerFrame;
-        
-        [self.view dumpView];
-        
         
     }];
     
