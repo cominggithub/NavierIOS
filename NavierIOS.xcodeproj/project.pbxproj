@@ -48,7 +48,7 @@
 		2B792ABC17007FC300353349 /* plus_add_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B792A3D17007FC300353349 /* plus_add_green.png */; };
 		2B792ABF17007FC300353349 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B792A4017007FC300353349 /* setting.png */; };
 		2B831C24177E7481006E35CD /* Green_car.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B831C23177E7481006E35CD /* Green_car.png */; };
-		2B831C2A177E779B006E35CD /* CarPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B831C29177E779B006E35CD /* CarPanelViewController.m */; };
+		2B831C2A177E779B006E35CD /* CarPanel1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B831C29177E779B006E35CD /* CarPanel1ViewController.m */; };
 		2B86AEA117A3C58C00A948D8 /* ic_search1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B86AEA017A3C58C00A948D8 /* ic_search1.png */; };
 		2B8C5CAD174134B700260836 /* PlaceSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8C5CAC174134B700260836 /* PlaceSearchViewController.m */; };
 		2B9351091775433600721094 /* DebugMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9351081775433600721094 /* DebugMenuViewController.m */; };
@@ -176,13 +176,13 @@
 		2B792A3D17007FC300353349 /* plus_add_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus_add_green.png; sourceTree = "<group>"; };
 		2B792A4017007FC300353349 /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
 		2B831C23177E7481006E35CD /* Green_car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Green_car.png; sourceTree = "<group>"; };
-		2B831C28177E779B006E35CD /* CarPanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarPanelViewController.h; sourceTree = "<group>"; };
-		2B831C29177E779B006E35CD /* CarPanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarPanelViewController.m; sourceTree = "<group>"; };
+		2B831C28177E779B006E35CD /* CarPanel1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarPanel1ViewController.h; sourceTree = "<group>"; };
+		2B831C29177E779B006E35CD /* CarPanel1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarPanel1ViewController.m; sourceTree = "<group>"; };
 		2B86AEA017A3C58C00A948D8 /* ic_search1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_search1.png; path = ../../../../ios/image/icon/ic_search1.png; sourceTree = "<group>"; };
 		2B8C5CAB174134B700260836 /* PlaceSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceSearchViewController.h; sourceTree = "<group>"; };
 		2B8C5CAC174134B700260836 /* PlaceSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceSearchViewController.m; sourceTree = "<group>"; };
-		2B9351071775433600721094 /* DebugMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugMenuViewController.h; sourceTree = "<group>"; };
-		2B9351081775433600721094 /* DebugMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugMenuViewController.m; sourceTree = "<group>"; };
+		2B9351071775433600721094 /* DebugMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugMenuViewController.h; path = NavierIOS/DebugMenuViewController.h; sourceTree = "<group>"; };
+		2B9351081775433600721094 /* DebugMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DebugMenuViewController.m; path = NavierIOS/DebugMenuViewController.m; sourceTree = "<group>"; };
 		2B93510B177546B500721094 /* DebugMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DebugMenu.xib; sourceTree = "<group>"; };
 		2B94C8D617A4A744002581F3 /* Current Location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Current Location.png"; sourceTree = "<group>"; };
 		2B94C8D717A4A744002581F3 /* Current Location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Current Location@2x.png"; sourceTree = "<group>"; };
@@ -227,13 +227,13 @@
 		2B9A437016DB99C700FD1A54 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		2B9A437216DB99D100FD1A54 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2B9A437416DB99D900FD1A54 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		2B9A437616DB9B5F00FD1A54 /* GoogleMapUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoogleMapUIViewController.h; path = NavierIOS/GoogleMapUIViewController.h; sourceTree = "<group>"; };
-		2B9A437716DB9B5F00FD1A54 /* GoogleMapUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoogleMapUIViewController.m; path = NavierIOS/GoogleMapUIViewController.m; sourceTree = "<group>"; };
+		2B9A437616DB9B5F00FD1A54 /* GoogleMapUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleMapUIViewController.h; sourceTree = "<group>"; };
+		2B9A437716DB9B5F00FD1A54 /* GoogleMapUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleMapUIViewController.m; sourceTree = "<group>"; };
 		2B9A437A16DBA0BC00FD1A54 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		2BB1185B16E31683003BB39E /* GoogleAPIKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoogleAPIKey.h; sourceTree = "<group>"; };
 		2BC61A48173E3DCC00990DA7 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
-		2BCFE04117031BE200636F58 /* RouteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteTableViewController.h; sourceTree = "<group>"; };
-		2BCFE04217031BE200636F58 /* RouteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteTableViewController.m; sourceTree = "<group>"; };
+		2BCFE04117031BE200636F58 /* RouteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RouteTableViewController.h; path = NavierIOS/RouteTableViewController.h; sourceTree = "<group>"; };
+		2BCFE04217031BE200636F58 /* RouteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RouteTableViewController.m; path = NavierIOS/RouteTableViewController.m; sourceTree = "<group>"; };
 		2BD8CE771701E9A800BDA678 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72.png"; sourceTree = "<group>"; };
 		2BD8CE781701E9A800BDA678 /* icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72@2x.png"; sourceTree = "<group>"; };
 		2BD8CE791701E9A800BDA678 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
@@ -403,19 +403,15 @@
 		2B9A431E16DB955F00FD1A54 /* NavierIOS */ = {
 			isa = PBXGroup;
 			children = (
-				2B6FCDBF178D9CAF00DCFAAF /* CarPanels.storyboard */,
+				2BC2C3C017A69D5D00A9AEE0 /* CarPanel */,
 				2B9A433016DB955F00FD1A54 /* MainStoryboard_iPhone.storyboard */,
 				2B9A433316DB955F00FD1A54 /* MainStoryboard_iPad.storyboard */,
-				2B831C28177E779B006E35CD /* CarPanelViewController.h */,
-				2B831C29177E779B006E35CD /* CarPanelViewController.m */,
-				2B9351071775433600721094 /* DebugMenuViewController.h */,
-				2B9351081775433600721094 /* DebugMenuViewController.m */,
+				2B9A437616DB9B5F00FD1A54 /* GoogleMapUIViewController.h */,
+				2B9A437716DB9B5F00FD1A54 /* GoogleMapUIViewController.m */,
 				2B767448175CDD91008E6566 /* RouteNavigationViewController.h */,
 				2B767449175CDD91008E6566 /* RouteNavigationViewController.m */,
 				2B6CBF8F16DFA6050095CBD4 /* LanscapeUIViewController.h */,
 				2B6CBF9016DFA6050095CBD4 /* LanscapeUIViewController.m */,
-				2BCFE04117031BE200636F58 /* RouteTableViewController.h */,
-				2BCFE04217031BE200636F58 /* RouteTableViewController.m */,
 				2B8C5CAB174134B700260836 /* PlaceSearchViewController.h */,
 				2B8C5CAC174134B700260836 /* PlaceSearchViewController.m */,
 				2B036BBA1759CCEF003E4683 /* SavePlaceViewController.h */,
@@ -475,10 +471,22 @@
 		2B9A437916DB9EB500FD1A54 /* TestSample */ = {
 			isa = PBXGroup;
 			children = (
-				2B9A437616DB9B5F00FD1A54 /* GoogleMapUIViewController.h */,
-				2B9A437716DB9B5F00FD1A54 /* GoogleMapUIViewController.m */,
+				2BCFE04117031BE200636F58 /* RouteTableViewController.h */,
+				2BCFE04217031BE200636F58 /* RouteTableViewController.m */,
+				2B9351071775433600721094 /* DebugMenuViewController.h */,
+				2B9351081775433600721094 /* DebugMenuViewController.m */,
 			);
 			name = TestSample;
+			sourceTree = "<group>";
+		};
+		2BC2C3C017A69D5D00A9AEE0 /* CarPanel */ = {
+			isa = PBXGroup;
+			children = (
+				2B6FCDBF178D9CAF00DCFAAF /* CarPanels.storyboard */,
+				2B831C28177E779B006E35CD /* CarPanel1ViewController.h */,
+				2B831C29177E779B006E35CD /* CarPanel1ViewController.m */,
+			);
+			name = CarPanel;
 			sourceTree = "<group>";
 		};
 		2BE15351178ED65000C55363 /* CarPanel */ = {
@@ -691,7 +699,7 @@
 				2B4B3121175AF25800426D60 /* SelectPlaceViewController.m in Sources */,
 				2B76744A175CDD91008E6566 /* RouteNavigationViewController.m in Sources */,
 				2B9351091775433600721094 /* DebugMenuViewController.m in Sources */,
-				2B831C2A177E779B006E35CD /* CarPanelViewController.m in Sources */,
+				2B831C2A177E779B006E35CD /* CarPanel1ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

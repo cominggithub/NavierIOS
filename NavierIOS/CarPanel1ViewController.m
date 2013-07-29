@@ -6,21 +6,23 @@
 //  Copyright (c) 2013年 Coming. All rights reserved.
 //
 
-#import "CarPanelViewController.h"
+#import "CarPanel1ViewController.h"
 #import <NaviUtil/NaviUtil.h>
 
 #define FILE_DEBUG FALSE
 #include <NaviUtil/Log.h>
 
-@interface CarPanelViewController ()
+@interface CarPanel1ViewController ()
 {
     CarPanel1UIView *_carPanel1;
     NSTimer *_redrawTimer;
     int _redrawInterval;
+    NSTimer *_clockTimer;
+    NSDateFormatter *_clockTimerFormater;
 }
 @end
 
-@implementation CarPanelViewController
+@implementation CarPanel1ViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,15 +42,21 @@
 - (void)viewDidLoad
 {
     [self initSelf];
-    _carPanel1 = (CarPanel1UIView*)_contentView;
-    [_carPanel1 start];
-    [LocationManager startLocationSimulation];
     
     [super viewDidLoad];
     
-    _carPanel1.color = SystemConfig.defaultColor;
-    self.color = SystemConfig.defaultColor;
-    [self.speedLabel setFont:[UIFont fontWithName:@"JasmineUPC" size:220]];
+
+    _clockTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateClock) userInfo:nil repeats:YES];
+  
+    _clockTimerFormater = [[NSDateFormatter alloc] init];
+    [_clockTimerFormater setDateFormat:@"HH:mm:ss"];
+
+    [_clockHourLabel    setFont:[UIFont fontWithName:@"JasmineUPC" size:50]];
+    [_clockMinuteLabel  setFont:[UIFont fontWithName:@"JasmineUPC" size:50]];
+    [_clockUnitLabel    setFont:[UIFont fontWithName:@"JasmineUPC" size:25]];
+    [_speedLabel        setFont:[UIFont fontWithName:@"JasmineUPC" size:220]];
+    [_speedUnitLabel    setFont:[UIFont fontWithName:@"JasmineUPC" size:35]];
+    self.color = [SystemConfig defaultColor];
 	// Do any additional setup after loading the view.
 }
 
@@ -73,24 +81,30 @@
     _color                      = color;
     _speedLabel.textColor       = _color;
     _speedUnitLabel.textColor   = _color;
-    _timeLabel.textColor        = _color;
-    _timeUnitLabel.textColor    = _color;
+    _clockHourLabel.textColor   = _color;
+    _clockMinuteLabel.textColor = _color;
+    _clockUnitLabel.textColor   = _color;
     [_batteryImage setImageTintColor:_color];
     [_gpsImage setImageTintColor:_color];
     [_threeGImage setImageTintColor:_color];
     [_courseFrameImage setImageTintColor:_color];
 }
-- (void)viewDidUnload {
+
+- (void)viewDidUnload
+{
     [self setContentView:nil];
     [self setSpeedLabel:nil];
     [self setSpeedUnitLabel:nil];
-    [self setTimeLabel:nil];
     [self setSpeedUnitLabel:nil];
-    [self setTimeUnitLabel:nil];
+    [self setClockUnitLabel:nil];
     [self setBatteryImage:nil];
     [self setThreeGImage:nil];
     [self setGpsImage:nil];
     [self setCourseFrameImage:nil];
+    [self setClockUnitLabel:nil];
+    [self setClockHourLabel:nil];
+    [self setClockMinuteLabel:nil];
+    [self setClockSecondLabel:nil];
     [super viewDidUnload];
 }
 
@@ -117,5 +131,32 @@
 
 }
 
+-(void) updateClock
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[NSDate date]];
+    NSInteger hour      = [components hour];
+    NSInteger minute    = [components minute];
+    
+    if (hour >= 12)
+    {
+        hour -= 12;
+        _clockUnitLabel.text = [SystemManager getLanguageString:@"pm"];
+    }
+    else
+    {
+        _clockUnitLabel.text = [SystemManager getLanguageString:@"am"];
+    }
+    
+    _clockHourLabel.text        = [NSString stringFromInt:hour numOfDigits:2];
+    _clockMinuteLabel.text      = [NSString stringFromInt:minute numOfDigits:2];
+    _clockSecondLabel.hidden    = !_clockSecondLabel.hidden;
+    self.speed++;
+}
 
+-(void) setSpeed:(int)speed
+{
+    _speed = speed;
+    _speedLabel.text = [NSString stringFromInt:_speed];
+}
 @end

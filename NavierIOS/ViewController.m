@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "RouteNavigationViewController.h"
-#import "CarPanelViewController.h"
+#import "CarPanel1ViewController.h"
 
 
 #define FILE_DEBUG FALSE
