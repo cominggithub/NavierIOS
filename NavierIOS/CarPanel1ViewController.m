@@ -19,6 +19,7 @@
     int _redrawInterval;
     NSTimer *_clockTimer;
     NSDateFormatter *_clockTimerFormater;
+    NSMutableArray *_courseLabelArray;
 }
 @end
 
@@ -56,6 +57,17 @@
     [_clockUnitLabel    setFont:[UIFont fontWithName:@"JasmineUPC" size:25]];
     [_speedLabel        setFont:[UIFont fontWithName:@"JasmineUPC" size:220]];
     [_speedUnitLabel    setFont:[UIFont fontWithName:@"JasmineUPC" size:35]];
+    
+    _courseLabelArray = [[NSMutableArray alloc] initWithCapacity:8];
+    [_courseLabelArray addObject:self.courseNLabel];
+    [_courseLabelArray addObject:self.courseNELabel];
+    [_courseLabelArray addObject:self.courseELabel];
+    [_courseLabelArray addObject:self.courseSELabel];
+    [_courseLabelArray addObject:self.courseSLabel];
+    [_courseLabelArray addObject:self.courseSWLabel];
+    [_courseLabelArray addObject:self.courseWLabel];
+    [_courseLabelArray addObject:self.courseNWLabel];
+    
     self.color = [SystemConfig defaultColor];
 	// Do any additional setup after loading the view.
 }
@@ -64,6 +76,7 @@
 {
 
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -88,6 +101,11 @@
     [_gpsImage setImageTintColor:_color];
     [_threeGImage setImageTintColor:_color];
     [_courseFrameImage setImageTintColor:_color];
+    
+    for (UILabel* l in _courseLabelArray)
+    {
+        l.textColor = _color;
+    }
 }
 
 - (void)viewDidUnload
@@ -105,6 +123,14 @@
     [self setClockHourLabel:nil];
     [self setClockMinuteLabel:nil];
     [self setClockSecondLabel:nil];
+    [self setCourseSWLabel:nil];
+    [self setCourseWLabel:nil];
+    [self setCourseNWLabel:nil];
+    [self setCourseNLabel:nil];
+    [self setCourseNELabel:nil];
+    [self setCourseELabel:nil];
+    [self setCourseSELabel:nil];
+    [self setCourseSLabel:nil];
     [super viewDidUnload];
 }
 
@@ -159,4 +185,17 @@
     _speed = speed;
     _speedLabel.text = [NSString stringFromInt:_speed];
 }
+
+-(void) locationUpdate:(CLLocationCoordinate2D) location speed:(int) speed distance:(int) distance heading:(double) heading
+{
+    self.speed      = speed;
+    self.heading    = heading;
+    
+}
+
+-(void) lostLocationUpdate
+{
+    
+}
+
 @end

@@ -35,7 +35,6 @@
 		2B69865B174787A00000BB2D /* searched_place_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B6986591747879B0000BB2D /* searched_place_icon.png */; };
 		2B69865C174787A00000BB2D /* searched_place_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B69865A1747879E0000BB2D /* searched_place_icon@2x.png */; };
 		2B6A6BF2178719D8005FC851 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6A6BF1178719D8005FC851 /* libTestFlight.a */; };
-		2B6CBF9116DFA6050095CBD4 /* LanscapeUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6CBF9016DFA6050095CBD4 /* LanscapeUIViewController.m */; };
 		2B6CBFFE16DFAA180095CBD4 /* libNaviUtil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6CBFF916DFAA040095CBD4 /* libNaviUtil.a */; };
 		2B6FCDC0178D9CAF00DCFAAF /* CarPanels.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B6FCDBF178D9CAF00DCFAAF /* CarPanels.storyboard */; };
 		2B76744A175CDD91008E6566 /* RouteNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B767449175CDD91008E6566 /* RouteNavigationViewController.m */; };
@@ -161,8 +160,6 @@
 		2B6986591747879B0000BB2D /* searched_place_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searched_place_icon.png; sourceTree = "<group>"; };
 		2B69865A1747879E0000BB2D /* searched_place_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searched_place_icon@2x.png"; sourceTree = "<group>"; };
 		2B6A6BF1178719D8005FC851 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestFlight.a; path = ../../ios/framework/TestFlightSDK1.2.6/libTestFlight.a; sourceTree = "<group>"; };
-		2B6CBF8F16DFA6050095CBD4 /* LanscapeUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanscapeUIViewController.h; sourceTree = "<group>"; };
-		2B6CBF9016DFA6050095CBD4 /* LanscapeUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanscapeUIViewController.m; sourceTree = "<group>"; };
 		2B6CBFF316DFAA030095CBD4 /* NaviUtil.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NaviUtil.xcodeproj; path = ../NaviUtil/NaviUtil.xcodeproj; sourceTree = "<group>"; };
 		2B6FCDBF178D9CAF00DCFAAF /* CarPanels.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CarPanels.storyboard; sourceTree = "<group>"; };
 		2B767448175CDD91008E6566 /* RouteNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteNavigationViewController.h; sourceTree = "<group>"; };
@@ -410,8 +407,6 @@
 				2B9A437716DB9B5F00FD1A54 /* GoogleMapUIViewController.m */,
 				2B767448175CDD91008E6566 /* RouteNavigationViewController.h */,
 				2B767449175CDD91008E6566 /* RouteNavigationViewController.m */,
-				2B6CBF8F16DFA6050095CBD4 /* LanscapeUIViewController.h */,
-				2B6CBF9016DFA6050095CBD4 /* LanscapeUIViewController.m */,
 				2B8C5CAB174134B700260836 /* PlaceSearchViewController.h */,
 				2B8C5CAC174134B700260836 /* PlaceSearchViewController.m */,
 				2B036BBA1759CCEF003E4683 /* SavePlaceViewController.h */,
@@ -692,7 +687,6 @@
 				2B9A432916DB955F00FD1A54 /* AppDelegate.m in Sources */,
 				2B9A433816DB955F00FD1A54 /* ViewController.m in Sources */,
 				2B9A437816DB9B5F00FD1A54 /* GoogleMapUIViewController.m in Sources */,
-				2B6CBF9116DFA6050095CBD4 /* LanscapeUIViewController.m in Sources */,
 				2BCFE04317031BE200636F58 /* RouteTableViewController.m in Sources */,
 				2B8C5CAD174134B700260836 /* PlaceSearchViewController.m in Sources */,
 				2B036BBC1759CCEF003E4683 /* SavePlaceViewController.m in Sources */,

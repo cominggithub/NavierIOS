@@ -11,6 +11,16 @@
 
 
 @interface CarPanel1ViewController : UIViewController<LocationManagerDelegate>
+
+@property (weak, nonatomic) IBOutlet UILabel *courseSWLabel;
+@property (weak, nonatomic) IBOutlet UILabel *courseWLabel;
+@property (weak, nonatomic) IBOutlet UILabel *courseNWLabel;
+@property (weak, nonatomic) IBOutlet UILabel *courseNLabel;
+@property (weak, nonatomic) IBOutlet UILabel *courseNELabel;
+@property (weak, nonatomic) IBOutlet UILabel *courseELabel;
+@property (weak, nonatomic) IBOutlet UILabel *courseSELabel;
+@property (weak, nonatomic) IBOutlet UILabel *courseSLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *clockSecondLabel;
 @property (weak, nonatomic) IBOutlet UILabel *clockHourLabel;
 @property (weak, nonatomic) IBOutlet UILabel *clockMinuteLabel;
@@ -25,10 +35,12 @@
 @property (weak, nonatomic) IBOutlet UIImageView *gpsImage;
 @property (weak, nonatomic) IBOutlet UIImageView *courseFrameImage;
 @property (nonatomic) int speed;
+@property (nonatomic) double heading;
 @property (strong, nonatomic) UIColor *color;
 - (IBAction)tagAction:(id)sender;
 
--(void) locationUpdate:(CLLocationCoordinate2D) location Speed:(int) speed Distance:(int) distance;
+-(void) locationUpdate:(CLLocationCoordinate2D) location speed:(int) speed distance:(int) distance heading:(double) heading;
 -(void) lostLocationUpdate;
+
 
 @end
