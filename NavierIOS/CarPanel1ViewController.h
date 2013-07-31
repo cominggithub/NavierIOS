@@ -37,6 +37,11 @@
 @property (nonatomic) int speed;
 @property (nonatomic) double heading;
 @property (strong, nonatomic) UIColor *color;
+
+@property (nonatomic) float batteryLife;
+@property (nonatomic) float networkStatus;
+@property (nonatomic) BOOL gpsEnabled;
+
 - (IBAction)tagAction:(id)sender;
 
 -(void) locationUpdate:(CLLocationCoordinate2D) location speed:(int) speed distance:(int) distance heading:(double) heading;

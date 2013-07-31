@@ -20,6 +20,7 @@
     NSTimer *_clockTimer;
     NSDateFormatter *_clockTimerFormater;
     NSMutableArray *_courseLabelArray;
+    BatteryLifeView *_batteryLifeView;
 }
 @end
 
@@ -28,7 +29,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self)
+    {
 
     }
     return self;
@@ -68,6 +70,10 @@
     [_courseLabelArray addObject:self.courseWLabel];
     [_courseLabelArray addObject:self.courseNWLabel];
     
+    
+    _batteryLifeView = [[BatteryLifeView alloc] initWithFrame:CGRectMake(18, 12, 49, 28)];
+    [self.contentView addSubview:_batteryLifeView];
+    
     self.color = [SystemConfig defaultColor];
 	// Do any additional setup after loading the view.
 }
@@ -97,15 +103,40 @@
     _clockHourLabel.textColor   = _color;
     _clockMinuteLabel.textColor = _color;
     _clockUnitLabel.textColor   = _color;
+    _batteryLifeView.color      = _color;
     [_batteryImage setImageTintColor:_color];
     [_gpsImage setImageTintColor:_color];
     [_threeGImage setImageTintColor:_color];
     [_courseFrameImage setImageTintColor:_color];
+
     
     for (UILabel* l in _courseLabelArray)
     {
         l.textColor = _color;
     }
+}
+
+-(void) setBatteryLife:(float)batteryLife
+{
+    if (batteryLife > 1)
+        batteryLife = 1;
+    
+    if (batteryLife < 0)
+        batteryLife = 0;
+    
+    _batteryLife            = batteryLife;
+    _batteryLifeView.life   = _batteryLife;
+    
+}
+
+-(void) setGpsEnabled:(BOOL)gpsEnabled
+{
+    _gpsEnabled = gpsEnabled;
+}
+
+-(void) setNetworkStatus:(float)networkStatus
+{
+    
 }
 
 - (void)viewDidUnload
@@ -178,6 +209,33 @@
     _clockMinuteLabel.text      = [NSString stringFromInt:minute numOfDigits:2];
     _clockSecondLabel.hidden    = !_clockSecondLabel.hidden;
     self.speed++;
+    [self updateUI];
+}
+
+-(void) updateUI
+{
+    if (NO == _gpsEnabled)
+    {
+        _gpsImage.hidden = !_gpsImage.hidden;
+    }
+    else
+    {
+        _gpsImage.hidden = NO;
+    }
+    
+    if (0 >= _networkStatus)
+    {
+        _threeGImage.hidden = !_threeGImage.hidden;
+    }
+    else
+    {
+        _threeGImage.hidden = NO;
+    }
+    
+    self.batteryLife -= 0.1;
+    if (self.batteryLife == 0)
+        self.batteryLife = 1;
+
 }
 
 -(void) setSpeed:(int)speed
