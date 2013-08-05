@@ -10,8 +10,11 @@
 #import <NaviUtil/NaviUtil.h>
 
 
-@interface CarPanel1ViewController : UIViewController<LocationManagerDelegate>
+@interface CarPanel1ViewController : UIViewController<LocationManagerDelegate, SystemManagerDelegate>
+@property (weak, nonatomic) IBOutlet UIView *courseLabelView;
+@property (weak, nonatomic) IBOutlet UILabel *courseCutLabel;
 
+@property (weak, nonatomic) IBOutlet UIView *courseLabel;
 @property (weak, nonatomic) IBOutlet UILabel *courseSWLabel;
 @property (weak, nonatomic) IBOutlet UILabel *courseWLabel;
 @property (weak, nonatomic) IBOutlet UILabel *courseNWLabel;
@@ -41,6 +44,7 @@
 @property (nonatomic) float batteryLife;
 @property (nonatomic) float networkStatus;
 @property (nonatomic) BOOL gpsEnabled;
+@property (nonatomic) CGRect courseLabelRect;
 
 - (IBAction)tagAction:(id)sender;
 

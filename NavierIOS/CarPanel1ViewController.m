@@ -21,6 +21,9 @@
     NSDateFormatter *_clockTimerFormater;
     NSMutableArray *_courseLabelArray;
     BatteryLifeView *_batteryLifeView;
+    float _courseAngleToPixelOffset;
+    CGPoint _courseLabelOrigins[8];
+    float _courseCenterNOffset;
 }
 @end
 
@@ -49,11 +52,11 @@
     [super viewDidLoad];
     
 
-    _clockTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateClock) userInfo:nil repeats:YES];
-  
     _clockTimerFormater = [[NSDateFormatter alloc] init];
     [_clockTimerFormater setDateFormat:@"HH:mm:ss"];
-
+    
+    _clockTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateUI) userInfo:nil repeats:YES];
+  
     [_clockHourLabel    setFont:[UIFont fontWithName:@"JasmineUPC" size:50]];
     [_clockMinuteLabel  setFont:[UIFont fontWithName:@"JasmineUPC" size:50]];
     [_clockUnitLabel    setFont:[UIFont fontWithName:@"JasmineUPC" size:25]];
@@ -70,6 +73,8 @@
     [_courseLabelArray addObject:self.courseWLabel];
     [_courseLabelArray addObject:self.courseNWLabel];
     
+
+    
     
     _batteryLifeView = [[BatteryLifeView alloc] initWithFrame:CGRectMake(18, 12, 49, 28)];
     [self.contentView addSubview:_batteryLifeView];
@@ -78,6 +83,15 @@
 	// Do any additional setup after loading the view.
 }
 
+-(void) viewWillAppear:(BOOL)animated
+{
+    [SystemManager addDelegate:self];
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [SystemManager removeDelegate:self];
+}
 -(void) viewDidAppear:(BOOL)animated
 {
 
@@ -103,17 +117,21 @@
     _clockHourLabel.textColor   = _color;
     _clockMinuteLabel.textColor = _color;
     _clockUnitLabel.textColor   = _color;
+    _courseCutLabel.textColor   = _color;
     _batteryLifeView.color      = _color;
-    [_batteryImage setImageTintColor:_color];
-    [_gpsImage setImageTintColor:_color];
-    [_threeGImage setImageTintColor:_color];
-    [_courseFrameImage setImageTintColor:_color];
+    
+    [_batteryImage      setImageTintColor:_color];
+    [_gpsImage          setImageTintColor:_color];
+    [_threeGImage       setImageTintColor:_color];
+    [_courseFrameImage  setImageTintColor:_color];
 
     
     for (UILabel* l in _courseLabelArray)
     {
         l.textColor = _color;
     }
+    
+    [self placeCourseLabel];
 }
 
 -(void) setBatteryLife:(float)batteryLife
@@ -162,6 +180,7 @@
     [self setCourseELabel:nil];
     [self setCourseSELabel:nil];
     [self setCourseSLabel:nil];
+    [self setCourseLabel:nil];
     [super viewDidUnload];
 }
 
@@ -208,12 +227,101 @@
     _clockHourLabel.text        = [NSString stringFromInt:hour numOfDigits:2];
     _clockMinuteLabel.text      = [NSString stringFromInt:minute numOfDigits:2];
     _clockSecondLabel.hidden    = !_clockSecondLabel.hidden;
-    self.speed++;
-    [self updateUI];
+
 }
 
+-(void) placeCourseLabel
+{
+    float space;
+    float labelOffset;
+    int i;
+    CGSize labelSize;
+    UILabel *label;
+    CGRect labelFrame;
+    CGRect screenRect;
+    
+    screenRect  = [SystemManager lanscapeScreenRect];
+    labelSize   = _courseNLabel.frame.size;
+    
+    if (screenRect.size.width > 480)
+    {
+        self.courseLabelRect = CGRectMake(0, 5, 508, labelSize.height);
+    }
+    else
+    {
+        self.courseLabelRect = CGRectMake(0, 5, 508 - (568-480), labelSize.height);
+    }
+    
+    /*
+     * |-------------------------------- \\ -----|
+     * |--Label--|--space--|------ \\ -----|
+     * |----Label offset --|
+     */
+    space = ((self.courseLabelRect.size.width) - (labelSize.width*_courseLabelArray.count))/(_courseLabelArray.count);
+
+    labelOffset = labelSize.width + space;
+    _courseAngleToPixelOffset   = self.courseLabelRect.size.width/(2*M_PI);
+    _courseCenterNOffset        = self.courseLabelRect.size.width/2 - labelSize.width/2;
+    for(i=0; i<_courseLabelArray.count; i++)
+    {
+        label       = (UILabel*) [_courseLabelArray objectAtIndex:i];
+        labelFrame  = CGRectMake(
+                                 self.courseLabelRect.origin.x + i*labelOffset + (space/2.0),
+                                 self.courseLabelRect.origin.y,
+                                 labelSize.width,
+                                 labelSize.height);
+        label.frame = labelFrame;
+        _courseLabelOrigins[i] = labelFrame.origin;
+    }
+    
+    self.courseCutLabel.frame = CGRectMake(-labelSize.width, labelFrame.origin.y, labelFrame.size.width, labelFrame.size.height);
+    [self updateCourse];
+    
+}
+
+-(void) updateCourse
+{
+    int i;
+    UILabel *label;
+    CGRect labelFrame;
+    CGRect cutLabelFrame;
+    
+    float pixelToMove;
+    
+    cutLabelFrame   = _courseCutLabel.frame;
+    pixelToMove     = _courseAngleToPixelOffset * _heading;
+    
+
+    for(i=0; i<_courseLabelArray.count; i++)
+    {
+        label       = (UILabel*) [_courseLabelArray objectAtIndex:i];
+        labelFrame  = label.frame;
+        labelFrame.origin = _courseLabelOrigins[i];
+//        labelFrame.origin.x += _courseCenterNOffset;
+        labelFrame.origin.x -= pixelToMove;
+
+        if ((labelFrame.origin.x + labelFrame.size.width) > self.courseLabelRect.origin.x + _courseLabelRect.size.width)
+        {
+            _courseCutLabel.text    = label.text;
+            cutLabelFrame.origin.x  = labelFrame.origin.x;
+            labelFrame.origin.x     -= _courseLabelRect.size.width;
+        }
+        else if (labelFrame.origin.x < 0)
+        {
+            _courseCutLabel.text    = label.text;
+            cutLabelFrame.origin.x  = labelFrame.origin.x;
+            labelFrame.origin.x     += _courseLabelRect.size.width;
+        }
+
+        label.frame = labelFrame;
+    }
+    
+    _courseCutLabel.frame = cutLabelFrame;
+}
 -(void) updateUI
 {
+    _gpsEnabled = [SystemManager getGpsStatus] > 0;
+    
     if (NO == _gpsEnabled)
     {
         _gpsImage.hidden = !_gpsImage.hidden;
@@ -232,9 +340,9 @@
         _threeGImage.hidden = NO;
     }
     
-    self.batteryLife -= 0.1;
-    if (self.batteryLife == 0)
-        self.batteryLife = 1;
+    [self updateClock];
+    
+    self.heading -= 0.1;
 
 }
 
@@ -242,6 +350,24 @@
 {
     _speed = speed;
     _speedLabel.text = [NSString stringFromInt:_speed];
+}
+
+-(void) setHeading:(double)heading
+{
+    _heading = heading;
+    
+    while (_heading >= 2*M_PI)
+    {
+        _heading -= 2*M_PI;
+    }
+    
+    while (_heading < 0)
+    {
+        _heading += 2*M_PI;
+    }
+    
+    [self updateCourse];
+    
 }
 
 -(void) locationUpdate:(CLLocationCoordinate2D) location speed:(int) speed distance:(int) distance heading:(double) heading
@@ -254,6 +380,17 @@
 -(void) lostLocationUpdate
 {
     
+}
+
+-(void) networkStatusChangeWifi:(float) wifiStatus threeG:(float) threeGStatus
+{
+    self.networkStatus = wifiStatus + threeGStatus;
+}
+
+
+-(void) batteryStatusChange:(float) status
+{
+    self.batteryLife = status;
 }
 
 @end
