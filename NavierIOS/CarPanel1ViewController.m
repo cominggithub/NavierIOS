@@ -85,11 +85,21 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    self.batteryLife    = [SystemManager getBatteryLife];
+    self.networkStatus  = [SystemManager getNetworkStatus];
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     [SystemManager addDelegate:self];
+    
+    logfn();
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:UIDeviceBatteryLevelDidChangeNotification
+     object:self];
+    logfn();    
 }
 
 -(void) viewWillDisappear:(BOOL)animated
 {
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     [SystemManager removeDelegate:self];
 }
 -(void) viewDidAppear:(BOOL)animated
@@ -117,7 +127,7 @@
     _clockHourLabel.textColor   = _color;
     _clockMinuteLabel.textColor = _color;
     _clockUnitLabel.textColor   = _color;
-    _courseCutLabel.textColor   = _color;
+//    _courseCutLabel.textColor   = _color;
     _batteryLifeView.color      = _color;
     
     [_batteryImage      setImageTintColor:_color];
@@ -144,6 +154,8 @@
     
     _batteryLife            = batteryLife;
     _batteryLifeView.life   = _batteryLife;
+    _batteryLifeLabel.text  = [NSString stringFromInt:(int)(_batteryLife*100)];
+    logf(_batteryLifeView.life);
     
 }
 
@@ -181,6 +193,8 @@
     [self setCourseSELabel:nil];
     [self setCourseSLabel:nil];
     [self setCourseLabel:nil];
+    [self setBatteryLifeLabel:nil];
+    [self setNetworkLabel:nil];
     [super viewDidUnload];
 }
 
@@ -261,7 +275,7 @@
 
     labelOffset = labelSize.width + space;
     _courseAngleToPixelOffset   = self.courseLabelRect.size.width/(2*M_PI);
-    _courseCenterNOffset        = self.courseLabelRect.size.width/2 - labelSize.width/2;
+    _courseCenterNOffset        = self.courseLabelRect.size.width/2 - labelSize.width/2 - space/2.0;
     for(i=0; i<_courseLabelArray.count; i++)
     {
         label       = (UILabel*) [_courseLabelArray objectAtIndex:i];
@@ -297,9 +311,9 @@
         label       = (UILabel*) [_courseLabelArray objectAtIndex:i];
         labelFrame  = label.frame;
         labelFrame.origin = _courseLabelOrigins[i];
-//        labelFrame.origin.x += _courseCenterNOffset;
+        labelFrame.origin.x += _courseCenterNOffset;
         labelFrame.origin.x -= pixelToMove;
-
+        
         if ((labelFrame.origin.x + labelFrame.size.width) > self.courseLabelRect.origin.x + _courseLabelRect.size.width)
         {
             _courseCutLabel.text    = label.text;
@@ -317,6 +331,7 @@
     }
     
     _courseCutLabel.frame = cutLabelFrame;
+ 
 }
 -(void) updateUI
 {
@@ -341,9 +356,17 @@
     }
     
     [self updateClock];
+    self.heading += 0.01;
     
-    self.heading -= 0.1;
-
+    if (YES == [SystemConfig getBOOLValue:CONFIG_IS_DEBUG])
+    {
+        if ([SystemManager getThreeGStatus] > 0)
+            self.networkLabel.text = @"3G";
+        else if ([SystemManager getWifiStatus] > 0)
+            self.networkLabel.text = @"Wifi";
+        else
+            self.networkLabel.text = @"None";
+    }
 }
 
 -(void) setSpeed:(int)speed

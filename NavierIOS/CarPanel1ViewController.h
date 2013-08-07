@@ -11,6 +11,8 @@
 
 
 @interface CarPanel1ViewController : UIViewController<LocationManagerDelegate, SystemManagerDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *networkLabel;
+@property (weak, nonatomic) IBOutlet UILabel *batteryLifeLabel;
 @property (weak, nonatomic) IBOutlet UIView *courseLabelView;
 @property (weak, nonatomic) IBOutlet UILabel *courseCutLabel;
 
