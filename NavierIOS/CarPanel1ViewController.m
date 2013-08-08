@@ -9,7 +9,7 @@
 #import "CarPanel1ViewController.h"
 #import <NaviUtil/NaviUtil.h>
 
-#define FILE_DEBUG FALSE
+#define FILE_DEBUG TRUE
 #include <NaviUtil/Log.h>
 
 @interface CarPanel1ViewController ()
@@ -87,20 +87,24 @@
 {
     self.batteryLife    = [SystemManager getBatteryLife];
     self.networkStatus  = [SystemManager getNetworkStatus];
+    self.speed          = 0;
+    
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     [SystemManager addDelegate:self];
+    [LocationManager addDelegate:self];
+    [LocationManager startLocationTracking];
     
-    logfn();
     [[NSNotificationCenter defaultCenter]
      postNotificationName:UIDeviceBatteryLevelDidChangeNotification
      object:self];
-    logfn();    
 }
 
 -(void) viewWillDisappear:(BOOL)animated
 {
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     [SystemManager removeDelegate:self];
+    [LocationManager removeDelegate:self];
+    [LocationManager stopLocationTracking];
 }
 -(void) viewDidAppear:(BOOL)animated
 {
@@ -155,7 +159,6 @@
     _batteryLife            = batteryLife;
     _batteryLifeView.life   = _batteryLife;
     _batteryLifeLabel.text  = [NSString stringFromInt:(int)(_batteryLife*100)];
-    logf(_batteryLifeView.life);
     
 }
 
@@ -166,7 +169,7 @@
 
 -(void) setNetworkStatus:(float)networkStatus
 {
-    
+    _networkStatus = networkStatus;
 }
 
 - (void)viewDidUnload
@@ -274,8 +277,10 @@
     space = ((self.courseLabelRect.size.width) - (labelSize.width*_courseLabelArray.count))/(_courseLabelArray.count);
 
     labelOffset = labelSize.width + space;
+
     _courseAngleToPixelOffset   = self.courseLabelRect.size.width/(2*M_PI);
     _courseCenterNOffset        = self.courseLabelRect.size.width/2 - labelSize.width/2 - space/2.0;
+
     for(i=0; i<_courseLabelArray.count; i++)
     {
         label       = (UILabel*) [_courseLabelArray objectAtIndex:i];
@@ -302,10 +307,10 @@
     
     float pixelToMove;
     
-    cutLabelFrame   = _courseCutLabel.frame;
-    pixelToMove     = _courseAngleToPixelOffset * _heading;
+    cutLabelFrame           = _courseCutLabel.frame;
+    pixelToMove             = _courseAngleToPixelOffset * _heading;
+    cutLabelFrame.origin.x  = -100;
     
-
     for(i=0; i<_courseLabelArray.count; i++)
     {
         label       = (UILabel*) [_courseLabelArray objectAtIndex:i];
@@ -314,24 +319,30 @@
         labelFrame.origin.x += _courseCenterNOffset;
         labelFrame.origin.x -= pixelToMove;
         
-        if ((labelFrame.origin.x + labelFrame.size.width) > self.courseLabelRect.origin.x + _courseLabelRect.size.width)
+        if (labelFrame.origin.x + labelFrame.size.width < 0)
         {
-            _courseCutLabel.text    = label.text;
-            cutLabelFrame.origin.x  = labelFrame.origin.x;
+            labelFrame.origin.x     += _courseLabelRect.size.width;
+        }
+        else if (labelFrame.origin.x + labelFrame.size.width > _courseLabelRect.size.width)
+        {
             labelFrame.origin.x     -= _courseLabelRect.size.width;
         }
-        else if (labelFrame.origin.x < 0)
+        
+        /* calculate cut lable position */
+        if (  labelFrame.origin.x < 0 )
         {
             _courseCutLabel.text    = label.text;
-            cutLabelFrame.origin.x  = labelFrame.origin.x;
-            labelFrame.origin.x     += _courseLabelRect.size.width;
+            cutLabelFrame.origin.x  = labelFrame.origin.x + _courseLabelRect.size.width;
+        }
+        else if ((labelFrame.origin.x + labelFrame.size.width) > _courseLabelRect.size.width )
+        {
+            _courseCutLabel.text    = label.text;
+            cutLabelFrame.origin.x  = labelFrame.origin.x - _courseLabelRect.size.width;
         }
 
         label.frame = labelFrame;
     }
-    
     _courseCutLabel.frame = cutLabelFrame;
- 
 }
 -(void) updateUI
 {
@@ -356,7 +367,6 @@
     }
     
     [self updateClock];
-    self.heading += 0.01;
     
     if (YES == [SystemConfig getBOOLValue:CONFIG_IS_DEBUG])
     {
@@ -371,14 +381,22 @@
 
 -(void) setSpeed:(int)speed
 {
+    if (speed < 0)
+        speed = 0;
+    
+    if (speed > 999)
+        speed = 999;
+    
     _speed = speed;
     _speedLabel.text = [NSString stringFromInt:_speed];
 }
 
 -(void) setHeading:(double)heading
 {
+    logf(_heading);
     _heading = heading;
     
+    logf(_heading);
     while (_heading >= 2*M_PI)
     {
         _heading -= 2*M_PI;
@@ -389,6 +407,8 @@
         _heading += 2*M_PI;
     }
     
+    logf(_heading);
+    logfn();
     [self updateCourse];
     
 }
