@@ -49,6 +49,8 @@
 		2B831C24177E7481006E35CD /* Green_car.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B831C23177E7481006E35CD /* Green_car.png */; };
 		2B831C2A177E779B006E35CD /* CarPanel1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B831C29177E779B006E35CD /* CarPanel1ViewController.m */; };
 		2B86AEA117A3C58C00A948D8 /* ic_search1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B86AEA017A3C58C00A948D8 /* ic_search1.png */; };
+		2B89A7A917B5E7550042539F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2B89A7AB17B5E7550042539F /* Localizable.strings */; };
+		2B89A7B517B60CE90042539F /* CarPanel1Menu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B89A7B417B60CE90042539F /* CarPanel1Menu.xib */; };
 		2B8BAA2817ADF1B500003DA4 /* startup selection.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B8BAA2717ADF1B500003DA4 /* startup selection.png */; };
 		2B8C5CAD174134B700260836 /* PlaceSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8C5CAC174134B700260836 /* PlaceSearchViewController.m */; };
 		2B8EE0C317AD2027005FBF6B /* buy.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B8EE0C217AD2027005FBF6B /* buy.png */; };
@@ -179,6 +181,10 @@
 		2B831C28177E779B006E35CD /* CarPanel1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarPanel1ViewController.h; sourceTree = "<group>"; };
 		2B831C29177E779B006E35CD /* CarPanel1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarPanel1ViewController.m; sourceTree = "<group>"; };
 		2B86AEA017A3C58C00A948D8 /* ic_search1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_search1.png; path = ../../../../ios/image/icon/ic_search1.png; sourceTree = "<group>"; };
+		2B89A7AA17B5E7550042539F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2B89A7AC17B5E7590042539F /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		2B89A7AD17B5EC4F0042539F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		2B89A7B417B60CE90042539F /* CarPanel1Menu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarPanel1Menu.xib; sourceTree = "<group>"; };
 		2B8BAA2717ADF1B500003DA4 /* startup selection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startup selection.png"; sourceTree = "<group>"; };
 		2B8C5CAB174134B700260836 /* PlaceSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceSearchViewController.h; sourceTree = "<group>"; };
 		2B8C5CAC174134B700260836 /* PlaceSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceSearchViewController.m; sourceTree = "<group>"; };
@@ -363,6 +369,7 @@
 				2BE1CE6B174BA5830053995F /* MarkMenu.xib */,
 				2B3907F0176D6B0A00E5F428 /* RouteGuideMenu.xib */,
 				2B93510B177546B500721094 /* DebugMenu.xib */,
+				2B89A7B417B60CE90042539F /* CarPanel1Menu.xib */,
 			);
 			name = xib;
 			sourceTree = "<group>";
@@ -459,6 +466,7 @@
 				2B9A432616DB955F00FD1A54 /* NavierIOS-Prefix.pch */,
 				2B9A432C16DB955F00FD1A54 /* Default@2x.png */,
 				2B9A432E16DB955F00FD1A54 /* Default-568h@2x.png */,
+				2B89A7AB17B5E7550042539F /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -574,6 +582,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hant-TW",
+				"zh-Hant",
 			);
 			mainGroup = 2B9A430C16DB955F00FD1A54;
 			productRefGroup = 2B9A431616DB955F00FD1A54 /* Products */;
@@ -670,6 +680,8 @@
 				2B94C90317A55548002581F3 /* battery.png in Resources */,
 				2B8EE0C317AD2027005FBF6B /* buy.png in Resources */,
 				2B8BAA2817ADF1B500003DA4 /* startup selection.png in Resources */,
+				2B89A7A917B5E7550042539F /* Localizable.strings in Resources */,
+				2B89A7B517B60CE90042539F /* CarPanel1Menu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -743,6 +755,16 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		2B89A7AB17B5E7550042539F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B89A7AA17B5E7550042539F /* en */,
+				2B89A7AC17B5E7590042539F /* zh-Hant-TW */,
+				2B89A7AD17B5EC4F0042539F /* zh-Hant */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		2B9A432116DB955F00FD1A54 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

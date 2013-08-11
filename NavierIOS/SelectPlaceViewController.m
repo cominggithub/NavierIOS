@@ -149,18 +149,14 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     
-    logfn();
     Place *selectedPlace;
     selectedPlace = [User getPlaceBySectionMode:kSectionMode_Home_Office_Favor_Searched
                                         section:indexPath.section
                                           index:indexPath.row];
     if (nil != selectedPlace)
     {
-        logfn();
-        logo(self.delegate);
         if(self.delegate != nil && [self.delegate respondsToSelector:@selector(selectPlace:sender:)])
         {
-            logfn();
             [self.delegate selectPlace: selectedPlace sender: self];
         }
     }

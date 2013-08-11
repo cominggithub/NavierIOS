@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  NavierIOS
+
+  Created by Coming on 8/10/13.
+  Copyright (c) 2013 Coming. All rights reserved.
+*/
+
+"N" = "N";
+"mph" = "mph";
+"kmh" = "km/h";
+"HUD" = "HUD";

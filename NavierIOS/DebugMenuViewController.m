@@ -127,10 +127,10 @@
 
 -(void) updateUIFromConfig
 {
-    debugMenuIsDebugSwitch.on           = [SystemConfig getBOOLValue:CONFIG_IS_DEBUG];
-    debugMenuIsAdSwitch.on              = [SystemConfig getBOOLValue:CONFIG_IS_AD];
-    debugMenuIsDebugRouteDrawSwitch.on  = [SystemConfig getBOOLValue:CONFIG_IS_DEBUG_ROUTE_DRAW];
-    debugMenuIsManualPlaceSwitch.on     = [SystemConfig getBOOLValue:CONFIG_IS_MANUAL_PLACE];
+    debugMenuIsDebugSwitch.on           = [SystemConfig getBoolValue:CONFIG_IS_DEBUG];
+    debugMenuIsAdSwitch.on              = [SystemConfig getBoolValue:CONFIG_IS_AD];
+    debugMenuIsDebugRouteDrawSwitch.on  = [SystemConfig getBoolValue:CONFIG_IS_DEBUG_ROUTE_DRAW];
+    debugMenuIsManualPlaceSwitch.on     = [SystemConfig getBoolValue:CONFIG_IS_MANUAL_PLACE];
     
 }
 

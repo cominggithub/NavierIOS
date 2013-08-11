@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  NavierIOS
+
+  Created by Coming on 8/10/13.
+  Copyright (c) 2013 Coming. All rights reserved.
+*/
+
+"N" = "北";
+"ne" = "東北";
+"E" = "東";
+"se" = "東南";
+"S" = "南";
+"sw" = "西南";
+"W" = "西";
+"nw" = "西北";
+"mph" = "英里/小時";
+"kmh" = "公里/小時";
+"am" = "上午";
+"pm" = "下午";
+"HUD" = "抬頭顯示";
+"Course" = "方位";
+"Unit" = "速度單位";

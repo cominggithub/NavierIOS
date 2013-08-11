@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *courseELabel;
 @property (weak, nonatomic) IBOutlet UILabel *courseSELabel;
 @property (weak, nonatomic) IBOutlet UILabel *courseSLabel;
+@property (weak, nonatomic) IBOutlet UIView *courseView;
 
 @property (weak, nonatomic) IBOutlet UILabel *clockSecondLabel;
 @property (weak, nonatomic) IBOutlet UILabel *clockHourLabel;
@@ -43,10 +44,14 @@
 @property (nonatomic) double heading;
 @property (strong, nonatomic) UIColor *color;
 
+
 @property (nonatomic) float batteryLife;
 @property (nonatomic) float networkStatus;
 @property (nonatomic) BOOL gpsEnabled;
 @property (nonatomic) CGRect courseLabelRect;
+@property (nonatomic) BOOL isHud;
+@property (nonatomic) BOOL isCourse;
+@property (nonatomic) BOOL isSpeedUnitMph;
 
 - (IBAction)tagAction:(id)sender;
 

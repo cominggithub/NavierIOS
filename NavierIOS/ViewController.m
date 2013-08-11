@@ -28,7 +28,7 @@
 
 -(BOOL) bannerIsVisible
 {
-    return TRUE == ([SystemConfig getBOOLValue:CONFIG_IS_AD] && _bannerIsVisible);
+    return TRUE == ([SystemConfig getBoolValue:CONFIG_IS_AD] && _bannerIsVisible);
 }
 
 - (void)viewDidLoad
@@ -246,7 +246,7 @@
 
 -(void) addBanner:(UIView*) contentView
 {
-    if (FALSE == [SystemConfig getBOOLValue:CONFIG_IS_AD])
+    if (FALSE == [SystemConfig getBoolValue:CONFIG_IS_AD])
         return;
     
     if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)])

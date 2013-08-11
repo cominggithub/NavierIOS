@@ -120,8 +120,8 @@
 {
     if (isShowRouteGuideMenu)
     {
-        routeGuideMenu.hidden = true;
-        isShowRouteGuideMenu = false;
+        routeGuideMenu.hidden   = TRUE;
+        isShowRouteGuideMenu    = FALSE;
     }
 }
 
@@ -201,7 +201,7 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
-    if (YES == [SystemConfig getBOOLValue:CONFIG_IS_DEBUG])
+    if (YES == [SystemConfig getBoolValue:CONFIG_IS_DEBUG])
     {
         [LocationManager startLocationTracking];
     }
@@ -216,7 +216,7 @@
 {
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 
-    if (YES == [SystemConfig getBOOLValue:CONFIG_IS_DEBUG])
+    if (YES == [SystemConfig getBoolValue:CONFIG_IS_DEBUG])
     {
         [LocationManager stopLocationTracking];
     }
@@ -303,29 +303,28 @@
 
     mlogDebug(@"rgb %.2f, %.2f %.2f, alpha:%.2f\n", red, green, blue, alpha);
     
-    SystemConfig.defaultColor = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
-    colorPanel.backgroundColor = SystemConfig.defaultColor;
-    self.guideRouteUIView.color = SystemConfig.defaultColor;
+    [SystemConfig setValue:CONFIG_DEFAULT_COLOR uicolor:[UIColor colorWithRed:red green:green blue:blue alpha:alpha]];
+    colorPanel.backgroundColor  = [SystemConfig getUIColorValue:CONFIG_DEFAULT_COLOR];
+    self.guideRouteUIView.color = [SystemConfig getUIColorValue:CONFIG_DEFAULT_COLOR];
 }
 
 -(void) updateColorFromConfig
 {
-    int numComponents = CGColorGetNumberOfComponents([SystemConfig.defaultColor CGColor]);
+    UIColor* color;
+    CGFloat red;
+    CGFloat green;
+    CGFloat blue;
+    CGFloat alpha;
+
+    color = [SystemConfig getUIColorValue:CONFIG_DEFAULT_COLOR];
+    [color getRed:&red green:&green blue:&blue alpha:&alpha];
     
-    if (numComponents == 4)
-    {
-        const CGFloat *components = CGColorGetComponents([SystemConfig.defaultColor CGColor]);
-        CGFloat red = components[0];
-        CGFloat green = components[1];
-        CGFloat blue = components[2];
-        CGFloat alpha = components[3];
-        
-        redTextField.text   = [NSString stringWithFormat:@"%.0f", red*255];
-        greenTextField.text = [NSString stringWithFormat:@"%.0f", green*255];
-        blueTextField.text  = [NSString stringWithFormat:@"%.0f", blue*255];
-        alphaTextField.text = [NSString stringWithFormat:@"%.0f", alpha*255];
-        
-        colorPanel.backgroundColor = SystemConfig.defaultColor;
-    }
+    redTextField.text   = [NSString stringWithFormat:@"%.0f", red*255];
+    greenTextField.text = [NSString stringWithFormat:@"%.0f", green*255];
+    blueTextField.text  = [NSString stringWithFormat:@"%.0f", blue*255];
+    alphaTextField.text = [NSString stringWithFormat:@"%.0f", alpha*255];
+    
+    colorPanel.backgroundColor = [SystemConfig getUIColorValue:CONFIG_DEFAULT_COLOR];
+ 
 }
 @end
