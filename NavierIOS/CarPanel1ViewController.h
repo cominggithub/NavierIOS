@@ -40,7 +40,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *threeGImage;
 @property (weak, nonatomic) IBOutlet UIImageView *gpsImage;
 @property (weak, nonatomic) IBOutlet UIImageView *courseFrameImage;
-@property (nonatomic) int speed;
+@property (nonatomic) double speed;
 @property (nonatomic) double heading;
 @property (strong, nonatomic) UIColor *color;
 
@@ -55,7 +55,8 @@
 
 - (IBAction)tagAction:(id)sender;
 
--(void) locationUpdate:(CLLocationCoordinate2D) location speed:(int) speed distance:(int) distance heading:(double) heading;
+-(void) locationUpdate:(CLLocationCoordinate2D) location speed:(float) speed distance:(int) distance heading:(double) heading;
+
 -(void) lostLocationUpdate;
 
 

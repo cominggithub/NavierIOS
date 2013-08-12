@@ -69,7 +69,7 @@
 								</object>
 								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">icon.png</string>
+									<string key="NSResourceName">Icon.png</string>
 								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="975133862">
 									<int key="type">2</int>
@@ -198,6 +198,7 @@
 								<string key="NSFrame">{{235, 204}, {36, 36}}</string>
 								<reference key="NSSuperview" ref="344809585"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -594,7 +595,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">icon.png</string>
+			<string key="NS.key.0">Icon.png</string>
 			<string key="NS.object.0">{57, 57}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>

@@ -138,6 +138,12 @@
     
     [self updateUILanguage];
     [self updateUIFromConfig];
+    
+    logf(MS_TO_MPH(5.1));
+    logf(MS_TO_KMH(5.1));
+    
+    self.speed = MS_TO_KMH(5.1);
+    
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -608,7 +614,7 @@
     
 }
 
--(void) setSpeed:(int)speed
+-(void) setSpeed:(double)speed
 {
     if (speed < 0)
         speed = 0;
@@ -617,15 +623,22 @@
         speed = 999;
     
     _speed = speed;
-    _speedLabel.text = [NSString stringFromInt:_speed];
+    _speedLabel.text = [NSString stringWithFormat:@"%.0f", speed];
 }
 
 
 #pragma mark - System Monitor
 
--(void) locationUpdate:(CLLocationCoordinate2D) location speed:(int) speed distance:(int) distance heading:(double) heading
+-(void) locationUpdate:(CLLocationCoordinate2D) location speed:(float) speed distance:(int) distance heading:(double) heading
 {
-    self.speed      = speed;
+    if (YES == _isSpeedUnitMph)
+    {
+        self.speed = MS_TO_MPH(speed);
+    }
+    else
+    {
+        self.speed = MS_TO_KMH(speed);
+    }
     //    self.heading    = heading;
     
 }
