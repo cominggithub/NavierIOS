@@ -83,7 +83,7 @@
     }
     else if ( p.placeType == kPlaceType_Home)
     {
-        marker.icon     = [UIImage imageNamed:@"home_marker.png"];
+        marker.icon     = [UIImage imageNamed:@"place_marker_home.png"];
     }
     else if ( p.placeType == kPlaceType_Office )
     {
@@ -91,15 +91,15 @@
     }
     else if ( p.placeType == kPlaceType_Favor )
     {
-        marker.icon     = [UIImage imageNamed:@"favor_marker.png"];
+        marker.icon     = [UIImage imageNamed:@"place_marker_favor.png"];
     }
     else if (p.placeRouteType == kPlaceType_CurrentPlace)
     {
-        marker.icon     = [UIImage imageNamed:@"Current Location.png"];
+        marker.icon     = [UIImage imageNamed:@"place_marker_normal.png"];
     }
     else
     {
-        marker.icon     = [UIImage imageNamed:@"default_marker"];
+        marker.icon     = [UIImage imageNamed:@"place_marker_normal"];
     }
     
     marker.map      = mapView;

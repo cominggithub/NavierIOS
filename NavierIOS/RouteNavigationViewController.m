@@ -26,12 +26,9 @@
     UIButton *routeGuideMenuHUDButton;
     UIButton *routeGuideMenuSettingButton;
     
-    UITextField *redTextField;
-    UITextField *greenTextField;
-    UITextField *blueTextField;
-    UITextField *alphaTextField;
+    UITextField *rgbHexCodeTextField;
     UIView *colorPanel;
-    
+    int routeTextIndex;
 }
 
 -(void) addRouteGuideMenu
@@ -76,34 +73,21 @@
                                  action:@selector(pressSettingButton:)
                        forControlEvents:UIControlEventTouchUpInside];
    
-    redTextField    = (UITextField *)[routeGuideMenu viewWithTag:101];
-    greenTextField  = (UITextField *)[routeGuideMenu viewWithTag:102];
-    blueTextField   = (UITextField *)[routeGuideMenu viewWithTag:103];
-    alphaTextField  = (UITextField *)[routeGuideMenu viewWithTag:104];
+    rgbHexCodeTextField    = (UITextField *)[routeGuideMenu viewWithTag:101];
+
     colorPanel  = (UIView *)[routeGuideMenu viewWithTag:105];
     
-    redTextField.delegate       = self;
-    greenTextField.delegate     = self;
-    blueTextField.delegate      = self;
-    alphaTextField.delegate     = self;    
-    
-    
-    [redTextField addTarget:self
-                     action:@selector(beginShowKeyboard:)
-           forControlEvents:UIControlEventEditingDidBegin];
-    
-    [greenTextField addTarget:self
-                     action:@selector(beginShowKeyboard:)
-           forControlEvents:UIControlEventEditingDidBegin];
-    
-    [blueTextField addTarget:self
-                     action:@selector(beginShowKeyboard:)
-           forControlEvents:UIControlEventEditingDidBegin];
-    
-    [alphaTextField addTarget:self
-                     action:@selector(beginShowKeyboard:)
-           forControlEvents:UIControlEventEditingDidBegin];
+    rgbHexCodeTextField.delegate       = self;
 
+    [rgbHexCodeTextField addTarget:self
+                     action:@selector(beginShowKeyboard:)
+           forControlEvents:UIControlEventEditingDidBegin];
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(updateColorFromUI)
+     name:UITextFieldTextDidChangeNotification
+     object:rgbHexCodeTextField];
     
     routeGuideMenu.hidden = true;
   
@@ -129,6 +113,7 @@
 {
     isShowRouteGuideMenu    = FALSE;
     _isShowKeyboard         = FALSE;
+    routeTextIndex          = 0;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -172,7 +157,7 @@
 -(IBAction) pressHUDButton:(id) sender
 {
     [self hideRouteGuideMenu];
-    [self.guideRouteUIView setHUD];
+    self.guideRouteUIView.isHud = !self.guideRouteUIView.isHud;
 }
 
 -(IBAction) pressSettingButton:(id) sender
@@ -201,10 +186,25 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+
+    self.guideRouteUIView.color = [SystemConfig getUIColorValue:CONFIG_RN1_COLOR];
+    
     if (YES == [SystemConfig getBoolValue:CONFIG_IS_DEBUG])
     {
+        self.textButton.hidden = NO;
+        self.autoButton.hidden = NO;
+        self.stepButton.hidden = NO;
+        
         [LocationManager startLocationTracking];
     }
+    else
+    {
+        self.textButton.hidden = YES;
+        self.autoButton.hidden = YES;
+        self.stepButton.hidden = YES;
+    }
+    
+    [self.guideRouteUIView active];
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -214,13 +214,15 @@
 
 -(void) viewWillDisappear:(BOOL)animated
 {
+    [self.guideRouteUIView deactive];
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 
     if (YES == [SystemConfig getBoolValue:CONFIG_IS_DEBUG])
     {
         [LocationManager stopLocationTracking];
     }
-    
+
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -232,17 +234,6 @@
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return toInterfaceOrientation == UIInterfaceOrientationLandscapeRight;
-}
-
-- (IBAction)updateButtonClick:(id)sender
-{
-    
-
-}
-
-- (void)handleNotification:(NSNotification*)note
-{
-    
 }
 
 -(void) showRouteGuideMenu
@@ -261,10 +252,8 @@
     if (YES == _isShowKeyboard)
     {
         _isShowKeyboard = NO;
-        [redTextField resignFirstResponder];
-        [greenTextField resignFirstResponder];
-        [blueTextField resignFirstResponder];
-        [alphaTextField resignFirstResponder];
+        [rgbHexCodeTextField resignFirstResponder];
+
         [self updateColorFromUI];
         
         return;
@@ -283,29 +272,38 @@
 - (void)viewDidUnload {
     [self setAutoButton:nil];
     [self setGuideRouteUIView:nil];
+    [self setStepButton:nil];
+    [self setTextButton:nil];
     [super viewDidUnload];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    [self updateColorFromUI];
     [textField resignFirstResponder];
     return YES;
 }
 
+- (void)controlTextDidChange:(NSNotification *)notification
+{
+    if ([notification object] == rgbHexCodeTextField)
+    {
+        [self updateColorFromUI];
+    }
+}
+
 -(void) updateColorFromUI
 {
-    float red, green, blue, alpha;
+    UIColor *newColor;
     
-    red     = [redTextField.text floatValue]/255.0;
-    green   = [greenTextField.text floatValue]/255.0;
-    blue    = [blueTextField.text floatValue]/255.0;
-    alpha   = [alphaTextField.text floatValue]/255.0;
-
-    mlogDebug(@"rgb %.2f, %.2f %.2f, alpha:%.2f\n", red, green, blue, alpha);
+    newColor = [UIColor colorWithRGBHexCode:rgbHexCodeTextField.text];
     
-    [SystemConfig setValue:CONFIG_DEFAULT_COLOR uicolor:[UIColor colorWithRed:red green:green blue:blue alpha:alpha]];
-    colorPanel.backgroundColor  = [SystemConfig getUIColorValue:CONFIG_DEFAULT_COLOR];
-    self.guideRouteUIView.color = [SystemConfig getUIColorValue:CONFIG_DEFAULT_COLOR];
+    if (nil != newColor)
+    {
+        [SystemConfig setValue:CONFIG_RN1_COLOR uicolor:newColor];
+        colorPanel.backgroundColor      = [SystemConfig getUIColorValue:CONFIG_RN1_COLOR];
+        self.guideRouteUIView.color     = [SystemConfig getUIColorValue:CONFIG_RN1_COLOR];
+    }
 }
 
 -(void) updateColorFromConfig
@@ -316,15 +314,16 @@
     CGFloat blue;
     CGFloat alpha;
 
-    color = [SystemConfig getUIColorValue:CONFIG_DEFAULT_COLOR];
+    color = [SystemConfig getUIColorValue:CONFIG_RN1_COLOR];
     [color getRed:&red green:&green blue:&blue alpha:&alpha];
     
-    redTextField.text   = [NSString stringWithFormat:@"%.0f", red*255];
-    greenTextField.text = [NSString stringWithFormat:@"%.0f", green*255];
-    blueTextField.text  = [NSString stringWithFormat:@"%.0f", blue*255];
-    alphaTextField.text = [NSString stringWithFormat:@"%.0f", alpha*255];
-    
-    colorPanel.backgroundColor = [SystemConfig getUIColorValue:CONFIG_DEFAULT_COLOR];
+    rgbHexCodeTextField.text = [color getRGBHexCode];
+    colorPanel.backgroundColor = [SystemConfig getUIColorValue:CONFIG_RN1_COLOR];
  
+}
+- (IBAction)pressTextButton:(id)sender
+{
+    self.guideRouteUIView.messageBoxText = [SystemManager getLanguageString:[NSString stringWithFormat:@"routeGuideText%d", routeTextIndex++]];
+    routeTextIndex = routeTextIndex%10;
 }
 @end

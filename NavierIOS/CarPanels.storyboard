@@ -112,7 +112,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="110" contentMode="left" text="am" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Eh1-S6-O6P">
-                                        <rect key="frame" x="498" y="-10" width="98" height="47"/>
+                                        <rect key="frame" x="502" y="3" width="40" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="25"/>
                                         <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -272,13 +272,7 @@
         <class className="CarPanel1ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CarPanel1ViewController.h"/>
             <relationships>
-                <relationship kind="action" name="pressColorButton:"/>
-                <relationship kind="action" name="pressHudButton:"/>
-                <relationship kind="action" name="pressKmhButton:"/>
-                <relationship kind="action" name="pressLogoButton:"/>
-                <relationship kind="action" name="pressMphButton:"/>
                 <relationship kind="action" name="tagAction:"/>
-                <relationship kind="action" name="uiValueChanged:"/>
                 <relationship kind="outlet" name="batteryImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="batteryLifeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="clockHourLabel" candidateClass="UILabel"/>
@@ -297,6 +291,7 @@
                 <relationship kind="outlet" name="courseSELabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="courseSLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="courseSWLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="courseView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="courseWLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="gpsImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="networkLabel" candidateClass="UILabel"/>

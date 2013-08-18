@@ -14,6 +14,9 @@
 
     
 }
+@property (weak, nonatomic) IBOutlet UIButton *textButton;
+@property (weak, nonatomic) IBOutlet UIButton *stepButton;
+- (IBAction)pressTextButton:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *autoButton;
 - (IBAction)pressAutoButton:(id)sender;
 - (IBAction)pressStepButton:(id)sender;

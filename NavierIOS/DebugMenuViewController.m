@@ -13,14 +13,15 @@
 
 @interface DebugMenuViewController ()
 {
-    UIView *debugMenuView;
-    UIButton *debugMenuLogoButton;
-    UISwitch *debugMenuIsDebugSwitch;
-    UISwitch *debugMenuIsAdSwitch;
-    UISwitch *debugMenuIsDebugRouteDrawSwitch;
-    UISwitch *debugMenuIsManualPlaceSwitch;
-    UISegmentedControl *debugMenuLanguageSegmentControl;
-    UIPickerView *debugMenuPlacePickerView;
+    UIView *_debugMenuView;
+    UIButton *_debugMenuLogoButton;
+    UISwitch *_debugMenuIsDebugSwitch;
+    UISwitch *_debugMenuIsAdSwitch;
+    UISwitch *_debugMenuIsDebugRouteDrawSwitch;
+    UISwitch *_debugMenuIsManualPlaceSwitch;
+    UISwitch *_debugMenuIsSpeechSwitch;
+    UISegmentedControl *_debugMenuLanguageSegmentControl;
+    UIPickerView *_debugMenuPlacePickerView;
     
     
 }
@@ -32,50 +33,34 @@
 {
 
     NSArray *xibContents                = [[NSBundle mainBundle] loadNibNamed:@"DebugMenu" owner:self options:nil];
-    debugMenuView                       = [xibContents lastObject];
-    debugMenuLogoButton                 = (UIButton *)          [debugMenuView viewWithTag:1  ];
-    debugMenuIsDebugSwitch              = (UISwitch *)          [debugMenuView viewWithTag:101];
-    debugMenuIsAdSwitch                 = (UISwitch *)          [debugMenuView viewWithTag:102];
-    debugMenuIsDebugRouteDrawSwitch     = (UISwitch *)          [debugMenuView viewWithTag:103];
-    debugMenuLanguageSegmentControl     = (UISegmentedControl *)[debugMenuView viewWithTag:104];
-    debugMenuIsManualPlaceSwitch        = (UISwitch *)          [debugMenuView viewWithTag:105];
-    debugMenuPlacePickerView            = (UIPickerView *)      [debugMenuView viewWithTag:106];
     
-    [debugMenuLogoButton addTarget:self
+    _debugMenuView                       = [xibContents lastObject];
+    _debugMenuLogoButton                 = (UIButton *)          [_debugMenuView viewWithTag:1  ];
+    _debugMenuIsDebugSwitch              = (UISwitch *)          [_debugMenuView viewWithTag:101];
+    _debugMenuIsAdSwitch                 = (UISwitch *)          [_debugMenuView viewWithTag:102];
+    _debugMenuIsDebugRouteDrawSwitch     = (UISwitch *)          [_debugMenuView viewWithTag:103];
+    _debugMenuLanguageSegmentControl     = (UISegmentedControl *)[_debugMenuView viewWithTag:104];
+    _debugMenuIsManualPlaceSwitch        = (UISwitch *)          [_debugMenuView viewWithTag:105];
+    _debugMenuPlacePickerView            = (UIPickerView *)      [_debugMenuView viewWithTag:106];
+    _debugMenuIsSpeechSwitch              = (UISwitch *)          [_debugMenuView viewWithTag:107];
+    
+    [_debugMenuLogoButton addTarget:self
                             action:@selector(pressLogoButton:)
                   forControlEvents:UIControlEventTouchUpInside];
     
-    [debugMenuIsDebugSwitch             addTarget:self action:@selector(uiValueChanged:) forControlEvents:UIControlEventValueChanged];
-    [debugMenuIsAdSwitch                addTarget:self action:@selector(uiValueChanged:) forControlEvents:UIControlEventValueChanged];
-    [debugMenuIsDebugRouteDrawSwitch    addTarget:self action:@selector(uiValueChanged:) forControlEvents:UIControlEventValueChanged];
-    [debugMenuLanguageSegmentControl    addTarget:self action:@selector(uiValueChanged:) forControlEvents:UIControlEventValueChanged];
-    [debugMenuIsManualPlaceSwitch       addTarget:self action:@selector(uiValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [_debugMenuIsDebugSwitch             addTarget:self action:@selector(uiValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [_debugMenuIsAdSwitch                addTarget:self action:@selector(uiValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [_debugMenuIsDebugRouteDrawSwitch    addTarget:self action:@selector(uiValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [_debugMenuLanguageSegmentControl    addTarget:self action:@selector(uiValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [_debugMenuIsManualPlaceSwitch       addTarget:self action:@selector(uiValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [_debugMenuIsSpeechSwitch            addTarget:self action:@selector(uiValueChanged:) forControlEvents:UIControlEventValueChanged];
 
-    debugMenuPlacePickerView.delegate    = self;
-    debugMenuPlacePickerView.dataSource  = self;
+    _debugMenuPlacePickerView.delegate    = self;
+    _debugMenuPlacePickerView.dataSource  = self;
     
-    debugMenuView.frame = self.view.frame;
-    NSDictionary *views = NSDictionaryOfVariableBindings(debugMenuView);
+//    _debugMenuView.frame = self.view.frame;
     
-    [self.view addSubview:debugMenuView];
-    
-    [debugMenuView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    [self.view addConstraints:
-     [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[debugMenuView]|"
-                                             options:0
-                                             metrics:nil
-                                               views:views]];
-
-
-    [self.view addConstraints:
-     [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[debugMenuView]|"
-                                             options:0
-                                             metrics:nil
-                                               views:views]];
-    
-
-    
+    [self.view addSubview:_debugMenuView];
         
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -107,7 +92,6 @@
 
 -(IBAction) pressLogoButton:(id)sender
 {
-    logfn();
     [self dismissModalViewControllerAnimated:YES];
 }
 
@@ -115,22 +99,23 @@
 -(void) saveConfigFromUI
 {
 
-    [LocationManager setCurrentManualPlace:[LocationManager getManualPlaceByIndex:[debugMenuPlacePickerView selectedRowInComponent:0]]];
+    [LocationManager setCurrentManualPlace:[LocationManager getManualPlaceByIndex:[_debugMenuPlacePickerView selectedRowInComponent:0]]];
 
-    [SystemConfig setValue:CONFIG_IS_DEBUG BOOL:debugMenuIsDebugSwitch.on];
-    [SystemConfig setValue:CONFIG_IS_AD BOOL:debugMenuIsAdSwitch.on];
-    [SystemConfig setValue:CONFIG_IS_DEBUG_ROUTE_DRAW BOOL:debugMenuIsDebugRouteDrawSwitch.on];
-    [SystemConfig setValue:CONFIG_IS_MANUAL_PLACE BOOL:debugMenuIsManualPlaceSwitch.on];
+    [SystemConfig setValue:CONFIG_IS_DEBUG BOOL:_debugMenuIsDebugSwitch.on];
+    [SystemConfig setValue:CONFIG_IS_AD BOOL:_debugMenuIsAdSwitch.on];
+    [SystemConfig setValue:CONFIG_IS_DEBUG_ROUTE_DRAW BOOL:_debugMenuIsDebugRouteDrawSwitch.on];
+    [SystemConfig setValue:CONFIG_IS_MANUAL_PLACE BOOL:_debugMenuIsManualPlaceSwitch.on];
+    [SystemConfig setValue:CONFIG_IS_SPEECH BOOL:_debugMenuIsSpeechSwitch.on];
 
-    
 }
 
 -(void) updateUIFromConfig
 {
-    debugMenuIsDebugSwitch.on           = [SystemConfig getBoolValue:CONFIG_IS_DEBUG];
-    debugMenuIsAdSwitch.on              = [SystemConfig getBoolValue:CONFIG_IS_AD];
-    debugMenuIsDebugRouteDrawSwitch.on  = [SystemConfig getBoolValue:CONFIG_IS_DEBUG_ROUTE_DRAW];
-    debugMenuIsManualPlaceSwitch.on     = [SystemConfig getBoolValue:CONFIG_IS_MANUAL_PLACE];
+    _debugMenuIsDebugSwitch.on           = [SystemConfig getBoolValue:CONFIG_IS_DEBUG];
+    _debugMenuIsAdSwitch.on              = [SystemConfig getBoolValue:CONFIG_IS_AD];
+    _debugMenuIsDebugRouteDrawSwitch.on  = [SystemConfig getBoolValue:CONFIG_IS_DEBUG_ROUTE_DRAW];
+    _debugMenuIsManualPlaceSwitch.on     = [SystemConfig getBoolValue:CONFIG_IS_MANUAL_PLACE];
+    _debugMenuIsSpeechSwitch.on          = [SystemConfig getBoolValue:CONFIG_IS_SPEECH];
     
 }
 
