@@ -325,5 +325,8 @@
 {
     self.guideRouteUIView.messageBoxText = [SystemManager getLanguageString:[NSString stringWithFormat:@"routeGuideText%d", routeTextIndex++]];
     routeTextIndex = routeTextIndex%10;
+    
+    if (routeTextIndex == 0)
+        self.guideRouteUIView.messageBoxText = @"";
 }
 @end
