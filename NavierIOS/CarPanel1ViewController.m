@@ -121,39 +121,17 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
-    self.batteryLife    = [SystemManager getBatteryLife];
-    self.networkStatus  = [SystemManager getNetworkStatus];
-    self.speed          = 0;
-    
-    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
-    [SystemManager addDelegate:self];
-    [LocationManager addDelegate:self];
-    [LocationManager startLocationTracking];
-    
-    [[NSNotificationCenter defaultCenter]
-     postNotificationName:UIDeviceBatteryLevelDidChangeNotification
-     object:self];
-    
-    [self updateUILanguage];
-    [self updateUIFromConfig];
-    
-    logf(MS_TO_MPH(5.1));
-    logf(MS_TO_KMH(5.1));
-    
-    self.speed = MS_TO_KMH(5.1);
+
     
 }
 
 -(void) viewWillDisappear:(BOOL)animated
 {
-    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
-    [SystemManager removeDelegate:self];
-    [LocationManager removeDelegate:self];
-    [LocationManager stopLocationTracking];
+    [self inactive];
 }
 -(void) viewDidAppear:(BOOL)animated
 {
-
+    [self active];
 }
 
 - (void)didReceiveMemoryWarning
@@ -174,6 +152,37 @@
     }
 }
 
+-(void) active
+{
+    self.batteryLife    = [SystemManager getBatteryLife];
+    self.networkStatus  = [SystemManager getNetworkStatus];
+    self.speed          = 0;
+    
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    [SystemManager addDelegate:self];
+    [LocationManager addDelegate:self];
+    [LocationManager startLocationTracking];
+    
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:UIDeviceBatteryLevelDidChangeNotification
+     object:self];
+    
+    [self updateUILanguage];
+    [self updateUIFromConfig];
+    
+    self.speed = MS_TO_KMH(5.1);
+    self.debugMsgLabel.hidden = ![SystemConfig getBoolValue:CONFIG_IS_DEBUG];
+    
+}
+
+-(void) inactive
+{
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
+    [SystemManager removeDelegate:self];
+    [LocationManager removeDelegate:self];
+    [LocationManager stopLocationTracking];
+    
+}
 - (void)viewDidUnload
 {
     [self setContentView:nil];
@@ -202,6 +211,7 @@
     [self setNetworkLabel:nil];
     [self setContentView:nil];
     [self setCourseView:nil];
+    [self setDebugMsgLabel:nil];
     [super viewDidUnload];
 }
 
@@ -620,6 +630,11 @@
     if (speed > 999)
         speed = 999;
     
+    if (isnan(speed))
+    {
+        speed = 0;
+    }
+    
     _speed = speed;
     _speedLabel.text = [NSString stringWithFormat:@"%.0f", speed];
 }
@@ -627,7 +642,7 @@
 
 #pragma mark - System Monitor
 
--(void) locationUpdate:(CLLocationCoordinate2D) location speed:(float) speed distance:(int) distance heading:(double) heading
+-(void) locationUpdate:(CLLocationCoordinate2D) location speed:(double) speed distance:(int) distance heading:(double) heading
 {
     if (YES == _isSpeedUnitMph)
     {
@@ -638,6 +653,13 @@
         self.speed = MS_TO_KMH(speed);
     }
     //    self.heading    = heading;
+    
+    self.debugMsgLabel.text = [NSString stringWithFormat:@"%.8f, %.8f, %.1f, %.1f",
+                               location.latitude,
+                               location.longitude,
+                               speed,
+                               heading
+                               ];
     
 }
 

@@ -161,6 +161,13 @@
                                         <rect key="frame" x="150" y="8" width="27" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3f8-4X-h5p">
+                                        <rect key="frame" x="9" y="299" width="550" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -193,6 +200,7 @@
                         <outlet property="courseSWLabel" destination="Sap-EI-Wzd" id="YbB-5H-o1V"/>
                         <outlet property="courseView" destination="2Av-CB-s8h" id="vrv-4C-PZu"/>
                         <outlet property="courseWLabel" destination="wpj-2i-7sj" id="T0s-Xw-6sm"/>
+                        <outlet property="debugMsgLabel" destination="3f8-4X-h5p" id="GU2-zk-A68"/>
                         <outlet property="gpsImage" destination="PAs-Sc-5Sh" id="3fM-L4-JCx"/>
                         <outlet property="networkLabel" destination="hUM-Qw-TSv" id="wI3-ND-NPS"/>
                         <outlet property="speedLabel" destination="AAi-3I-fyF" id="aS2-yO-12b"/>
@@ -272,6 +280,12 @@
         <class className="CarPanel1ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CarPanel1ViewController.h"/>
             <relationships>
+                <relationship kind="action" name="pressColorButton:"/>
+                <relationship kind="action" name="pressHudButton:"/>
+                <relationship kind="action" name="pressKmhButton:"/>
+                <relationship kind="action" name="pressLogoButton:"/>
+                <relationship kind="action" name="pressMphButton:"/>
+                <relationship kind="action" name="switchValueChanged:"/>
                 <relationship kind="action" name="tagAction:"/>
                 <relationship kind="outlet" name="batteryImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="batteryLifeLabel" candidateClass="UILabel"/>
@@ -293,6 +307,7 @@
                 <relationship kind="outlet" name="courseSWLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="courseView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="courseWLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="debugMsgLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="gpsImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="networkLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="speedLabel" candidateClass="UILabel"/>

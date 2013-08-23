@@ -11,6 +11,7 @@
 
 
 @interface CarPanel1ViewController : UIViewController<LocationManagerDelegate, SystemManagerDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *debugMsgLabel;
 @property (weak, nonatomic) IBOutlet UILabel *networkLabel;
 @property (weak, nonatomic) IBOutlet UILabel *batteryLifeLabel;
 @property (weak, nonatomic) IBOutlet UIView *courseLabelView;
@@ -56,7 +57,7 @@
 
 - (IBAction)tagAction:(id)sender;
 
--(void) locationUpdate:(CLLocationCoordinate2D) location speed:(float) speed distance:(int) distance heading:(double) heading;
+-(void) locationUpdate:(CLLocationCoordinate2D) location speed:(double) speed distance:(int) distance heading:(double) heading;
 
 -(void) lostLocationUpdate;
 

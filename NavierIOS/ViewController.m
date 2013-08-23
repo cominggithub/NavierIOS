@@ -129,9 +129,9 @@
 
 -(void) viewDidAppear:(BOOL)animated
 {
-    [self.carPanel_outer_circle setImageTintColor:[UIColor whiteColor]];
-    [self.carPanel_inner_circle setImageTintColor:[UIColor whiteColor]];
-    [UIAnimation runSpinAnimationOnView:self.carPanel_outer_circle duration:100 rotations:0.01 repeat:100];
+//    [self.carPanel_outer_circle setImageTintColor:[UIColor whiteColor]];
+//    [self.carPanel_inner_circle setImageTintColor:[UIColor whiteColor]];
+//    [UIAnimation runSpinAnimationOnView:self.carPanel_outer_circle duration:100 rotations:0.01 repeat:100];
 
     [UIAnimation runSpinAnimationOnView:self.carPanel_inner_circle duration:100 rotations:0.1 repeat:100];
     
@@ -220,7 +220,7 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-
+#if 0
     NSString *sectionTitle = [self tableView:tableView titleForHeaderInSection:section];
     if (sectionTitle == nil) {
         return nil;
@@ -237,8 +237,40 @@
     
     UIView *view = [[UIView alloc] init];
     [view addSubview:label];
+
     
     return view;
+#endif
+    
+    UIView *view = [[UIView alloc] init];
+    CGRect viewFrame = CGRectMake(0, 0, 24, 22);
+    
+    UIImageView *imgView;
+    
+    switch (section)
+    {
+        case 0:
+            imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"home32.png"]];
+            break;
+        case 1:
+            imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"office32.png"]];
+            break;
+        case 2:
+            imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"favor32.png"]];
+            break;
+        default:
+            break;
+    }
+    
+    imgView.contentMode = UIViewContentModeScaleAspectFit;
+    imgView.frame = viewFrame;
+    
+    [view addSubview:imgView];
+    view.frame = viewFrame;
+    
+
+    return view;
+    
 
 }
 
