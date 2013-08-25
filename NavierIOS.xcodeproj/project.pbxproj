@@ -73,6 +73,10 @@
 		2B6CBFFE16DFAA180095CBD4 /* libNaviUtil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6CBFF916DFAA040095CBD4 /* libNaviUtil.a */; };
 		2B6FCDC0178D9CAF00DCFAAF /* CarPanels.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B6FCDBF178D9CAF00DCFAAF /* CarPanels.storyboard */; };
 		2B76744A175CDD91008E6566 /* RouteNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B767449175CDD91008E6566 /* RouteNavigationViewController.m */; };
+		2B79232F17C9C129009463F8 /* 3g_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B79232B17C9C129009463F8 /* 3g_off.png */; };
+		2B79233017C9C129009463F8 /* 3g_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B79232C17C9C129009463F8 /* 3g_off@2x.png */; };
+		2B79233117C9C129009463F8 /* gps_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B79232D17C9C129009463F8 /* gps_off.png */; };
+		2B79233217C9C129009463F8 /* gps_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B79232E17C9C129009463F8 /* gps_off@2x.png */; };
 		2B792A5617007FC300353349 /* Blue_car.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7929D717007FC300353349 /* Blue_car.png */; };
 		2B792A7117007FC300353349 /* Green_car_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7929F217007FC300353349 /* Green_car_marker.png */; };
 		2B792A7217007FC300353349 /* Green_car_marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7929F317007FC300353349 /* Green_car_marker@2x.png */; };
@@ -250,6 +254,10 @@
 		2B6FCDBF178D9CAF00DCFAAF /* CarPanels.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CarPanels.storyboard; sourceTree = "<group>"; };
 		2B767448175CDD91008E6566 /* RouteNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteNavigationViewController.h; sourceTree = "<group>"; };
 		2B767449175CDD91008E6566 /* RouteNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteNavigationViewController.m; sourceTree = "<group>"; };
+		2B79232B17C9C129009463F8 /* 3g_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3g_off.png; sourceTree = "<group>"; };
+		2B79232C17C9C129009463F8 /* 3g_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3g_off@2x.png"; sourceTree = "<group>"; };
+		2B79232D17C9C129009463F8 /* gps_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gps_off.png; sourceTree = "<group>"; };
+		2B79232E17C9C129009463F8 /* gps_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gps_off@2x.png"; sourceTree = "<group>"; };
 		2B7929D717007FC300353349 /* Blue_car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_car.png; sourceTree = "<group>"; };
 		2B7929F217007FC300353349 /* Green_car_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Green_car_marker.png; sourceTree = "<group>"; };
 		2B7929F317007FC300353349 /* Green_car_marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Green_car_marker@2x.png"; sourceTree = "<group>"; };
@@ -660,6 +668,10 @@
 		2BE15351178ED65000C55363 /* CarPanel */ = {
 			isa = PBXGroup;
 			children = (
+				2B79232B17C9C129009463F8 /* 3g_off.png */,
+				2B79232C17C9C129009463F8 /* 3g_off@2x.png */,
+				2B79232D17C9C129009463F8 /* gps_off.png */,
+				2B79232E17C9C129009463F8 /* gps_off@2x.png */,
 				2BE6DA5317C39C2200DE20E8 /* dashboard@2x.png */,
 				2BE6DA5417C39C2200DE20E8 /* indicator@2x.png */,
 				2BE6DA5517C39C2200DE20E8 /* indicator.png */,
@@ -907,6 +919,10 @@
 				2B5D9A7717C7A57D00A22132 /* button_shop@2x.png in Resources */,
 				2B5D9A7B17C7A67A00A22132 /* main_background.png in Resources */,
 				2B5D9A7C17C7A67A00A22132 /* main_background@2x.png in Resources */,
+				2B79232F17C9C129009463F8 /* 3g_off.png in Resources */,
+				2B79233017C9C129009463F8 /* 3g_off@2x.png in Resources */,
+				2B79233117C9C129009463F8 /* gps_off.png in Resources */,
+				2B79233217C9C129009463F8 /* gps_off@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

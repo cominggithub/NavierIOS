@@ -43,7 +43,6 @@
     
     routeNavigationViewController = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass
                                  ([RouteNavigationViewController class])];
-    [LocationManager startMonitorLocation];
     
 }
 

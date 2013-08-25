@@ -11,6 +11,5 @@
 
 @interface DebugMenuViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource>
 - (IBAction)pressLogoButton:(id)sender;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end

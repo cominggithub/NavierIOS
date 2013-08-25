@@ -8,6 +8,8 @@
 
 #import "CarPanel1ViewController.h"
 #import <NaviUtil/NaviUtil.h>
+#import "ClockView.h"
+#import "SystemStatusView.h"
 
 #define FILE_DEBUG TRUE
 #include <NaviUtil/Log.h>
@@ -17,10 +19,16 @@
     CarPanel1UIView *_carPanel1;
     NSTimer *_redrawTimer;
     int _redrawInterval;
-    NSTimer *_clockTimer;
-    NSDateFormatter *_clockTimerFormater;
+//    NSTimer *_clockTimer;
+//    NSDateFormatter *_clockTimerFormater;
     NSMutableArray *_courseLabelArray;
-    BatteryLifeView *_batteryLifeView;
+    
+//    BatteryLifeView *_batteryLifeView;
+    ClockView *_clockView;
+    SystemStatusView *_systemStatusView;
+    
+    
+    
     float _courseAngleToPixelOffset;
     CGPoint _courseLabelOrigins[8];
     float _courseCenterNOffset;
@@ -61,16 +69,16 @@
     _redrawInterval = 0.5;
     _redrawTimer    = nil;
     _colorButtons   = [[NSMutableArray alloc] initWithCapacity:5];
+
+    [self addUIComponents];
+    
     self.isHud      = FALSE;
+    self.isCourse   = FALSE;
+    self.speed      = 0;
+    
+
     [self addCarPanelMenu];
     [self updateColorFromConfig];
-    
-    if (NO == [SystemConfig getBoolValue:CONFIG_IS_DEBUG])
-    {
-        _networkLabel.hidden        = YES;
-        _batteryLifeLabel.hidden    = YES;
-        
-    }
     
 }
 
@@ -85,17 +93,9 @@
     [self initSelf];
     
     [super viewDidLoad];
-    
-
-    _clockTimerFormater = [[NSDateFormatter alloc] init];
-    [_clockTimerFormater setDateFormat:@"HH:mm:ss"];
-    
-    _clockTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateUI) userInfo:nil repeats:YES];
   
-    [_clockHourLabel    setFont:[UIFont fontWithName:@"JasmineUPC" size:50]];
-    [_clockMinuteLabel  setFont:[UIFont fontWithName:@"JasmineUPC" size:50]];
-    [_clockUnitLabel    setFont:[UIFont fontWithName:@"JasmineUPC" size:25]];
-    [_speedLabel        setFont:[UIFont fontWithName:@"JasmineUPC" size:220]];
+    
+    [_speedLabel        setFont:[UIFont fontWithName:@"JasmineUPC" size:250]];
     [_speedUnitLabel    setFont:[UIFont fontWithName:@"JasmineUPC" size:35]];
     
     _courseLabelArray = [[NSMutableArray alloc] initWithCapacity:8];
@@ -111,9 +111,6 @@
 
     [self updateUILanguageFont:[SystemManager getSystemLanguage]];
     
-    
-    _batteryLifeView = [[BatteryLifeView alloc] initWithFrame:CGRectMake(18, 8, 49, 28)];
-    [self.contentView addSubview:_batteryLifeView];
     
     self.color = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
 	// Do any additional setup after loading the view.
@@ -169,9 +166,10 @@
     
     [self updateUILanguage];
     [self updateUIFromConfig];
-    
-    self.speed = MS_TO_KMH(5.1);
+
     self.debugMsgLabel.hidden = ![SystemConfig getBoolValue:CONFIG_IS_DEBUG];
+    [_clockView active];
+    [_systemStatusView active];
     
 }
 
@@ -182,6 +180,9 @@
     [LocationManager removeDelegate:self];
     [LocationManager stopLocationTracking];
     
+    [_clockView inactive];
+    [_systemStatusView inactive];
+    
 }
 - (void)viewDidUnload
 {
@@ -189,15 +190,7 @@
     [self setSpeedLabel:nil];
     [self setSpeedUnitLabel:nil];
     [self setSpeedUnitLabel:nil];
-    [self setClockUnitLabel:nil];
-    [self setBatteryImage:nil];
-    [self setThreeGImage:nil];
-    [self setGpsImage:nil];
     [self setCourseFrameImage:nil];
-    [self setClockUnitLabel:nil];
-    [self setClockHourLabel:nil];
-    [self setClockMinuteLabel:nil];
-    [self setClockSecondLabel:nil];
     [self setCourseSWLabel:nil];
     [self setCourseWLabel:nil];
     [self setCourseNWLabel:nil];
@@ -207,24 +200,32 @@
     [self setCourseSELabel:nil];
     [self setCourseSLabel:nil];
     [self setCourseLabel:nil];
-    [self setBatteryLifeLabel:nil];
-    [self setNetworkLabel:nil];
     [self setContentView:nil];
     [self setCourseView:nil];
     [self setDebugMsgLabel:nil];
     [super viewDidUnload];
 }
 
+
+
 #pragma mark - Update UI
 
+-(void) addUIComponents
+{
+    
+    _clockView                  = [[ClockView alloc] initWithFrame:CGRectMake(320 + [SystemManager lanscapeScreenRect].size.width - 480, 8, 120, 50)];
+    _systemStatusView           = [[SystemStatusView alloc] initWithFrame:CGRectMake(0, 0, 180, 50)];
+    
+    [self.view addSubview:_clockView];
+    [self.view addSubview:_systemStatusView];
+}
 -(void) updateUILanguage
 {
     _carPanelMenuHudLabel.text      = [SystemManager getLanguageString:@"HUD"];
     _carPanelMenuCourseLabel.text   = [SystemManager getLanguageString:@"Course"];
     _carPanelMenuUnitLabel.text     = [SystemManager getLanguageString:@"Unit"];
-    
-    
 }
+
 -(void) updateUIFromConfig
 {
     _carPanelMenuHudSwitch.on       = [SystemConfig getBoolValue:CONFIG_CP1_IS_HUD];
@@ -309,54 +310,6 @@
         
     }
 }
-
--(void) autoRedrawStart
-{
-    if (nil == _redrawTimer)
-    {
-        _redrawTimer = [NSTimer scheduledTimerWithTimeInterval:_redrawInterval target:self selector:@selector(redrawTimeout) userInfo:nil repeats:YES];
-    }
-}
-
--(void) autoRedrawStop
-{
-    if (nil != _redrawTimer)
-    {
-        [_redrawTimer invalidate];
-        _redrawTimer = nil;
-    }
-}
-
-
--(void) redrawTimeout
-{
-    [_carPanel1 setNeedsDisplay];
-    
-}
-
--(void) updateClock
-{
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[NSDate date]];
-    NSInteger hour      = [components hour];
-    NSInteger minute    = [components minute];
-    
-    if (hour >= 12)
-    {
-        hour -= 12;
-        _clockUnitLabel.text = [SystemManager getLanguageString:@"pm"];
-    }
-    else
-    {
-        _clockUnitLabel.text = [SystemManager getLanguageString:@"am"];
-    }
-    
-    _clockHourLabel.text        = [NSString stringFromInt:hour numOfDigits:2];
-    _clockMinuteLabel.text      = [NSString stringFromInt:minute numOfDigits:2];
-    _clockSecondLabel.hidden    = !_clockSecondLabel.hidden;
-    
-}
-
 
 -(void) placeCourseLabel
 {
@@ -460,42 +413,6 @@
     _courseCutLabel.frame = cutLabelFrame;
 }
 
--(void) updateUI
-{
-    _gpsEnabled = [SystemManager getGpsStatus] > 0;
-    
-    if (NO == _gpsEnabled)
-    {
-        _gpsImage.hidden = !_gpsImage.hidden;
-    }
-    else
-    {
-        _gpsImage.hidden = NO;
-    }
-    
-    if (0 >= _networkStatus)
-    {
-        _threeGImage.hidden = !_threeGImage.hidden;
-    }
-    else
-    {
-        _threeGImage.hidden = NO;
-    }
-    
-    [self updateClock];
-    
-    if (YES == [SystemConfig getBoolValue:CONFIG_IS_DEBUG])
-    {
-        if ([SystemManager getThreeGStatus] > 0)
-            self.networkLabel.text = @"3G";
-        else if ([SystemManager getWifiStatus] > 0)
-            self.networkLabel.text = @"Wifi";
-        else
-            self.networkLabel.text = @"None";
-    }
-    
-    self.heading += 0.1;
-}
 
 -(void) updateUILanguageFont:(NSString*) language
 {
@@ -503,7 +420,6 @@
     if ([language isEqualToString:@"zh-Hant"])
     {
         self.speedUnitLabel.font = [self.speedUnitLabel.font newFontsize:15];
-        self.clockUnitLabel.font = [self.speedUnitLabel.font newFontsize:15];
         
         self.courseNELabel.font = [self.courseNELabel.font newFontsize:16];
         self.courseNWLabel.font = [self.courseNWLabel.font newFontsize:16];
@@ -518,6 +434,8 @@
 {
     _isCourse = isCourse;
     _courseView.hidden = !_isCourse;
+    
+    _courseView.hidden = YES;
 }
 
 -(void) setIsHud:(BOOL)isHud
@@ -540,21 +458,15 @@
     _color                      = color;
     _speedLabel.textColor       = _color;
     _speedUnitLabel.textColor   = _color;
-    _clockHourLabel.textColor   = _color;
-    _clockMinuteLabel.textColor = _color;
-    _clockSecondLabel.textColor = _color;
-    _clockUnitLabel.textColor   = _color;
+    _clockView.color            = _color;
+    _systemStatusView.color     = _color;
     
-    _batteryLifeView.color      = _color;
     
     if ( YES == [SystemConfig getBoolValue:CONFIG_IS_DEBUG])
     {
         _courseCutLabel.textColor   = _color;
     }
     
-    [_batteryImage      setImageTintColor:_color];
-    [_gpsImage          setImageTintColor:_color];
-    [_threeGImage       setImageTintColor:_color];
     [_courseFrameImage  setImageTintColor:_color];
     
     
@@ -564,30 +476,6 @@
     }
     
     [self placeCourseLabel];
-}
-
--(void) setBatteryLife:(float)batteryLife
-{
-    if (batteryLife > 1)
-        batteryLife = 1;
-    
-    if (batteryLife < 0)
-        batteryLife = 0;
-    
-    _batteryLife            = batteryLife;
-    _batteryLifeView.life   = _batteryLife;
-    _batteryLifeLabel.text  = [NSString stringFromInt:(int)(_batteryLife*100)];
-    
-}
-
--(void) setGpsEnabled:(BOOL)gpsEnabled
-{
-    _gpsEnabled = gpsEnabled;
-}
-
--(void) setNetworkStatus:(float)networkStatus
-{
-    _networkStatus = networkStatus;
 }
 
 -(void) setIsSpeedUnitMph:(BOOL)isSpeedUnitMph
@@ -669,16 +557,6 @@
     
 }
 
--(void) networkStatusChangeWifi:(float) wifiStatus threeG:(float) threeGStatus
-{
-    self.networkStatus = wifiStatus + threeGStatus;
-}
-
-
--(void) batteryStatusChange:(float) status
-{
-    self.batteryLife = status;
-}
 
 #pragma mark - Car Panel Menu
 

@@ -174,55 +174,33 @@
 {
     self.startPlace = startPlace;
     self.endPlace   = endPlace;
+    
+    [self.guideRouteUIView startRouteNavigationFrom:self.startPlace To:self.endPlace];
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initSelf];
     [self addRouteGuideMenu];
     
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
-    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
-
-    self.guideRouteUIView.color = [SystemConfig getUIColorValue:CONFIG_RN1_COLOR];
-    
-    if (YES == [SystemConfig getBoolValue:CONFIG_IS_DEBUG])
-    {
-        self.textButton.hidden = NO;
-        self.autoButton.hidden = NO;
-        self.stepButton.hidden = NO;
-        
-        [LocationManager startLocationTracking];
-    }
-    else
-    {
-        self.textButton.hidden = YES;
-        self.autoButton.hidden = YES;
-        self.stepButton.hidden = YES;
-    }
-    
-    [self.guideRouteUIView active];
+    [self active];
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
-    [self.guideRouteUIView startRouteNavigationFrom:self.startPlace To:self.endPlace];
+ 
 }
 
 -(void) viewWillDisappear:(BOOL)animated
 {
-    [self.guideRouteUIView deactive];
-    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
-
-    if (YES == [SystemConfig getBoolValue:CONFIG_IS_DEBUG])
-    {
-        [LocationManager stopLocationTracking];
-    }
-
-
+ 
+    [self inactive];
 }
 
 - (void)didReceiveMemoryWarning
@@ -270,10 +248,13 @@
 }
 
 - (void)viewDidUnload {
+    
+
     [self setAutoButton:nil];
     [self setGuideRouteUIView:nil];
     [self setStepButton:nil];
     [self setTextButton:nil];
+
     [super viewDidUnload];
 }
 
@@ -328,5 +309,57 @@
     
     if (routeTextIndex == 0)
         self.guideRouteUIView.messageBoxText = @"";
+}
+
+-(void) active
+{
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    
+    self.guideRouteUIView.color = [SystemConfig getUIColorValue:CONFIG_RN1_COLOR];
+    
+    if (YES == [SystemConfig getBoolValue:CONFIG_IS_DEBUG])
+    {
+        self.textButton.hidden = NO;
+        self.autoButton.hidden = NO;
+        self.stepButton.hidden = NO;
+        
+        [LocationManager startLocationTracking];
+    }
+    else
+    {
+        self.textButton.hidden = YES;
+        self.autoButton.hidden = YES;
+        self.stepButton.hidden = YES;
+    }
+    
+    [self.guideRouteUIView active];
+    
+    if (YES == [SystemConfig getBoolValue:CONFIG_IS_DEBUG])
+    {
+        [LocationManager startLocationTracking];
+    }
+    
+    if (YES == [SystemConfig getBoolValue:CONFIG_IS_LOCATION_SIMULATOR])
+    {
+        [LocationManager stopMonitorLocation];
+    }
+    else
+    {
+        [LocationManager startMonitorLocation];
+    }
+    
+}
+
+-(void) inactive
+{
+    [self.guideRouteUIView inactive];
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
+    
+    if (YES == [SystemConfig getBoolValue:CONFIG_IS_DEBUG])
+    {
+        [LocationManager stopLocationTracking];
+    }
+    [LocationManager stopMonitorLocation];
+    
 }
 @end

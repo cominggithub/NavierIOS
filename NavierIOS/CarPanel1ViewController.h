@@ -12,8 +12,6 @@
 
 @interface CarPanel1ViewController : UIViewController<LocationManagerDelegate, SystemManagerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *debugMsgLabel;
-@property (weak, nonatomic) IBOutlet UILabel *networkLabel;
-@property (weak, nonatomic) IBOutlet UILabel *batteryLifeLabel;
 @property (weak, nonatomic) IBOutlet UIView *courseLabelView;
 @property (weak, nonatomic) IBOutlet UILabel *courseCutLabel;
 
@@ -28,18 +26,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *courseSLabel;
 @property (weak, nonatomic) IBOutlet UIView *courseView;
 
-@property (weak, nonatomic) IBOutlet UILabel *clockSecondLabel;
-@property (weak, nonatomic) IBOutlet UILabel *clockHourLabel;
-@property (weak, nonatomic) IBOutlet UILabel *clockMinuteLabel;
-
-@property (weak, nonatomic) IBOutlet UILabel *clockUnitLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UILabel *speedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *speedUnitLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *batteryImage;
-@property (weak, nonatomic) IBOutlet UIImageView *threeGImage;
-@property (weak, nonatomic) IBOutlet UIImageView *gpsImage;
 @property (weak, nonatomic) IBOutlet UIImageView *courseFrameImage;
 @property (nonatomic) CGRect courseLabelRect;
 
