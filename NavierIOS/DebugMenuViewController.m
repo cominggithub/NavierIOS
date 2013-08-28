@@ -21,6 +21,7 @@
     UISwitch *_debugMenuIsManualPlaceSwitch;
     UISwitch *_debugMenuIsSpeechSwitch;
     UISwitch *_debugMenuIsLocationSimulatorSwitch;
+    UISwitch *_debugMenuIsTrackFileSwitch;    
     UISegmentedControl *_debugMenuLanguageSegmentControl;
     UIPickerView *_debugMenuPlacePickerView;
     
@@ -46,6 +47,7 @@
     _debugMenuPlacePickerView            = (UIPickerView *)      [_debugMenuView viewWithTag:106];
     _debugMenuIsSpeechSwitch             = (UISwitch *)          [_debugMenuView viewWithTag:107];
     _debugMenuIsLocationSimulatorSwitch  = (UISwitch *)          [_debugMenuView viewWithTag:108];
+    _debugMenuIsTrackFileSwitch          = (UISwitch *)          [_debugMenuView viewWithTag:109];
     _debugMenuScrollView                 = (UIScrollView *)      [_debugMenuView viewWithTag:200];
 
     [_debugMenuScrollView setContentSize:CGSizeMake(468, 1000)];
@@ -60,7 +62,8 @@
     [_debugMenuLanguageSegmentControl    addTarget:self action:@selector(uiValueChanged:) forControlEvents:UIControlEventValueChanged];
     [_debugMenuIsManualPlaceSwitch       addTarget:self action:@selector(uiValueChanged:) forControlEvents:UIControlEventValueChanged];
     [_debugMenuIsSpeechSwitch            addTarget:self action:@selector(uiValueChanged:) forControlEvents:UIControlEventValueChanged];
-    [_debugMenuIsLocationSimulatorSwitch addTarget:self action:@selector(uiValueChanged:) forControlEvents:UIControlEventValueChanged];    
+    [_debugMenuIsLocationSimulatorSwitch addTarget:self action:@selector(uiValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [_debugMenuIsTrackFileSwitch         addTarget:self action:@selector(uiValueChanged:) forControlEvents:UIControlEventValueChanged];        
 
     _debugMenuPlacePickerView.delegate    = self;
     _debugMenuPlacePickerView.dataSource  = self;
@@ -114,6 +117,7 @@
     [SystemConfig setValue:CONFIG_IS_MANUAL_PLACE BOOL:_debugMenuIsManualPlaceSwitch.on];
     [SystemConfig setValue:CONFIG_IS_SPEECH BOOL:_debugMenuIsSpeechSwitch.on];
     [SystemConfig setValue:CONFIG_IS_LOCATION_SIMULATOR BOOL:_debugMenuIsLocationSimulatorSwitch.on];
+    [SystemConfig setValue:CONFIG_IS_TRACK_FILE BOOL:_debugMenuIsTrackFileSwitch.on];
 
 }
 
@@ -125,6 +129,7 @@
     _debugMenuIsManualPlaceSwitch.on        = [SystemConfig getBoolValue:CONFIG_IS_MANUAL_PLACE];
     _debugMenuIsSpeechSwitch.on             = [SystemConfig getBoolValue:CONFIG_IS_SPEECH];
     _debugMenuIsLocationSimulatorSwitch.on  = [SystemConfig getBoolValue:CONFIG_IS_LOCATION_SIMULATOR];
+    _debugMenuIsTrackFileSwitch.on          = [SystemConfig getBoolValue:CONFIG_IS_TRACK_FILE];    
     
 }
 
