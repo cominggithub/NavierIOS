@@ -102,4 +102,10 @@
 {
     [self dismissModalViewControllerAnimated:true];
 }
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 @end

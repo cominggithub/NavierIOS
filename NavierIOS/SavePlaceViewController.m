@@ -182,4 +182,9 @@
     [self.savePlaceTableView reloadData];
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 @end

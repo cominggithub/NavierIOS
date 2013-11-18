@@ -362,4 +362,10 @@
     [LocationManager stopMonitorLocation];
     
 }
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 @end

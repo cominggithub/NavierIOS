@@ -137,6 +137,11 @@
     [self showAdAnimated:NO];
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 #pragma mark - Table view delegate
 /* for UITableView */
 
