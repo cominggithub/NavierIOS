@@ -14,12 +14,14 @@
 #define FILE_DEBUG TRUE
 #include <NaviUtil/Log.h>
 
+
 @interface GoogleMapUIViewController ()
 {
     NSMutableArray *markerPlaces;
 
     RouteNavigationViewController *routeNavigationViewController;
     BOOL firstLocationUpdate;
+
 
 }
 @end
@@ -34,6 +36,7 @@
     bool isShowMarkMenuFloat;
     UIView *_markMenu;
     UIView *_markMenuFloat;
+    
     NSMutableArray *searchedPlaces;
     Place *selectedPlace;
     Place *currentPlace;
@@ -59,7 +62,45 @@
     SavePlaceViewController *savePlaceViewController;
     SelectPlaceViewController *selectPlaceViewController;
     
+    MapPlaceManager *_mapPlaceManager;
     
+    
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc {
+    if (mapView != nil)
+    {
+        [mapView removeObserver:self
+                     forKeyPath:@"myLocation"
+                        context:NULL];
+    }
+}
+
+- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        
+    }
+    return self;
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
+
+-(BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    
+    return toInterfaceOrientation == UIInterfaceOrientationLandscapeRight;
 }
 
 
@@ -82,6 +123,7 @@
     markerPlaces = [[NSMutableArray alloc] initWithCapacity:0];
     currentPlace = LocationManager.currentPlace;
     
+    _mapPlaceManager = [[MapPlaceManager alloc] init];
     
     [self mapViewInit];
     
@@ -128,20 +170,21 @@
     [self setZoomPanel:nil];
     [super viewDidUnload];
 }
-- (void)didReceiveMemoryWarning
+
+-(void) viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    if(self.placeToSearch != nil && self.placeToSearch.length > 0)
+    {
+        [self searchPlace:self.placeToSearch];
+    }
+    
+    [self mapRefresh];
+    
+    [self showAdAnimated:NO];
+    
 }
 
-- (void)dealloc {
-    if (mapView != nil)
-    {
-        [mapView removeObserver:self
-                  forKeyPath:@"myLocation"
-                     context:NULL];
-    }
-}
+
 
 #pragma  mark - mapView
 
@@ -186,71 +229,26 @@
     [markerPlaces removeAllObjects];
 }
 
--(void) downloadRequestStatusChange: (DownloadRequest*) downloadRequest
+
+-(void) mapRefresh
 {
-    if (nil == downloadRequest)
-        return;
-    if (searchPlaceDownloadRequest == downloadRequest)
-    {
-        [self processSearchPlaceDownloadRequestStatusChange];
-    }
-    else if (routeDownloadRequest == downloadRequest)
-    {
-        [self processRouteDownloadRequestStatusChange];
-    }
-}
-
-
-
--(Place*) getPlaceByGMSMarker:(GMSMarker*) marker
-{
-    if (nil == marker)
-        return nil;
+    [self clearMapAll];
     
-    for (Place *p in markerPlaces)
+    [self updateUserConfiguredLocation];
+    [self addPlaceToMapMaker:currentPlace];
+    
+    for(Place* p in searchedPlaces)
     {
-        if (true == [GeoUtil isCLLocationCoordinate2DEqual:p.coordinate To:marker.position])
-            return p;
+        if (routeStartPlace != p && routeEndPlace != p)
+        {
+            [self addPlaceToMapMaker:p];
+        }
     }
     
+    [self updateRoute];
     
-    return nil;
 }
 
-
-
--(bool) isPlaceInSearchedPlaces:(Place*) place
-{
-    for (Place* p in searchedPlaces)
-    {
-        if ( [p isCoordinateEqualTo:place])
-            return true;
-    }
-    
-    return false;
-}
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        
-    }
-    return self;
-}
-
--(void) moveToCurrentPlace
-{
-    [self moveToPlace:[LocationManager currentPlace]];
-}
-
--(void) moveToPlace:(Place*) place
-{
-    logfn();
-    if (nil != place)
-    {
-        [mapView animateToLocation:place.coordinate];
-    }
-}
 -(void) mapViewInit
 {
 
@@ -293,6 +291,49 @@
     
 }
 
+- (BOOL) mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker
+{
+
+#if 0
+    selectedPlace = [self getPlaceByGMSMarker:marker];
+    [self showMarkMenu];
+//    [self showMarkMenuFloat:];
+    [self updateMarkMenu];
+#endif
+    return NO;
+}
+
+
+- (void)mapView:(GMSMapView *)tmapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
+{
+    CGPoint p;
+    p = [mapView.projection pointForCoordinate:coordinate];
+    
+    p = [tmapView.projection pointForCoordinate:coordinate];
+    
+    [self showMarkMenuFloat:p];
+    
+    if (true == isShowMarkMenu)
+    {
+        [self hideMarkMenu];
+    }
+}
+
+-(void) moveToCurrentPlace
+{
+    [self moveToPlace:[LocationManager currentPlace]];
+}
+
+
+-(void) moveToPlace:(Place*) place
+{
+    if (nil != place)
+    {
+        [mapView animateToLocation:place.coordinate];
+    }
+}
+
+
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change
@@ -304,333 +345,29 @@
         firstLocationUpdate = YES;
         CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
         mapView.camera = [GMSCameraPosition cameraWithTarget:location.coordinate
-                                                         zoom:14];
-    }
-}
-
-- (BOOL) mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker
-{
-    
-    selectedPlace = [self getPlaceByGMSMarker:marker];
-    [self showMarkMenu];
-//    [self showMarkMenuFloat:];
-    [self updateMarkMenu];
-    
-    return NO;
-}
-
-
-
-
-- (void)mapView:(GMSMapView *)tmapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
-{
-    logcoor(coordinate);
-    CGPoint p;
-    p = [mapView.projection pointForCoordinate:coordinate];
-    logpd(p);
-    
-    p = [tmapView.projection pointForCoordinate:coordinate];
-    logpd(p);
-
-    
-    [self showMarkMenuFloat:p];
-    
-    if (true == isShowMarkMenu)
-    {
-        
-        
-        [self hideMarkMenu];
+                                                        zoom:14];
     }
 }
 
 
 
--(void) processRouteDownloadRequestStatusChange
-{
-    bool isFail = true;
-    bool updateStatus = false;
-    /* search place finished */
-    if (routeDownloadRequest.status == kDownloadStatus_Finished)
-    {
-        GoogleJsonStatus status = [GoogleJson getStatus:routeDownloadRequest.filePath];
-        
-        if ( kGoogleJsonStatus_Ok == status)
-        {
-            currentRoute = [Route parseJson:routeDownloadRequest.filePath];
-            [self refresh];
-        }
-        else
-        {
-            updateStatus = true;
-        }
-    }
-    /* search failed */
-    else if(routeDownloadRequest.status == kDownloadStatus_DownloadFail)
-    {
-        updateStatus = true;
-    }
-    
-    if (true == updateStatus && true == isFail)
-    {
-        self.titleLabel.text = [SystemManager getLanguageString:@"Search fail"];
-    }
-}
-
--(void) processSearchPlaceDownloadRequestStatusChange
-{
-    bool isFail = true;
-    bool updateStatus = false;
-    /* search place finished */
-    if(searchPlaceDownloadRequest.status == kDownloadStatus_Finished )
-    {
-        NSArray* places;
-        GoogleJsonStatus status = [GoogleJson getStatus:searchPlaceDownloadRequest.filePath];
-        
-        if ( kGoogleJsonStatus_Ok == status)
-        {
-            places = [Place parseJson:searchPlaceDownloadRequest.filePath];
-            if(places != nil && places.count > 0)
-            {
-                [self updateSearchedPlace:places];
-                isFail = false;
-            }
-        }
-        updateStatus = true;
-    }
-    /* search place failed */
-    else if( searchPlaceDownloadRequest.status == kDownloadStatus_DownloadFail)
-    {
-        updateStatus = true;
-    }
-    
-    if (true == updateStatus && true == isFail)
-    {
-        self.titleLabel.text = [SystemManager getLanguageString:@"Search fail"];
-    }
-}
-
-
--(void) planRoute
-{
-    
-    if (isRouteChanged == true)
-    {
-        if (nil != routeStartPlace && nil != routeEndPlace)
-        {
-            if (![routeStartPlace isCoordinateEqualTo:routeEndPlace])
-            {
-                routeDownloadRequest = [NaviQueryManager
-                                        getRouteDownloadRequestFrom:routeStartPlace.coordinate
-                                        To:routeEndPlace.coordinate];
-                routeDownloadRequest.delegate = self;
-                
-                if ([GoogleJson getStatus:routeDownloadRequest.fileName] != kGoogleJsonStatus_Ok)
-                {
-                    [NaviQueryManager download:routeDownloadRequest];
-                }
-            }
-            
-        }
-    }
-    
-    isRouteChanged = false;
-}
 
 
 
 
--(void) removePlaceFromSearchedPlace:(Place*) placeToRemove
-{
-    int i;
-
-
-    for(i=0; i<searchedPlaces.count; i++)
-    {
-        Place* p = (Place*)[searchedPlaces objectAtIndex:i];
-        if ([placeToRemove isCoordinateEqualTo:p])
-        {
-            [searchedPlaces removeObjectAtIndex:i];
-            i--;
-        }
-    }
-}
-
--(void) refresh
-{
-    [self clearMapAll];
-    
-    [self updateUserConfiguredLocation];
-    [self addPlaceToMapMaker:currentPlace];
-    
-    for(Place* p in searchedPlaces)
-    {
-        if (routeStartPlace != p && routeEndPlace != p)
-        {
-            [self addPlaceToMapMaker:p];
-        }
-    }
-    
-    
-    
-    [self updateRoute];
-    
-}
-
-
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    
-    return toInterfaceOrientation == UIInterfaceOrientationLandscapeRight;
-}
-
-
--(void) searchPlace:(NSString*) place
-{
-    
-    if (nil != place && place.length > 0)
-    {
-        searchPlaceDownloadRequest          = [NaviQueryManager getPlaceDownloadRequest:place];
-        searchPlaceDownloadRequest.delegate = self;
-        [NaviQueryManager download:searchPlaceDownloadRequest];
-        
-        self.titleLabel.text = place;
-    }
-}
-
-
--(void) selectPlace:(Place*) p sender:(SelectPlaceViewController*) s
-{
-    if (nil == p)
-        return;
-    [self refresh];
-    [self moveToPlace:p];
-    
-}
-
-- (void) updateUserConfiguredLocation
-{
-    int i;
-    
-    for(i=0; i<User.homePlaces.count; i++)
-    {
-        [self addPlaceToMapMaker:[User getHomePlaceByIndex:i]];
-        [self removePlaceFromSearchedPlace:[User getHomePlaceByIndex:i]];
-    }
-    
-    for(i=0; i<User.officePlaces.count; i++)
-    {
-        [self addPlaceToMapMaker:[User getOfficePlaceByIndex:i]];
-        [self removePlaceFromSearchedPlace:[User getOfficePlaceByIndex:i]];
-    }
-    
-    for(i=0; i<User.favorPlaces.count; i++)
-    {
-        [self addPlaceToMapMaker:[User getFavorPlaceByIndex:i]];
-        [self removePlaceFromSearchedPlace:[User getFavorPlaceByIndex:i]];
-    }
-}
-
--(void) updateRoute
-{
-    NSArray *routePoints;
-    GMSPolyline *polyLine;
-    GMSMutablePath *path;
-    
-    if (nil != routeStartPlace && currentPlace != routeStartPlace)
-    {
-        [self addPlaceToMapMaker:routeStartPlace];
-    }
-    
-    if (nil != routeEndPlace && currentPlace != routeEndPlace)
-    {
-        [self addPlaceToMapMaker:routeEndPlace];
-    }
-
-    if (nil == currentRoute || nil == routeStartPlace || nil == routeEndPlace)
-    {
-        return;
-    }
-    
-    routePoints             = [currentRoute getRoutePolyLineCLLocation];
-    polyLine                = [[GMSPolyline alloc] init];
-    polyLine.strokeWidth    = 5;
-    polyLine.strokeColor    = [UIColor redColor];
-    path                    = [GMSMutablePath path];
-    
-    for(CLLocation *location in routePoints)
-    {
-        [path addCoordinate:location.coordinate];
-    }
-    
-    polyLine.path       = path;
-    polyLine.geodesic   = NO;
-    polyLine.map        = mapView;
-    
-    
-}
 
 
 
--(void) updateSearchedPlace:(NSArray*) places
-{
-    int i=0;
-    Place* firstPlace = nil;
-    if ( places.count < 1)
-    {
-        self.titleLabel.text = [SystemManager getLanguageString:@"Search fail"];
-    }
-    /* reserve previous search results */
-    else
-    {
-        [searchedPlaces removeAllObjects];
-    }
-    
-    /* only reserve the first three places */
-    for(i=0; i<places.count && i < 3; i++)
-    {
-        Place *p = [places objectAtIndex:i];
-        /* add the first search result no matter what */
-        if (false == [self isPlaceInSearchedPlaces:p])
-        {
-            [searchedPlaces addObject:p];
-            if (nil == firstPlace)
-                firstPlace = p;
-        }
-    }
-    
-    [self refresh];
-    [self moveToPlace:firstPlace];
-}
--(void) viewWillAppear:(BOOL)animated
-{
-    if(self.placeToSearch != nil && self.placeToSearch.length > 0)
-    {
-        [self searchPlace:self.placeToSearch];
-    }
-
-    [self refresh];
-    
-    [self showAdAnimated:NO];
-    
-}
 
 
-- (BOOL)prefersStatusBarHidden
-{
-    return YES;
-}
 
 
--(void) locationUpdate:(CLLocationCoordinate2D) location Speed:(int) speed Distance:(int) distance
-{
-    currentPlace = LocationManager.currentPlace;
-    [self refresh];
-}
 
--(void) lostLocationUpdate
-{
-    
-}
+
+
+
+
+
 
 
 #pragma  mark - Banner
@@ -1121,6 +858,196 @@
 }
 
 #endif
+
+#pragma mark - Operations
+-(void) downloadRequestStatusChange: (DownloadRequest*) downloadRequest
+{
+    if (nil == downloadRequest)
+        return;
+    if (searchPlaceDownloadRequest == downloadRequest)
+    {
+        [self processSearchPlaceDownloadRequestStatusChange];
+    }
+    else if (routeDownloadRequest == downloadRequest)
+    {
+        [self processRouteDownloadRequestStatusChange];
+    }
+}
+
+-(void) processRouteDownloadRequestStatusChange
+{
+    bool isFail = true;
+    bool updateStatus = false;
+    /* search place finished */
+    if (routeDownloadRequest.status == kDownloadStatus_Finished)
+    {
+        GoogleJsonStatus status = [GoogleJson getStatus:routeDownloadRequest.filePath];
+        
+        if ( kGoogleJsonStatus_Ok == status)
+        {
+            currentRoute = [Route parseJson:routeDownloadRequest.filePath];
+            [self mapRefresh];
+        }
+        else
+        {
+            updateStatus = true;
+        }
+    }
+    /* search failed */
+    else if(routeDownloadRequest.status == kDownloadStatus_DownloadFail)
+    {
+        updateStatus = true;
+    }
+    
+    if (true == updateStatus && true == isFail)
+    {
+        self.titleLabel.text = [SystemManager getLanguageString:@"Search fail"];
+    }
+}
+
+-(void) processSearchPlaceDownloadRequestStatusChange
+{
+    bool isFail = true;
+    bool updateStatus = false;
+    /* search place finished */
+    if(searchPlaceDownloadRequest.status == kDownloadStatus_Finished )
+    {
+        NSArray* places;
+        GoogleJsonStatus status = [GoogleJson getStatus:searchPlaceDownloadRequest.filePath];
+        
+        if ( kGoogleJsonStatus_Ok == status)
+        {
+            places = [Place parseJson:searchPlaceDownloadRequest.filePath];
+            if(places != nil && places.count > 0)
+            {
+//                [_mapPlaceManager updateSearchedPlace:places];
+                isFail = false;
+            }
+        }
+        updateStatus = true;
+    }
+    /* search place failed */
+    else if( searchPlaceDownloadRequest.status == kDownloadStatus_DownloadFail)
+    {
+        updateStatus = true;
+    }
+    
+    if (true == updateStatus && true == isFail)
+    {
+        self.titleLabel.text = [SystemManager getLanguageString:@"Search fail"];
+    }
+}
+
+
+-(void) planRoute
+{
+    
+    if (isRouteChanged == true)
+    {
+        if (nil != routeStartPlace && nil != routeEndPlace)
+        {
+            if (![routeStartPlace isCoordinateEqualTo:routeEndPlace])
+            {
+                routeDownloadRequest = [NaviQueryManager
+                                        getRouteDownloadRequestFrom:routeStartPlace.coordinate
+                                        To:routeEndPlace.coordinate];
+                routeDownloadRequest.delegate = self;
+                
+                if ([GoogleJson getStatus:routeDownloadRequest.fileName] != kGoogleJsonStatus_Ok)
+                {
+                    [NaviQueryManager download:routeDownloadRequest];
+                }
+            }
+            
+        }
+    }
+    
+    isRouteChanged = false;
+}
+
+-(void) searchPlace:(NSString*) place
+{
+    
+    if (nil != place && place.length > 0)
+    {
+        searchPlaceDownloadRequest          = [NaviQueryManager getPlaceDownloadRequest:place];
+        searchPlaceDownloadRequest.delegate = self;
+        [NaviQueryManager download:searchPlaceDownloadRequest];
+        
+        self.titleLabel.text = place;
+    }
+}
+
+-(void) selectPlace:(Place*) p sender:(SelectPlaceViewController*) s
+{
+    if (nil == p)
+        return;
+    [self mapRefresh];
+    [self moveToPlace:p];
+    
+}
+
+- (void) updateUserConfiguredLocation
+{
+    int i;
+    
+    for(i=0; i<User.homePlaces.count; i++)
+    {
+        [self addPlaceToMapMaker:[User getHomePlaceByIndex:i]];
+        [self removePlaceFromSearchedPlace:[User getHomePlaceByIndex:i]];
+    }
+    
+    for(i=0; i<User.officePlaces.count; i++)
+    {
+        [self addPlaceToMapMaker:[User getOfficePlaceByIndex:i]];
+        [self removePlaceFromSearchedPlace:[User getOfficePlaceByIndex:i]];
+    }
+    
+    for(i=0; i<User.favorPlaces.count; i++)
+    {
+        [self addPlaceToMapMaker:[User getFavorPlaceByIndex:i]];
+        [self removePlaceFromSearchedPlace:[User getFavorPlaceByIndex:i]];
+    }
+}
+
+-(void) updateRoute
+{
+    NSArray *routePoints;
+    GMSPolyline *polyLine;
+    GMSMutablePath *path;
+    
+    if (nil != routeStartPlace && currentPlace != routeStartPlace)
+    {
+        [self addPlaceToMapMaker:routeStartPlace];
+    }
+    
+    if (nil != routeEndPlace && currentPlace != routeEndPlace)
+    {
+        [self addPlaceToMapMaker:routeEndPlace];
+    }
+    
+    if (nil == currentRoute || nil == routeStartPlace || nil == routeEndPlace)
+    {
+        return;
+    }
+    
+    routePoints             = [currentRoute getRoutePolyLineCLLocation];
+    polyLine                = [[GMSPolyline alloc] init];
+    polyLine.strokeWidth    = 5;
+    polyLine.strokeColor    = [UIColor redColor];
+    path                    = [GMSMutablePath path];
+    
+    for(CLLocation *location in routePoints)
+    {
+        [path addCoordinate:location.coordinate];
+    }
+    
+    polyLine.path       = path;
+    polyLine.geodesic   = NO;
+    polyLine.map        = mapView;
+    
+    
+}
 #pragma  mark - UI Actions
 
 - (IBAction)pressRouteButton:(id)sender
@@ -1190,14 +1117,14 @@
 {
     [self setRouteStart:selectedPlace];
     [self hideMarkMenu];
-    [self refresh];
+    [self mapRefresh];
 }
 
 -(IBAction) pressSetEndButton:(id) sender
 {
     [self setRouteEnd:selectedPlace];
     [self hideMarkMenu];
-    [self refresh];
+    [self mapRefresh];
 }
 
 -(IBAction) pressSaveAsHomeButton:(id) sender
@@ -1216,6 +1143,19 @@
 {
     [self saveAsFavor:selectedPlace];
     [self hideMarkMenu];
+}
+
+#pragma mark - delegates
+
+-(void) locationUpdate:(CLLocationCoordinate2D) location Speed:(int) speed Distance:(int) distance
+{
+    currentPlace = LocationManager.currentPlace;
+    [self mapRefresh];
+}
+
+-(void) lostLocationUpdate
+{
+    
 }
 
 
