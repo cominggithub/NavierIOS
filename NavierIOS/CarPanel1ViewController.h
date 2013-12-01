@@ -47,9 +47,7 @@
 
 - (IBAction)tagAction:(id)sender;
 
--(void) locationUpdate:(CLLocationCoordinate2D) location speed:(double) speed distance:(int) distance heading:(double) heading;
-
--(void) lostLocationUpdate;
+-(void) locationManager:(LocationManager *)locationManager update:(CLLocationCoordinate2D)location speed:(double)speed distance:(int)distance heading:(double)heading;
 
 
 @end

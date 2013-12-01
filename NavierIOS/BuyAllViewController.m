@@ -42,7 +42,7 @@
 }
 - (IBAction)pressLogoButton:(id)sender
 {
-    [self dismissModalViewControllerAnimated:TRUE];
+    [self dismissViewControllerAnimated:TRUE completion:nil];
 }
 
 - (BOOL)prefersStatusBarHidden

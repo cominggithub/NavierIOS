@@ -59,8 +59,8 @@
     [User addPlaceBySectionMode:self.sectionMode section:0 place:self.currentPlace];
     
     [User save];
-    GoogleMapUIViewController* gc = (GoogleMapUIViewController*) self.presentingViewController;
-    [gc removePlaceFromSearchedPlace:self.currentPlace];
+//    GoogleMapUIViewController* gc = (GoogleMapUIViewController*) self.presentingViewController;
+//    [gc removePlaceFromSearchedPlace:self.currentPlace];
     
     [self.savePlaceTableView reloadData];
     
@@ -68,7 +68,7 @@
 
 - (IBAction)pressBackButton:(id)sender
 {
-    [self dismissModalViewControllerAnimated:true];
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

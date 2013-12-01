@@ -151,7 +151,7 @@
 -(IBAction) pressLogoButton:(id) sender
 {
     [self hideRouteGuideMenu];
-    [self dismissModalViewControllerAnimated:true];
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 -(IBAction) pressHUDButton:(id) sender

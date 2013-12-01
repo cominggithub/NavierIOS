@@ -17,53 +17,51 @@
 
 @interface GoogleMapUIViewController ()
 {
-    NSMutableArray *markerPlaces;
 
-    RouteNavigationViewController *routeNavigationViewController;
-    BOOL firstLocationUpdate;
 
 
 }
 @end
 
-
-
 @implementation GoogleMapUIViewController
 {
-    ADBannerView *_adView;
+    ADBannerView *adView;
     int markMenuOffset;
     bool isShowMarkMenu;
     bool isShowMarkMenuFloat;
-    UIView *_markMenu;
-    UIView *_markMenuFloat;
-    
-    NSMutableArray *searchedPlaces;
+    UIView *markMenu;
+    UIView *markMenuFloat;
+
+    RouteNavigationViewController *routeNavigationViewController;
     Place *selectedPlace;
-    Place *currentPlace;
-    Place *routeStartPlace;
-    Place *routeEndPlace;
     
-    Route *currentRoute;
+//    NSMutableArray *markerPlaces;
+    
+
+//    BOOL firstLocationUpdate;
+    
+//    NSMutableArray *searchedPlaces;
+
+//    Place *currentPlace;
+//    Place *routeStartPlace;
+//    Place *routeEndPlace;
+    
+//    Route *currentRoute;
     
     UILabel *markMenuNameLabel;
     UILabel *markMenuSnippetLabel;
-    UIButton *_markMenuSetStartButton;
-    UIButton *_markMenuSetEndButton;
-    UIButton *_markMenuSaveAsHomeButton;
-    UIButton *_markMenuSaveAsOfficeButton;
-    UIButton *_markMenuSaveAsFavorButton;
+    UIButton *markMenuSetStartButton;
+    UIButton *markMenuSetEndButton;
+    UIButton *markMenuSaveAsHomeButton;
+    UIButton *markMenuSaveAsOfficeButton;
+    UIButton *markMenuSaveAsFavorButton;
     
-    GMSMapView *mapView;
-    int zoomLevel;
-    bool isRouteChanged;
-    DownloadRequest *routeDownloadRequest;
-    DownloadRequest *searchPlaceDownloadRequest;
     
     SavePlaceViewController *savePlaceViewController;
     SelectPlaceViewController *selectPlaceViewController;
     
-    MapPlaceManager *_mapPlaceManager;
-    
+    MapManager *mapManager;
+    int zoomLevel;
     
 }
 
@@ -73,20 +71,24 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dealloc {
-    if (mapView != nil)
-    {
-        [mapView removeObserver:self
-                     forKeyPath:@"myLocation"
-                        context:NULL];
-    }
+- (void)dealloc
+{
+    
 }
 
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
+    
+    logfn();
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
+        logfn();
+        self = [super init];
+        if (self)
+        {
+        }
+        logfn();
     }
     return self;
 }
@@ -118,18 +120,13 @@
     
     
     self.view.frame = [SystemManager lanscapeScreenRect];
+
+    /* google map initialization */
+    mapManager                      = [[MapManager alloc] init];
+    mapManager.mapView.frame        = CGRectMake(0, 0, self.googleMapView.frame.size.width, self.googleMapView.frame.size.height);
+    mapManager.mapView.delegate     = self;
+    [self.googleMapView insertSubview:mapManager.mapView atIndex:0];
     
-    
-    markerPlaces = [[NSMutableArray alloc] initWithCapacity:0];
-    currentPlace = LocationManager.currentPlace;
-    
-    _mapPlaceManager = [[MapPlaceManager alloc] init];
-    
-    [self mapViewInit];
-    
-    [self.googleMapView insertSubview:mapView atIndex:0];
-    
-    searchedPlaces = [[NSMutableArray alloc] initWithCapacity:0];
     
     textFont = [UIFont boldSystemFontOfSize:14.0];
     navigationText = [SystemManager getLanguageString:@"Navigate"];
@@ -149,12 +146,10 @@
                                        ([RouteNavigationViewController class])];
     
     selectPlaceViewController.delegate          = self;
-    isRouteChanged = false;
     markMenuOffset = 60;
     
     [self addBanner:self.contentView];
     [self showAdAnimated:NO];
-    [LocationManager addDelegate:self];
     
 }
 
@@ -177,198 +172,10 @@
     {
         [self searchPlace:self.placeToSearch];
     }
-    
-    [self mapRefresh];
-    
+
     [self showAdAnimated:NO];
     
 }
-
-
-
-#pragma  mark - mapView
-
-- (void) addPlaceToMapMaker:(Place*) p
-{
-    GMSMarker *marker;
-    
-    if (nil == p)
-        return;
-    
-    marker          = [[GMSMarker alloc] init];
-    marker.title    = p.name;
-    marker.snippet  = p.address;
-    marker.position = p.coordinate;
-    
-    if ( p.placeType == kPlaceType_Home)
-    {
-        marker.icon     = [UIImage imageNamed:@"place_marker_home_48"];
-    }
-    else if ( p.placeType == kPlaceType_Office )
-    {
-        marker.icon     = [UIImage imageNamed:@"place_marker_office_48"];
-    }
-    else if ( p.placeType == kPlaceType_Favor )
-    {
-        marker.icon     = [UIImage imageNamed:@"place_marker_favor_48"];
-    }
-    else
-    {
-        marker.icon     = [UIImage imageNamed:@"place_marker_normal_48"];
-    }
-    
-    marker.map      = mapView;
-    [markerPlaces addObject:p];
-    
-}
-
-
--(void) clearMapAll
-{
-    [mapView clear];
-    [markerPlaces removeAllObjects];
-}
-
-
--(void) mapRefresh
-{
-    [self clearMapAll];
-    
-    [self updateUserConfiguredLocation];
-    [self addPlaceToMapMaker:currentPlace];
-    
-    for(Place* p in searchedPlaces)
-    {
-        if (routeStartPlace != p && routeEndPlace != p)
-        {
-            [self addPlaceToMapMaker:p];
-        }
-    }
-    
-    [self updateRoute];
-    
-}
-
--(void) mapViewInit
-{
-
-
-    if (mapView == nil) {
-        zoomLevel = 12;
-        // Create a default GMSMapView, showcasing Australia.
-        
-        
-        mapView = [[GMSMapView alloc] initWithFrame:CGRectMake(0, 0, self.googleMapView.frame.size.width, self.googleMapView.frame.size.height)];
-        
-        mapView.accessibilityLabel = @"mapView";
-        
-        
-        if (nil != currentPlace)
-        {
-            mapView.camera = [GMSCameraPosition cameraWithLatitude:currentPlace.coordinate.latitude
-                                                         longitude:currentPlace.coordinate.longitude
-                                                              zoom:zoomLevel
-                                                           bearing:10.f
-                                                      viewingAngle:37.5f];
-        }
-        
-        firstLocationUpdate = FALSE;
-        [mapView addObserver:self
-                  forKeyPath:@"myLocation"
-                     options:NSKeyValueObservingOptionNew
-                     context:NULL];
-
-        
-        
-        mapView.delegate = self;
-        
-        // Ask for My Location data after the map has already been added to the UI.
-        dispatch_async(dispatch_get_main_queue(), ^{
-            logfn();
-            mapView.myLocationEnabled = YES;
-        });
-    }
-    
-}
-
-- (BOOL) mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker
-{
-
-#if 0
-    selectedPlace = [self getPlaceByGMSMarker:marker];
-    [self showMarkMenu];
-//    [self showMarkMenuFloat:];
-    [self updateMarkMenu];
-#endif
-    return NO;
-}
-
-
-- (void)mapView:(GMSMapView *)tmapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
-{
-    CGPoint p;
-    p = [mapView.projection pointForCoordinate:coordinate];
-    
-    p = [tmapView.projection pointForCoordinate:coordinate];
-    
-    [self showMarkMenuFloat:p];
-    
-    if (true == isShowMarkMenu)
-    {
-        [self hideMarkMenu];
-    }
-}
-
--(void) moveToCurrentPlace
-{
-    [self moveToPlace:[LocationManager currentPlace]];
-}
-
-
--(void) moveToPlace:(Place*) place
-{
-    if (nil != place)
-    {
-        [mapView animateToLocation:place.coordinate];
-    }
-}
-
-
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context {
-    if (!firstLocationUpdate) {
-        printf("WWwwwWWWWWWWWWW\n");
-        // If the first location update has not yet been recieved, then jump to that
-        // location.
-        firstLocationUpdate = YES;
-        CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
-        mapView.camera = [GMSCameraPosition cameraWithTarget:location.coordinate
-                                                        zoom:14];
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #pragma  mark - Banner
 -(void) addBanner:(UIView*) contentView
@@ -378,47 +185,48 @@
     
     if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)])
     {
-        _adView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
+        adView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
     } else
     {
-        _adView = [[ADBannerView alloc] init];
+        adView = [[ADBannerView alloc] init];
     }
     
     //    adView = [[ADBannerView alloc] initWithFrame:CGRectZero];
-    _adView.requiredContentSizeIdentifiers      = [NSSet setWithObject:ADBannerContentSizeIdentifierLandscape];
-    _adView.currentContentSizeIdentifier        = ADBannerContentSizeIdentifierLandscape;
-    _adView.delegate                            = self;
-    _adView.accessibilityLabel                  = @"banner";
+//    adView.requiredContentSizeIdentifiers      = [NSSet setWithObject:ADBannerContentSizeIdentifierLandscape];
+//    adView.currentContentSizeIdentifier        = ADBannerContentSizeIdentifierLandscape;
+    [adView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    adView.delegate                            = self;
+    adView.accessibilityLabel                  = @"banner";
 
 
-    [self.view addSubview:_adView];
+    [self.view addSubview:adView];
 
     [self showAdAnimated:NO];
 }
 
 - (void)showAdAnimated:(BOOL)animated
 {
-    if (nil == _adView)
+    if (nil == adView)
         return;
     CGRect contentFrame = [SystemManager lanscapeScreenRect];
-    CGRect bannerFrame = _adView.frame;
+    CGRect bannerFrame = adView.frame;
     CGRect zoomPanelFrame = self.zoomPanel.frame;
     
-    if (_adView.bannerLoaded)
+    if (adView.bannerLoaded)
     {
-        contentFrame.size.height    -= _adView.frame.size.height;
-        contentFrame.origin.y        = _adView.frame.size.height;
+        contentFrame.size.height    -= adView.frame.size.height;
+        contentFrame.origin.y        = adView.frame.size.height;
         bannerFrame.origin.y         = 0;
         
     } else
     {
-        bannerFrame.origin.y = -_adView.frame.size.height;
+        bannerFrame.origin.y = -adView.frame.size.height;
     }
 
     [UIView animateWithDuration:animated ? 0.25 : 0.0 animations:^{
         _contentView.frame  = contentFrame;
         _zoomPanel.frame    = zoomPanelFrame;
-        _adView.frame       = bannerFrame;
+        adView.frame       = bannerFrame;
         
     }];
     
@@ -488,12 +296,12 @@
     frame.size.height   = 460;
     
     
-    _markMenuFloat = [xibContents lastObject];
-    _markMenuFloat.accessibilityLabel = @"markMenuFloat";
+    markMenuFloat = [xibContents lastObject];
+    markMenuFloat.accessibilityLabel = @"markMenuFloat";
     
-    _markMenuFloat.frame = frame;
+    markMenuFloat.frame = frame;
     
-    [self.googleMapView addSubview:_markMenuFloat];
+    [self.googleMapView addSubview:markMenuFloat];
 }
 
 
@@ -505,13 +313,13 @@
      
         CGRect frame;
 
-        frame = _markMenuFloat.frame;
+        frame = markMenuFloat.frame;
         
         frame.origin.x      = pos.x;
         frame.origin.y      = pos.y;
         
-        _markMenuFloat.frame    = frame;
-        _markMenuFloat.hidden   = FALSE;
+        markMenuFloat.frame    = frame;
+        markMenuFloat.hidden   = FALSE;
     }
 }
 
@@ -520,7 +328,7 @@
     if (true == isShowMarkMenuFloat)
     {
         isShowMarkMenuFloat     = false;
-        _markMenuFloat.hidden   = !isShowMarkMenuFloat;
+        markMenuFloat.hidden   = !isShowMarkMenuFloat;
 
     }
     
@@ -528,40 +336,6 @@
 
 #pragma  mark - MarkMenu
 
--(void) setRouteStart:(Place*) p
-{
-    if ([routeEndPlace isCoordinateEqualTo:p])
-    {
-        routeEndPlace = nil;
-    }
-    
-    if (![routeStartPlace isCoordinateEqualTo:p])
-    {
-        isRouteChanged                  = true;
-        routeStartPlace.placeRouteType  = kPlaceRouteType_None;
-        routeStartPlace                 = p;
-        routeStartPlace.placeRouteType  = kPlaceRouteType_Start;
-        [self planRoute];
-    }
-}
-
--(void) setRouteEnd:(Place*) p
-{
-    if ([routeStartPlace isCoordinateEqualTo:p])
-    {
-        routeStartPlace = nil;
-    }
-    
-    if (![routeEndPlace isCoordinateEqualTo:p])
-    {
-        isRouteChanged                  = true;
-        routeEndPlace.placeRouteType    = kPlaceRouteType_None;
-        routeEndPlace                   = p;
-        routeEndPlace.placeRouteType    = kPlaceRouteType_End;
-        [self planRoute];
-    }
-    
-}
 
 -(void) saveAsHome:(Place*)p
 {
@@ -572,7 +346,7 @@
     }
     savePlaceViewController.currentPlace = p;
     savePlaceViewController.sectionMode  = kSectionMode_Home;
-    [self presentModalViewController:savePlaceViewController animated:YES];
+    [self presentViewController:savePlaceViewController animated:YES completion:nil];
 }
 
 -(void) saveAsOffice:(Place*)p
@@ -585,7 +359,7 @@
     
     savePlaceViewController.currentPlace = p;
     savePlaceViewController.sectionMode  = kSectionMode_Office;
-    [self presentModalViewController:savePlaceViewController animated:YES];
+    [self presentViewController:savePlaceViewController animated:YES completion:nil];
 }
 
 -(void) saveAsFavor:(Place*)p
@@ -599,7 +373,7 @@
     
     savePlaceViewController.currentPlace = p;
     savePlaceViewController.sectionMode  = kSectionMode_Favor;
-    [self presentModalViewController:savePlaceViewController animated:YES];
+    [self presentViewController:savePlaceViewController animated:YES completion:nil];
 }
 
 
@@ -628,40 +402,40 @@
     
     
     
-    _markMenu = [xibContents lastObject];
-    _markMenu.accessibilityLabel = @"markMenu";
+    markMenu = [xibContents lastObject];
+    markMenu.accessibilityLabel = @"markMenu";
     
-    _markMenu.frame = frame;
+    markMenu.frame = frame;
     
 
-    _markMenuSetStartButton      = (UIButton *)[_markMenu viewWithTag:3];
-    _markMenuSetEndButton        = (UIButton *)[_markMenu viewWithTag:4];
-    _markMenuSaveAsHomeButton    = (UIButton *)[_markMenu viewWithTag:5];
-    _markMenuSaveAsOfficeButton  = (UIButton *)[_markMenu viewWithTag:6];
-    _markMenuSaveAsFavorButton   = (UIButton *)[_markMenu viewWithTag:7];
+    markMenuSetStartButton      = (UIButton *)[markMenu viewWithTag:3];
+    markMenuSetEndButton        = (UIButton *)[markMenu viewWithTag:4];
+    markMenuSaveAsHomeButton    = (UIButton *)[markMenu viewWithTag:5];
+    markMenuSaveAsOfficeButton  = (UIButton *)[markMenu viewWithTag:6];
+    markMenuSaveAsFavorButton   = (UIButton *)[markMenu viewWithTag:7];
     
     
-    [_markMenuSetStartButton addTarget:self
+    [markMenuSetStartButton addTarget:self
                                action:@selector(pressSetStartButton:)
                      forControlEvents:UIControlEventTouchUpInside];
     
-    [_markMenuSetEndButton addTarget:self
+    [markMenuSetEndButton addTarget:self
                              action:@selector(pressSetEndButton:)
                    forControlEvents:UIControlEventTouchUpInside];
     
-    [_markMenuSaveAsHomeButton addTarget:self
+    [markMenuSaveAsHomeButton addTarget:self
                                  action:@selector(pressSaveAsHomeButton:)
                        forControlEvents:UIControlEventTouchUpInside];
     
-    [_markMenuSaveAsOfficeButton addTarget:self
+    [markMenuSaveAsOfficeButton addTarget:self
                                    action:@selector(pressSaveAsOfficeButton:)
                          forControlEvents:UIControlEventTouchUpInside];
     
-    [_markMenuSaveAsFavorButton addTarget:self
+    [markMenuSaveAsFavorButton addTarget:self
                                   action:@selector(pressSaveAsFavorButton:)
                         forControlEvents:UIControlEventTouchUpInside];
     
-    [self.googleMapView addSubview:_markMenu];
+    [self.googleMapView addSubview:markMenu];
 }
 
 -(void) showMarkMenu
@@ -672,8 +446,8 @@
         [self updateMarkMenu];
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:.4];
-        logfns("mark menu: (%f, %f) (%f, %f)\n", _markMenu.frame.origin.x, _markMenu.frame.origin.y, _markMenu.frame.size.width, _markMenu.frame.size.height);
-        _markMenu.frame = CGRectOffset( _markMenu.frame, (-1)*markMenuOffset, 0 ); // offset by an amount
+        logfns("mark menu: (%f, %f) (%f, %f)\n", markMenu.frame.origin.x, markMenu.frame.origin.y, markMenu.frame.size.width, markMenu.frame.size.height);
+        markMenu.frame = CGRectOffset( markMenu.frame, (-1)*markMenuOffset, 0 ); // offset by an amount
         [UIView commitAnimations];
     }
 }
@@ -685,7 +459,7 @@
         isShowMarkMenu = false;
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:.4];
-        _markMenu.frame = CGRectOffset( _markMenu.frame, markMenuOffset, 0 ); // offset by an amount
+        markMenu.frame = CGRectOffset( markMenu.frame, markMenuOffset, 0 ); // offset by an amount
         [UIView commitAnimations];
     }
     
@@ -862,6 +636,7 @@
 #pragma mark - Operations
 -(void) downloadRequestStatusChange: (DownloadRequest*) downloadRequest
 {
+#if 0
     if (nil == downloadRequest)
         return;
     if (searchPlaceDownloadRequest == downloadRequest)
@@ -872,10 +647,12 @@
     {
         [self processRouteDownloadRequestStatusChange];
     }
+#endif
 }
 
 -(void) processRouteDownloadRequestStatusChange
 {
+#if 0
     bool isFail = true;
     bool updateStatus = false;
     /* search place finished */
@@ -903,10 +680,12 @@
     {
         self.titleLabel.text = [SystemManager getLanguageString:@"Search fail"];
     }
+#endif
 }
 
 -(void) processSearchPlaceDownloadRequestStatusChange
 {
+#if 0
     bool isFail = true;
     bool updateStatus = false;
     /* search place finished */
@@ -920,7 +699,7 @@
             places = [Place parseJson:searchPlaceDownloadRequest.filePath];
             if(places != nil && places.count > 0)
             {
-//                [_mapPlaceManager updateSearchedPlace:places];
+//                [_mapManager updateSearchedPlace:places];
                 isFail = false;
             }
         }
@@ -936,37 +715,12 @@
     {
         self.titleLabel.text = [SystemManager getLanguageString:@"Search fail"];
     }
-}
-
-
--(void) planRoute
-{
-    
-    if (isRouteChanged == true)
-    {
-        if (nil != routeStartPlace && nil != routeEndPlace)
-        {
-            if (![routeStartPlace isCoordinateEqualTo:routeEndPlace])
-            {
-                routeDownloadRequest = [NaviQueryManager
-                                        getRouteDownloadRequestFrom:routeStartPlace.coordinate
-                                        To:routeEndPlace.coordinate];
-                routeDownloadRequest.delegate = self;
-                
-                if ([GoogleJson getStatus:routeDownloadRequest.fileName] != kGoogleJsonStatus_Ok)
-                {
-                    [NaviQueryManager download:routeDownloadRequest];
-                }
-            }
-            
-        }
-    }
-    
-    isRouteChanged = false;
+#endif
 }
 
 -(void) searchPlace:(NSString*) place
 {
+#if 0
     
     if (nil != place && place.length > 0)
     {
@@ -976,78 +730,18 @@
         
         self.titleLabel.text = place;
     }
+#endif
 }
 
 -(void) selectPlace:(Place*) p sender:(SelectPlaceViewController*) s
 {
     if (nil == p)
         return;
-    [self mapRefresh];
-    [self moveToPlace:p];
     
+    selectedPlace = p;
+    [mapManager moveToPlace:p];
 }
 
-- (void) updateUserConfiguredLocation
-{
-    int i;
-    
-    for(i=0; i<User.homePlaces.count; i++)
-    {
-        [self addPlaceToMapMaker:[User getHomePlaceByIndex:i]];
-        [self removePlaceFromSearchedPlace:[User getHomePlaceByIndex:i]];
-    }
-    
-    for(i=0; i<User.officePlaces.count; i++)
-    {
-        [self addPlaceToMapMaker:[User getOfficePlaceByIndex:i]];
-        [self removePlaceFromSearchedPlace:[User getOfficePlaceByIndex:i]];
-    }
-    
-    for(i=0; i<User.favorPlaces.count; i++)
-    {
-        [self addPlaceToMapMaker:[User getFavorPlaceByIndex:i]];
-        [self removePlaceFromSearchedPlace:[User getFavorPlaceByIndex:i]];
-    }
-}
-
--(void) updateRoute
-{
-    NSArray *routePoints;
-    GMSPolyline *polyLine;
-    GMSMutablePath *path;
-    
-    if (nil != routeStartPlace && currentPlace != routeStartPlace)
-    {
-        [self addPlaceToMapMaker:routeStartPlace];
-    }
-    
-    if (nil != routeEndPlace && currentPlace != routeEndPlace)
-    {
-        [self addPlaceToMapMaker:routeEndPlace];
-    }
-    
-    if (nil == currentRoute || nil == routeStartPlace || nil == routeEndPlace)
-    {
-        return;
-    }
-    
-    routePoints             = [currentRoute getRoutePolyLineCLLocation];
-    polyLine                = [[GMSPolyline alloc] init];
-    polyLine.strokeWidth    = 5;
-    polyLine.strokeColor    = [UIColor redColor];
-    path                    = [GMSMutablePath path];
-    
-    for(CLLocation *location in routePoints)
-    {
-        [path addCoordinate:location.coordinate];
-    }
-    
-    polyLine.path       = path;
-    polyLine.geodesic   = NO;
-    polyLine.map        = mapView;
-    
-    
-}
 #pragma  mark - UI Actions
 
 - (IBAction)pressRouteButton:(id)sender
@@ -1058,27 +752,17 @@
 
 - (IBAction)pressZoomOutButton:(id)sender
 {
-    if(zoomLevel > 2)
-    {
-        zoomLevel--;
-        [mapView animateToZoom:zoomLevel];
-    }
+    [mapManager zoomIn];
 }
 
 - (IBAction)pressZoomInButton:(id)sender
 {
-    
-    if(zoomLevel < 21)
-    {
-        zoomLevel++;
-        [mapView animateToZoom:zoomLevel];
-    }
-    
+    [mapManager zoomOut];
 }
 
 - (IBAction)pressHomeButton:(id)sender
 {
-    [self dismissModalViewControllerAnimated:true];
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 - (IBAction)pressSearchButton:(id)sender
@@ -1089,48 +773,42 @@
 - (IBAction)pressPlaceButton:(id)sender
 {
     [self hideMarkMenu];
-    selectPlaceViewController.searchedPlaces = searchedPlaces;
-    [self presentModalViewController:selectPlaceViewController animated:YES];
+    selectPlaceViewController.searchedPlaces = [mapManager searchedPlaces];
+    [self presentViewController:selectPlaceViewController animated:YES completion:nil];
     
 }
 
 - (IBAction)pressNavigationButton:(id)sender
 {
-    if (nil != routeStartPlace && nil != routeEndPlace && ![routeStartPlace isCoordinateEqualTo:routeEndPlace])
+    if (YES == mapManager.hasRoute)
     {
-        [self presentModalViewController:routeNavigationViewController animated:YES];
-        [routeNavigationViewController startRouteNavigationFrom:routeStartPlace To:routeEndPlace];
+        [routeNavigationViewController startRouteNavigationFrom:mapManager.routeStartPlace To:mapManager.routeEndPlace];
     }
 }
 
 - (IBAction)pressTestButton:(id)sender
 {
-    //    Place *p = [Place newPlace:@"AA" Address:@"bb" Location:CLLocationCoordinate2DMake(1, 2)];
-    //    [self saveAsHome:p];
     
-    [self presentModalViewController:selectPlaceViewController animated:YES];
+    [self presentViewController:selectPlaceViewController animated:YES completion:nil];
     
 }
 
 
 -(IBAction) pressSetStartButton:(id) sender
 {
-    [self setRouteStart:selectedPlace];
+    [mapManager setRouteStart:selectedPlace];
     [self hideMarkMenu];
-    [self mapRefresh];
 }
 
 -(IBAction) pressSetEndButton:(id) sender
 {
-    [self setRouteEnd:selectedPlace];
+    [mapManager setRouteEnd:selectedPlace];
     [self hideMarkMenu];
-    [self mapRefresh];
 }
 
 -(IBAction) pressSaveAsHomeButton:(id) sender
 {
     [self saveAsHome:selectedPlace];
-    [self hideMarkMenu];
 }
 
 -(IBAction) pressSaveAsOfficeButton:(id) sender
@@ -1147,18 +825,28 @@
 
 #pragma mark - delegates
 
--(void) locationUpdate:(CLLocationCoordinate2D) location Speed:(int) speed Distance:(int) distance
+- (BOOL) mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker
 {
-    currentPlace = LocationManager.currentPlace;
-    [self mapRefresh];
+    selectedPlace = [mapManager placeByGMSMarker:marker];
+    [self showMarkMenu];
+    [self updateMarkMenu];
+
+    return NO;
 }
 
--(void) lostLocationUpdate
+
+- (void)mapView:(GMSMapView *)tmapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
 {
+    CGPoint p;
+    p = [tmapView.projection pointForCoordinate:coordinate];
     
+//    [self showMarkMenuFloat:p];
+    
+    if (true == isShowMarkMenu)
+    {
+        [self hideMarkMenu];
+    }
 }
-
-
 
 @end
 

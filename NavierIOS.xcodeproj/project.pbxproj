@@ -33,7 +33,6 @@
 		2B1C470E17883A9800ED6D98 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1C470A17883A9800ED6D98 /* Icon-72@2x.png */; };
 		2B1C470F17883A9800ED6D98 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1C470B17883A9800ED6D98 /* Icon.png */; };
 		2B1C471017883A9800ED6D98 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1C470C17883A9800ED6D98 /* Icon@2x.png */; };
-		2B24473D184394F600813A0F /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B24473C184394F600813A0F /* GoogleMaps.framework */; };
 		2B3907F1176D6B0A00E5F428 /* RouteGuideMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3907F0176D6B0A00E5F428 /* RouteGuideMenu.xib */; };
 		2B4B3121175AF25800426D60 /* SelectPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4B3120175AF25800426D60 /* SelectPlaceViewController.m */; };
 		2B5D9A3217C78C8B00A22132 /* favor32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B5D9A2617C78C8B00A22132 /* favor32.png */; };
@@ -114,6 +113,8 @@
 		2B94C8FE17A554D6002581F3 /* gps.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B94C8F617A554D6002581F3 /* gps.png */; };
 		2B94C8FF17A554D6002581F3 /* gps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B94C8F717A554D6002581F3 /* gps@2x.png */; };
 		2B94C90317A55548002581F3 /* battery.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B94C90217A55548002581F3 /* battery.png */; };
+		2B98933B184B4B7200811F5B /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B98933A184B4B7200811F5B /* GoogleMaps.framework */; };
+		2B98933D184B4B7A00811F5B /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2B98933C184B4B7900811F5B /* GoogleMaps.bundle */; };
 		2B9A431916DB955F00FD1A54 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9A431816DB955F00FD1A54 /* UIKit.framework */; };
 		2B9A431B16DB955F00FD1A54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9A431A16DB955F00FD1A54 /* Foundation.framework */; };
 		2B9A431D16DB955F00FD1A54 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9A431C16DB955F00FD1A54 /* CoreGraphics.framework */; };
@@ -217,7 +218,6 @@
 		2B1C470A17883A9800ED6D98 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72@2x.png"; path = "../Icon-72@2x.png"; sourceTree = "<group>"; };
 		2B1C470B17883A9800ED6D98 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		2B1C470C17883A9800ED6D98 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
-		2B24473C184394F600813A0F /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		2B3907F0176D6B0A00E5F428 /* RouteGuideMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RouteGuideMenu.xib; path = NavierIOS/RouteGuideMenu.xib; sourceTree = "<group>"; };
 		2B3A145417BE67B60023D666 /* car_panel_1_direction_panel_inner_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_panel_1_direction_panel_inner_circle.png; sourceTree = "<group>"; };
 		2B3A145517BE67B60023D666 /* car_panel_1_direction_panel_outer_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_panel_1_direction_panel_outer_circle.png; sourceTree = "<group>"; };
@@ -308,6 +308,8 @@
 		2B94C8F617A554D6002581F3 /* gps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gps.png; sourceTree = "<group>"; };
 		2B94C8F717A554D6002581F3 /* gps@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gps@2x.png"; sourceTree = "<group>"; };
 		2B94C90217A55548002581F3 /* battery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = battery.png; sourceTree = "<group>"; };
+		2B98933A184B4B7200811F5B /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		2B98933C184B4B7900811F5B /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../../ios/framework/GoogleMaps-iOS-1.6.0/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
 		2B9A431516DB955F00FD1A54 /* NavierHUD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavierHUD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B9A431816DB955F00FD1A54 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2B9A431A16DB955F00FD1A54 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -391,6 +393,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B98933B184B4B7200811F5B /* GoogleMaps.framework in Frameworks */,
 				2B04D481184396E100233B2D /* SystemConfiguration.framework in Frameworks */,
 				2B04D480184396D600233B2D /* QuartzCore.framework in Frameworks */,
 				2B04D47F184396C200233B2D /* OpenGLES.framework in Frameworks */,
@@ -404,7 +407,6 @@
 				2B04D4771843960000233B2D /* CoreData.framework in Frameworks */,
 				2B04D475184395EB00233B2D /* AVFoundation.framework in Frameworks */,
 				2B6A6BF2178719D8005FC851 /* libTestFlight.a in Frameworks */,
-				2B24473D184394F600813A0F /* GoogleMaps.framework in Frameworks */,
 				2BECCE241709B78100F58CE0 /* iAd.framework in Frameworks */,
 				2B6CBFFE16DFAA180095CBD4 /* libNaviUtil.a in Frameworks */,
 				2B9A431916DB955F00FD1A54 /* UIKit.framework in Frameworks */,
@@ -619,7 +621,8 @@
 			children = (
 				2B6CBFF316DFAA030095CBD4 /* NaviUtil.xcodeproj */,
 				2B6A6BF1178719D8005FC851 /* libTestFlight.a */,
-				2B24473C184394F600813A0F /* GoogleMaps.framework */,
+				2B98933C184B4B7900811F5B /* GoogleMaps.bundle */,
+				2B98933A184B4B7200811F5B /* GoogleMaps.framework */,
 				2BECCE231709B78100F58CE0 /* iAd.framework */,
 				2B9A437A16DBA0BC00FD1A54 /* CoreText.framework */,
 				2B9A436616DB998000FD1A54 /* GLKit.framework */,
@@ -958,6 +961,7 @@
 				2B5D9A3817C78C8B00A22132 /* home64.png in Resources */,
 				2B5D9A3917C78C8B00A22132 /* home64@2x.png in Resources */,
 				2B5D9A3A17C78C8B00A22132 /* office32.png in Resources */,
+				2B98933D184B4B7A00811F5B /* GoogleMaps.bundle in Resources */,
 				2B5D9A3B17C78C8B00A22132 /* office32@2x.png in Resources */,
 				2B5D9A3C17C78C8B00A22132 /* office64.png in Resources */,
 				2BCBD070183A5D1500B08D1D /* place_marker_favor_48@2x.png in Resources */,
@@ -1148,7 +1152,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1173,7 +1177,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
@@ -1194,7 +1198,7 @@
 				GCC_PREFIX_HEADER = "NavierIOS/NavierIOS-Prefix.pch";
 				HEADER_SEARCH_PATHS = "/Data/Program/NaviUtil/**";
 				INFOPLIST_FILE = "NavierIOS/NavierIOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../ios/framework/TestFlightSDK1.2.6\"",
@@ -1218,7 +1222,7 @@
 				GCC_PREFIX_HEADER = "NavierIOS/NavierIOS-Prefix.pch";
 				HEADER_SEARCH_PATHS = "/Data/Program/NaviUtil/**";
 				INFOPLIST_FILE = "NavierIOS/NavierIOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../ios/framework/TestFlightSDK1.2.6\"",

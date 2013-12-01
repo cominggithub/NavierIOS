@@ -74,7 +74,7 @@
         }
     }
     
-    [self dismissModalViewControllerAnimated:true];
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -100,7 +100,7 @@
 
 - (IBAction)pressLogoButton:(id)sender
 {
-    [self dismissModalViewControllerAnimated:true];
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 - (BOOL)prefersStatusBarHidden

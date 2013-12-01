@@ -107,7 +107,7 @@
     // Then push the new view controller in the usual way:
 //    [self.navigationController pushViewController:carPanel animated:YES];
     
-    [self presentModalViewController:carPanel animated:TRUE];
+    [self presentViewController:carPanel animated:TRUE completion:nil];
     
 }
 
@@ -201,7 +201,7 @@
     
     if (nil != routeStartPlace && nil != routeEndPlace && ![routeStartPlace isCoordinateEqualTo:routeEndPlace])
     {
-        [self presentModalViewController:routeNavigationViewController animated:YES];
+        [self presentViewController:routeNavigationViewController animated:YES completion:nil];
         [routeNavigationViewController startRouteNavigationFrom:routeStartPlace To:routeEndPlace];
     }
 
@@ -294,8 +294,10 @@
     }
     
     //    adView = [[ADBannerView alloc] initWithFrame:CGRectZero];
-    adView.requiredContentSizeIdentifiers   = [NSSet setWithObject:ADBannerContentSizeIdentifierLandscape];
-    adView.currentContentSizeIdentifier     = ADBannerContentSizeIdentifierLandscape;
+//    adView.requiredContentSizeIdentifiers   = [NSSet setWithObject:ADBannerContentSizeIdentifierLandscape];
+//    adView.currentContentSizeIdentifier     = ADBannerContentSizeIdentifierLandscape;
+    
+    [adView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     adView.delegate     = self;
     
     [self.view addSubview:adView];

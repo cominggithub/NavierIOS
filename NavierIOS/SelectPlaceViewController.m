@@ -160,7 +160,7 @@
             [self.delegate selectPlace: selectedPlace sender: self];
         }
     }
-    [self dismissModalViewControllerAnimated:TRUE];
+    [self dismissViewControllerAnimated:TRUE completion:nil];
 }
 
 - (void)viewDidUnload {

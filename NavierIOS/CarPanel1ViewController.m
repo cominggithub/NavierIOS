@@ -530,7 +530,8 @@
 
 #pragma mark - System Monitor
 
--(void) locationUpdate:(CLLocationCoordinate2D) location speed:(double) speed distance:(int) distance heading:(double) heading
+
+-(void) locationManager:(LocationManager *)locationManager update:(CLLocationCoordinate2D)location speed:(double)speed distance:(int)distance heading:(double)heading
 {
     if (YES == _isSpeedUnitMph)
     {
@@ -550,13 +551,6 @@
                                ];
     
 }
-
-
--(void) lostLocationUpdate
-{
-    
-}
-
 
 #pragma mark - Car Panel Menu
 
@@ -681,7 +675,7 @@
     
     [self hideCarPanelMenu];
     [LocationManager stopLocationSimulation];
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
