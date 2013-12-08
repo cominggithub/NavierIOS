@@ -149,6 +149,8 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     
+    logI(indexPath.row);
+    
     Place *selectedPlace;
     selectedPlace = [User getPlaceBySectionMode:kSectionMode_Home_Office_Favor_Searched
                                         section:indexPath.section

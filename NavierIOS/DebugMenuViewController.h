@@ -11,5 +11,7 @@
 
 @interface DebugMenuViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource>
 - (IBAction)pressLogoButton:(id)sender;
+- (IBAction)pressClearConfigButton:(id)sender;
+- (IBAction)pressDebugConfigButton:(id)sender;
 
 @end

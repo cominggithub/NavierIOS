@@ -30,7 +30,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.placeTextField.text = [SystemManager getLanguageString:@"Place to search"];
+    self.placeTextField.text        = [SystemManager getLanguageString:@"Place to search"];
+    self.placeTextField.delegate    = self;
 	// Do any additional setup after loading the view.
 }
 
@@ -62,15 +63,19 @@
 
 - (void) dismissAndSearchPlace:(NSString*) place
 {
-    if(place != nil && place.length > 0)
+
+    if (nil != place)
+        place = [place trim];
+    
+    if( place.length > 0)
     {
         if(![place isEqualToString:[SystemManager getLanguageString:@"Place to search"]])
         {
         
             GoogleMapUIViewController* gc = (GoogleMapUIViewController*) self.presentingViewController;
-            [User addSearchedPlaceText:[place trim]];
+            [User addSearchedPlaceText:place];
             [User save];
-            gc.placeToSearch = [NSString stringWithString:place];
+            [gc searchPlace:place];
         }
     }
     
@@ -79,6 +84,13 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return User.searchedPlaceText.count;
+}
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    [self dismissAndSearchPlace:self.placeTextField.text];
+    return TRUE;
 }
 
 - (void)viewDidUnload {

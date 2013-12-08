@@ -10,13 +10,21 @@
 #import "Place.h"
 #import "User.h"
 
+@class SavePlaceViewController;
 
-@interface SavePlaceViewController : UIViewController
+@protocol SavePlaceViewControllerDelegate <NSObject>
+-(void) savePlaceViewController:(SavePlaceViewController*) spvc placeChanged:(BOOL) placeChanged;
+@end
+
+@interface SavePlaceViewController : UIViewController <UITextFieldDelegate>
+
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
-@property (weak, nonatomic) IBOutlet UITextField *nameLabel;
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (nonatomic, strong) Place* currentPlace;
 @property (weak, nonatomic) IBOutlet UITableView *savePlaceTableView;
 @property (nonatomic) SectionMode sectionMode;
+@property id<SavePlaceViewControllerDelegate> delegate;
+
 - (IBAction)pressSaveButton:(id)sender;
 - (IBAction)pressBackButton:(id)sender;
 

@@ -11,9 +11,11 @@
 #import <NaviUtil/NaviUtil.h>
 #import "SelectPlaceViewController.h"
 #import <iAd/iAd.h>
+#import "PlaceSearchResultPanelView.h"
+#import "SavePlaceViewController.h"
 
 
-@interface GoogleMapUIViewController : UIViewController<DownloadRequestDelegate, GMSMapViewDelegate, SelectPlaceViewControllerDelegate, ADBannerViewDelegate>
+@interface GoogleMapUIViewController : UIViewController<GMSMapViewDelegate, SelectPlaceViewControllerDelegate, ADBannerViewDelegate, MapManagerDelegate, PlaceSearchResultPanelViewDelegate, SavePlaceViewControllerDelegate>
 
 /** GMSMapView managed by this controller. */
 - (IBAction)pressZoomOutButton:(id)sender;
@@ -35,13 +37,9 @@
 - (IBAction)pressNavigationButton:(id)sender;
 
 - (IBAction)pressTestButton:(id)sender;
-
-
-
-
--(void) downloadRequestStatusChange: (DownloadRequest*) downloadRequest;
 -(void) mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate;
 -(void) selectPlace:(Place*) p sender:(SelectPlaceViewController*) s;
+-(void) searchPlace:(NSString*) placeText;
 
 
 @end

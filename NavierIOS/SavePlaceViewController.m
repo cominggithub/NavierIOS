@@ -31,10 +31,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self updateFromCurrentPlace];
+
+    self.nameTextField.delegate = self;
 	// Do any additional setup after loading the view.
 }
 
+-(void) viewWillAppear:(BOOL)animated
+{
+    [self updateUIFromCurrentPlace];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -42,8 +47,7 @@
 }
 
 - (void)viewDidUnload {
-    [self setNameLabel:nil];
-    [self setNameLabel:nil];
+    [self setNameTextField:nil];
     [self setAddressLabel:nil];
     [self setSavePlaceTableView:nil];
     [super viewDidUnload];
@@ -56,19 +60,49 @@
 
 - (IBAction)pressSaveButton:(id)sender
 {
-    [User addPlaceBySectionMode:self.sectionMode section:0 place:self.currentPlace];
-    
-    [User save];
-//    GoogleMapUIViewController* gc = (GoogleMapUIViewController*) self.presentingViewController;
-//    [gc removePlaceFromSearchedPlace:self.currentPlace];
-    
-    [self.savePlaceTableView reloadData];
-    
+    [self save];
 }
 
 - (IBAction)pressBackButton:(id)sender
 {
     [self dismissViewControllerAnimated:true completion:nil];
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
+-(void) save
+{
+
+    if (nil == self.currentPlace)
+        return;
+    
+    [self updateCurrentPlaceFromUI];
+    
+    if (nil == self.currentPlace.name || self.currentPlace.name.length < 1)
+        return;
+
+    
+
+    [User addPlaceBySectionMode:self.sectionMode section:0 place:self.currentPlace];
+    [User save];
+
+    self.currentPlace = nil;
+    [self.savePlaceTableView reloadData];
+
+    /* notify the delegate */
+    if (nil != self.delegate && [self.delegate respondsToSelector:@selector(savePlaceViewController:placeChanged:)])
+    {
+        [self.delegate savePlaceViewController:self placeChanged:YES];
+    }
+    
+}
+-(void) setSectionMode:(SectionMode)sectionMode
+{
+    _sectionMode = sectionMode;
+    [self.savePlaceTableView reloadData];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -167,24 +201,29 @@
     }
 }
 
--(void) updateFromCurrentPlace
+-(BOOL) textFieldShouldReturn:(UITextField *)textField
 {
-    if( nil != self.currentPlace)
+    [textField resignFirstResponder];
+    [self save];
+    return TRUE;
+}
+
+-(void) updateUIFromCurrentPlace
+{
+    if (nil != self.currentPlace)
     {
-        self.nameLabel.text     = self.currentPlace.name;
+        self.nameTextField.text = self.currentPlace.name;
         self.addressLabel.text  = self.currentPlace.address;
     }
 }
 
--(void) setSectionMode:(SectionMode)sectionMode
+-(void) updateCurrentPlaceFromUI
 {
-    _sectionMode = sectionMode;
-    [self.savePlaceTableView reloadData];
-}
-
-- (BOOL)prefersStatusBarHidden
-{
-    return YES;
+    if (nil != self.currentPlace)
+    {
+        self.currentPlace.name = [self.nameTextField.text trim];
+    }
+    
 }
 
 @end

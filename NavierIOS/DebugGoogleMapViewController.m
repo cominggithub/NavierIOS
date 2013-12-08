@@ -7,6 +7,7 @@
 //
 
 #import "DebugGoogleMapViewController.h"
+#import <NaviUtil/NaviUtil.h>
 #include "Log.h"
 
 @interface DebugGoogleMapViewController ()
@@ -30,7 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    logfn();
+
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.868
                                                             longitude:151.2086
                                                                  zoom:12];
@@ -87,4 +88,8 @@
     
 }
 
+-(IBAction)pressClearConfigButton:(id)sender
+{
+    [User emptyConfig];
+}
 @end

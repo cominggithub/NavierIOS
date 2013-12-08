@@ -20,7 +20,10 @@
 		2B04D47F184396C200233B2D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9A437016DB99C700FD1A54 /* OpenGLES.framework */; };
 		2B04D480184396D600233B2D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9A437216DB99D100FD1A54 /* QuartzCore.framework */; };
 		2B04D481184396E100233B2D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9A437416DB99D900FD1A54 /* SystemConfiguration.framework */; };
-		2B15A20B17D0F39600F3AFE5 /* MarkMenuFloat.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B15A20A17D0F39600F3AFE5 /* MarkMenuFloat.xib */; };
+		2B067CE51850C6B600A0054E /* button_search_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B067CE31850C6B600A0054E /* button_search_blue.png */; };
+		2B067CE61850C6B600A0054E /* button_search_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B067CE41850C6B600A0054E /* button_search_transparent.png */; };
+		2B067CE91850CD2400A0054E /* PlaceSearchResultPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B067CE81850CD2400A0054E /* PlaceSearchResultPanel.xib */; };
+		2B15A20B17D0F39600F3AFE5 /* MarkerMenuFloat.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B15A20A17D0F39600F3AFE5 /* MarkerMenuFloat.xib */; };
 		2B17CE54175B344A00F478A6 /* Blue_car_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B17CE52175B344A00F478A6 /* Blue_car_marker.png */; };
 		2B17CE55175B344A00F478A6 /* Blue_car_marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B17CE53175B344A00F478A6 /* Blue_car_marker@2x.png */; };
 		2B17CE59175B3E7500F478A6 /* home_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B17CE57175B3E7500F478A6 /* home_marker.png */; };
@@ -149,7 +152,6 @@
 		2BCBD074183A5D1500B08D1D /* place_marker_normal_48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BCBD06C183A5D1500B08D1D /* place_marker_normal_48@2x.png */; };
 		2BCBD075183A5D1500B08D1D /* place_marker_office_48.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BCBD06D183A5D1500B08D1D /* place_marker_office_48.png */; };
 		2BCBD076183A5D1500B08D1D /* place_marker_office_48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BCBD06E183A5D1500B08D1D /* place_marker_office_48@2x.png */; };
-		2BCC02541838798E0018174B /* gggg.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BCC02531838798E0018174B /* gggg.xib */; };
 		2BCC02A31839087E0018174B /* DebugGoogleMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCC02A21839087E0018174B /* DebugGoogleMapViewController.m */; };
 		2BCFE04317031BE200636F58 /* RouteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCFE04217031BE200636F58 /* RouteTableViewController.m */; };
 		2BD8CE811701EB7500BDA678 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD8CE801701EB7500BDA678 /* Default.png */; };
@@ -166,6 +168,8 @@
 		2BE8FDFD17C06C920060395E /* route_current_location.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BE8FDFB17C06C920060395E /* route_current_location.png */; };
 		2BE8FDFE17C06C920060395E /* route_current_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BE8FDFC17C06C920060395E /* route_current_location@2x.png */; };
 		2BECCE241709B78100F58CE0 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BECCE231709B78100F58CE0 /* iAd.framework */; };
+		2BFF015F1853517700DA9735 /* PlaceSearchResultPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BFF015E1853517700DA9735 /* PlaceSearchResultPanelView.m */; };
+		2BFF01621853537900DA9735 /* MarkerMenuFloatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BFF01611853537900DA9735 /* MarkerMenuFloatView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -202,7 +206,10 @@
 /* Begin PBXFileReference section */
 		2B036BBA1759CCEF003E4683 /* SavePlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavePlaceViewController.h; sourceTree = "<group>"; };
 		2B036BBB1759CCEF003E4683 /* SavePlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavePlaceViewController.m; sourceTree = "<group>"; };
-		2B15A20A17D0F39600F3AFE5 /* MarkMenuFloat.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MarkMenuFloat.xib; sourceTree = "<group>"; };
+		2B067CE31850C6B600A0054E /* button_search_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_search_blue.png; sourceTree = "<group>"; };
+		2B067CE41850C6B600A0054E /* button_search_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_search_transparent.png; sourceTree = "<group>"; };
+		2B067CE81850CD2400A0054E /* PlaceSearchResultPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceSearchResultPanel.xib; sourceTree = "<group>"; };
+		2B15A20A17D0F39600F3AFE5 /* MarkerMenuFloat.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MarkerMenuFloat.xib; sourceTree = "<group>"; };
 		2B17CE52175B344A00F478A6 /* Blue_car_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_car_marker.png; sourceTree = "<group>"; };
 		2B17CE53175B344A00F478A6 /* Blue_car_marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Blue_car_marker@2x.png"; sourceTree = "<group>"; };
 		2B17CE57175B3E7500F478A6 /* home_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_marker.png; sourceTree = "<group>"; };
@@ -363,7 +370,6 @@
 		2BCBD06C183A5D1500B08D1D /* place_marker_normal_48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "place_marker_normal_48@2x.png"; sourceTree = "<group>"; };
 		2BCBD06D183A5D1500B08D1D /* place_marker_office_48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = place_marker_office_48.png; sourceTree = "<group>"; };
 		2BCBD06E183A5D1500B08D1D /* place_marker_office_48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "place_marker_office_48@2x.png"; sourceTree = "<group>"; };
-		2BCC02531838798E0018174B /* gggg.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = gggg.xib; sourceTree = "<group>"; };
 		2BCC02A11839087E0018174B /* DebugGoogleMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugGoogleMapViewController.h; path = NavierIOS/DebugGoogleMapViewController.h; sourceTree = "<group>"; };
 		2BCC02A21839087E0018174B /* DebugGoogleMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DebugGoogleMapViewController.m; path = NavierIOS/DebugGoogleMapViewController.m; sourceTree = "<group>"; };
 		2BCFE04117031BE200636F58 /* RouteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RouteTableViewController.h; path = NavierIOS/RouteTableViewController.h; sourceTree = "<group>"; };
@@ -386,6 +392,10 @@
 		2BE8FDFB17C06C920060395E /* route_current_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = route_current_location.png; sourceTree = "<group>"; };
 		2BE8FDFC17C06C920060395E /* route_current_location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "route_current_location@2x.png"; sourceTree = "<group>"; };
 		2BECCE231709B78100F58CE0 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		2BFF015D1853517700DA9735 /* PlaceSearchResultPanelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceSearchResultPanelView.h; sourceTree = "<group>"; };
+		2BFF015E1853517700DA9735 /* PlaceSearchResultPanelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceSearchResultPanelView.m; sourceTree = "<group>"; };
+		2BFF01601853537900DA9735 /* MarkerMenuFloatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerMenuFloatView.h; sourceTree = "<group>"; };
+		2BFF01611853537900DA9735 /* MarkerMenuFloatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerMenuFloatView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -500,6 +510,8 @@
 		2B5D9A3F17C78CC000A22132 /* button */ = {
 			isa = PBXGroup;
 			children = (
+				2B067CE31850C6B600A0054E /* button_search_blue.png */,
+				2B067CE41850C6B600A0054E /* button_search_transparent.png */,
 				2B5D9A6417C7A57D00A22132 /* button_current_location_off.png */,
 				2B5D9A6517C7A57D00A22132 /* button_current_location_off@2x.png */,
 				2B5D9A6617C7A57D00A22132 /* button_current_location_on.png */,
@@ -585,12 +597,13 @@
 		2B8EE0BC17AD1D6C005FBF6B /* xib */ = {
 			isa = PBXGroup;
 			children = (
+				2BFF015B1853513C00DA9735 /* View */,
 				2BE1CE6B174BA5830053995F /* MarkMenu.xib */,
 				2B3907F0176D6B0A00E5F428 /* RouteGuideMenu.xib */,
 				2B93510B177546B500721094 /* DebugMenu.xib */,
 				2B89A7B417B60CE90042539F /* CarPanel1Menu.xib */,
-				2B15A20A17D0F39600F3AFE5 /* MarkMenuFloat.xib */,
-				2BCC02531838798E0018174B /* gggg.xib */,
+				2B15A20A17D0F39600F3AFE5 /* MarkerMenuFloat.xib */,
+				2B067CE81850CD2400A0054E /* PlaceSearchResultPanel.xib */,
 			);
 			name = xib;
 			sourceTree = "<group>";
@@ -789,6 +802,17 @@
 			name = Navigation;
 			sourceTree = "<group>";
 		};
+		2BFF015B1853513C00DA9735 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2BFF015D1853517700DA9735 /* PlaceSearchResultPanelView.h */,
+				2BFF015E1853517700DA9735 /* PlaceSearchResultPanelView.m */,
+				2BFF01601853537900DA9735 /* MarkerMenuFloatView.h */,
+				2BFF01611853537900DA9735 /* MarkerMenuFloatView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -895,6 +919,7 @@
 				2B9A432F16DB955F00FD1A54 /* Default-568h@2x.png in Resources */,
 				2B9A433216DB955F00FD1A54 /* MainStoryboard_iPhone.storyboard in Resources */,
 				2B9A433516DB955F00FD1A54 /* MainStoryboard_iPad.storyboard in Resources */,
+				2B067CE91850CD2400A0054E /* PlaceSearchResultPanel.xib in Resources */,
 				2B792A5617007FC300353349 /* Blue_car.png in Resources */,
 				2B792A7117007FC300353349 /* Green_car_marker.png in Resources */,
 				2B792A7217007FC300353349 /* Green_car_marker@2x.png in Resources */,
@@ -924,6 +949,7 @@
 				2B831C24177E7481006E35CD /* Green_car.png in Resources */,
 				2B6FCDC0178D9CAF00DCFAAF /* CarPanels.storyboard in Resources */,
 				2B86AEA117A3C58C00A948D8 /* ic_search1.png in Resources */,
+				2B067CE61850C6B600A0054E /* button_search_transparent.png in Resources */,
 				2B94C8E517A5407C002581F3 /* jasmineupcbold.ttf in Resources */,
 				2B94C8F817A554D6002581F3 /* 3g.png in Resources */,
 				2B94C8F917A554D6002581F3 /* 3g@2x.png in Resources */,
@@ -939,7 +965,6 @@
 				2B89A7B517B60CE90042539F /* CarPanel1Menu.xib in Resources */,
 				2BE8FDFD17C06C920060395E /* route_current_location.png in Resources */,
 				2BE8FDFE17C06C920060395E /* route_current_location@2x.png in Resources */,
-				2BCC02541838798E0018174B /* gggg.xib in Resources */,
 				2BE6DA5717C39C2200DE20E8 /* dashboard@2x.png in Resources */,
 				2BE6DA5817C39C2200DE20E8 /* indicator@2x.png in Resources */,
 				2BE6DA5917C39C2200DE20E8 /* indicator.png in Resources */,
@@ -953,6 +978,7 @@
 				2B5D9A3217C78C8B00A22132 /* favor32.png in Resources */,
 				2B5D9A3317C78C8B00A22132 /* favor32@2x.png in Resources */,
 				2B5D9A3417C78C8B00A22132 /* favor64@2x.png in Resources */,
+				2B067CE51850C6B600A0054E /* button_search_blue.png in Resources */,
 				2BCBD061183A5A2400B08D1D /* place_marker_favor_32@2x.png in Resources */,
 				2B5D9A3517C78C8B00A22132 /* favor128.png in Resources */,
 				2B5D9A3617C78C8B00A22132 /* home32.png in Resources */,
@@ -1007,7 +1033,7 @@
 				2B79233017C9C129009463F8 /* 3g_off@2x.png in Resources */,
 				2B79233117C9C129009463F8 /* gps_off.png in Resources */,
 				2B79233217C9C129009463F8 /* gps_off@2x.png in Resources */,
-				2B15A20B17D0F39600F3AFE5 /* MarkMenuFloat.xib in Resources */,
+				2B15A20B17D0F39600F3AFE5 /* MarkerMenuFloat.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1043,11 +1069,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B9A432516DB955F00FD1A54 /* main.m in Sources */,
+				2BFF01621853537900DA9735 /* MarkerMenuFloatView.m in Sources */,
 				2B9A432916DB955F00FD1A54 /* AppDelegate.m in Sources */,
 				2B9A433816DB955F00FD1A54 /* ViewController.m in Sources */,
 				2B9A437816DB9B5F00FD1A54 /* GoogleMapUIViewController.m in Sources */,
 				2BCFE04317031BE200636F58 /* RouteTableViewController.m in Sources */,
 				2B8C5CAD174134B700260836 /* PlaceSearchViewController.m in Sources */,
+				2BFF015F1853517700DA9735 /* PlaceSearchResultPanelView.m in Sources */,
 				2BCC02A31839087E0018174B /* DebugGoogleMapViewController.m in Sources */,
 				2B036BBC1759CCEF003E4683 /* SavePlaceViewController.m in Sources */,
 				2B4B3121175AF25800426D60 /* SelectPlaceViewController.m in Sources */,

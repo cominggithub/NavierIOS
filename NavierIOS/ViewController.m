@@ -22,6 +22,14 @@
 {
     RouteNavigationViewController *routeNavigationViewController;
     ADBannerView *adView;
+    
+    /* bug: bounds don't change to landscape mode */
+    CGRect oriProtraitMapButtonFrame;
+    CGRect oriProtraitCarPanelViewFrame;
+    CGRect oriLandscapeMapButtonFrame;
+    CGRect oriLandscapeCarPanelViewFrame;
+    UIViewAutoresizing oriMapButtonAutoresizingMask;
+    UIViewAutoresizing oriCarPanelViewAutoresizingMask;
 }
 
 
@@ -33,6 +41,7 @@
 
 - (void)viewDidLoad
 {
+    CGFloat xoffset;
     [super viewDidLoad];
     
     [self addBanner:self.contentView];
@@ -41,9 +50,26 @@
     self.selectPlaceTableView.opaque = NO;
     self.selectPlaceTableView.backgroundView = nil;
     
+    
     routeNavigationViewController = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass
                                  ([RouteNavigationViewController class])];
+
+    oriProtraitMapButtonFrame       = self.mapButton.frame;
+    oriProtraitCarPanelViewFrame    = self.carPanelView.frame;
+    oriLandscapeMapButtonFrame      = self.mapButton.frame;
+    oriLandscapeCarPanelViewFrame   = self.carPanelView.frame;
+    oriMapButtonAutoresizingMask    = self.mapButton.autoresizingMask;
+    oriCarPanelViewAutoresizingMask = self.carPanelView.autoresizingMask;
     
+    xoffset = self.view.bounds.size.width > self.view.bounds.size.height ? 0 : self.view.bounds.size.height - self.view.bounds.size.width;
+    
+    oriLandscapeMapButtonFrame.origin.x      += xoffset;
+    oriLandscapeCarPanelViewFrame.origin.x   += xoffset;
+    
+    logRect(oriProtraitMapButtonFrame);
+    logRect(oriProtraitCarPanelViewFrame);
+    logRect(oriLandscapeMapButtonFrame);
+    logRect(oriLandscapeCarPanelViewFrame);
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,10 +82,11 @@
  * must set it for evern UIViewController?
  */
  
- 
+#if 0
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return toInterfaceOrientation == UIInterfaceOrientationLandscapeRight;
 }
+#endif
 
 - (IBAction)pressPlace:(id)sender
 {
@@ -124,7 +151,16 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [self.selectPlaceTableView reloadData];
+    if ([User getSectionCount:kSectionMode_Home_Office_Favor_Searched] > 0)
+    {
+        [self showHasPlaceMode];
+    }
+    else
+    {
+        [self showHasNoPlaceMode];
+    }
 }
+
 
 -(void) viewDidAppear:(BOOL)animated
 {
@@ -142,13 +178,75 @@
     return YES;
 }
 
+-(void) showHasPlaceMode
+{
+    self.selectPlaceTableView.hidden = NO;
+    
+//    self.mapButton.autoresizingMask     = oriMapButtonAutoresizingMask;
+//    self.carPanelView.autoresizingMask  = oriCarPanelViewAutoresizingMask;
+
+    /* in landscape */
+    if (self.view.bounds.size.width > self.view.bounds.size.height)
+    {
+        self.mapButton.frame                = oriLandscapeMapButtonFrame;
+        self.carPanelView.frame             = oriLandscapeCarPanelViewFrame;
+    }
+    /* in protrait */
+    else
+    {
+        self.mapButton.frame                = oriProtraitMapButtonFrame;
+        self.carPanelView.frame             = oriProtraitCarPanelViewFrame;
+    }
+
+}
+
+-(void) showHasNoPlaceMode
+{
+
+    CGRect frame;
+    CGFloat margin;
+    CGFloat offset;
+    CGFloat viewWidth;
+    CGFloat viewHeight;
+    
+    
+    frame       = self.view.bounds;
+    offset      = 100.0;
+    viewWidth   = frame.size.width > frame.size.height ? frame.size.width : frame.size.height;
+    viewHeight  = frame.size.width < frame.size.height ? frame.size.width : frame.size.height;
+    
+    self.selectPlaceTableView.hidden = YES;
+    
+    logRect(self.view.bounds);
+    logRect(self.mapButton.frame);
+    logRect(self.carPanelView.frame);
+    
+    /* we are in landscape mode, so translate width to height, and height to width */
+    margin  = (viewWidth - self.mapButton.frame.size.width - offset - self.carPanelView.frame.size.width)/2.0;
+    
+    /* map button */
+    frame                   = self.mapButton.frame;
+    frame.origin.x          = margin;
+    frame.origin.y          = (viewHeight)/2.0 - frame.size.height/2.0 + 50;
+    self.mapButton.frame    = frame;
+    self.mapButton.autoresizingMask = UIViewAutoresizingNone;
+    
+    /* car panel */
+    frame                   = self.carPanelView.frame;
+    frame.origin.x          = margin + self.mapButton.frame.size.width + offset;
+    frame.origin.y          = (viewHeight)/2.0 - frame.size.height/2.0 + 50;
+    self.carPanelView.frame = frame;
+    self.carPanelView.autoresizingMask = UIViewAutoresizingNone;
+
+}
+
 #pragma mark - Table view delegate
 /* for UITableView */
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 3;
+    return [User getSectionCount:kSectionMode_Home_Office_Favor_Searched];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

@@ -94,6 +94,13 @@
     [self updateUIFromConfig];
 }
 
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -103,6 +110,18 @@
 -(IBAction) pressLogoButton:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)pressClearConfigButton:(id)sender
+{
+    [User emptyConfig];
+    [User save];
+}
+
+- (IBAction)pressDebugConfigButton:(id)sender
+{
+    [User createDebugConfig];
+    [User save];
 }
 
 

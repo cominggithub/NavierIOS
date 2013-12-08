@@ -26,5 +26,7 @@
 - (IBAction)pressCarPanel:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *selectPlaceTableView;
 @property (nonatomic) BOOL bannerIsVisible;
+@property (weak, nonatomic) IBOutlet UIView *carPanelView;
+@property (weak, nonatomic) IBOutlet UIButton *mapButton;
 
 @end

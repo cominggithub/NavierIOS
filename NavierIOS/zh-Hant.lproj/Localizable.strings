@@ -26,6 +26,7 @@
 "No Network" = "無網路";
 "Place" = "地點";
 "Navigate" = "導航";
+"Current Location" = "目前位置";
 "Route Re-Planning" = "路徑重新規畫中";
 "route start place and end place are the same" = "出發地與目的地相同";
 "routeGuideText0"= "龍龍龍 龍-";
