@@ -18,6 +18,9 @@
 @end
 
 @implementation SavePlaceViewController
+{
+    NSMutableArray* placeIcons;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,6 +37,13 @@
 
     self.nameTextField.delegate = self;
 	// Do any additional setup after loading the view.
+    
+    placeIcons = [[NSMutableArray alloc] initWithCapacity:kPlaceType_Max];
+    [placeIcons insertObject:[UIImage imageNamed:@"search32"]   atIndex:kPlaceType_None];
+    [placeIcons insertObject:[UIImage imageNamed:@"home64"]     atIndex:kPlaceType_Home];
+    [placeIcons insertObject:[UIImage imageNamed:@"office64"]   atIndex:kPlaceType_Office];
+    [placeIcons insertObject:[UIImage imageNamed:@"favor64"]    atIndex:kPlaceType_Favor];
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -105,7 +115,12 @@
     [self.savePlaceTableView reloadData];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+-(CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 64;
+}
+
+-(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Place* place;
     UILabel *nameLabel;
@@ -159,22 +174,23 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    NSString *sectionTitle = [self tableView:tableView titleForHeaderInSection:section];
-    if (sectionTitle == nil) {
-        return nil;
-    }
+    UIView *view            = [[UIView alloc] init];
+    CGRect viewFrame        = CGRectMake(0, 0, self.view.bounds.size.width, 48);
+    CGRect imgFrame         = CGRectMake(8, 8, 48, 48);
+    UIImageView *imgView;
+    PlaceType placeType;
     
-    UILabel *label = [[UILabel alloc] init];
-    label.frame = CGRectMake(0, 0, 320, 20);
-    label.backgroundColor = [UIColor clearColor];
-    label.textColor = [UIColor whiteColor];
-    label.shadowColor = [UIColor grayColor];
-    label.shadowOffset = CGSizeMake(-1.0, 1.0);
-    label.font = [UIFont boldSystemFontOfSize:16];
-    label.text = sectionTitle;
+    placeType = [User translatSectionIndexIntoPlaceType:self.sectionMode section:section];
     
-    UIView *view = [[UIView alloc] init];
-    [view addSubview:label];
+    
+    imgView             = [[UIImageView alloc] initWithImage:[placeIcons objectAtIndex:placeType]];
+    imgView.contentMode = UIViewContentModeScaleAspectFit;
+    imgView.frame       = imgFrame;
+    
+    [view addSubview:imgView];
+    
+    
+    view.frame = viewFrame;
     
     return view;
 }

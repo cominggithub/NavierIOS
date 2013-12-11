@@ -24,6 +24,7 @@
 - (IBAction)pressRoute:(id)sender;
 - (IBAction)pressTextRoute:(id)sender;
 - (IBAction)pressCarPanel:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *selectPlaceTableViewBackground;
 @property (weak, nonatomic) IBOutlet UITableView *selectPlaceTableView;
 @property (nonatomic) BOOL bannerIsVisible;
 @property (weak, nonatomic) IBOutlet UIView *carPanelView;

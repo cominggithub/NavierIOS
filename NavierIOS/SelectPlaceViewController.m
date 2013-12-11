@@ -17,6 +17,11 @@
 @end
 
 @implementation SelectPlaceViewController
+{
+    UIButton* editButton;
+    SectionMode _sectionMode;
+    NSMutableArray* placeIcons;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -36,8 +41,39 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+
+    
+    _sectionMode = kSectionMode_Home_Office_Favor_Searched;
+    
+    placeIcons = [[NSMutableArray alloc] initWithCapacity:kPlaceType_Max];
+    [placeIcons insertObject:[UIImage imageNamed:@"search32"]   atIndex:kPlaceType_None];
+    [placeIcons insertObject:[UIImage imageNamed:@"home64"]     atIndex:kPlaceType_Home];
+    [placeIcons insertObject:[UIImage imageNamed:@"office64"]   atIndex:kPlaceType_Office];
+    [placeIcons insertObject:[UIImage imageNamed:@"favor64"]    atIndex:kPlaceType_Favor];
+    
+    editButton                      = [[UIButton alloc] initWithFrame:CGRectMake(0, 12, 64, 43)];
+    editButton.backgroundColor      = editButton.tintColor;
+    editButton.titleLabel.textColor = [UIColor whiteColor];
+    [editButton setTitle:[SystemManager getLanguageString:@"Edit"] forState:UIControlStateNormal];
+    
+
+    [editButton addTarget:self
+                   action:@selector(pressEditButton:)
+         forControlEvents:UIControlEventTouchUpInside];
+    
 }
 
+- (void)viewDidUnload {
+    [self setSelectPlaceView:nil];
+    [self setSelectPlaceTableView:nil];
+    [super viewDidUnload];
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -49,10 +85,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
-    if (nil != self.searchedPlaces && self.searchedPlaces.count > 0)
-        return 4;
-    return 3;
+    return [User getSectionCount:self.sectionMode];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -61,7 +94,7 @@
     if (nil != self.searchedPlaces && self.searchedPlaces.count > 0 && section == 3)
         return self.searchedPlaces.count;
     
-    return [User getPlaceCountBySectionMode:kSectionMode_Home_Office_Favor_Searched
+    return [User getPlaceCountBySectionMode:self.sectionMode
                                     section:section];
 
 }
@@ -78,7 +111,7 @@
     
     if ( 3 > indexPath.section)
     {
-        place = [User getPlaceBySectionMode:kSectionMode_Home_Office_Favor_Searched
+        place = [User getPlaceBySectionMode:self.sectionMode
                                     section:indexPath.section
                                       index:indexPath.row];
     }
@@ -149,27 +182,21 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     
-    logI(indexPath.row);
-    
     Place *selectedPlace;
     selectedPlace = [User getPlaceBySectionMode:kSectionMode_Home_Office_Favor_Searched
                                         section:indexPath.section
                                           index:indexPath.row];
     if (nil != selectedPlace)
     {
-        if(self.delegate != nil && [self.delegate respondsToSelector:@selector(selectPlace:sender:)])
+        if(self.delegate != nil && [self.delegate respondsToSelector:@selector(selectPlaceViewController:placeSelected:)])
         {
-            [self.delegate selectPlace: selectedPlace sender: self];
+            [self.delegate selectPlaceViewController:self placeSelected:selectedPlace];
         }
     }
     [self dismissViewControllerAnimated:TRUE completion:nil];
 }
 
-- (void)viewDidUnload {
-    [self setSelectPlaceView:nil];
-    [self setSelectPlaceTableView:nil];
-    [super viewDidUnload];
-}
+
 
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -189,6 +216,45 @@
     return @"";
 }
 
+-(CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 64;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+
+    UIView *view            = [[UIView alloc] init];
+    CGRect viewFrame        = CGRectMake(0, 0, self.view.bounds.size.width, 48);
+    CGRect imgFrame         = CGRectMake(8, 8, 48, 48);
+    CGRect editButtonFrame  = CGRectMake(viewFrame.size.width - 8 - editButton.frame.size.width, 8, editButton.frame.size.width, editButton.frame.size.height);
+    UIImageView *imgView;
+    PlaceType placeType;
+    
+    placeType = [User translatSectionIndexIntoPlaceType:self.sectionMode section:section];
+    
+    if (section == 0)
+    {
+        editButton.frame = editButtonFrame;
+        [view addSubview:editButton];
+    }
+    
+    imgView             = [[UIImageView alloc] initWithImage:[placeIcons objectAtIndex:placeType]];
+    imgView.contentMode = UIViewContentModeScaleAspectFit;
+    imgView.frame       = imgFrame;
+    
+    [view addSubview:imgView];
+
+    
+    view.frame = viewFrame;
+
+    return view;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return CGFLOAT_MIN;
+}
+#if 0
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     NSString *sectionTitle = [self tableView:tableView titleForHeaderInSection:section];
@@ -208,8 +274,11 @@
     UIView *view = [[UIView alloc] init];
     [view addSubview:label];
     
+    
     return view;
 }
+
+#endif
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -221,16 +290,17 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-        // Begin update
-        [tableView beginUpdates];
-        
+
         [User removePlaceBySectionMode:kSectionMode_Home_Office_Favor_Searched section:indexPath.section index:indexPath.row];
         [User save];
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
+
+        [self.tableView reloadData];
         
-        // End update
-        [tableView endUpdates];
-    }
+        if(self.delegate != nil && [self.delegate respondsToSelector:@selector(selectPlaceViewController:placeEdited:)])
+        {
+            [self.delegate selectPlaceViewController:(SelectPlaceViewController*)self placeEdited:TRUE];
+        }
+   }
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -238,4 +308,17 @@
     return YES;
 }
 
+-(IBAction) pressEditButton:(UIView*) sender
+{
+    if (YES == self.tableView.isEditing)
+    {
+        [self.tableView setEditing:NO animated:YES];
+        [editButton setTitle:[SystemManager getLanguageString:@"Edit"] forState:UIControlStateNormal];
+    }
+    else
+    {
+        [self.tableView setEditing:YES animated:YES];
+        [editButton setTitle:[SystemManager getLanguageString:@"Done"] forState:UIControlStateNormal];
+    }
+}
 @end

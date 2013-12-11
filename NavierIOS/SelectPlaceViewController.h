@@ -11,7 +11,8 @@
 @class SelectPlaceViewController;
 
 @protocol SelectPlaceViewControllerDelegate <NSObject>
--(void) selectPlace:(Place*) p sender:(SelectPlaceViewController*) s;
+-(void) selectPlaceViewController:(SelectPlaceViewController*) s placeSelected:(Place*) p;
+-(void) selectPlaceViewController:(SelectPlaceViewController*) s placeEdited:(BOOL) placeEdited;
 @end
 
 @interface SelectPlaceViewController : UITableViewController
@@ -19,5 +20,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *selectPlaceTableView;
 @property (weak, nonatomic) NSArray* searchedPlaces;
 @property (weak, nonatomic) id<SelectPlaceViewControllerDelegate> delegate;
+@property (readonly) SectionMode sectionMode;
 
 @end

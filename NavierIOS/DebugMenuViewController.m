@@ -114,7 +114,7 @@
 
 - (IBAction)pressClearConfigButton:(id)sender
 {
-    [User emptyConfig];
+    [User clearConfig];
     [User save];
 }
 

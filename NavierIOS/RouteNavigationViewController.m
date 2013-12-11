@@ -172,9 +172,14 @@
 
 -(void) startRouteNavigationFrom:(Place*) startPlace To:(Place*) endPlace
 {
+    mlogAssertNotNil(startPlace);
+    mlogAssertNotNil(endPlace);
+    
     self.startPlace = startPlace;
     self.endPlace   = endPlace;
-    
+
+    [User addRecentPlace:self.endPlace];
+    [User save];
     [self.guideRouteUIView startRouteNavigationFrom:self.startPlace To:self.endPlace];
     
 }

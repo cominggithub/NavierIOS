@@ -11,7 +11,10 @@
 
 #include "Log.h"
 @implementation MarkerMenuFloatView
-
+{
+    CGRect oriFrame;
+    CGRect routeFrame;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -54,6 +57,26 @@
     self.saveAsHomeButton   = (UIButton*)[self viewWithTag:102];
     self.saveAsOfficeButton = (UIButton*)[self viewWithTag:103];
     self.saveAsFavorButton  = (UIButton*)[self viewWithTag:104];
+    
+    [self.routeStartButton setTitle:[SystemManager getLanguageString:@"Route Start"] forState:UIControlStateNormal];
+    [self.routeEndButton setTitle:[SystemManager getLanguageString:@"Route End"] forState:UIControlStateNormal];
+    
+    oriFrame    = self.frame;
+    routeFrame  = self.frame;
 
+    routeFrame.size.height = self.routeStartButton.frame.size.height;
+    logRect(oriFrame);
+    logRect(routeFrame);
 }
+
+-(void) showRouteButtonOnly
+{
+    self.frame = routeFrame;
+}
+
+-(void) show
+{
+    self.frame = oriFrame;
+}
+
 @end

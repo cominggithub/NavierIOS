@@ -15,4 +15,7 @@
 @property (weak, nonatomic) UIButton* saveAsHomeButton;
 @property (weak, nonatomic) UIButton* saveAsOfficeButton;
 @property (weak, nonatomic) UIButton* saveAsFavorButton;
+
+-(void) showRouteButtonOnly;
+-(void) show;
 @end

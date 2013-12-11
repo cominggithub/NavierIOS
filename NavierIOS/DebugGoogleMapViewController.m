@@ -88,8 +88,4 @@
     
 }
 
--(IBAction)pressClearConfigButton:(id)sender
-{
-    [User emptyConfig];
-}
 @end

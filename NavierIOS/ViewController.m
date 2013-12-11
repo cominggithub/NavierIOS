@@ -30,6 +30,8 @@
     CGRect oriLandscapeCarPanelViewFrame;
     UIViewAutoresizing oriMapButtonAutoresizingMask;
     UIViewAutoresizing oriCarPanelViewAutoresizingMask;
+    SectionMode sectionMode;
+    NSMutableArray* placeIcons;
 }
 
 
@@ -65,11 +67,14 @@
     
     oriLandscapeMapButtonFrame.origin.x      += xoffset;
     oriLandscapeCarPanelViewFrame.origin.x   += xoffset;
+
+    sectionMode = kSectionMode_Home_Office_Favor_Searched;
     
-    logRect(oriProtraitMapButtonFrame);
-    logRect(oriProtraitCarPanelViewFrame);
-    logRect(oriLandscapeMapButtonFrame);
-    logRect(oriLandscapeCarPanelViewFrame);
+    placeIcons = [[NSMutableArray alloc] initWithCapacity:kPlaceType_Max];
+    [placeIcons insertObject:[UIImage imageNamed:@"search32"] atIndex:kPlaceType_None];
+    [placeIcons insertObject:[UIImage imageNamed:@"home32"] atIndex:kPlaceType_Home];
+    [placeIcons insertObject:[UIImage imageNamed:@"office32"] atIndex:kPlaceType_Office];
+    [placeIcons insertObject:[UIImage imageNamed:@"favor32"] atIndex:kPlaceType_Favor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -102,16 +107,11 @@
 
 - (IBAction)pressRoute:(id)sender
 {
-//    CLLocationCoordinate2D ncku     = CLLocationCoordinate2DMake(22.996501,120.216678);
-//    CLLocationCoordinate2D accton   = CLLocationCoordinate2DMake(23.099313,120.284371);
-    
+
     CLLocationCoordinate2D yufon = CLLocationCoordinate2DMake(22.987968, 120.227315);
     CLLocationCoordinate2D ampin = CLLocationCoordinate2DMake(22.994664, 120.142965);
     
     [NaviQueryManager planRouteStartLocation:yufon EndLocation:ampin];
-//     [NaviQueryManager planRouteStartLocationText:@"高雄" EndLocationText:@"花蓮"];
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:PLAN_ROUTE_DONE object:nil];
 }
 
 - (IBAction)pressTextRoute:(id)sender
@@ -151,23 +151,11 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [self.selectPlaceTableView reloadData];
-    if ([User getSectionCount:kSectionMode_Home_Office_Favor_Searched] > 0)
-    {
-        [self showHasPlaceMode];
-    }
-    else
-    {
-        [self showHasNoPlaceMode];
-    }
 }
 
 
 -(void) viewDidAppear:(BOOL)animated
 {
-//    [self.carPanel_outer_circle setImageTintColor:[UIColor whiteColor]];
-//    [self.carPanel_inner_circle setImageTintColor:[UIColor whiteColor]];
-//    [UIAnimation runSpinAnimationOnView:self.carPanel_outer_circle duration:100 rotations:0.01 repeat:100];
-
     [UIAnimation runSpinAnimationOnView:self.carPanel_inner_circle duration:100 rotations:0.1 repeat:100];
     
     [self showAdAnimated:NO];
@@ -178,12 +166,11 @@
     return YES;
 }
 
+#if 0
 -(void) showHasPlaceMode
 {
-    self.selectPlaceTableView.hidden = NO;
-    
-//    self.mapButton.autoresizingMask     = oriMapButtonAutoresizingMask;
-//    self.carPanelView.autoresizingMask  = oriCarPanelViewAutoresizingMask;
+    self.selectPlaceTableView.hidden            = NO;
+    self.selectPlaceTableViewBackground.hidden  = NO;
 
     /* in landscape */
     if (self.view.bounds.size.width > self.view.bounds.size.height)
@@ -200,6 +187,7 @@
 
 }
 
+
 -(void) showHasNoPlaceMode
 {
 
@@ -215,11 +203,7 @@
     viewWidth   = frame.size.width > frame.size.height ? frame.size.width : frame.size.height;
     viewHeight  = frame.size.width < frame.size.height ? frame.size.width : frame.size.height;
     
-    self.selectPlaceTableView.hidden = YES;
-    
-    logRect(self.view.bounds);
-    logRect(self.mapButton.frame);
-    logRect(self.carPanelView.frame);
+
     
     /* we are in landscape mode, so translate width to height, and height to width */
     margin  = (viewWidth - self.mapButton.frame.size.width - offset - self.carPanelView.frame.size.width)/2.0;
@@ -237,8 +221,12 @@
     frame.origin.y          = (viewHeight)/2.0 - frame.size.height/2.0 + 50;
     self.carPanelView.frame = frame;
     self.carPanelView.autoresizingMask = UIViewAutoresizingNone;
+    
+    self.selectPlaceTableView.hidden            = YES;
+    self.selectPlaceTableViewBackground.hidden  = YES;
 
 }
+#endif
 
 #pragma mark - Table view delegate
 /* for UITableView */
@@ -246,33 +234,45 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return [User getSectionCount:kSectionMode_Home_Office_Favor_Searched];
+//    return [User getSectionCount:sectionMode];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [User getPlaceCountBySectionMode: kSectionMode_Home_Office_Favor_SearchedText section:section];
+//    return [User getPlaceCountBySectionMode: kSectionMode_Home_Office_Favor_SearchedText section:section];
+    return User.recentPlaces.count > 0 ? User.recentPlaces.count : 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Place* place;
     UILabel *nameLabel;
+    UIImageView *icon;
     UITableViewCell *cell;
     
-    cell                = [self.selectPlaceTableView dequeueReusableCellWithIdentifier:@"SelectPlaceCell"];
-    place               = [User getPlaceBySectionMode:kSectionMode_Home_Office_Favor_SearchedText
-                                              section:indexPath.section
-                                                index:indexPath.row];
-    if (nil != place)
+    cell        = [self.selectPlaceTableView dequeueReusableCellWithIdentifier:@"SelectPlaceCell"];
+    nameLabel   = (UILabel*)[cell viewWithTag:3];
+    icon        = (UIImageView*)[cell viewWithTag:2];
+    
+    if (User.recentPlaces.count > 0)
     {
-        nameLabel           = (UILabel*)[cell viewWithTag:3];
-        nameLabel.text      = place.name;
-//        [nameLabel autoFontSize:16 maxWidth:280];
+        place   = [User.recentPlaces objectAtIndex:indexPath.row];
+        if (nil != place)
+        {
+            nameLabel.text = place.name;
+            icon.image     = [placeIcons objectAtIndex:place.placeType];
+        }
+    }
+    else
+    {
+        CGRect frame;
+        frame           = nameLabel.frame;
+        nameLabel.text  = [SystemManager getLanguageString:@"There is no recent place now"];
+        icon.image      = [placeIcons objectAtIndex:kPlaceType_Favor];
     }
 
-    
     return cell;
 }
 
@@ -290,12 +290,12 @@
 
     Place* routeStartPlace;
     Place* routeEndPlace;
+
+    if (User.recentPlaces.count < 1)
+        return;
     
     routeStartPlace = [LocationManager currentPlace];
-    
-    routeEndPlace = [User getPlaceBySectionMode:kSectionMode_Home_Office_Favor_SearchedText
-                                        section:indexPath.section
-                                           index:indexPath.row];
+    routeEndPlace   = [User.recentPlaces objectAtIndex:indexPath.row];
     
     if (nil != routeStartPlace && nil != routeEndPlace && ![routeStartPlace isCoordinateEqualTo:routeEndPlace])
     {
@@ -305,21 +305,7 @@
 
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    switch (section)
-    {
-        case 0:
-            return [SystemManager getLanguageString:@"Home"];
-        case 1:
-            return [SystemManager getLanguageString:@"Office"];
-        case 2:
-            return [SystemManager getLanguageString:@"Favor"];
-    }
-    
-    return @"";
-}
-
+#if 0
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
 #if 0
@@ -348,33 +334,18 @@
     CGRect viewFrame = CGRectMake(0, 0, 24, 22);
     
     UIImageView *imgView;
-    
-    switch (section)
-    {
-        case 0:
-            imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"home32.png"]];
-            break;
-        case 1:
-            imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"office32.png"]];
-            break;
-        case 2:
-            imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"favor32.png"]];
-            break;
-        default:
-            break;
-    }
-    
+
     imgView.contentMode = UIViewContentModeScaleAspectFit;
     imgView.frame = viewFrame;
     
     [view addSubview:imgView];
     view.frame = viewFrame;
     
-
     return view;
     
 
 }
+#endif
 
 #pragma mark - Banner
 
@@ -397,9 +368,8 @@
     
     [adView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     adView.delegate     = self;
-    
+
     [self.view addSubview:adView];
-    
     [self showAdAnimated:NO];
 }
 

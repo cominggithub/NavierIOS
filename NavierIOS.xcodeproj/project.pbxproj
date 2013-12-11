@@ -20,6 +20,8 @@
 		2B04D47F184396C200233B2D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9A437016DB99C700FD1A54 /* OpenGLES.framework */; };
 		2B04D480184396D600233B2D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9A437216DB99D100FD1A54 /* QuartzCore.framework */; };
 		2B04D481184396E100233B2D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9A437416DB99D900FD1A54 /* SystemConfiguration.framework */; };
+		2B062B711855B13C00CB3BC6 /* search32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B062B6F1855B13C00CB3BC6 /* search32.png */; };
+		2B062B721855B13C00CB3BC6 /* search32@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B062B701855B13C00CB3BC6 /* search32@2x.png */; };
 		2B067CE51850C6B600A0054E /* button_search_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B067CE31850C6B600A0054E /* button_search_blue.png */; };
 		2B067CE61850C6B600A0054E /* button_search_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B067CE41850C6B600A0054E /* button_search_transparent.png */; };
 		2B067CE91850CD2400A0054E /* PlaceSearchResultPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B067CE81850CD2400A0054E /* PlaceSearchResultPanel.xib */; };
@@ -206,6 +208,8 @@
 /* Begin PBXFileReference section */
 		2B036BBA1759CCEF003E4683 /* SavePlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavePlaceViewController.h; sourceTree = "<group>"; };
 		2B036BBB1759CCEF003E4683 /* SavePlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavePlaceViewController.m; sourceTree = "<group>"; };
+		2B062B6F1855B13C00CB3BC6 /* search32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search32.png; sourceTree = "<group>"; };
+		2B062B701855B13C00CB3BC6 /* search32@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search32@2x.png"; sourceTree = "<group>"; };
 		2B067CE31850C6B600A0054E /* button_search_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_search_blue.png; sourceTree = "<group>"; };
 		2B067CE41850C6B600A0054E /* button_search_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_search_transparent.png; sourceTree = "<group>"; };
 		2B067CE81850CD2400A0054E /* PlaceSearchResultPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceSearchResultPanel.xib; sourceTree = "<group>"; };
@@ -489,6 +493,8 @@
 		2B5D9A2517C78C7E00A22132 /* icon */ = {
 			isa = PBXGroup;
 			children = (
+				2B062B6F1855B13C00CB3BC6 /* search32.png */,
+				2B062B701855B13C00CB3BC6 /* search32@2x.png */,
 				2B5D9A2617C78C8B00A22132 /* favor32.png */,
 				2B5D9A2717C78C8B00A22132 /* favor32@2x.png */,
 				2B5D9A2817C78C8B00A22132 /* favor64@2x.png */,
@@ -975,6 +981,7 @@
 				2BE6DA6317C39CCD00DE20E8 /* turn_right45.png in Resources */,
 				2BE6DA6417C39CCD00DE20E8 /* turn_right90.png in Resources */,
 				2BE6DA6517C39CCD00DE20E8 /* turn_straight.png in Resources */,
+				2B062B721855B13C00CB3BC6 /* search32@2x.png in Resources */,
 				2B5D9A3217C78C8B00A22132 /* favor32.png in Resources */,
 				2B5D9A3317C78C8B00A22132 /* favor32@2x.png in Resources */,
 				2B5D9A3417C78C8B00A22132 /* favor64@2x.png in Resources */,
@@ -1026,6 +1033,7 @@
 				2BCBD06F183A5D1500B08D1D /* place_marker_favor_48.png in Resources */,
 				2BCBD076183A5D1500B08D1D /* place_marker_office_48@2x.png in Resources */,
 				2B5D9A7717C7A57D00A22132 /* button_shop@2x.png in Resources */,
+				2B062B711855B13C00CB3BC6 /* search32.png in Resources */,
 				2B5D9A7B17C7A67A00A22132 /* main_background.png in Resources */,
 				2B5D9A7C17C7A67A00A22132 /* main_background@2x.png in Resources */,
 				2B79232F17C9C129009463F8 /* 3g_off.png in Resources */,

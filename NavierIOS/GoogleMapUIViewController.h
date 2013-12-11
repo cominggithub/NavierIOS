@@ -38,7 +38,6 @@
 
 - (IBAction)pressTestButton:(id)sender;
 -(void) mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate;
--(void) selectPlace:(Place*) p sender:(SelectPlaceViewController*) s;
 -(void) searchPlace:(NSString*) placeText;
 
 

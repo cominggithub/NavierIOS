@@ -22,10 +22,13 @@
 "Course" = "方位";
 "Unit" = "速度單位";
 "Route Planning" = "路徑規畫中";
+"Route Start" = "起點";
+"Route End" = "目的地";
 "No GPS Signal" = "無 GPS 訊號";
 "No Network" = "無網路";
 "Place" = "地點";
 "Navigate" = "導航";
+"There is no recent place now" = "尚無最近去過的地點";
 "Current Location" = "目前位置";
 "Route Re-Planning" = "路徑重新規畫中";
 "route start place and end place are the same" = "出發地與目的地相同";

@@ -21,9 +21,8 @@
 
 @interface GoogleMapUIViewController ()
 {
-
-
-
+    
+    BOOL isMapMovedAfterTappingMarker;
 }
 @end
 
@@ -53,7 +52,6 @@
     
     MapManager *mapManager;
     int zoomLevel;
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -96,19 +94,22 @@
 - (void)viewDidLoad
 {
     
+    
     NSString* navigationText;
     NSString* placeText;
     UIFont* textFont;
     [super viewDidLoad];
     
     
-    self.view.frame = [SystemManager lanscapeScreenRect];
+//    self.view.frame = [SystemManager lanscapeScreenRect];
 
+    isMapMovedAfterTappingMarker        = FALSE;
     /* google map initialization */
-    mapManager                      = [[MapManager alloc] init];
-    mapManager.mapView.frame        = CGRectMake(0, 0, self.googleMapView.frame.size.width, self.googleMapView.frame.size.height);
-    mapManager.mapView.delegate     = self;
-    mapManager.delegate             = self;
+    mapManager                          = [[MapManager alloc] init];
+    mapManager.mapView.frame            = CGRectMake(0, 0, self.googleMapView.frame.size.width, self.googleMapView.frame.size.height);
+    mapManager.mapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    mapManager.mapView.delegate         = self;
+    mapManager.delegate                 = self;
     [self.googleMapView insertSubview:mapManager.mapView atIndex:0];
     
     
@@ -152,6 +153,13 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    logRect(self.view.bounds);
+    logRect(self.contentView.frame);
+    logRect(self.googleMapView.frame);
+    logRect(mapManager.mapView.frame);
+    logRect(placeSearchResultPanel.frame);
+    
+    printf("\n");
     if(self.placeToSearch != nil && self.placeToSearch.length > 0)
     {
         [mapManager searchPlace:self.placeToSearch];
@@ -159,10 +167,22 @@
 
     [self showAdAnimated:NO];
     [self hideMarkerMenuFloat];
-    
+
+    printf("\n");
     /* update current place and reset the route start place */
     mapManager.updateToCurrentPlace         = TRUE;
     mapManager.useCurrentPlaceAsRouteStart  = TRUE;
+    
+    logRect(self.view.bounds);
+    logRect(self.contentView.frame);
+    logRect(self.googleMapView.frame);
+    logRect(mapManager.mapView.frame);
+    logRect(placeSearchResultPanel.frame);
+    
+    printf("\n");
+    printf("\n-----------------\n");
+    printf("\n");
+    
 }
 
 #pragma  mark - Banner
@@ -194,21 +214,29 @@
 
 - (void)showAdAnimated:(BOOL)animated
 {
+
     if (nil == adView)
         return;
-    CGRect contentFrame = [SystemManager lanscapeScreenRect];
+
+    CGRect contentFrame = self.contentView.frame;
     CGRect bannerFrame = adView.frame;
     CGRect zoomPanelFrame = self.zoomPanel.frame;
     
     if (adView.bannerLoaded)
     {
-        contentFrame.size.height    -= adView.frame.size.height;
+        
         contentFrame.origin.y        = adView.frame.size.height;
+        if (contentFrame.size.height + adView.frame.size.height != self.view.bounds.size.height)
+        {
+            contentFrame.size.height = self.view.bounds.size.height - adView.frame.size.height;
+        }
         bannerFrame.origin.y         = 0;
         
     } else
     {
-        bannerFrame.origin.y = -adView.frame.size.height;
+        contentFrame.origin.y       = 0;
+        contentFrame.size.height    = self.view.bounds.size.height;
+        bannerFrame.origin.y        = -adView.frame.size.height;
     }
 
     [UIView animateWithDuration:animated ? 0.25 : 0.0 animations:^{
@@ -218,7 +246,11 @@
         
     }];
     
-
+    logRect(self.contentView.frame);
+    logRect(self.googleMapView.frame);
+    logRect(mapManager.mapView.frame);
+    logRect(placeSearchResultPanel.frame);
+    
 }
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner
@@ -297,6 +329,7 @@
                                    forControlEvents:UIControlEventTouchUpInside];
 
     
+
     [self.googleMapView addSubview:markerMenuFloatView];
 
 }
@@ -306,6 +339,17 @@
 {
 //    if (false == isShowMarkMenuFloat)
     {
+        /* show full menu for searched places */
+        if (kPlaceRouteType_None == selectedPlace.placeType)
+        {
+            [markerMenuFloatView show];
+        }
+        /* show only route button menu for saved places */
+        else
+        {
+            [markerMenuFloatView showRouteButtonOnly];
+        }
+        
         isShowMarkMenuFloat = TRUE;
 
         markerMenuFloatView.hidden   = FALSE;
@@ -640,23 +684,32 @@
 -(void) addPlaceSearchResultPanel
 {
     CGRect frame;
+    CGRect landscapeFrame;
     NSArray *xibContents = [[NSBundle mainBundle] loadNibNamed:@"PlaceSearchResultPanel" owner:self options:nil];
     
-    placeSearchResultPanel = [xibContents lastObject];
     
-    placeSearchResultPanel.hidden               = YES;
+    placeSearchResultPanel  = [xibContents lastObject];
+    placeSearchResultPanel.hidden               = NO;
+    
+    logRect(self.view.bounds);
+    landscapeFrame  = self.view.bounds;
 
+    if (landscapeFrame.size.height > landscapeFrame.size.width)
+    {
+        CGFloat tmpValue;
+        tmpValue                    = landscapeFrame.size.width;
+        landscapeFrame.size.width   = landscapeFrame.size.height;
+        landscapeFrame.size.height  = tmpValue;
+    }
+    
     frame                                       = placeSearchResultPanel.frame;
-    frame.origin.x                              = (self.googleMapView.frame.size.width - frame.size.width)/2;
-    frame.origin.y                              = self.googleMapView.frame.size.height - frame.size.height;
+    frame.origin.x                              = (landscapeFrame.size.width - frame.size.width)/2;
+    frame.origin.y                              = landscapeFrame.size.height - self.topView.frame.size.height - frame.size.height;
+    
     placeSearchResultPanel.frame                = frame;
-
-#if 0
-    placeSearchResultPanel.autoresizingMask     =   UIViewAutoresizingFlexibleLeftMargin |
-                                                    UIViewAutoresizingFlexibleRightMargin |
-                                                    UIViewAutoresizingFlexibleTopMargin;
-#endif 
+    placeSearchResultPanel.autoresizingMask     = UIViewAutoresizingFlexibleTopMargin;
     placeSearchResultPanel.delegate             = self;
+
     [self.googleMapView addSubview:placeSearchResultPanel];
     
 }
@@ -684,29 +737,11 @@
 
 #pragma mark - Operations
 
--(void) selectPlace:(Place*) p sender:(SelectPlaceViewController*) s
-{
-    if (nil == p)
-        return;
-    
-    selectedPlace = p;
-    [mapManager moveToPlace:p];
-}
-
 -(void) searchPlace:(NSString*) placeText
 {
     [mapManager searchPlace:placeText];
 }
 
--(void) showNoPlaceMode
-{
-    
-}
-
--(void) showHasPlaceMode
-{
-    
-}
 #pragma  mark - UI Actions
 
 - (IBAction)pressRouteButton:(id)sender
@@ -737,10 +772,10 @@
 
 - (IBAction)pressPlaceButton:(id)sender
 {
-    [self hideMarkMenu];
-    selectPlaceViewController.searchedPlaces = [mapManager searchedPlaces];
-    [self presentViewController:selectPlaceViewController animated:YES completion:nil];
-    
+    if ([User getSectionCount:selectPlaceViewController.sectionMode] > 0)
+    {
+        [self presentViewController:selectPlaceViewController animated:YES completion:nil];
+    }
 }
 
 - (IBAction)pressNavigationButton:(id)sender
@@ -796,12 +831,38 @@
 - (BOOL) mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker
 {
     CGPoint point;
-    selectedPlace = [mapManager placeByMarker:marker];
+    Place* tmpPlace;
+    tmpPlace = [mapManager placeByMarker:marker];
     
-    point = [mapView.projection pointForCoordinate:marker.position];
+    if (nil != tmpPlace)
+    {
+        point = [mapView.projection pointForCoordinate:marker.position];
+        /* tap a new marker */
+        if (tmpPlace != selectedPlace)
+        {
+            selectedPlace = tmpPlace;
+            [self showMarkerMenuFloat:point];
+        }
+        /* tap on the same marker */
+        else
+        {
+            if (NO == isMapMovedAfterTappingMarker)
+            {
+                if (YES == isShowMarkMenuFloat)
+                    [self hideMarkerMenuFloat];
+                else
+                    [self showMarkerMenuFloat:point];
+            }
+            /* info window is hidden now, so hide marker menu */
+            else
+            {
+                [self hideMarkerMenuFloat];
+            }
+        }
+    }
+
+    isMapMovedAfterTappingMarker = FALSE;
     
-    [self showMarkerMenuFloat:point];
-    [self updateMarkMenu];
 
     return NO;
 }
@@ -816,8 +877,8 @@
     {
         [self hideMarkerMenuFloat];
     }
+    
 }
-
 
 - (void)mapView:(GMSMapView *)mapView didChangeCameraPosition:(GMSCameraPosition *)position
 {
@@ -826,6 +887,7 @@
         [self moveMarkerMenuFloat:[mapView.projection pointForCoordinate:position.target]];
     }
 
+    isMapMovedAfterTappingMarker = TRUE;
 }
 
 - (void)mapView:(GMSMapView *)mapView willMove:(BOOL)gesture;
@@ -855,5 +917,23 @@
     if (YES == placeChanged)
         [mapManager refreshMap];
 }
+
+-(void) selectPlaceViewController:(SelectPlaceViewController*) s placeSelected:(Place*) p
+{
+    logfn();
+    if (nil == p)
+        return;
+    
+    logfn();
+    selectedPlace = p;
+    [mapManager moveToPlace:p];
+}
+
+-(void) selectPlaceViewController:(SelectPlaceViewController*) s placeEdited:(BOOL) placeEdited
+{
+    if (YES == placeEdited)
+        [mapManager refreshMap];
+}
+
 @end
 
