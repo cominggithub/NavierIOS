@@ -18,6 +18,9 @@
                     <state key="normal" title="&lt;">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="pressLeftButton:" destination="1" eventType="touchUpInside" id="VHt-bN-avG"/>
+                    </connections>
                 </button>
                 <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bMx-bp-UKW">
                     <rect key="frame" x="320" y="0.0" width="20" height="30"/>
@@ -26,15 +29,21 @@
                     <state key="normal" title=">">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="pressRightButton:" destination="1" eventType="touchUpInside" id="pB9-4y-vFc"/>
+                    </connections>
                 </button>
                 <view opaque="NO" tag="100" contentMode="scaleToFill" id="kPs-9M-1hy" userLabel="InfoView">
                     <rect key="frame" x="20" y="0.0" width="300" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="201" contentMode="scaleToFill" id="7Tn-ct-mHe">
+                        <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="201" contentMode="scaleToFill" id="7Tn-ct-mHe">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <color key="backgroundColor" red="0.1032912648" green="0.54669602689999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="oJl-CZ-K2p" appends="YES" id="6oF-Ut-jVD"/>
+                            </connections>
                         </scrollView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="301" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pt7-1T-1Kc" userLabel="Name">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="20"/>
@@ -56,11 +65,17 @@
                         </pageControl>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
+        <tapGestureRecognizer id="oJl-CZ-K2p">
+            <connections>
+                <action selector="handleTapFrom:" destination="1" id="KYD-KP-q4n"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

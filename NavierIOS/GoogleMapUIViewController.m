@@ -136,6 +136,8 @@
     [self addBanner:self.contentView];
     [self showAdAnimated:NO];
     
+    self.topView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.85];
+    
 }
 
 
@@ -153,13 +155,7 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
-    logRect(self.view.bounds);
-    logRect(self.contentView.frame);
-    logRect(self.googleMapView.frame);
-    logRect(mapManager.mapView.frame);
-    logRect(placeSearchResultPanel.frame);
     
-    printf("\n");
     if(self.placeToSearch != nil && self.placeToSearch.length > 0)
     {
         [mapManager searchPlace:self.placeToSearch];
@@ -168,20 +164,9 @@
     [self showAdAnimated:NO];
     [self hideMarkerMenuFloat];
 
-    printf("\n");
     /* update current place and reset the route start place */
     mapManager.updateToCurrentPlace         = TRUE;
     mapManager.useCurrentPlaceAsRouteStart  = TRUE;
-    
-    logRect(self.view.bounds);
-    logRect(self.contentView.frame);
-    logRect(self.googleMapView.frame);
-    logRect(mapManager.mapView.frame);
-    logRect(placeSearchResultPanel.frame);
-    
-    printf("\n");
-    printf("\n-----------------\n");
-    printf("\n");
     
 }
 
@@ -245,11 +230,6 @@
         adView.frame       = bannerFrame;
         
     }];
-    
-    logRect(self.contentView.frame);
-    logRect(self.googleMapView.frame);
-    logRect(mapManager.mapView.frame);
-    logRect(placeSearchResultPanel.frame);
     
 }
 
@@ -340,14 +320,17 @@
 //    if (false == isShowMarkMenuFloat)
     {
         /* show full menu for searched places */
-        if (kPlaceRouteType_None == selectedPlace.placeType)
+        if (kPlaceType_Home     == selectedPlace.placeType ||
+            kPlaceType_Office   == selectedPlace.placeType ||
+            kPlaceType_Favor    == selectedPlace.placeType)
         {
-            [markerMenuFloatView show];
+            [markerMenuFloatView showRouteButtonOnly];
+            
         }
         /* show only route button menu for saved places */
         else
         {
-            [markerMenuFloatView showRouteButtonOnly];
+            [markerMenuFloatView show];
         }
         
         isShowMarkMenuFloat = TRUE;
@@ -365,7 +348,6 @@
         markerMenuFloatView.hidden   = !isShowMarkMenuFloat;
 
     }
-    
 }
 
 -(void) moveMarkerMenuFloat:(CGPoint) pos
@@ -385,7 +367,7 @@
 
 -(void) saveAsHome:(Place*)p
 {
-    if (p.placeType != kPlaceRouteType_None)
+    if (p.placeType != kPlaceType_SearchedPlace)
     {
         [self hideMarkerMenuFloat];
         return;
@@ -398,7 +380,7 @@
 
 -(void) saveAsOffice:(Place*)p
 {
-    if (p.placeType != kPlaceRouteType_None)
+    if (p.placeType != kPlaceType_SearchedPlace)
     {
         [self hideMarkerMenuFloat];
         return;
@@ -412,7 +394,7 @@
 -(void) saveAsFavor:(Place*)p
 {
     
-    if (p.placeType != kPlaceRouteType_None)
+    if (p.placeType != kPlaceType_SearchedPlace)
     {
         [self hideMarkerMenuFloat];
         return;
@@ -688,11 +670,9 @@
     NSArray *xibContents = [[NSBundle mainBundle] loadNibNamed:@"PlaceSearchResultPanel" owner:self options:nil];
     
     
-    placeSearchResultPanel  = [xibContents lastObject];
-    placeSearchResultPanel.hidden               = NO;
-    
-    logRect(self.view.bounds);
-    landscapeFrame  = self.view.bounds;
+    placeSearchResultPanel          = [xibContents objectAtIndex:0];
+    placeSearchResultPanel.hidden   = YES;
+    landscapeFrame                  = self.view.bounds;
 
     if (landscapeFrame.size.height > landscapeFrame.size.width)
     {
@@ -704,7 +684,7 @@
     
     frame                                       = placeSearchResultPanel.frame;
     frame.origin.x                              = (landscapeFrame.size.width - frame.size.width)/2;
-    frame.origin.y                              = landscapeFrame.size.height - self.topView.frame.size.height - frame.size.height;
+    frame.origin.y                              = landscapeFrame.size.height - frame.size.height;
     
     placeSearchResultPanel.frame                = frame;
     placeSearchResultPanel.autoresizingMask     = UIViewAutoresizingFlexibleTopMargin;
@@ -744,12 +724,6 @@
 
 #pragma  mark - UI Actions
 
-- (IBAction)pressRouteButton:(id)sender
-{
-    
-    
-}
-
 - (IBAction)pressZoomOutButton:(id)sender
 {
     [mapManager zoomIn];
@@ -783,7 +757,9 @@
     if (YES == mapManager.hasRoute)
     {
         [routeNavigationViewController startRouteNavigationFrom:mapManager.routeStartPlace To:mapManager.routeEndPlace];
+        [self presentViewController:routeNavigationViewController animated:YES completion:nil];
     }
+
     [self hideMarkerMenuFloat];
 }
 
@@ -803,7 +779,6 @@
 
 -(IBAction) pressRouteEndButton:(id) sender
 {
-    logO(selectedPlace);
     mapManager.routeEndPlace = selectedPlace;
     [self hideMarkerMenuFloat];
 }
@@ -818,6 +793,7 @@
 {
     [self saveAsOffice:selectedPlace];
     [self hideMarkerMenuFloat];
+    
 }
 
 -(IBAction) pressSaveAsFavorButton:(id) sender
@@ -907,8 +883,18 @@
     }
 }
 
--(void) PlaceSearchResultPanelView:(PlaceSearchResultPanelView*) pv moveToPlace:(Place*) p;
+-(void) mapManager: (MapManager*) mapManager updateCurrentPlace:(Place*) place
 {
+    if (nil != place)
+    {
+        [self hideMarkerMenuFloat];
+    }
+    
+}
+
+-(void) placeSearchResultPanelView:(PlaceSearchResultPanelView*) pv moveToPlace:(Place*) p;
+{
+    [self hideMarkerMenuFloat];
     [mapManager moveToPlace:p];
 }
 
@@ -920,11 +906,9 @@
 
 -(void) selectPlaceViewController:(SelectPlaceViewController*) s placeSelected:(Place*) p
 {
-    logfn();
     if (nil == p)
         return;
     
-    logfn();
     selectedPlace = p;
     [mapManager moveToPlace:p];
 }

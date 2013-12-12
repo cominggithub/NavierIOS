@@ -13,6 +13,7 @@
 
 @implementation PlaceSearchResultPanelView
 {
+    int _pageNum;
     NSArray* _places;
 }
 
@@ -38,10 +39,10 @@
     
     _nameLabel.hidden           = YES;
     _addressLabel.hidden        = YES;
+    _pageNum                    = -1;
     
     /* configure semi-transparent background */
-    self.backgroundColor        = [[UIColor whiteColor] colorWithAlphaComponent:0.9];
-    _scrollView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.2];
+    self.backgroundColor        = [[UIColor whiteColor] colorWithAlphaComponent:0.85];
     _scrollView.delegate        = self;
 
     
@@ -56,6 +57,8 @@
     CGRect frame;
     
     [[self.scrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+
+    _places = [[NSArray alloc] initWithArray:places];
     
     for (i=0; i<places.count; i++)
     {
@@ -85,15 +88,10 @@
         [self.scrollView addSubview:placeAddr];
     }
     
-    
-    self.scrollView.contentSize    = CGSizeMake(self.scrollView.frame.size.width*i,
-                                                                  self.scrollView.frame.size.height);
-    self.scrollView.pagingEnabled  = YES;
-    self.pageControl.numberOfPages = i;
-    self.pageControl.currentPage   = 0;
-    
-    _places = [[NSArray alloc] initWithArray:places];
-    [self scrollViewDidEndDecelerating:self.scrollView];
+    self.scrollView.contentSize     = CGSizeMake(self.scrollView.frame.size.width*i, self.scrollView.frame.size.height);
+    self.scrollView.pagingEnabled   = YES;
+    self.pageControl.numberOfPages  = i;
+    self.pageNum                    = 0;
     
 }
 
@@ -105,15 +103,47 @@
     
     if (page >= _places.count)
         return;
-    
-    self.pageControl.currentPage = page;
-    self.leftButton.hidden  = page == 0 ? YES:NO;
-    self.rightButton.hidden = page == self.pageControl.numberOfPages-1 ? YES:NO;
+
+    self.pageNum = page;
+}
+
+-(int) pageNum
+{
+    return _pageNum;
+}
+
+-(void) setPageNum:(int)pageNum
+{
+    if (pageNum >= _places.count || pageNum < 0)
+    {
+        return;
+    }
+    _pageNum = pageNum;
+
+    self.pageControl.currentPage = self.pageNum;
+    self.leftButton.hidden  = self.pageNum == 0 ? YES:NO;
+    self.rightButton.hidden = self.pageNum == self.pageControl.numberOfPages-1 ? YES:NO;
     
     /* notify the delegate */
-    if (nil != self.delegate && [self.delegate respondsToSelector:@selector(PlaceSearchResultPanelView:moveToPlace:)])
+    if (nil != self.delegate && [self.delegate respondsToSelector:@selector(placeSearchResultPanelView:moveToPlace:)])
     {
-        [self.delegate PlaceSearchResultPanelView:self moveToPlace:[_places objectAtIndex:page]];
+        [self.delegate placeSearchResultPanelView:self moveToPlace:[_places objectAtIndex:self.pageNum]];
     }
+    
+}
+
+-(IBAction) handleTapFrom: (UITapGestureRecognizer *)recognizer
+{
+    self.pageNum = self.pageNum;
+}
+
+-(IBAction) pressLeftButton:(UIButton*) sender
+{
+    self.pageNum--;
+}
+
+-(IBAction) pressRightButton:(UIButton*) sender
+{
+    self.pageNum++;
 }
 @end

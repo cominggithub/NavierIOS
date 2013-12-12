@@ -30,7 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.placeTextField.text        = [SystemManager getLanguageString:@"Place to search"];
+    self.placeTextField.placeholder = [SystemManager getLanguageString:@"Place to search"];
     self.placeTextField.delegate    = self;
 	// Do any additional setup after loading the view.
 }
@@ -49,10 +49,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"PlaceCell";
-    UILabel *placeLabel;
     UITableViewCell *cell = [self.placeTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    placeLabel         = (UILabel*)[cell viewWithTag:2];
-    placeLabel.text    = [User getSearchedPlaceTextByIndex:indexPath.row];
+//    placeLabel         = (UILabel*)[cell viewWithTag:2];
+//    placeLabel.text    = [User getSearchedPlaceTextByIndex:indexPath.row];
+    cell.textLabel.text      = [User getSearchedPlaceTextByIndex:indexPath.row];
     return cell;
 }
 
@@ -69,14 +69,10 @@
     
     if( place.length > 0)
     {
-        if(![place isEqualToString:[SystemManager getLanguageString:@"Place to search"]])
-        {
-        
-            GoogleMapUIViewController* gc = (GoogleMapUIViewController*) self.presentingViewController;
-            [User addSearchedPlaceText:place];
-            [User save];
-            [gc searchPlace:place];
-        }
+        GoogleMapUIViewController* gc = (GoogleMapUIViewController*) self.presentingViewController;
+        [User addSearchedPlaceText:place];
+        [User save];
+        [gc searchPlace:place];
     }
     
     [self dismissViewControllerAnimated:true completion:nil];

@@ -15,11 +15,12 @@
 -(void) selectPlaceViewController:(SelectPlaceViewController*) s placeEdited:(BOOL) placeEdited;
 @end
 
-@interface SelectPlaceViewController : UITableViewController
-@property (strong, nonatomic) IBOutlet UITableView *selectPlaceView;
-@property (strong, nonatomic) IBOutlet UITableView *selectPlaceTableView;
+@interface SelectPlaceViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property (weak, nonatomic) NSArray* searchedPlaces;
 @property (weak, nonatomic) id<SelectPlaceViewControllerDelegate> delegate;
 @property (readonly) SectionMode sectionMode;
+@property (weak, nonatomic) IBOutlet UIButton *editButton;
 
 @end

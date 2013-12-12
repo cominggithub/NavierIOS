@@ -13,7 +13,7 @@
 
 @protocol PlaceSearchResultPanelViewDelegate <NSObject>
 
--(void) PlaceSearchResultPanelView:(PlaceSearchResultPanelView*) pv moveToPlace:(Place*) p;
+-(void) placeSearchResultPanelView:(PlaceSearchResultPanelView*) pv moveToPlace:(Place*) p;
 
 @end
 
@@ -25,7 +25,8 @@
 @property (weak, nonatomic) UIPageControl *pageControl;
 @property (weak, nonatomic) UILabel *nameLabel;
 @property (weak, nonatomic) UILabel *addressLabel;
+@property (nonatomic) int pageNum;
 @property (weak) id<PlaceSearchResultPanelViewDelegate> delegate;
 -(void) updatePlaces:(NSArray*) places;
-
+-(IBAction) handleTapFrom: (UITapGestureRecognizer *)recognizer;
 @end

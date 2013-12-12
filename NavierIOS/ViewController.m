@@ -71,10 +71,11 @@
     sectionMode = kSectionMode_Home_Office_Favor_Searched;
     
     placeIcons = [[NSMutableArray alloc] initWithCapacity:kPlaceType_Max];
-    [placeIcons insertObject:[UIImage imageNamed:@"search32"] atIndex:kPlaceType_None];
+    [placeIcons insertObject:[UIImage imageNamed:@"favor32"] atIndex:kPlaceType_None];
     [placeIcons insertObject:[UIImage imageNamed:@"home32"] atIndex:kPlaceType_Home];
     [placeIcons insertObject:[UIImage imageNamed:@"office32"] atIndex:kPlaceType_Office];
     [placeIcons insertObject:[UIImage imageNamed:@"favor32"] atIndex:kPlaceType_Favor];
+    [placeIcons insertObject:[UIImage imageNamed:@"search32"] atIndex:kPlaceType_SearchedPlace];
 }
 
 - (void)didReceiveMemoryWarning

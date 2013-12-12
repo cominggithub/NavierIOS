@@ -126,17 +126,29 @@
     UILabel *nameLabel;
     UILabel *addressLabel;
     UITableViewCell *cell;
+    int count;
+    
+    cell  = [self.savePlaceTableView dequeueReusableCellWithIdentifier:@"SavePlaceCell"];
 
-    cell                = [self.savePlaceTableView dequeueReusableCellWithIdentifier:@"SavePlaceCell"];
+    
+    count = [User getPlaceCountBySectionMode:_sectionMode section:indexPath.row];
 
+        
+    
     place = [User getPlaceBySectionMode:_sectionMode
                                 section:indexPath.section
                                   index:indexPath.row];
-    
-    if (nil != place)
+
+    nameLabel           = (UILabel*)[cell viewWithTag:3];
+    addressLabel        = (UILabel*)[cell viewWithTag:4];
+
+    if (count < 1)
     {
-        nameLabel           = (UILabel*)[cell viewWithTag:3];
-        addressLabel        = (UILabel*)[cell viewWithTag:4];
+        nameLabel.text      = [SystemManager getLanguageString:@"No place now"];
+        addressLabel.text   = @"";
+    }
+    else if (nil != place)
+    {
         nameLabel.text      = place.name;
         addressLabel.text   = place.address;
     }
@@ -144,13 +156,12 @@
     return cell;
 }
 
--(void)tableView: (UITableView *)tableView didSelectRowAtIndexPath: (NSIndexPath *)indexPath
-{
-//    [self dismissAndSearchPlace:[User getSearchPlaceByIndex:indexPath.row]];
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    int count = [User getPlaceCountBySectionMode:_sectionMode section:section];
+    
+    if (count < 1)
+        return 1;
     return [User getPlaceCountBySectionMode:_sectionMode
                                     section:section];
 }
@@ -198,7 +209,7 @@
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return YES;
+    return NO;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
