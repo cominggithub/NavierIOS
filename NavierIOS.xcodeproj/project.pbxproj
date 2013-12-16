@@ -104,7 +104,7 @@
 		2B831C2A177E779B006E35CD /* CarPanel1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B831C29177E779B006E35CD /* CarPanel1ViewController.m */; };
 		2B86AEA117A3C58C00A948D8 /* ic_search1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B86AEA017A3C58C00A948D8 /* ic_search1.png */; };
 		2B89A7A917B5E7550042539F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2B89A7AB17B5E7550042539F /* Localizable.strings */; };
-		2B89A7B517B60CE90042539F /* CarPanel1Menu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B89A7B417B60CE90042539F /* CarPanel1Menu.xib */; };
+		2B89A7B517B60CE90042539F /* CarPanel1MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B89A7B417B60CE90042539F /* CarPanel1MenuView.xib */; };
 		2B8C5CAD174134B700260836 /* PlaceSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8C5CAC174134B700260836 /* PlaceSearchViewController.m */; };
 		2B8EE0C617AD41BD005FBF6B /* BuyAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8EE0C517AD41BD005FBF6B /* BuyAllViewController.m */; };
 		2B9351091775433600721094 /* DebugMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9351081775433600721094 /* DebugMenuViewController.m */; };
@@ -137,6 +137,8 @@
 		2B9A434A16DB955F00FD1A54 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2B9A434816DB955F00FD1A54 /* InfoPlist.strings */; };
 		2B9A434D16DB955F00FD1A54 /* NavierIOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9A434C16DB955F00FD1A54 /* NavierIOSTests.m */; };
 		2B9A437816DB9B5F00FD1A54 /* GoogleMapUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9A437716DB9B5F00FD1A54 /* GoogleMapUIViewController.m */; };
+		2B9F3032185AA8F400016518 /* CarPanel1MenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9F3031185AA8F400016518 /* CarPanel1MenuView.m */; };
+		2BB35829185F392C0038E318 /* DebugTransformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB35828185F392C0038E318 /* DebugTransformationViewController.m */; };
 		2BC61A49173E3DCC00990DA7 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2BC61A48173E3DCC00990DA7 /* bg.jpg */; };
 		2BCBD058183A597F00B08D1D /* place_marker_home_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BCBD056183A597F00B08D1D /* place_marker_home_32.png */; };
 		2BCBD059183A597F00B08D1D /* place_marker_home_32@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BCBD057183A597F00B08D1D /* place_marker_home_32@2x.png */; };
@@ -302,7 +304,7 @@
 		2B89A7AA17B5E7550042539F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2B89A7AC17B5E7590042539F /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2B89A7AD17B5EC4F0042539F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		2B89A7B417B60CE90042539F /* CarPanel1Menu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarPanel1Menu.xib; sourceTree = "<group>"; };
+		2B89A7B417B60CE90042539F /* CarPanel1MenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarPanel1MenuView.xib; sourceTree = "<group>"; };
 		2B8C5CAB174134B700260836 /* PlaceSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceSearchViewController.h; sourceTree = "<group>"; };
 		2B8C5CAC174134B700260836 /* PlaceSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceSearchViewController.m; sourceTree = "<group>"; };
 		2B8EE0C417AD41BD005FBF6B /* BuyAllViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyAllViewController.h; sourceTree = "<group>"; };
@@ -356,7 +358,11 @@
 		2B9A437616DB9B5F00FD1A54 /* GoogleMapUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleMapUIViewController.h; sourceTree = "<group>"; };
 		2B9A437716DB9B5F00FD1A54 /* GoogleMapUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleMapUIViewController.m; sourceTree = "<group>"; };
 		2B9A437A16DBA0BC00FD1A54 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		2B9F3030185AA8F400016518 /* CarPanel1MenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarPanel1MenuView.h; sourceTree = "<group>"; };
+		2B9F3031185AA8F400016518 /* CarPanel1MenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarPanel1MenuView.m; sourceTree = "<group>"; };
 		2BB1185B16E31683003BB39E /* GoogleAPIKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoogleAPIKey.h; sourceTree = "<group>"; };
+		2BB35827185F392C0038E318 /* DebugTransformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugTransformationViewController.h; sourceTree = "<group>"; };
+		2BB35828185F392C0038E318 /* DebugTransformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugTransformationViewController.m; sourceTree = "<group>"; };
 		2BC61A48173E3DCC00990DA7 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
 		2BCBD056183A597F00B08D1D /* place_marker_home_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = place_marker_home_32.png; sourceTree = "<group>"; };
 		2BCBD057183A597F00B08D1D /* place_marker_home_32@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "place_marker_home_32@2x.png"; sourceTree = "<group>"; };
@@ -607,7 +613,7 @@
 				2BE1CE6B174BA5830053995F /* MarkMenu.xib */,
 				2B3907F0176D6B0A00E5F428 /* RouteGuideMenu.xib */,
 				2B93510B177546B500721094 /* DebugMenu.xib */,
-				2B89A7B417B60CE90042539F /* CarPanel1Menu.xib */,
+				2B89A7B417B60CE90042539F /* CarPanel1MenuView.xib */,
 				2B15A20A17D0F39600F3AFE5 /* MarkerMenuFloat.xib */,
 				2B067CE81850CD2400A0054E /* PlaceSearchResultPanel.xib */,
 			);
@@ -729,6 +735,8 @@
 				2B9351081775433600721094 /* DebugMenuViewController.m */,
 				2BCC02A11839087E0018174B /* DebugGoogleMapViewController.h */,
 				2BCC02A21839087E0018174B /* DebugGoogleMapViewController.m */,
+				2BB35827185F392C0038E318 /* DebugTransformationViewController.h */,
+				2BB35828185F392C0038E318 /* DebugTransformationViewController.m */,
 			);
 			name = TestSample;
 			path = ..;
@@ -815,6 +823,8 @@
 				2BFF015E1853517700DA9735 /* PlaceSearchResultPanelView.m */,
 				2BFF01601853537900DA9735 /* MarkerMenuFloatView.h */,
 				2BFF01611853537900DA9735 /* MarkerMenuFloatView.m */,
+				2B9F3030185AA8F400016518 /* CarPanel1MenuView.h */,
+				2B9F3031185AA8F400016518 /* CarPanel1MenuView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -968,7 +978,7 @@
 				2B94C8FF17A554D6002581F3 /* gps@2x.png in Resources */,
 				2B94C90317A55548002581F3 /* battery.png in Resources */,
 				2B89A7A917B5E7550042539F /* Localizable.strings in Resources */,
-				2B89A7B517B60CE90042539F /* CarPanel1Menu.xib in Resources */,
+				2B89A7B517B60CE90042539F /* CarPanel1MenuView.xib in Resources */,
 				2BE8FDFD17C06C920060395E /* route_current_location.png in Resources */,
 				2BE8FDFE17C06C920060395E /* route_current_location@2x.png in Resources */,
 				2BE6DA5717C39C2200DE20E8 /* dashboard@2x.png in Resources */,
@@ -1082,6 +1092,8 @@
 				2B9A433816DB955F00FD1A54 /* ViewController.m in Sources */,
 				2B9A437816DB9B5F00FD1A54 /* GoogleMapUIViewController.m in Sources */,
 				2BCFE04317031BE200636F58 /* RouteTableViewController.m in Sources */,
+				2B9F3032185AA8F400016518 /* CarPanel1MenuView.m in Sources */,
+				2BB35829185F392C0038E318 /* DebugTransformationViewController.m in Sources */,
 				2B8C5CAD174134B700260836 /* PlaceSearchViewController.m in Sources */,
 				2BFF015F1853517700DA9735 /* PlaceSearchResultPanelView.m in Sources */,
 				2BCC02A31839087E0018174B /* DebugGoogleMapViewController.m in Sources */,

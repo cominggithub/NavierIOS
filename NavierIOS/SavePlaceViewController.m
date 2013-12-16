@@ -86,6 +86,8 @@
 -(void) save
 {
 
+    [self.nameTextField resignFirstResponder];
+    
     if (nil == self.currentPlace)
         return;
     
@@ -97,6 +99,7 @@
     
 
     [User addPlaceBySectionMode:self.sectionMode section:0 place:self.currentPlace];
+    [User updateRecentPlacesByPlace:self.currentPlace];
     [User save];
 
     self.currentPlace = nil;

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <NaviUtil/NaviUtil.h>
+#import "CarPanel1MenuView.h"
 
-@interface RouteNavigationViewController : UIViewController<UITextFieldDelegate>
+@interface RouteNavigationViewController : UIViewController<UITextFieldDelegate, CarPane1MenuViewDelegate>
 {
 
     
@@ -24,6 +25,11 @@
 @property (strong, nonatomic) Place* startPlace;
 @property (strong, nonatomic) Place* endPlace;
 @property (weak, nonatomic) IBOutlet GuideRouteUIView *guideRouteUIView;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 
+
+@property (strong, nonatomic) UIColor* color;
+@property (nonatomic) BOOL isHud;
+@property (nonatomic) BOOL isSpeedUnitMph;
 
 @end

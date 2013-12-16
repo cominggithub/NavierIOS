@@ -222,6 +222,50 @@
             </objects>
             <point key="canvasLocation" x="-102" y="-1010"/>
         </scene>
+        <!--Debug Transformation View Controller-->
+        <scene sceneID="iEE-yQ-NHT">
+            <objects>
+                <viewController id="81K-ly-3gI" customClass="DebugTransformationViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="e5V-MW-oxo">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="qf8-VH-QNQ" userLabel="ContentView">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="K0p-gW-o9y">
+                                        <rect key="frame" x="132" y="89" width="266" height="164"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="44"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Km3-7Q-yB8">
+                                        <rect key="frame" x="132" y="233" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pressButton:" destination="81K-ly-3gI" eventType="touchUpInside" id="t2Z-KL-vAf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.071590589679999997" green="0.67192466149999996" blue="0.84324048910000005" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sqL-1X-viJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-18" y="1131"/>
+        </scene>
         <!--Route Table View Controller-->
         <scene sceneID="KIL-EH-YIK">
             <objects>
@@ -673,16 +717,16 @@
         <scene sceneID="g9u-3f-uyk">
             <objects>
                 <viewController storyboardIdentifier="RouteNavigationViewController" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Xzj-X4-qTo" customClass="RouteNavigationViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="zmG-m5-PIL" userLabel="View Container">
+                    <view key="view" contentMode="scaleToFill" id="zmG-m5-PIL">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="Bqm-QF-JXZ" customClass="GuideRouteUIView">
+                            <view contentMode="scaleToFill" id="m0j-l5-nQq" userLabel="ContentView">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Oqh-VK-1JU">
-                                        <rect key="frame" x="452" y="203" width="19" height="39"/>
+                                        <rect key="frame" x="450" y="180" width="19" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.1032912648" green="0.54669602689999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -697,42 +741,47 @@
                                             <action selector="pressTextButton:" destination="Xzj-X4-qTo" eventType="touchUpInside" id="5Aa-K7-Po2"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WB0-1I-F7Z">
+                                        <rect key="frame" x="450" y="220" width="19" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                        <color key="backgroundColor" red="0.36995835110000003" green="0.58896097089999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="A">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pressAutoButton:" destination="Xzj-X4-qTo" eventType="touchUpInside" id="Y8w-OP-MC2"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ll1-bB-jzp">
+                                        <rect key="frame" x="450" y="260" width="19" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                        <color key="backgroundColor" red="0.36995835110000003" green="0.58896097089999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="S">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pressStepButton:" destination="Xzj-X4-qTo" eventType="touchUpInside" id="cBN-V6-FQZ"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" id="Bqm-QF-JXZ" customClass="GuideRouteUIView">
+                                        <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <accessibility key="accessibilityConfiguration" label="GuideRouteUIView"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <accessibility key="accessibilityConfiguration" label="GuideRouteUIView"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WB0-1I-F7Z">
-                                <rect key="frame" x="452" y="250" width="19" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" red="0.36995835110000003" green="0.58896097089999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="A">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="pressAutoButton:" destination="Xzj-X4-qTo" eventType="touchUpInside" id="Y8w-OP-MC2"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ll1-bB-jzp">
-                                <rect key="frame" x="452" y="286" width="19" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" red="0.36995835110000003" green="0.58896097089999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="S">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="pressStepButton:" destination="Xzj-X4-qTo" eventType="touchUpInside" id="cBN-V6-FQZ"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -742,9 +791,12 @@
                         </connections>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="autoButton" destination="WB0-1I-F7Z" id="yzB-op-GB8"/>
+                        <outlet property="contentView" destination="m0j-l5-nQq" id="aBy-uk-aBD"/>
                         <outlet property="guideRouteUIView" destination="Bqm-QF-JXZ" id="l14-8K-Kbc"/>
                         <outlet property="stepButton" destination="Ll1-bB-jzp" id="8PZ-Oq-stu"/>
                         <outlet property="textButton" destination="Oqh-VK-1JU" id="2dj-GX-ZMX"/>

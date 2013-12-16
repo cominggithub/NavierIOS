@@ -10,6 +10,7 @@
 #import <NaviUtil/NaviUtil.h>
 #import "ClockView.h"
 #import "SystemStatusView.h"
+#import "CarPanel1MenuView.h"
 
 #define FILE_DEBUG TRUE
 #include <NaviUtil/Log.h>
@@ -33,7 +34,7 @@
     CGPoint _courseLabelOrigins[8];
     float _courseCenterNOffset;
     BOOL _isShowCarPanelMenu;
-    UIView *_carPanelMenu;
+    CarPanel1MenuView *carPanelMenuView;
     UIButton *_carPanelMenuLogoButton;
     UIButton *_carPanelMenuHudButton;
     UIButton *_carPanelMenuSpeedMphButton;
@@ -112,7 +113,9 @@
     [self updateUILanguageFont:[SystemManager getSystemLanguage]];
     
     
-    self.color = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
+    self.color          = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
+    self.isHud          = [SystemConfig getBoolValue:CONFIG_CP1_IS_HUD];
+    self.isSpeedUnitMph = [SystemConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
 	// Do any additional setup after loading the view.
 }
 
@@ -137,18 +140,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)tagAction:(id)sender
-{
-    if (_isShowCarPanelMenu)
-    {
-        [self hideCarPanelMenu];
-    }
-    else
-    {
-        [self showCarPanelMenu];
-    }
-}
-
 -(void) active
 {
     self.batteryLife    = [SystemManager getBatteryLife];
@@ -165,7 +156,6 @@
      object:self];
     
     [self updateUILanguage];
-    [self updateUIFromConfig];
 
     self.debugMsgLabel.hidden = ![SystemConfig getBoolValue:CONFIG_IS_DEBUG];
     [_clockView active];
@@ -216,8 +206,8 @@
     _clockView                  = [[ClockView alloc] initWithFrame:CGRectMake(320 + [SystemManager lanscapeScreenRect].size.width - 480, 8, 120, 50)];
     _systemStatusView           = [[SystemStatusView alloc] initWithFrame:CGRectMake(0, 0, 180, 50)];
     
-    [self.view addSubview:_clockView];
-    [self.view addSubview:_systemStatusView];
+    [self.contentView addSubview:_clockView];
+    [self.contentView addSubview:_systemStatusView];
 }
 -(void) updateUILanguage
 {
@@ -557,117 +547,16 @@
 
 -(void) addCarPanelMenu
 {
-    UIView *subView;
-    UIButton *button;
-    CGRect carPanelFrame;
+    NSArray *xibContents                = [[NSBundle mainBundle] loadNibNamed:@"CarPanel1MenuView" owner:self options:nil];
+    carPanelMenuView                    = [xibContents lastObject];
+    carPanelMenuView.accessibilityLabel = @"carPanel1MenuView";
+    carPanelMenuView.delegate           = self;
     
-    _isShowCarPanelMenu = false;
-    
-    NSArray *xibContents = [[NSBundle mainBundle] loadNibNamed:@"CarPanel1Menu" owner:self options:nil];
-    
-    subView = [xibContents lastObject];
-    
-    _carPanelMenu = [subView.subviews lastObject];
-    _carPanelMenu.accessibilityLabel = @"carPanelMenu";
-    
-    mlogDebug(@"carPanelMenu: frame: (%.0f, %.0f) (%.0f, %.0f), bounds: (%.0f, %.0f) (%.0f, %.0f)\n",
-              _carPanelMenu.frame.origin.x,
-              _carPanelMenu.frame.origin.y,
-              _carPanelMenu.frame.size.width,
-              _carPanelMenu.frame.size.height,
-              _carPanelMenu.bounds.origin.x,
-              _carPanelMenu.bounds.origin.y,
-              _carPanelMenu.bounds.size.width,
-              _carPanelMenu.bounds.size.height
-              );
-    
-    /* adjust center to center position */
-    
-    if ( 568 != [SystemManager lanscapeScreenRect].size.width)
-    {
-        carPanelFrame = _carPanelMenu.frame;
-        carPanelFrame.origin.x = ([SystemManager lanscapeScreenRect].size.width - carPanelFrame.size.width)/2;
-        _carPanelMenu.frame = carPanelFrame;
-        
-    }
-    
-    /* logo button */
-    _carPanelMenuLogoButton = (UIButton *)[_carPanelMenu viewWithTag:1];
-    [_carPanelMenuLogoButton addTarget:self
-                                action:@selector(pressLogoButton:)
-                      forControlEvents:UIControlEventTouchUpInside];
-    
-    /* hud, course switch */
-    _carPanelMenuHudLabel       = (UILabel *)[_carPanelMenu viewWithTag:201];
-    _carPanelMenuCourseLabel    = (UILabel *)[_carPanelMenu viewWithTag:202];
-    _carPanelMenuUnitLabel      = (UILabel *)[_carPanelMenu viewWithTag:203];
-    
-    _carPanelMenuHudSwitch      = (UISwitch *)[_carPanelMenu viewWithTag:301];
-    _carPanelMenuCourseSwitch   = (UISwitch *)[_carPanelMenu viewWithTag:302];
-    
-    [_carPanelMenuHudSwitch addTarget:self action:@selector(switchValueChanged:) forControlEvents:UIControlEventValueChanged];
-    
-    [_carPanelMenuCourseSwitch addTarget:self action:@selector(switchValueChanged:) forControlEvents:UIControlEventValueChanged];
-    
-    
-    _carPanelMenuSpeedMphButton   = (UIButton *)[_carPanelMenu viewWithTag:303];
-    _carPanelMenuSpeedKmhButton   = (UIButton *)[_carPanelMenu viewWithTag:304];
-    
-    [_carPanelMenuSpeedMphButton addTarget:self
-                                action:@selector(pressMphButton:)
-                      forControlEvents:UIControlEventTouchUpInside];
+    carPanelMenuView.isHud              = [SystemConfig getBoolValue:CONFIG_CP1_IS_HUD];
+    carPanelMenuView.isSpeedUnitMph     = [SystemConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
+    carPanelMenuView.panelColor         = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
 
-    [_carPanelMenuSpeedKmhButton addTarget:self
-                                action:@selector(pressKmhButton:)
-                      forControlEvents:UIControlEventTouchUpInside];
-    
-    
-    /* color buttons */
-    button = (UIButton*)[_carPanelMenu viewWithTag:101];
-    [button addTarget:self
-               action:@selector(pressColorButton:)
-     forControlEvents:UIControlEventTouchUpInside];
-    [_colorButtons addObject:button];
-    
-    button = (UIButton*)[_carPanelMenu viewWithTag:102];
-    [button addTarget:self
-               action:@selector(pressColorButton:)
-     forControlEvents:UIControlEventTouchUpInside];
-    [_colorButtons addObject:button];
-    
-    button = (UIButton*)[_carPanelMenu viewWithTag:103];
-    [button addTarget:self
-               action:@selector(pressColorButton:)
-     forControlEvents:UIControlEventTouchUpInside];
-    [_colorButtons addObject:button];
-    
-    button = (UIButton*)[_carPanelMenu viewWithTag:104];
-    [button addTarget:self
-               action:@selector(pressColorButton:)
-     forControlEvents:UIControlEventTouchUpInside];
-    [_colorButtons addObject:button];
-    
-    button = (UIButton*)[_carPanelMenu viewWithTag:105];
-    [button addTarget:self
-               action:@selector(pressColorButton:)
-     forControlEvents:UIControlEventTouchUpInside];
-    [_colorButtons addObject:button];
-    
-    
-    _colorButtonUnselectedSize  = button.frame.size;
-    _colorButtonSelectedSize    = _colorButtonUnselectedSize;
-    _colorButtonSelectedSize.width  += 16;
-    _colorButtonSelectedSize.height += 16;
-    
-    _carPanelMenu.hidden = true;
-    
-    _carPanelMenu.layer.borderColor    = [UIColor whiteColor].CGColor;
-    _carPanelMenu.layer.borderWidth    = 3.0f;
-    _carPanelMenu.layer.cornerRadius   = 10;
-    _carPanelMenu.layer.masksToBounds  = YES;
-    
-    [self.view addSubview:_carPanelMenu];
-    
+    [self.view addSubview:carPanelMenuView];
 }
 
 -(IBAction) pressLogoButton:(id) sender
@@ -724,26 +613,55 @@
 
 -(void) showCarPanelMenu
 {
-    if (!_isShowCarPanelMenu)
-    {
-
-        _carPanelMenu.hidden    = FALSE;
-        _isShowCarPanelMenu     = TRUE;
-    }
+    carPanelMenuView.hidden = NO;
 }
 
 -(void) hideCarPanelMenu
 {
-    if (_isShowCarPanelMenu)
-    {
-        _carPanelMenu.hidden  = TRUE;
-        _isShowCarPanelMenu   = FALSE;
-    }
+    carPanelMenuView.hidden = YES;
 }
 
 - (BOOL)prefersStatusBarHidden
 {
     return YES;
+}
+
+
+#pragma mark -- delegate
+-(void) carPanel1MenuView:(CarPanel1MenuView*) cpm changeColor:(UIColor*) color
+{
+    [SystemConfig setValue:CONFIG_CP1_COLOR uicolor:color];
+    self.color = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
+}
+
+-(void) carPanel1MenuView:(CarPanel1MenuView*) cpm changeHud:(BOOL) isHud
+{
+    logBool(isHud);
+    [SystemConfig setValue:CONFIG_CP1_IS_HUD BOOL:isHud];
+    self.isHud = [SystemConfig getBoolValue:CONFIG_CP1_IS_HUD];
+}
+
+-(void) carPanel1MenuView:(CarPanel1MenuView*) cpm changeSpeedUnit:(BOOL) isMph
+{
+
+    [SystemConfig setValue:CONFIG_CP1_IS_SPEED_UNIT_MPH BOOL:isMph];
+    self.isSpeedUnitMph = [SystemConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
+}
+
+-(void) carPanel1MenuView:(CarPanel1MenuView*) cpm pressLogoButton:(BOOL) isPressed
+{
+    if (YES == isPressed)
+    {
+        [self hideCarPanelMenu];
+        [LocationManager stopLocationSimulation];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
+
+- (IBAction)tagAction:(id)sender
+{
+    carPanelMenuView.hidden = !carPanelMenuView.hidden;
 }
 
 @end

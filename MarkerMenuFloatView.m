@@ -65,8 +65,6 @@
     routeFrame  = self.frame;
 
     routeFrame.size.height = self.routeStartButton.frame.size.height;
-    logRect(oriFrame);
-    logRect(routeFrame);
 }
 
 -(void) showRouteButtonOnly
