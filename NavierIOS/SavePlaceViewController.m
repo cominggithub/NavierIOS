@@ -44,6 +44,8 @@
     [placeIcons insertObject:[UIImage imageNamed:@"office64"]   atIndex:kPlaceType_Office];
     [placeIcons insertObject:[UIImage imageNamed:@"favor64"]    atIndex:kPlaceType_Favor];
     
+    [self.backButton setTitle:[SystemManager getLanguageString:self.backButton.titleLabel.text] forState:UIControlStateNormal];
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated

@@ -26,7 +26,8 @@
 @property (weak, nonatomic) UIButton* panelColor5Button;
 @property (weak, nonatomic) UIButton* speedMphButton;
 @property (weak, nonatomic) UIButton* speedKmhButton;
-@property (weak, nonatomic) UIButton* logoButton;
+@property (weak, nonatomic) UIButton* backIconButton;
+@property (weak, nonatomic) UIButton* backButton;
 @property (weak, nonatomic) UISwitch* hudSwitch;
 
 

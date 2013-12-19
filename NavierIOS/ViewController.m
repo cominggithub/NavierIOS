@@ -76,6 +76,13 @@
     [placeIcons insertObject:[UIImage imageNamed:@"office32"] atIndex:kPlaceType_Office];
     [placeIcons insertObject:[UIImage imageNamed:@"favor32"] atIndex:kPlaceType_Favor];
     [placeIcons insertObject:[UIImage imageNamed:@"search32"] atIndex:kPlaceType_SearchedPlace];
+    
+    [self.mapButton setImage:[UIImage imageNamed:@"map_btn_pressed"] forState:UIControlStateSelected | UIControlStateHighlighted];
+    [self.mapButton setSelected:YES];
+
+    [self.carPanelButton setImage:[UIImage imageNamed:@"speed_btn_pressed"] forState:UIControlStateSelected | UIControlStateHighlighted];
+    [self.carPanelButton setSelected:YES];
+
 }
 
 - (void)didReceiveMemoryWarning

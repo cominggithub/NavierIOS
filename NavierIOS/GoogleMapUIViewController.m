@@ -138,6 +138,8 @@
     
     self.topView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.85];
     
+    [self.backButton setTitle:[SystemManager getLanguageString:self.backButton.titleLabel.text] forState:UIControlStateNormal];
+    
 }
 
 

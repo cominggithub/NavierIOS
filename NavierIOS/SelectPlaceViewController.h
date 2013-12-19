@@ -17,6 +17,7 @@
 
 @interface SelectPlaceViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
 
 @property (weak, nonatomic) NSArray* searchedPlaces;
 @property (weak, nonatomic) id<SelectPlaceViewControllerDelegate> delegate;

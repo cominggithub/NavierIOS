@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIView *googleMapView;
 @property (weak, nonatomic) IBOutlet UIView *topView;
 @property (weak, nonatomic) IBOutlet UIView *zoomPanel;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
 
 @property (strong, nonatomic) NSString* placeToSearch;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;

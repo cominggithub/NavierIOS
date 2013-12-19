@@ -17,6 +17,7 @@
 @end
 
 @interface SavePlaceViewController : UIViewController <UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;

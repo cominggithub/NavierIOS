@@ -50,8 +50,8 @@
 
 -(void) initSelf
 {
-    logfn();
-    self.logoButton         = (UIButton*) [self viewWithTag:1];
+    self.backIconButton     = (UIButton*) [self viewWithTag:1];
+    self.backButton         = (UIButton*) [self viewWithTag:2];
     self.hudSwitch          = (UISwitch*) [self viewWithTag:301];
     self.speedMphButton     = (UIButton*) [self viewWithTag:303];
     self.speedKmhButton     = (UIButton*) [self viewWithTag:304];
@@ -61,8 +61,10 @@
     self.panelColor3Button  = (UIButton*) [self viewWithTag:103];
     self.panelColor4Button  = (UIButton*) [self viewWithTag:104];
     self.panelColor5Button  = (UIButton*) [self viewWithTag:105];
+
     
-    [self.logoButton        addTarget:self action:@selector(pressLogoButton:)           forControlEvents:UIControlEventTouchUpInside];
+    [self.backIconButton    addTarget:self action:@selector(pressLogoButton:)           forControlEvents:UIControlEventTouchUpInside];
+    [self.backButton        addTarget:self action:@selector(pressLogoButton:)           forControlEvents:UIControlEventTouchUpInside];
     [self.speedMphButton    addTarget:self action:@selector(pressSpeedUnitMphButton:)   forControlEvents:UIControlEventTouchUpInside];
     [self.speedKmhButton    addTarget:self action:@selector(pressSpeedUnitKmhButton:)   forControlEvents:UIControlEventTouchUpInside];
     [self.panelColor1Button addTarget:self action:@selector(pressPanelColor1Button:)    forControlEvents:UIControlEventTouchUpInside];
@@ -72,6 +74,8 @@
     [self.panelColor5Button addTarget:self action:@selector(pressPanelColor5Button:)    forControlEvents:UIControlEventTouchUpInside];
     [self.hudSwitch         addTarget:self action:@selector(hudSwitchValueChanged:)     forControlEvents:UIControlEventValueChanged];
 
+    [self.backButton setTitle:[SystemManager getLanguageString:@"Main Menu"] forState:UIControlStateNormal];
+    
     colorButtons = [[NSMutableArray alloc] initWithObjects:
                     self.panelColor1Button,
                     self.panelColor2Button,

@@ -29,5 +29,6 @@
 @property (nonatomic) BOOL bannerIsVisible;
 @property (weak, nonatomic) IBOutlet UIView *carPanelView;
 @property (weak, nonatomic) IBOutlet UIButton *mapButton;
+@property (weak, nonatomic) IBOutlet UIButton *carPanelButton;
 
 @end

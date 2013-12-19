@@ -44,8 +44,18 @@
     [placeIcons insertObject:[UIImage imageNamed:@"favor64"]    atIndex:kPlaceType_Favor];
     [placeIcons insertObject:[UIImage imageNamed:@"search32"]   atIndex:kPlaceType_SearchedPlace];
     
+    [self.backButton setTitle:[SystemManager getLanguageString:self.backButton.titleLabel.text] forState:UIControlStateNormal];
+    
     self.tableView.delegate         = self;
     self.tableView.dataSource       = self;
+    
+    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"list_bg.png"]];
+    [tempImageView setFrame:self.tableView.frame];
+    
+    self.tableView.backgroundView = tempImageView;
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
 //    self.tableView.backgroundColor  = [[UIColor grayColor] colorWithAlphaComponent:0.9];
 }
 
@@ -85,10 +95,8 @@
     Place* place;
     UILabel *nameLabel;
     UILabel *addressLabel;
+    UIImageView *imgView;
     UITableViewCell *cell;
-    
-    logfn();
-    logI(indexPath.row);
     
     cell = [self.tableView dequeueReusableCellWithIdentifier:@"SelectPlaceCell"];
     
@@ -105,11 +113,45 @@
 
     if (nil != place)
     {
+        imgView             = (UIImageView*)[cell viewWithTag:2];
         nameLabel           = (UILabel*)[cell viewWithTag:3];
         addressLabel        = (UILabel*)[cell viewWithTag:4];
+
         nameLabel.text      = place.name;
         addressLabel.text   = place.address;
+        
+        switch (place.placeType)
+        {
+            case kPlaceType_Home:
+                imgView.image       = [UIImage imageNamed:@"place_cate_home"];
+                break;
+            case kPlaceType_Office:
+                imgView.image       = [UIImage imageNamed:@"place_cate_office"];
+                break;
+            case kPlaceType_Favor:
+                imgView.image       = [UIImage imageNamed:@"place_cate_favor"];
+                break;
+            default:
+                imgView.image       = [UIImage imageNamed:@"place_cate_favor"];
+                break;
+        }
     }
+    
+/*
+    UIImageView *cellBackView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 100)];
+    cellBackView.backgroundColor=[UIColor clearColor];
+    cellBackView.image = [UIImage imageNamed:@"list_bg.png"];
+
+    UIImageView *borderView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 568, 8)];
+    borderView.backgroundColor=[UIColor clearColor];
+    borderView.image = [UIImage imageNamed:@"inner_showdow_bg.png"];
+
+    
+    cell.backgroundView = cellBackView;
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
+*/
+//    [cell addSubview:borderView];
+    
     
     return cell;
 }
@@ -160,13 +202,138 @@
     return @"";
 }
 
+
 -(CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 24;
+    return 44;
 }
+
+-(UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    
+    UIView *view;
+    UIImageView *imgView;
+    UILabel* headerTitle;
+    PlaceType placeType;
+    
+    
+    view                    = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 480, 44)];
+    headerTitle             = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 480, 44)];
+    headerTitle.textColor   = [UIColor whiteColor];
+    
+    placeType = [User translatSectionIndexIntoPlaceType:self.sectionMode section:section];
+    
+    switch(placeType)
+    {
+        case kPlaceType_Home:
+            headerTitle.text = [SystemManager getLanguageString:@"Home"];
+            break;
+        case kPlaceType_Office:
+            headerTitle.text = [SystemManager getLanguageString:@"Office"];
+            break;
+        case kPlaceType_Favor:
+            headerTitle.text = [SystemManager getLanguageString:@"Favor"];
+            break;
+        default:
+            headerTitle.text = @"";
+            break;
+    }
+
+    headerTitle.text = [headerTitle.text uppercaseString];
+    
+    imgView = [[UIImageView alloc] initWithImage:[UIImage  imageNamed:@"h_seperator"]];
+    imgView.frame = CGRectMake(0, 40, 480, 4);
+    
+
+    imgView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    
+    [view addSubview:headerTitle];
+    [view addSubview:imgView];
+    
+    
+    return view;
+    
+}
+
+
+
+#if 0
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *view            = [[UIView alloc] init];
+
+    UILabel* headerLabel;
+    CGRect viewFrame        = CGRectMake(0, 0, 568, 24);
+    CGRect imgFrame         = CGRectMake(0, 0, 568, 24);
+    UIImageView *imgView;
+
+    PlaceType placeType;
+    
+    placeType = [User translatSectionIndexIntoPlaceType:self.sectionMode section:section];
+    
+    imgView             = [[UIImageView alloc] initWithImage:[placeIcons objectAtIndex:placeType]];
+    imgView.contentMode = UIViewContentModeScaleAspectFit;
+    imgView.frame       = imgFrame;
+    
+//    [view addSubview:imgView];
+    
+    headerLabel                     = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 320)];
+    headerLabel.autoresizingMask    = UIViewAutoresizingFlexibleWidth;
+    headerLabel.textColor           = [UIColor whiteColor];
+    logI(section);
+    
+    switch (section)
+    {
+        case 0:
+            headerLabel.text = [SystemManager getLanguageString:@"Home"];
+            logfn();
+            break;
+        case 1:
+            headerLabel.text =  [SystemManager getLanguageString:@"Office"];
+            logfn();
+            break;
+        case 2:
+            headerLabel.text =  [SystemManager getLanguageString:@"Favor"];
+            logfn();
+            break;
+        default:
+            headerLabel.text =  [SystemManager getLanguageString:@"GGG"];
+            logfn();
+            break;
+    }
+    
+    
+    view.frame              = viewFrame;
+    view.autoresizingMask   = UIViewAutoresizingFlexibleWidth;
+    [view addSubview:headerLabel];
+    
+    UIImageView *cellBackView=[[UIImageView alloc]initWithFrame:viewFrame];
+    cellBackView.backgroundColor=[UIColor clearColor];
+    
+    cellBackView.contentMode = UIViewContentModeScaleToFill;
+    
+//    cellBackView.image = [UIImage imageNamed:@"list_bg.png"];
+    cellBackView.frame = viewFrame;
+    
+
+    //[cellBackView addSubview:headerLabel];
+//    return cellBackView;
+    return view;
+}
+#endif
+#if 0
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 1;
+}
+
+#endif
+
+#if 0
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view            = [[UIView alloc] init];
+    
     CGRect viewFrame        = CGRectMake(0, 0, self.view.bounds.size.width, 24);
     CGRect imgFrame         = CGRectMake(0, 0, 24, 24);
     UIImageView *imgView;
@@ -178,18 +345,23 @@
     imgView.contentMode = UIViewContentModeScaleAspectFit;
     imgView.frame       = imgFrame;
     
-    [view addSubview:imgView];
-
+    //    [view addSubview:imgView];
+    
     
     view.frame = viewFrame;
-
-    return view;
+    
+    UIImageView *cellBackView=[[UIImageView alloc]initWithFrame:viewFrame];
+    cellBackView.backgroundColor=[UIColor clearColor];
+    
+    cellBackView.contentMode = UIViewContentModeScaleToFill;
+    
+    cellBackView.image = [UIImage imageNamed:@"list_bg.png"];
+    cellBackView.frame = viewFrame;
+    
+    return cellBackView;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return CGFLOAT_MIN;
-}
+#endif
 #if 0
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
