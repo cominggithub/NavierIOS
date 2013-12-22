@@ -52,6 +52,7 @@
 {
     self.backIconButton     = (UIButton*) [self viewWithTag:1];
     self.backButton         = (UIButton*) [self viewWithTag:2];
+    self.closeButton        = (UIButton*) [self viewWithTag:3];
     self.hudSwitch          = (UISwitch*) [self viewWithTag:301];
     self.speedMphButton     = (UIButton*) [self viewWithTag:303];
     self.speedKmhButton     = (UIButton*) [self viewWithTag:304];
@@ -61,10 +62,14 @@
     self.panelColor3Button  = (UIButton*) [self viewWithTag:103];
     self.panelColor4Button  = (UIButton*) [self viewWithTag:104];
     self.panelColor5Button  = (UIButton*) [self viewWithTag:105];
+    
+    self.hudLabel           = (UILabel*) [self viewWithTag:201];
+    self.speedUnitLabel     = (UILabel*) [self viewWithTag:203];
 
     
     [self.backIconButton    addTarget:self action:@selector(pressLogoButton:)           forControlEvents:UIControlEventTouchUpInside];
     [self.backButton        addTarget:self action:@selector(pressLogoButton:)           forControlEvents:UIControlEventTouchUpInside];
+    [self.closeButton       addTarget:self action:@selector(pressCloseButton:)          forControlEvents:UIControlEventTouchUpInside];
     [self.speedMphButton    addTarget:self action:@selector(pressSpeedUnitMphButton:)   forControlEvents:UIControlEventTouchUpInside];
     [self.speedKmhButton    addTarget:self action:@selector(pressSpeedUnitKmhButton:)   forControlEvents:UIControlEventTouchUpInside];
     [self.panelColor1Button addTarget:self action:@selector(pressPanelColor1Button:)    forControlEvents:UIControlEventTouchUpInside];
@@ -74,7 +79,9 @@
     [self.panelColor5Button addTarget:self action:@selector(pressPanelColor5Button:)    forControlEvents:UIControlEventTouchUpInside];
     [self.hudSwitch         addTarget:self action:@selector(hudSwitchValueChanged:)     forControlEvents:UIControlEventValueChanged];
 
-    [self.backButton setTitle:[SystemManager getLanguageString:@"Main Menu"] forState:UIControlStateNormal];
+    [self.backButton setTitle:[SystemManager getLanguageString:self.backButton.titleLabel.text] forState:UIControlStateNormal];
+    self.hudLabel.text          = [SystemManager getLanguageString:self.hudLabel.text];
+    self.speedUnitLabel.text    = [SystemManager getLanguageString:self.speedUnitLabel.text];
     
     colorButtons = [[NSMutableArray alloc] initWithObjects:
                     self.panelColor1Button,
@@ -93,8 +100,8 @@
     self.hidden = true;
     
     /* configure rounded border */
-    self.layer.borderColor    = [UIColor whiteColor].CGColor;
-    self.layer.borderWidth    = 3.0f;
+//    self.layer.borderColor    = [UIColor whiteColor].CGColor;
+//    self.layer.borderWidth    = 3.0f;
     self.layer.cornerRadius   = 10;
     self.layer.masksToBounds  = YES;
     
@@ -115,6 +122,14 @@
     if (nil != self.delegate && [self.delegate respondsToSelector:@selector(carPanel1MenuView:pressLogoButton:)])
     {
         [self.delegate carPanel1MenuView:self pressLogoButton:TRUE];
+    }
+}
+
+-(IBAction) pressCloseButton:(id) sender
+{
+    if (nil != self.delegate && [self.delegate respondsToSelector:@selector(carPanel1MenuView:pressCloseButton:)])
+    {
+        [self.delegate carPanel1MenuView:self pressCloseButton:TRUE];
     }
 }
 

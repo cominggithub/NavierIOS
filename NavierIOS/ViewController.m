@@ -48,20 +48,13 @@
     
     [self addBanner:self.contentView];
     
-    self.selectPlaceTableView.backgroundColor = [UIColor clearColor];
-    self.selectPlaceTableView.opaque = NO;
-    self.selectPlaceTableView.backgroundView = nil;
-    
-    
     routeNavigationViewController = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass
                                  ([RouteNavigationViewController class])];
 
     oriProtraitMapButtonFrame       = self.mapButton.frame;
-    oriProtraitCarPanelViewFrame    = self.carPanelView.frame;
     oriLandscapeMapButtonFrame      = self.mapButton.frame;
-    oriLandscapeCarPanelViewFrame   = self.carPanelView.frame;
     oriMapButtonAutoresizingMask    = self.mapButton.autoresizingMask;
-    oriCarPanelViewAutoresizingMask = self.carPanelView.autoresizingMask;
+
     
     xoffset = self.view.bounds.size.width > self.view.bounds.size.height ? 0 : self.view.bounds.size.height - self.view.bounds.size.width;
     
@@ -71,18 +64,22 @@
     sectionMode = kSectionMode_Home_Office_Favor_Searched;
     
     placeIcons = [[NSMutableArray alloc] initWithCapacity:kPlaceType_Max];
-    [placeIcons insertObject:[UIImage imageNamed:@"favor32"] atIndex:kPlaceType_None];
-    [placeIcons insertObject:[UIImage imageNamed:@"home32"] atIndex:kPlaceType_Home];
-    [placeIcons insertObject:[UIImage imageNamed:@"office32"] atIndex:kPlaceType_Office];
-    [placeIcons insertObject:[UIImage imageNamed:@"favor32"] atIndex:kPlaceType_Favor];
-    [placeIcons insertObject:[UIImage imageNamed:@"search32"] atIndex:kPlaceType_SearchedPlace];
+    [placeIcons insertObject:[UIImage imageNamed:@"favor34"] atIndex:kPlaceType_None];
+    [placeIcons insertObject:[UIImage imageNamed:@"home34"] atIndex:kPlaceType_Home];
+    [placeIcons insertObject:[UIImage imageNamed:@"office34"] atIndex:kPlaceType_Office];
+    [placeIcons insertObject:[UIImage imageNamed:@"favor34"] atIndex:kPlaceType_Favor];
+    [placeIcons insertObject:[UIImage imageNamed:@"search32.png"] atIndex:kPlaceType_SearchedPlace];
     
     [self.mapButton setImage:[UIImage imageNamed:@"map_btn_pressed"] forState:UIControlStateSelected | UIControlStateHighlighted];
     [self.mapButton setSelected:YES];
 
     [self.carPanelButton setImage:[UIImage imageNamed:@"speed_btn_pressed"] forState:UIControlStateSelected | UIControlStateHighlighted];
     [self.carPanelButton setSelected:YES];
+    
+    /* init table view */
+//    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_tableview"]];
 
+//    self.tableView.backgroundView = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -148,23 +145,19 @@
 
 - (void)viewDidUnload {
 
-    [self setSelectPlaceTableView:nil];
     [self setContentView:nil];
-    [self setCarPanel_outer_circle:nil];
-    [self setCarPanel_inner_circle:nil];
     [LocationManager stopMonitorLocation];
     [super viewDidUnload];
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
-    [self.selectPlaceTableView reloadData];
+    [self.tableView reloadData];
 }
 
 
 -(void) viewDidAppear:(BOOL)animated
 {
-    [UIAnimation runSpinAnimationOnView:self.carPanel_inner_circle duration:100 rotations:0.1 repeat:100];
     
     [self showAdAnimated:NO];
 }
@@ -199,6 +192,7 @@
 -(void) showHasNoPlaceMode
 {
 
+    return;
     CGRect frame;
     CGFloat margin;
     CGFloat offset;
@@ -210,8 +204,6 @@
     offset      = 100.0;
     viewWidth   = frame.size.width > frame.size.height ? frame.size.width : frame.size.height;
     viewHeight  = frame.size.width < frame.size.height ? frame.size.width : frame.size.height;
-    
-
     
     /* we are in landscape mode, so translate width to height, and height to width */
     margin  = (viewWidth - self.mapButton.frame.size.width - offset - self.carPanelView.frame.size.width)/2.0;
@@ -259,8 +251,8 @@
     UILabel *nameLabel;
     UIImageView *icon;
     UITableViewCell *cell;
-    
-    cell        = [self.selectPlaceTableView dequeueReusableCellWithIdentifier:@"SelectPlaceCell"];
+   
+    cell        = [self.tableView dequeueReusableCellWithIdentifier:@"SelectPlaceCell"];
     nameLabel   = (UILabel*)[cell viewWithTag:3];
     icon        = (UIImageView*)[cell viewWithTag:2];
     
@@ -370,7 +362,7 @@
         adView = [[ADBannerView alloc] init];
     }
     
-    //    adView = [[ADBannerView alloc] initWithFrame:CGRectZero];
+//    adView = [[ADBannerView alloc] initWithFrame:CGRectZero];
 //    adView.requiredContentSizeIdentifiers   = [NSSet setWithObject:ADBannerContentSizeIdentifierLandscape];
 //    adView.currentContentSizeIdentifier     = ADBannerContentSizeIdentifierLandscape;
     
@@ -420,7 +412,6 @@
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
 {
-
     if (self.bannerIsVisible)
     {
         self.bannerIsVisible = NO;
@@ -443,13 +434,9 @@
     return false;
 }
 
-
-
 - (void)bannerViewActionDidFinish:(ADBannerView *)banner
 {
 
 }
-
-
 
 @end

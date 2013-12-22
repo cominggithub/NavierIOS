@@ -32,6 +32,9 @@
     [super viewDidLoad];
     self.placeTextField.placeholder = [SystemManager getLanguageString:@"Place to search"];
     self.placeTextField.delegate    = self;
+    
+    [self.backButton setTitle:[SystemManager getLanguageString:self.backButton.titleLabel.text] forState:UIControlStateNormal];
+    
 	// Do any additional setup after loading the view.
 }
 
@@ -50,9 +53,10 @@
 {
     static NSString *CellIdentifier = @"PlaceCell";
     UITableViewCell *cell = [self.placeTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    placeLabel         = (UILabel*)[cell viewWithTag:2];
-//    placeLabel.text    = [User getSearchedPlaceTextByIndex:indexPath.row];
-    cell.textLabel.text      = [User getSearchedPlaceTextByIndex:indexPath.row];
+    UILabel* placeLabel;
+    placeLabel         = (UILabel*)[cell viewWithTag:9];
+    placeLabel.text    = [User getSearchedPlaceTextByIndex:indexPath.row];
+//    cell.textLabel.text      = [User getSearchedPlaceTextByIndex:indexPath.row];
     return cell;
 }
 

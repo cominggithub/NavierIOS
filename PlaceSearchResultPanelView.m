@@ -68,6 +68,7 @@
         [placeName setText: place.name];
         [placeName setFont:self.nameLabel.font];
         [placeName setTextColor:self.nameLabel.textColor];
+        [placeName setTextAlignment:self.nameLabel.textAlignment];
         
         frame           = self.nameLabel.frame;
         frame.origin.x += self.nameLabel.frame.size.width*i;
@@ -78,6 +79,7 @@
         [placeAddr setText: place.address];
         [placeAddr setFont:self.addressLabel.font];
         [placeAddr setTextColor:self.addressLabel.textColor];
+        [placeAddr setTextAlignment:self.addressLabel.textAlignment];
         
         frame           = self.addressLabel.frame;
         frame.origin.x += self.addressLabel.frame.size.width*i;

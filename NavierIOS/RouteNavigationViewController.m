@@ -451,6 +451,16 @@
     }
     
 }
+
+-(void) carPanel1MenuView:(CarPanel1MenuView*) cpm pressCloseButton:(BOOL) isPressed
+{
+    if (YES == isPressed)
+    {
+        carPanelMenuView.hidden = YES;
+
+    }
+}
+
 - (IBAction)tagAction:(id)sender
 {
     

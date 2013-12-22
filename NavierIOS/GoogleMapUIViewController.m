@@ -97,7 +97,7 @@
     
     NSString* navigationText;
     NSString* placeText;
-    UIFont* textFont;
+
     [super viewDidLoad];
     
     
@@ -111,12 +111,7 @@
     mapManager.mapView.delegate         = self;
     mapManager.delegate                 = self;
     [self.googleMapView insertSubview:mapManager.mapView atIndex:0];
-    
-    
-    textFont = [UIFont boldSystemFontOfSize:14.0];
-    navigationText = [SystemManager getLanguageString:@"Navigate"];
-    placeText = [SystemManager getLanguageString:@"Place"];
-    
+
     [self.navigationButton setTitle:navigationText forState:UIControlStateNormal];
     [self.placeButton setTitle:placeText forState:UIControlStateNormal];
     
@@ -136,7 +131,7 @@
     [self addBanner:self.contentView];
     [self showAdAnimated:NO];
     
-    self.topView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.85];
+//    self.topView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.85];
     
     [self.backButton setTitle:[SystemManager getLanguageString:self.backButton.titleLabel.text] forState:UIControlStateNormal];
     
@@ -170,6 +165,15 @@
     mapManager.updateToCurrentPlace         = TRUE;
     mapManager.useCurrentPlaceAsRouteStart  = TRUE;
     
+//    [mapManager refreshMap];
+
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    /* user places aren't shown when it is first added in the map */
+    /* refresh here to force re-added user places */
+    [mapManager refreshMap];
 }
 
 #pragma  mark - Banner
@@ -808,10 +812,13 @@
 
 - (BOOL) mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker
 {
+
     CGPoint point;
     Place* tmpPlace;
     tmpPlace = [mapManager placeByMarker:marker];
-    
+
+    point = [mapView.projection pointForCoordinate:marker.position];
+
     if (nil != tmpPlace)
     {
         point = [mapView.projection pointForCoordinate:marker.position];
@@ -838,10 +845,14 @@
             }
         }
     }
+    
+    if ( nil == mapView.selectedMarker)
+    {
+        [self showMarkerMenuFloat:point];
+    }
 
     isMapMovedAfterTappingMarker = FALSE;
     
-
     return NO;
 }
 

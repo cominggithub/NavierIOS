@@ -51,12 +51,18 @@
 - (void)initSelf
 {
     self.accessibilityLabel = @"markerMenuFloat";
-    self.backgroundColor    = [[UIColor whiteColor] colorWithAlphaComponent:0.9];
+    self.backgroundColor    = [UIColor colorWithRed:51.0/255.0 green:51.0/255.0 blue:51.0/255.0 alpha:1];
+//    self.layer.borderWidth    = 3.0f;
+    self.layer.cornerRadius   = 10;
+    self.layer.masksToBounds  = YES;
+    
+    
     self.routeStartButton   = (UIButton*)[self viewWithTag:100];
     self.routeEndButton     = (UIButton*)[self viewWithTag:101];
     self.saveAsHomeButton   = (UIButton*)[self viewWithTag:102];
     self.saveAsOfficeButton = (UIButton*)[self viewWithTag:103];
     self.saveAsFavorButton  = (UIButton*)[self viewWithTag:104];
+    self.separator          = (UIImageView*)[self viewWithTag:301];
     
     [self.routeStartButton setTitle:[SystemManager getLanguageString:@"Route Start"] forState:UIControlStateNormal];
     [self.routeEndButton setTitle:[SystemManager getLanguageString:@"Route End"] forState:UIControlStateNormal];
@@ -70,11 +76,13 @@
 -(void) showRouteButtonOnly
 {
     self.frame = routeFrame;
+    self.separator.hidden = YES;
 }
 
 -(void) show
 {
     self.frame = oriFrame;
+    self.separator.hidden = NO;
 }
 
 @end

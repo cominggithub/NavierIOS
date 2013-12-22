@@ -20,7 +20,7 @@
 "pm" = "下午";
 "HUD" = "抬頭顯示";
 "Course" = "方位";
-"Unit" = "速度單位";
+"Speed Unit" = "速度單位";
 "Route Planning" = "路徑規畫中";
 "Route Start" = "起點";
 "Route End" = "目的地";
@@ -45,3 +45,5 @@
 "routeGuideText9"= "";
 "Main Menu" = "主選單";
 "Map" = "地圖";
+"Back" = "返回";
+"Save" = "儲存";

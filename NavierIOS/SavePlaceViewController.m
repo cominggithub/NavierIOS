@@ -39,12 +39,15 @@
 	// Do any additional setup after loading the view.
     
     placeIcons = [[NSMutableArray alloc] initWithCapacity:kPlaceType_Max];
-    [placeIcons insertObject:[UIImage imageNamed:@"search32"]   atIndex:kPlaceType_None];
-    [placeIcons insertObject:[UIImage imageNamed:@"home64"]     atIndex:kPlaceType_Home];
-    [placeIcons insertObject:[UIImage imageNamed:@"office64"]   atIndex:kPlaceType_Office];
-    [placeIcons insertObject:[UIImage imageNamed:@"favor64"]    atIndex:kPlaceType_Favor];
+    [placeIcons insertObject:[UIImage imageNamed:@"search34"]   atIndex:kPlaceType_None];
+    [placeIcons insertObject:[UIImage imageNamed:@"home34"]     atIndex:kPlaceType_Home];
+    [placeIcons insertObject:[UIImage imageNamed:@"office34"]   atIndex:kPlaceType_Office];
+    [placeIcons insertObject:[UIImage imageNamed:@"favor34"]    atIndex:kPlaceType_Favor];
     
     [self.backButton setTitle:[SystemManager getLanguageString:self.backButton.titleLabel.text] forState:UIControlStateNormal];
+
+    [self.saveButton setTitle:[SystemManager getLanguageString:self.saveButton.titleLabel.text] forState:UIControlStateNormal];
+    
     
 }
 

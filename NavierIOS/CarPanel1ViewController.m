@@ -636,7 +636,6 @@
 
 -(void) carPanel1MenuView:(CarPanel1MenuView*) cpm changeHud:(BOOL) isHud
 {
-    logBool(isHud);
     [SystemConfig setValue:CONFIG_CP1_IS_HUD BOOL:isHud];
     self.isHud = [SystemConfig getBoolValue:CONFIG_CP1_IS_HUD];
 }
@@ -658,6 +657,14 @@
     }
 }
 
+-(void) carPanel1MenuView:(CarPanel1MenuView*) cpm pressCloseButton:(BOOL) isPressed
+{
+    if (YES == isPressed)
+    {
+        carPanelMenuView.hidden = YES;
+        
+    }
+}
 
 - (IBAction)tagAction:(id)sender
 {

@@ -53,6 +53,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     [NaviUtil setGooglePlaceAPIKey:GOOGLE_PLACE_API_Key];
     [NaviUtil init];
     [User save];
+    logfn();
     
     
     return YES;

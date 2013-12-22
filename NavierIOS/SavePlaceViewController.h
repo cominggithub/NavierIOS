@@ -25,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *savePlaceTableView;
 @property (nonatomic) SectionMode sectionMode;
 @property id<SavePlaceViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
+
 
 - (IBAction)pressSaveButton:(id)sender;
 - (IBAction)pressBackButton:(id)sender;
