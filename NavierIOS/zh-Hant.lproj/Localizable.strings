@@ -31,7 +31,9 @@
 "Navigate" = "導航";
 "There is no recent place now" = "尚無最近去過的地點";
 "Current Location" = "目前位置";
+"Not Set Yet" = "尚未設定";
 "Route Re-Planning" = "路徑重新規畫中";
+"Main Menu" = "主選單";
 "route start place and end place are the same" = "出發地與目的地相同";
 "routeGuideText0"= "龍龍龍 龍-";
 "routeGuideText1"= "龍龍龍 龍龍龍 龍龍 龍龍 龍龍龍龍-";
@@ -43,7 +45,9 @@
 "routeGuideText7"= "龍龍龍龍龍龍龍龍龍龍的的的 10.1龍龍龍龍龍龍龍龍龍龍龍龍-";
 "routeGuideText8"= "龍龍龍龍龍龍龍龍龍龍龍 左轉 龍龍龍龍龍龍龍龍龍龍-";
 "routeGuideText9"= "";
-"Main Menu" = "主選單";
+
 "Map" = "地圖";
 "Back" = "返回";
 "Save" = "儲存";
+"FromPlace" = "起點";
+"ToPlace" = "終點";

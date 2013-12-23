@@ -18,11 +18,14 @@
 @interface GoogleMapUIViewController : UIViewController<GMSMapViewDelegate, SelectPlaceViewControllerDelegate, ADBannerViewDelegate, MapManagerDelegate, PlaceSearchResultPanelViewDelegate, SavePlaceViewControllerDelegate>
 
 /** GMSMapView managed by this controller. */
-- (IBAction)pressZoomOutButton:(id)sender;
-- (IBAction)pressZoomInButton:(id)sender;
-- (IBAction)pressHomeButton:(id)sender;
-- (IBAction)pressSearchButton:(id)sender;
-- (IBAction)pressPlaceButton:(id)sender;
+-(IBAction) pressZoomOutButton:(id)sender;
+-(IBAction) pressZoomInButton:(id)sender;
+-(IBAction) pressHomeButton:(id)sender;
+-(IBAction) pressSearchButton:(id)sender;
+-(IBAction) pressPlaceButton:(id)sender;
+-(IBAction) pressMyLocationButton:(id) sender;
+@property (weak, nonatomic) IBOutlet UIView *routePlaceView;
+
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UIView *googleMapView;
 @property (weak, nonatomic) IBOutlet UIView *topView;
@@ -36,6 +39,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *pressPlaceButton;
 @property (nonatomic) bool bannerIsVisible;
 - (IBAction)pressNavigationButton:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UILabel *fromPlaceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *fromLabel;
+@property (weak, nonatomic) IBOutlet UILabel *toPlaceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *toLabel;
+
 
 - (IBAction)pressTestButton:(id)sender;
 -(void) mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate;

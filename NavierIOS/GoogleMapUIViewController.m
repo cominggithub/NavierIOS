@@ -135,6 +135,16 @@
     
     [self.backButton setTitle:[SystemManager getLanguageString:self.backButton.titleLabel.text] forState:UIControlStateNormal];
     
+    /* configure routePlaceView */
+    self.routePlaceView.backgroundColor     = [[UIColor whiteColor] colorWithAlphaComponent:0.9];
+    self.routePlaceView.layer.borderColor   = [UIColor grayColor].CGColor;
+    self.routePlaceView.layer.borderWidth   = 1;
+    self.routePlaceView.layer.cornerRadius  = 2.0f;
+    self.routePlaceView.layer.masksToBounds = TRUE;
+    
+    /* configure route Label */
+    self.fromLabel.text     = [NSString stringWithFormat:@"%@:", [SystemManager getLanguageString:self.fromLabel.text]];
+    self.toLabel.text       = [NSString stringWithFormat:@"%@:", [SystemManager getLanguageString:self.toLabel.text]];
 }
 
 
@@ -808,6 +818,11 @@
     [self hideMarkerMenuFloat];
 }
 
+-(IBAction) pressMyLocationButton:(id) sender
+{
+    [mapManager moveToMyLocation];
+}
+
 #pragma mark - delegates
 
 - (BOOL) mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker
@@ -902,6 +917,20 @@
     {
         [self hideMarkerMenuFloat];
     }
+    
+}
+
+-(void) mapManager: (MapManager*) mapManager routeChangedFrom:(Place*) fromPlace to:(Place*) toPlace
+{
+    if ( nil == fromPlace )
+        self.fromPlaceLabel.text = [SystemManager getLanguageString:@"Not Set Yet"];
+    else
+        self.fromPlaceLabel.text = [SystemManager getLanguageString:fromPlace.name];
+
+    if ( nil == toPlace )
+        self.toPlaceLabel.text = [SystemManager getLanguageString:@"Not Set Yet"];
+    else
+        self.toPlaceLabel.text = [SystemManager getLanguageString:toPlace.name];
     
 }
 

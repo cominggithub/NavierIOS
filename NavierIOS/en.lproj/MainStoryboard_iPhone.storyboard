@@ -350,10 +350,10 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZKO-Qm-BCL" userLabel="plus">
-                                                <rect key="frame" x="417" y="209" width="48" height="48"/>
+                                                <rect key="frame" x="439" y="253" width="32" height="32"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" image="zoomin.png">
+                                                <state key="normal" image="button_zoom_in.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -365,10 +365,10 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="U8n-be-bbh" userLabel="minus">
-                                                <rect key="frame" x="417" y="265" width="48" height="48"/>
+                                                <rect key="frame" x="439" y="282" width="32" height="32"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" image="zoomout.png">
+                                                <state key="normal" image="button_zoom_out.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -379,10 +379,62 @@
                                                     <action selector="pressZoomOutButton:" destination="F6q-Dq-rDZ" eventType="touchUpInside" id="qPl-vm-hIw"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Frx-6A-XgC" userLabel="minus">
+                                                <rect key="frame" x="5" y="282" width="32" height="32"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <state key="normal" image="button_mylocation.png">
+                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="pressMyLocationButton:" destination="F6q-Dq-rDZ" eventType="touchUpInside" id="Qxl-zP-nSz"/>
+                                                </connections>
+                                            </button>
+                                            <view contentMode="scaleToFill" id="l4A-EK-r6F" userLabel="Route Place">
+                                                <rect key="frame" x="5" y="39" width="143" height="53"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OVW-qU-NPI" userLabel="From Place Label">
+                                                        <rect key="frame" x="43" y="7" width="94" height="21"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FromPlace" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n7q-xa-B5B" userLabel="From Label">
+                                                        <rect key="frame" x="0.0" y="7" width="40" height="21"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Set Yet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="R7U-rA-RRc" userLabel="To Place Label">
+                                                        <rect key="frame" x="43" y="27" width="94" height="21"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ToPlace" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UXq-UA-4VT" userLabel="To Label">
+                                                        <rect key="frame" x="0.0" y="27" width="40" height="21"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <accessibility key="accessibilityConfiguration" label="GoogleMapView"/>
                                     </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="起點" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jzJ-xT-dWU" userLabel="From Place Label">
+                                        <rect key="frame" x="10" y="10" width="38" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <view contentMode="scaleToFill" id="dbV-yq-37j" userLabel="Top" colorLabel="IBBuiltInLabel-Red">
                                         <rect key="frame" x="0.0" y="0.0" width="480" height="32"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -496,11 +548,16 @@
                     <connections>
                         <outlet property="backButton" destination="b1v-ji-pD6" id="j6f-UG-gf6"/>
                         <outlet property="contentView" destination="St4-f1-Rws" id="RK5-Vg-HeG"/>
+                        <outlet property="fromLabel" destination="n7q-xa-B5B" id="w25-eT-meR"/>
+                        <outlet property="fromPlaceLabel" destination="OVW-qU-NPI" id="VDE-gt-TEa"/>
                         <outlet property="googleMapView" destination="a4t-7Y-pUY" id="mix-yM-QZM"/>
                         <outlet property="navigationButton" destination="Ojl-Oe-bju" id="AZh-w9-CIX"/>
                         <outlet property="placeButton" destination="qGw-Kk-Lou" id="ij1-Mt-fuW"/>
                         <outlet property="pressPlaceButton" destination="qGw-Kk-Lou" id="bWg-JV-Ud2"/>
+                        <outlet property="routePlaceView" destination="l4A-EK-r6F" id="Kk5-jo-JoD"/>
                         <outlet property="titleLabel" destination="uXP-hU-fTA" id="nI7-KI-FzB"/>
+                        <outlet property="toLabel" destination="UXq-UA-4VT" id="S64-7o-1Xr"/>
+                        <outlet property="toPlaceLabel" destination="R7U-rA-RRc" id="Pnd-rL-GjJ"/>
                         <outlet property="topView" destination="dbV-yq-37j" id="eub-eo-BXx"/>
                     </connections>
                 </viewController>
@@ -517,7 +574,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_tableview.png" id="jEN-0w-uVf">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="320.00000000000006"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="44" sectionFooterHeight="1" id="CTT-Z0-v4p">
@@ -1028,18 +1085,19 @@
         <image name="background_main_tableview.png" width="195" height="320"/>
         <image name="background_tableview.png" width="568" height="10"/>
         <image name="button_buy.png" width="32" height="32"/>
+        <image name="button_mylocation.png" width="26" height="26"/>
         <image name="button_navigation.png" width="32" height="32"/>
         <image name="button_place.png" width="32" height="32"/>
         <image name="button_search.png" width="32" height="32"/>
         <image name="button_settings.png" width="32" height="32"/>
+        <image name="button_zoom_in.png" width="26" height="26"/>
+        <image name="button_zoom_out.png" width="26" height="26"/>
         <image name="h_seperator.png" width="568" height="3"/>
         <image name="icon.png" width="57" height="57"/>
         <image name="icon_transparent32.png" width="32" height="32"/>
         <image name="map_btn_default.png" width="139" height="139"/>
         <image name="speed_btn_default.png" width="139" height="139"/>
         <image name="startup selection.png" width="480" height="320"/>
-        <image name="zoomin.png" width="64" height="64"/>
-        <image name="zoomout.png" width="64" height="64"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
