@@ -772,8 +772,8 @@
 {
     if (YES == mapManager.hasRoute)
     {
-        [routeNavigationViewController startRouteNavigationFrom:mapManager.routeStartPlace To:mapManager.routeEndPlace];
         [self presentViewController:routeNavigationViewController animated:YES completion:nil];
+        [routeNavigationViewController startRouteNavigationFrom:mapManager.routeStartPlace To:mapManager.routeEndPlace];
     }
 
     [self hideMarkerMenuFloat];

@@ -13,7 +13,7 @@
 @interface RouteNavigationViewController : UIViewController<UITextFieldDelegate, CarPane1MenuViewDelegate>
 {
 
-    
+
 }
 @property (weak, nonatomic) IBOutlet UIButton *textButton;
 @property (weak, nonatomic) IBOutlet UIButton *stepButton;

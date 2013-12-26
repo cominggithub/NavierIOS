@@ -55,8 +55,16 @@
     UITableViewCell *cell = [self.placeTableView dequeueReusableCellWithIdentifier:CellIdentifier];
     UILabel* placeLabel;
     placeLabel         = (UILabel*)[cell viewWithTag:9];
-    placeLabel.text    = [User getSearchedPlaceTextByIndex:indexPath.row];
-//    cell.textLabel.text      = [User getSearchedPlaceTextByIndex:indexPath.row];
+    
+    if (User.searchedPlaceText.count > 0)
+    {
+        placeLabel.text    = [User getSearchedPlaceTextByIndex:indexPath.row];
+        //    cell.textLabel.text      = [User getSearchedPlaceTextByIndex:indexPath.row];
+    }
+    else
+    {
+        placeLabel.text    = [SystemManager getLanguageString:@"No searched records"];
+    }
     return cell;
 }
 
@@ -83,7 +91,10 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return User.searchedPlaceText.count;
+    if (User.searchedPlaceText.count > 0)
+        return User.searchedPlaceText.count;
+    
+    return 1;
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField

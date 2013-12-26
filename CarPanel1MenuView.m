@@ -100,8 +100,8 @@
     self.hidden = true;
     
     /* configure rounded border */
-//    self.layer.borderColor    = [UIColor whiteColor].CGColor;
-//    self.layer.borderWidth    = 3.0f;
+    self.layer.borderColor    = [UIColor grayColor].CGColor;
+    self.layer.borderWidth    = 3.0f;
     self.layer.cornerRadius   = 10;
     self.layer.masksToBounds  = YES;
     
