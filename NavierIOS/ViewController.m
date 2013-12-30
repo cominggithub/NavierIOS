@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "RouteNavigationViewController.h"
 #import "CarPanel1ViewController.h"
+#import <AVFoundation/AVFoundation.h>
 
 
 #define FILE_DEBUG FALSE
@@ -32,6 +33,7 @@
     UIViewAutoresizing oriCarPanelViewAutoresizingMask;
     SectionMode sectionMode;
     NSMutableArray* placeIcons;
+    AVAudioPlayer *audioPlayer;
 }
 
 
@@ -68,7 +70,7 @@
     [placeIcons insertObject:[UIImage imageNamed:@"home34"] atIndex:kPlaceType_Home];
     [placeIcons insertObject:[UIImage imageNamed:@"office34"] atIndex:kPlaceType_Office];
     [placeIcons insertObject:[UIImage imageNamed:@"favor34"] atIndex:kPlaceType_Favor];
-    [placeIcons insertObject:[UIImage imageNamed:@"search32.png"] atIndex:kPlaceType_SearchedPlace];
+//    [placeIcons insertObject:[UIImage imageNamed:@"search32.png"] atIndex:kPlaceType_SearchedPlace];
     
     [self.mapButton setImage:[UIImage imageNamed:@"map_btn_pressed"] forState:UIControlStateSelected | UIControlStateHighlighted];
     [self.mapButton setSelected:YES];
@@ -80,6 +82,7 @@
 //    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_tableview"]];
 
 //    self.tableView.backgroundView = nil;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -98,50 +101,7 @@
 }
 #endif
 
-- (IBAction)pressPlace:(id)sender
-{
-    int i;
-    NSString *fileName = @"/Users/Coming/ios/google/place_tainan1_senior.json";
-    NSArray* places = [NSArray arrayWithArray:[Place parseJson:fileName]];
-    
-    for(i=0; i<places.count; i++)
-    {
-        printf("%s\n", [[[places objectAtIndex:i] description] UTF8String]);
-    }
-}
 
-- (IBAction)pressRoute:(id)sender
-{
-
-    CLLocationCoordinate2D yufon = CLLocationCoordinate2DMake(22.987968, 120.227315);
-    CLLocationCoordinate2D ampin = CLLocationCoordinate2DMake(22.994664, 120.142965);
-    
-    [NaviQueryManager planRouteStartLocation:yufon EndLocation:ampin];
-}
-
-- (IBAction)pressTextRoute:(id)sender
-{
-    [NaviQueryManager planRouteStartLocationText:@"成大" EndLocationText:@"台南一中"];
-}
-
-- (IBAction)pressCarPanel:(id)sender
-{
-    // Get the storyboard named secondStoryBoard from the main bundle:
-    UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"CarPanels" bundle:nil];
-    UIViewController *carPanel = [secondStoryBoard instantiateInitialViewController];
-    //
-    // **OR**
-    //
-    // Load the view controller with the identifier string myTabBar
-    // Change UIViewController to the appropriate class
-//    UIViewController *carPanel = (UIViewController *)[secondStoryBoard instantiateViewControllerWithIdentifier:@"CarPanel"];
-    
-    // Then push the new view controller in the usual way:
-//    [self.navigationController pushViewController:carPanel animated:YES];
-    
-    [self presentViewController:carPanel animated:TRUE completion:nil];
-    
-}
 
 - (void)viewDidUnload {
 
@@ -439,4 +399,93 @@
 
 }
 
+#pragma mark -- UI Action
+
+- (IBAction)pressPlace:(id)sender
+{
+    int i;
+    NSString *fileName = @"/Users/Coming/ios/google/place_tainan1_senior.json";
+    NSArray* places = [NSArray arrayWithArray:[Place parseJson:fileName]];
+    
+    for(i=0; i<places.count; i++)
+    {
+        printf("%s\n", [[[places objectAtIndex:i] description] UTF8String]);
+    }
+}
+
+- (IBAction)pressRoute:(id)sender
+{
+    
+    CLLocationCoordinate2D yufon = CLLocationCoordinate2DMake(22.987968, 120.227315);
+    CLLocationCoordinate2D ampin = CLLocationCoordinate2DMake(22.994664, 120.142965);
+    
+    [NaviQueryManager planRouteStartLocation:yufon EndLocation:ampin];
+}
+
+- (IBAction)pressTextRoute:(id)sender
+{
+    [NaviQueryManager planRouteStartLocationText:@"成大" EndLocationText:@"台南一中"];
+}
+
+- (IBAction)pressCarPanel:(id)sender
+{
+    // Get the storyboard named secondStoryBoard from the main bundle:
+    UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"CarPanels" bundle:nil];
+    UIViewController *carPanel = [secondStoryBoard instantiateInitialViewController];
+    //
+    // **OR**
+    //
+    // Load the view controller with the identifier string myTabBar
+    // Change UIViewController to the appropriate class
+    //    UIViewController *carPanel = (UIViewController *)[secondStoryBoard instantiateViewControllerWithIdentifier:@"CarPanel"];
+    
+    // Then push the new view controller in the usual way:
+    //    [self.navigationController pushViewController:carPanel animated:YES];
+    
+    [self presentViewController:carPanel animated:TRUE completion:nil];
+    
+}
+
+-(IBAction) pressTestButton:(id)sender
+{
+    
+    NSBundle *uiKitBundle = [NSBundle bundleWithIdentifier:@"com.apple.UIKit"];
+    NSString *yesText = uiKitBundle ? [uiKitBundle localizedStringForKey:@"設定" value:nil table:nil] : @"YES";
+    NSString *noText = uiKitBundle ? [uiKitBundle localizedStringForKey:@"No" value:nil table:nil] : @"NO";
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"YOur Message" message:@"Your description"
+												   delegate:self cancelButtonTitle:noText otherButtonTitles:yesText, nil];
+	[alert show];
+    
+    
+}
+
+- (IBAction)playTrafficLight:(id)sender
+{
+    @try {
+        NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/trafficlight.MP3", [[NSBundle mainBundle] resourcePath]]];
+        
+        NSError *error;
+        audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+        audioPlayer.numberOfLoops = -1;
+        
+        [audioPlayer play];
+        NSLog(@"%@", audioPlayer);
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@", [exception reason]);
+    }
+    
+    
+    NSLog(@"%@", audioPlayer);
+//    AudioServicesPlaySystemSound(1003);
+    @try {
+        [audioPlayer play];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@", [exception reason]);
+    }
+    
+    
+}
 @end

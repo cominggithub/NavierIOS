@@ -12,6 +12,7 @@
 #import "RouteNavigationViewController.h"
 #import "MarkerMenuFloatView.h"
 #import "PlaceSearchResultPanelView.h"
+#import <NaviUtil/UIImage+category.h>
 
 #define FILE_DEBUG TRUE
 #include <NaviUtil/Log.h>
@@ -145,6 +146,9 @@
     /* configure route Label */
     self.fromLabel.text     = [NSString stringWithFormat:@"%@:", [SystemManager getLanguageString:self.fromLabel.text]];
     self.toLabel.text       = [NSString stringWithFormat:@"%@:", [SystemManager getLanguageString:self.toLabel.text]];
+    
+    /* configure navigation button icon */
+    self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
 }
 
 

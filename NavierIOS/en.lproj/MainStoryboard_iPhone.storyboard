@@ -130,6 +130,19 @@
                                             <segue destination="F6q-Dq-rDZ" kind="modal" id="l9j-Zv-pBG"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9UD-TJ-RKU">
+                                        <rect key="frame" x="81" y="20" width="99" height="56"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="41"/>
+                                        <state key="normal" title="Test">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="playTrafficLight:" destination="2" eventType="touchUpInside" id="drF-HI-3to"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -461,11 +474,12 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TO2-3r-xYQ" userLabel="HomeButton">
-                                                <rect key="frame" x="8" y="0.0" width="23" height="26"/>
+                                                <rect key="frame" x="12" y="-2" width="13" height="36"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <accessibility key="accessibilityConfiguration" label="homeButton"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                                <state key="normal" title="&lt;">
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <state key="normal" image="icon_navi_left.png">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <state key="highlighted">
@@ -551,6 +565,7 @@
                         <outlet property="fromLabel" destination="n7q-xa-B5B" id="w25-eT-meR"/>
                         <outlet property="fromPlaceLabel" destination="OVW-qU-NPI" id="VDE-gt-TEa"/>
                         <outlet property="googleMapView" destination="a4t-7Y-pUY" id="mix-yM-QZM"/>
+                        <outlet property="naviLeftButton" destination="TO2-3r-xYQ" id="9Qp-iI-DTg"/>
                         <outlet property="navigationButton" destination="Ojl-Oe-bju" id="AZh-w9-CIX"/>
                         <outlet property="placeButton" destination="qGw-Kk-Lou" id="ij1-Mt-fuW"/>
                         <outlet property="pressPlaceButton" destination="qGw-Kk-Lou" id="bWg-JV-Ud2"/>
@@ -809,7 +824,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WB0-1I-F7Z">
-                                        <rect key="frame" x="450" y="220" width="19" height="40"/>
+                                        <rect key="frame" x="433" y="220" width="36" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                         <color key="backgroundColor" red="0.36995835110000003" green="0.58896097089999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -1094,6 +1109,7 @@
         <image name="button_zoom_out.png" width="26" height="26"/>
         <image name="h_seperator.png" width="568" height="3"/>
         <image name="icon.png" width="57" height="57"/>
+        <image name="icon_navi_left.png" width="13" height="21"/>
         <image name="icon_transparent32.png" width="32" height="32"/>
         <image name="map_btn_default.png" width="139" height="139"/>
         <image name="speed_btn_default.png" width="139" height="139"/>

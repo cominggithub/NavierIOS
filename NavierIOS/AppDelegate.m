@@ -25,6 +25,9 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 @implementation AppDelegate
+{
+    AVAudioPlayer *audioPlayer;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -53,8 +56,6 @@ void uncaughtExceptionHandler(NSException *exception) {
     [NaviUtil setGooglePlaceAPIKey:GOOGLE_PLACE_API_Key];
     [NaviUtil init];
     [User save];
-    logfn();
-    
     
     return YES;
 }

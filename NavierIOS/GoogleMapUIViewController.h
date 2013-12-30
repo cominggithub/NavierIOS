@@ -25,6 +25,7 @@
 -(IBAction) pressPlaceButton:(id)sender;
 -(IBAction) pressMyLocationButton:(id) sender;
 @property (weak, nonatomic) IBOutlet UIView *routePlaceView;
+@property (weak, nonatomic) IBOutlet UIButton *naviLeftButton;
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UIView *googleMapView;
