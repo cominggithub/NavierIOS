@@ -33,6 +33,8 @@
 "Current Location" = "目前位置";
 "Not Set Yet" = "尚未設定";
 "Route Re-Planning" = "路徑重新規畫中";
+"Arrive Desitnation" = "抵達目的地";
+"Destination Error" = "目的地錯誤";
 "Main Menu" = "主選單";
 "No searched records" = "尚無搜尋記錄";
 "route start place and end place are the same" = "出發地與目的地相同";
