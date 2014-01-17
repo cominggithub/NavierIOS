@@ -66,12 +66,12 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
-    [self active];
+
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
-
+    [self active];
 }
 
 -(void) viewWillDisappear:(BOOL)animated

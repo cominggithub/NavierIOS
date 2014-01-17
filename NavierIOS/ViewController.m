@@ -257,6 +257,7 @@
     routeStartPlace = [LocationManager currentPlace];
     routeEndPlace   = [User.recentPlaces objectAtIndex:indexPath.row];
     
+    logO(routeStartPlace);
     if (nil != routeStartPlace && nil != routeEndPlace && ![routeStartPlace isCoordinateEqualTo:routeEndPlace])
     {
         [self presentViewController:routeNavigationViewController animated:YES completion:nil];
