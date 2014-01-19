@@ -8,6 +8,7 @@
 
 #import "PlaceSearchViewController.h"
 #import <NaviUtil/NaviUtil.h>
+#import <NaviUtil/UIImage+category.h>
 
 #define FILE_DEBUG FALSE
 #include <NaviUtil/Log.h>
@@ -35,6 +36,7 @@
     
     [self.backButton setTitle:[SystemManager getLanguageString:self.backButton.titleLabel.text] forState:UIControlStateNormal];
     
+    self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
 	// Do any additional setup after loading the view.
 }
 

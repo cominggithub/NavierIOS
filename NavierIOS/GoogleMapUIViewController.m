@@ -176,7 +176,6 @@
     [self hideMarkerMenuFloat];
 
     /* update current place and reset the route start place */
-    mapManager.updateToCurrentPlace         = TRUE;
     mapManager.useCurrentPlaceAsRouteStart  = TRUE;
     
 //    [mapManager refreshMap];
@@ -938,6 +937,35 @@
     
 }
 
+-(void) mapManager:(MapManager*) mapManager routePlanning:(BOOL) result
+{
+    if (FALSE == result)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[SystemManager getLanguageString:@"Failed to plan route"]
+                                                        message:[SystemManager getLanguageString:@"Forget to enable network connections?"] delegate:self cancelButtonTitle:[SystemManager getLanguageString:@"OK"] otherButtonTitles:nil,nil];
+        [alert show];
+    }
+}
+
+-(void) mapManager:(MapManager*) mapManager searchPlaces:(BOOL) result
+{
+    if (FALSE == result)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[SystemManager getLanguageString:@"Searching places failed"]
+                                                        message:[SystemManager getLanguageString:@"Forget to enable network connections?"] delegate:self cancelButtonTitle:[SystemManager getLanguageString:@"OK"] otherButtonTitles:nil,nil];
+        [alert show];
+    }
+}
+
+-(void) mapManager:(MapManager *)mapManager connectToServer:(BOOL) result
+{
+    if (FALSE == result)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[SystemManager getLanguageString:@"Canno connect to server"]
+                                                        message:[SystemManager getLanguageString:@"Forget to enable network connections?"] delegate:self cancelButtonTitle:[SystemManager getLanguageString:@"OK"] otherButtonTitles:nil,nil];
+        [alert show];
+    }
+}
 -(void) placeSearchResultPanelView:(PlaceSearchResultPanelView*) pv moveToPlace:(Place*) p;
 {
     [self hideMarkerMenuFloat];

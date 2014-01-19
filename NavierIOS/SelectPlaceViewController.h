@@ -23,5 +23,6 @@
 @property (weak, nonatomic) id<SelectPlaceViewControllerDelegate> delegate;
 @property (readonly) SectionMode sectionMode;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
+@property (weak, nonatomic) IBOutlet UIButton *naviLeftButton;
 
 @end

@@ -17,5 +17,6 @@
 - (IBAction)pressPlaceTextField:(id)sender;
 
 - (IBAction)pressLogoButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *naviLeftButton;
 
 @end

@@ -474,7 +474,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TO2-3r-xYQ" userLabel="HomeButton">
-                                                <rect key="frame" x="12" y="-2" width="13" height="36"/>
+                                                <rect key="frame" x="0.0" y="-2" width="38" height="36"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <accessibility key="accessibilityConfiguration" label="homeButton"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
@@ -490,7 +490,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="b1v-ji-pD6" userLabel="HomeButton">
-                                                <rect key="frame" x="33" y="4" width="88" height="25"/>
+                                                <rect key="frame" x="33" y="4" width="120" height="25"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <accessibility key="accessibilityConfiguration" label="homeButton"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -629,11 +629,11 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vfU-3V-2gP">
-                                <rect key="frame" x="6" y="8" width="25" height="26"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vfU-3V-2gP">
+                                <rect key="frame" x="0.0" y="4" width="35" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                <state key="normal" title="&lt;">
+                                <state key="normal" image="icon_navi_left.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -673,6 +673,7 @@
                     <connections>
                         <outlet property="backButton" destination="DfT-t7-97Z" id="mYO-us-ZgG"/>
                         <outlet property="editButton" destination="phI-t4-TW2" id="5KB-Ho-CUt"/>
+                        <outlet property="naviLeftButton" destination="vfU-3V-2gP" id="BZm-hK-kcm"/>
                         <outlet property="tableView" destination="CTT-Z0-v4p" id="zSd-ej-Qkv"/>
                     </connections>
                 </viewController>
@@ -692,11 +693,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KBo-b0-Iol">
-                                <rect key="frame" x="10" y="10" width="23" height="26"/>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KBo-b0-Iol">
+                                <rect key="frame" x="0.0" y="5" width="41" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                <state key="normal" title="&lt;">
+                                <state key="normal" image="icon_navi_left.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -781,6 +782,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="backButton" destination="Mdf-T7-JPe" id="Yn6-6I-rcO"/>
+                        <outlet property="naviLeftButton" destination="KBo-b0-Iol" id="qWL-p4-Chi"/>
                         <outlet property="placeTableView" destination="ZB8-2H-8O9" id="xvD-5L-QIM"/>
                         <outlet property="placeTextField" destination="nrR-L0-jDT" id="SNa-mY-atQ"/>
                     </connections>

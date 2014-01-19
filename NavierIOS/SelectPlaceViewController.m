@@ -8,6 +8,7 @@
 
 #import "SelectPlaceViewController.h"
 #import <NaviUtil/NaviUtil.h>
+#import <NaviUtil/UIImage+category.h>
 
 #define FILE_DEBUG FALSE
 #include <NaviUtil/Log.h>
@@ -55,6 +56,9 @@
     self.tableView.backgroundView = tempImageView;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    /* configure navigation button icon */
+    self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
     
 //    self.tableView.backgroundColor  = [[UIColor grayColor] colorWithAlphaComponent:0.9];
 }
