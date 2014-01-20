@@ -144,8 +144,11 @@
     self.routePlaceView.layer.masksToBounds = TRUE;
     
     /* configure route Label */
-    self.fromLabel.text     = [NSString stringWithFormat:@"%@:", [SystemManager getLanguageString:self.fromLabel.text]];
-    self.toLabel.text       = [NSString stringWithFormat:@"%@:", [SystemManager getLanguageString:self.toLabel.text]];
+    self.fromLabel.text         = [NSString stringWithFormat:@"%@:", [SystemManager getLanguageString:self.fromLabel.text]];
+    self.toLabel.text           = [NSString stringWithFormat:@"%@:", [SystemManager getLanguageString:self.toLabel.text]];
+    self.fromPlaceLabel.text    = [SystemManager getLanguageString:self.fromPlaceLabel.text];
+    self.toPlaceLabel.text    = [SystemManager getLanguageString:self.toPlaceLabel.text];
+    
     
     /* configure navigation button icon */
     self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];

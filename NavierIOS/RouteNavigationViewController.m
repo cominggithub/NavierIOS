@@ -34,11 +34,6 @@
     CarPanel1MenuView *carPanelMenuView;
 }
 
-
-
-
-
-
 -(void) initSelf
 {
     isShowRouteGuideMenu    = FALSE;
