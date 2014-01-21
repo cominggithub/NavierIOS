@@ -279,6 +279,11 @@
 }
 
 
+-(BOOL) bannerIsVisible
+{
+    return TRUE == [SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD] && [SystemConfig getBoolValue:CONFIG_IS_AD] && _bannerIsVisible;
+}
+
 - (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
 {
     BOOL shouldExecuteAction = true; // your application implements this method

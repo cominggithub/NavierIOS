@@ -36,13 +36,6 @@
     AVAudioPlayer *audioPlayer;
 }
 
-
-
--(BOOL) bannerIsVisible
-{
-    return TRUE == ([SystemConfig getBoolValue:CONFIG_IS_AD] && _bannerIsVisible);
-}
-
 - (void)viewDidLoad
 {
     CGFloat xoffset;
@@ -113,8 +106,8 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [self.tableView reloadData];
+    [self checkIAPItem];
 }
-
 
 -(void) viewDidAppear:(BOOL)animated
 {
@@ -125,6 +118,12 @@
 - (BOOL)prefersStatusBarHidden
 {
     return YES;
+}
+
+-(void) checkIAPItem
+{
+    self.bannerIsVisible = [SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD] && [SystemConfig getBoolValue:CONFIG_IS_AD];
+    logBool(self.bannerIsVisible);
 }
 
 #if 0
@@ -323,10 +322,6 @@
         adView = [[ADBannerView alloc] init];
     }
     
-//    adView = [[ADBannerView alloc] initWithFrame:CGRectZero];
-//    adView.requiredContentSizeIdentifiers   = [NSSet setWithObject:ADBannerContentSizeIdentifierLandscape];
-//    adView.currentContentSizeIdentifier     = ADBannerContentSizeIdentifierLandscape;
-    
     [adView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     adView.delegate     = self;
 
@@ -334,7 +329,7 @@
     [self showAdAnimated:NO];
 }
 
-- (void)showAdAnimated:(BOOL)animated
+-(void) showAdAnimated:(BOOL)animated
 {
     if (nil == adView)
         return;
@@ -343,7 +338,7 @@
     
     CGRect bannerFrame = adView.frame;
     
-    if (adView.bannerLoaded)
+    if (adView.bannerLoaded && self.bannerIsVisible)
     {
         contentFrame.size.height    -= adView.frame.size.height;
         contentFrame.origin.y       = adView.frame.size.height;
@@ -363,21 +358,12 @@
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
-    if (!self.bannerIsVisible)
-    {
-        self.bannerIsVisible = YES;
-        [self showAdAnimated:YES];
-
-    }
+    [self showAdAnimated:YES];
 }
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
 {
-    if (self.bannerIsVisible)
-    {
-        self.bannerIsVisible = NO;
-        [self showAdAnimated:YES];
-    }
+    [self showAdAnimated:YES];
 }
 
 
