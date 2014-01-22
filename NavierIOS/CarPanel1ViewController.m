@@ -20,11 +20,7 @@
     CarPanel1UIView *_carPanel1;
     NSTimer *_redrawTimer;
     int _redrawInterval;
-//    NSTimer *_clockTimer;
-//    NSDateFormatter *_clockTimerFormater;
     NSMutableArray *_courseLabelArray;
-    
-//    BatteryLifeView *_batteryLifeView;
     ClockView *_clockView;
     SystemStatusView *_systemStatusView;
     
@@ -523,6 +519,7 @@
 
 -(void) locationManager:(LocationManager *)locationManager update:(CLLocationCoordinate2D)location speed:(double)speed distance:(int)distance heading:(double)heading
 {
+    logfn();
     if (YES == _isSpeedUnitMph)
     {
         self.speed = MS_TO_MPH(speed);

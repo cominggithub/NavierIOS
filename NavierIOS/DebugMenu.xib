@@ -134,7 +134,7 @@
                                     <color key="onTintColor" red="0.33650335059999997" green="0.81746253189999996" blue="0.26242422100000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </switch>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EfT-ww-0jY">
-                                    <rect key="frame" x="264" y="135" width="124" height="35"/>
+                                    <rect key="frame" x="264" y="159" width="124" height="35"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                     <state key="normal" title="Clear Config">
@@ -145,7 +145,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WuD-5S-3LV">
-                                    <rect key="frame" x="264" y="167" width="124" height="35"/>
+                                    <rect key="frame" x="264" y="187" width="124" height="35"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                     <state key="normal" title="Debug Config">
@@ -155,6 +155,18 @@
                                         <action selector="pressDebugConfigButton:" destination="-1" eventType="touchUpInside" id="pBs-3q-A8X"/>
                                     </connections>
                                 </button>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="User Place" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qgd-h4-ddP">
+                                    <rect key="frame" x="264" y="135" width="124" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <switch opaque="NO" tag="110" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="hl6-tx-So6" userLabel="SpeechSwitch">
+                                    <rect key="frame" x="397" y="135" width="51" height="31"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="onTintColor" red="0.33650335059999997" green="0.81746253189999996" blue="0.26242422100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </switch>
                             </subviews>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="size" keyPath="contentSize">

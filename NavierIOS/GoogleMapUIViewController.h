@@ -37,8 +37,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *navigationButton;
 @property (weak, nonatomic) IBOutlet UIButton *placeButton;
-@property (weak, nonatomic) IBOutlet UIButton *pressPlaceButton;
 @property (nonatomic) BOOL bannerIsVisible;
+@property (nonatomic) BOOL userPlace;
 - (IBAction)pressNavigationButton:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UILabel *fromPlaceLabel;

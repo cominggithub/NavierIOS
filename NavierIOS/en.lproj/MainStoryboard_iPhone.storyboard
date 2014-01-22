@@ -513,7 +513,7 @@
                                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qGw-Kk-Lou" userLabel="Place">
-                                                <rect key="frame" x="376" y="0.0" width="32" height="32"/>
+                                                <rect key="frame" x="345" y="0.0" width="32" height="32"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <accessibility key="accessibilityConfiguration" label="placeButton"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
@@ -529,7 +529,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0My-uk-NwJ" userLabel="search button">
-                                                <rect key="frame" x="330" y="0.0" width="32" height="32"/>
+                                                <rect key="frame" x="385" y="0.0" width="32" height="32"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                 <accessibility key="accessibilityConfiguration" label="searchButton"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -568,7 +568,6 @@
                         <outlet property="naviLeftButton" destination="TO2-3r-xYQ" id="9Qp-iI-DTg"/>
                         <outlet property="navigationButton" destination="Ojl-Oe-bju" id="AZh-w9-CIX"/>
                         <outlet property="placeButton" destination="qGw-Kk-Lou" id="ij1-Mt-fuW"/>
-                        <outlet property="pressPlaceButton" destination="qGw-Kk-Lou" id="bWg-JV-Ud2"/>
                         <outlet property="routePlaceView" destination="l4A-EK-r6F" id="Kk5-jo-JoD"/>
                         <outlet property="titleLabel" destination="uXP-hU-fTA" id="nI7-KI-FzB"/>
                         <outlet property="toLabel" destination="UXq-UA-4VT" id="S64-7o-1Xr"/>

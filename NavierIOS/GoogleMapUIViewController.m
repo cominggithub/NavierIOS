@@ -159,7 +159,6 @@
     [self setTitleLabel:nil];
     [self setNavigationButton:nil];
     [self setPlaceButton:nil];
-    [self setPressPlaceButton:nil];
     [self setContentView:nil];
     [self setGoogleMapView:nil];
     [self setTopView:nil];
@@ -181,7 +180,7 @@
     /* update current place and reset the route start place */
     mapManager.useCurrentPlaceAsRouteStart  = TRUE;
     
-//    [mapManager refreshMap];
+    [self checkIAPItem];
 
 }
 
@@ -206,9 +205,6 @@
         adView = [[ADBannerView alloc] init];
     }
     
-    //    adView = [[ADBannerView alloc] initWithFrame:CGRectZero];
-//    adView.requiredContentSizeIdentifiers      = [NSSet setWithObject:ADBannerContentSizeIdentifierLandscape];
-//    adView.currentContentSizeIdentifier        = ADBannerContentSizeIdentifierLandscape;
     [adView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     adView.delegate                            = self;
     adView.accessibilityLabel                  = @"banner";
@@ -225,19 +221,19 @@
     if (nil == adView)
         return;
 
-    CGRect contentFrame = self.contentView.frame;
-    CGRect bannerFrame = adView.frame;
-    CGRect zoomPanelFrame = self.zoomPanel.frame;
+    CGRect contentFrame     = self.contentView.frame;
+    CGRect bannerFrame      = adView.frame;
+    CGRect zoomPanelFrame   = self.zoomPanel.frame;
     
-    if (adView.bannerLoaded)
+    if (adView.bannerLoaded && self.bannerIsVisible)
     {
         
-        contentFrame.origin.y        = adView.frame.size.height;
-        if (contentFrame.size.height + adView.frame.size.height != self.view.bounds.size.height)
+        contentFrame.origin.y = adView.frame.size.height;
+        if (contentFrame.size.height+adView.frame.size.height != self.view.bounds.size.height)
         {
             contentFrame.size.height = self.view.bounds.size.height - adView.frame.size.height;
         }
-        bannerFrame.origin.y         = 0;
+        bannerFrame.origin.y = 0;
         
     } else
     {
@@ -257,31 +253,13 @@
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
-    if (!self.bannerIsVisible)
-    {
-        //        [UIView beginAnimations:@"animateAdBannerOn" context:NULL];
-        // Assumes the banner view is just off the bottom of the screen.
-        //        banner.frame = CGRectOffset(banner.frame, 0, -banner.frame.size.height);
-        //        [UIView commitAnimations];
-        self.bannerIsVisible = YES;
-        [self showAdAnimated:YES];
-        
-    }
+
+    [self showAdAnimated:YES];
 }
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
 {
-    if (self.bannerIsVisible)
-    {
-        self.bannerIsVisible = NO;
-        [self showAdAnimated:YES];
-    }
-}
-
-
--(BOOL) bannerIsVisible
-{
-    return TRUE == [SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD] && [SystemConfig getBoolValue:CONFIG_IS_AD] && _bannerIsVisible;
+    [self showAdAnimated:YES];
 }
 
 - (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
@@ -344,7 +322,8 @@
 
 -(void) showMarkerMenuFloat:(CGPoint) pos
 {
-//    if (false == isShowMarkMenuFloat)
+    
+    if (self.userPlace)
     {
         /* show full menu for searched places */
         if (kPlaceType_Home     == selectedPlace.placeType ||
@@ -359,12 +338,16 @@
         {
             [markerMenuFloatView show];
         }
-        
-        isShowMarkMenuFloat = TRUE;
-
-        markerMenuFloatView.hidden   = FALSE;
-        [self moveMarkerMenuFloat:pos];
     }
+    else
+    {
+        [markerMenuFloatView showRouteButtonOnly];
+    }
+        
+    isShowMarkMenuFloat             = TRUE;
+    markerMenuFloatView.hidden      = FALSE;
+    [self moveMarkerMenuFloat:pos];
+    
 }
 
 -(void) hideMarkerMenuFloat
@@ -737,7 +720,6 @@
     {
         placeSearchResultPanel.hidden = YES;
     }
-    
 }
 
 
@@ -747,6 +729,14 @@
 -(void) searchPlace:(NSString*) placeText
 {
     [mapManager searchPlace:placeText];
+}
+
+-(void) checkIAPItem
+{
+    self.bannerIsVisible        = [SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD] && [SystemConfig getBoolValue:CONFIG_IS_AD];
+    self.userPlace              = [SystemConfig getBoolValue:CONFIG_IAP_IS_USER_PLACE] && [SystemConfig getBoolValue:CONFIG_IS_USER_PLACE];
+    self.placeButton.hidden     = !self.userPlace;
+    
 }
 
 #pragma  mark - UI Actions

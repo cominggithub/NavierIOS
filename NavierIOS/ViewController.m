@@ -123,7 +123,6 @@
 -(void) checkIAPItem
 {
     self.bannerIsVisible = [SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD] && [SystemConfig getBoolValue:CONFIG_IS_AD];
-    logBool(self.bannerIsVisible);
 }
 
 #if 0
