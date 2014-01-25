@@ -117,8 +117,7 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
-
-    
+    self.debugMsgLabel.hidden = ![SystemConfig getBoolValue:CONFIG_IS_DEBUG];
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -145,6 +144,7 @@
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     [SystemManager addDelegate:self];
     [LocationManager addDelegate:self];
+    [LocationManager startMonitorLocation];
     [LocationManager startLocationTracking];
     
     [[NSNotificationCenter defaultCenter]
@@ -153,7 +153,7 @@
     
     [self updateUILanguage];
 
-    self.debugMsgLabel.hidden = ![SystemConfig getBoolValue:CONFIG_IS_DEBUG];
+
     [_clockView active];
     [_systemStatusView active];
     
@@ -164,6 +164,7 @@
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     [SystemManager removeDelegate:self];
     [LocationManager removeDelegate:self];
+    [LocationManager stopMonitorLocation];
     [LocationManager stopLocationTracking];
     
     [_clockView inactive];
@@ -519,7 +520,6 @@
 
 -(void) locationManager:(LocationManager *)locationManager update:(CLLocationCoordinate2D)location speed:(double)speed distance:(int)distance heading:(double)heading
 {
-    logfn();
     if (YES == _isSpeedUnitMph)
     {
         self.speed = MS_TO_MPH(speed);

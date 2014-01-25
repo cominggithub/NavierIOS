@@ -831,7 +831,7 @@
 
     CGPoint point;
     Place* tmpPlace;
-    tmpPlace = [mapManager placeByMarker:marker];
+    tmpPlace = (Place*)marker.userData;
 
     point = [mapView.projection pointForCoordinate:marker.position];
 

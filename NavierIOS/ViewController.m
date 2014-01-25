@@ -59,11 +59,14 @@
     sectionMode = kSectionMode_Home_Office_Favor_Searched;
     
     placeIcons = [[NSMutableArray alloc] initWithCapacity:kPlaceType_Max];
-    [placeIcons insertObject:[UIImage imageNamed:@"favor34"] atIndex:kPlaceType_None];
+    
+    [placeIcons insertObject:[UIImage imageNamed:@"search34"] atIndex:kPlaceType_None];
     [placeIcons insertObject:[UIImage imageNamed:@"home34"] atIndex:kPlaceType_Home];
     [placeIcons insertObject:[UIImage imageNamed:@"office34"] atIndex:kPlaceType_Office];
     [placeIcons insertObject:[UIImage imageNamed:@"favor34"] atIndex:kPlaceType_Favor];
-//    [placeIcons insertObject:[UIImage imageNamed:@"search32.png"] atIndex:kPlaceType_SearchedPlace];
+    [placeIcons insertObject:[UIImage imageNamed:@"search34"] atIndex:kPlaceType_SearchedPlace];
+    [placeIcons insertObject:[UIImage imageNamed:@"search34"] atIndex:kPlaceType_SearchedPlaceText];
+    [placeIcons insertObject:[UIImage imageNamed:@"search34"] atIndex:kPlaceType_CurrentPlace];
     
     [self.mapButton setImage:[UIImage imageNamed:@"map_btn_pressed"] forState:UIControlStateSelected | UIControlStateHighlighted];
     [self.mapButton setSelected:YES];
