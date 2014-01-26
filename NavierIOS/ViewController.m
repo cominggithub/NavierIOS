@@ -79,6 +79,11 @@
 
 //    self.tableView.backgroundView = nil;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveNotification:)
+                                                 name:IAPHelperProductUpdatedNotification
+                                               object:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -110,6 +115,11 @@
 {
     [self.tableView reloadData];
     [self checkIAPItem];
+#if DEBUG
+    self.debugConfigButton.hidden = NO;
+#else
+    self.debugConfigButton.hidden = YES;
+#endif
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -125,7 +135,26 @@
 
 -(void) checkIAPItem
 {
+    if (NavierHUDIAPHelper.iapItemCount < 1)
+    {
+       [NavierHUDIAPHelper retrieveProduct];
+        self.buyButton.hidden = YES;
+    }
+    else
+    {
+        self.buyButton.hidden = NO;
+    }
     self.bannerIsVisible = [SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD] && [SystemConfig getBoolValue:CONFIG_IS_AD];
+}
+
+- (void) receiveNotification:(NSNotification *) notification
+{
+    logfn();
+    if ([[notification name] isEqualToString:IAPHelperProductUpdatedNotification])
+    {
+        logfn();
+        [self checkIAPItem];
+    }
 }
 
 #if 0

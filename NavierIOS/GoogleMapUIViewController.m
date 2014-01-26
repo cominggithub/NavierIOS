@@ -377,7 +377,8 @@
 
 -(void) saveAsHome:(Place*)p
 {
-    if (p.placeType != kPlaceType_SearchedPlace)
+    mlogAssertNotNil(p);
+    if (p.placeType != kPlaceType_SearchedPlace && p.placeType != kPlaceType_CurrentPlace)
     {
         [self hideMarkerMenuFloat];
         return;
@@ -390,7 +391,8 @@
 
 -(void) saveAsOffice:(Place*)p
 {
-    if (p.placeType != kPlaceType_SearchedPlace)
+    mlogAssertNotNil(p);
+    if (p.placeType != kPlaceType_SearchedPlace && p.placeType != kPlaceType_CurrentPlace)
     {
         [self hideMarkerMenuFloat];
         return;
@@ -404,7 +406,8 @@
 -(void) saveAsFavor:(Place*)p
 {
     
-    if (p.placeType != kPlaceType_SearchedPlace)
+    mlogAssertNotNil(p);
+    if (p.placeType != kPlaceType_SearchedPlace && p.placeType != kPlaceType_CurrentPlace)
     {
         [self hideMarkerMenuFloat];
         return;
@@ -830,18 +833,18 @@
 {
 
     CGPoint point;
-    Place* tmpPlace;
-    tmpPlace = (Place*)marker.userData;
+    Place* p;
+    p = (Place*)marker.userData;
 
     point = [mapView.projection pointForCoordinate:marker.position];
 
-    if (nil != tmpPlace)
+    if (nil != p)
     {
         point = [mapView.projection pointForCoordinate:marker.position];
         /* tap a new marker */
-        if (tmpPlace != selectedPlace)
+        if (p != selectedPlace)
         {
-            selectedPlace = tmpPlace;
+            selectedPlace = p;
             [self showMarkerMenuFloat:point];
         }
         /* tap on the same marker */

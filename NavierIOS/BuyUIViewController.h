@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BuyAllViewController : UIViewController
+@interface BuyUIViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIScrollView *scroller;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 - (IBAction)pressLogoButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *productTitle;
+@property (weak, nonatomic) IBOutlet UILabel *productDescription;
+@property (weak, nonatomic) IBOutlet UILabel *productPrice;
+
 
 @end

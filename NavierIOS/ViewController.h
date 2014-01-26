@@ -26,5 +26,7 @@
 @property (nonatomic) BOOL bannerIsVisible;
 @property (weak, nonatomic) IBOutlet UIButton *mapButton;
 @property (weak, nonatomic) IBOutlet UIButton *carPanelButton;
+@property (weak, nonatomic) IBOutlet UIButton *buyButton;
+@property (weak, nonatomic) IBOutlet UIButton *debugConfigButton;
 
 @end

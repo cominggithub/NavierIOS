@@ -25,6 +25,7 @@
 		2B067CE91850CD2400A0054E /* PlaceSearchResultPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B067CE81850CD2400A0054E /* PlaceSearchResultPanel.xib */; };
 		2B087A241861EBEF000E8D3B /* inner_showdow_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B087A231861EBEF000E8D3B /* inner_showdow_bg.png */; };
 		2B087A2C1861ECE6000E8D3B /* inner_showdow_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B087A2B1861ECE6000E8D3B /* inner_showdow_bg@2x.png */; };
+		2B1372F81894EC9A00B398FD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B1372F71894EC9A00B398FD /* Security.framework */; };
 		2B14651A1870284300AC4651 /* trafficlight.MP3 in Resources */ = {isa = PBXBuildFile; fileRef = 2B1465191870284300AC4651 /* trafficlight.MP3 */; };
 		2B15A20B17D0F39600F3AFE5 /* MarkerMenuFloat.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B15A20A17D0F39600F3AFE5 /* MarkerMenuFloat.xib */; };
 		2B1C470D17883A9800ED6D98 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1C470917883A9800ED6D98 /* Icon-72.png */; };
@@ -89,6 +90,7 @@
 		2B6EC03218633C730008642C /* speed_btn_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B6EC02E18633C730008642C /* speed_btn_pressed@2x.png */; };
 		2B6FCDC0178D9CAF00DCFAAF /* CarPanels.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B6FCDBF178D9CAF00DCFAAF /* CarPanels.storyboard */; };
 		2B76744A175CDD91008E6566 /* RouteNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B767449175CDD91008E6566 /* RouteNavigationViewController.m */; };
+		2B7697FC1894A43400DB8F5A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B7697FB1894A43300DB8F5A /* StoreKit.framework */; };
 		2B79232F17C9C129009463F8 /* 3g_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B79232B17C9C129009463F8 /* 3g_off.png */; };
 		2B79233017C9C129009463F8 /* 3g_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B79232C17C9C129009463F8 /* 3g_off@2x.png */; };
 		2B79233117C9C129009463F8 /* gps_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B79232D17C9C129009463F8 /* gps_off.png */; };
@@ -97,7 +99,7 @@
 		2B89A7A917B5E7550042539F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2B89A7AB17B5E7550042539F /* Localizable.strings */; };
 		2B89A7B517B60CE90042539F /* CarPanel1MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B89A7B417B60CE90042539F /* CarPanel1MenuView.xib */; };
 		2B8C5CAD174134B700260836 /* PlaceSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8C5CAC174134B700260836 /* PlaceSearchViewController.m */; };
-		2B8EE0C617AD41BD005FBF6B /* BuyAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8EE0C517AD41BD005FBF6B /* BuyAllViewController.m */; };
+		2B8EE0C617AD41BD005FBF6B /* BuyUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8EE0C517AD41BD005FBF6B /* BuyUIViewController.m */; };
 		2B9351091775433600721094 /* DebugMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9351081775433600721094 /* DebugMenuViewController.m */; };
 		2B93510C177546B500721094 /* DebugMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B93510B177546B500721094 /* DebugMenu.xib */; };
 		2B94C8E517A5407C002581F3 /* jasmineupcbold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B94C8E417A5407C002581F3 /* jasmineupcbold.ttf */; };
@@ -219,6 +221,7 @@
 		2B067CE81850CD2400A0054E /* PlaceSearchResultPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceSearchResultPanel.xib; sourceTree = "<group>"; };
 		2B087A231861EBEF000E8D3B /* inner_showdow_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inner_showdow_bg.png; sourceTree = "<group>"; };
 		2B087A2B1861ECE6000E8D3B /* inner_showdow_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inner_showdow_bg@2x.png"; sourceTree = "<group>"; };
+		2B1372F71894EC9A00B398FD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		2B1465191870284300AC4651 /* trafficlight.MP3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = trafficlight.MP3; sourceTree = "<group>"; };
 		2B15A20A17D0F39600F3AFE5 /* MarkerMenuFloat.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MarkerMenuFloat.xib; sourceTree = "<group>"; };
 		2B18AA8D174877BC00277F52 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
@@ -290,6 +293,7 @@
 		2B6FCDBF178D9CAF00DCFAAF /* CarPanels.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CarPanels.storyboard; sourceTree = "<group>"; };
 		2B767448175CDD91008E6566 /* RouteNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteNavigationViewController.h; sourceTree = "<group>"; };
 		2B767449175CDD91008E6566 /* RouteNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteNavigationViewController.m; sourceTree = "<group>"; };
+		2B7697FB1894A43300DB8F5A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2B79232B17C9C129009463F8 /* 3g_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3g_off.png; sourceTree = "<group>"; };
 		2B79232C17C9C129009463F8 /* 3g_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3g_off@2x.png"; sourceTree = "<group>"; };
 		2B79232D17C9C129009463F8 /* gps_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gps_off.png; sourceTree = "<group>"; };
@@ -302,8 +306,8 @@
 		2B89A7B417B60CE90042539F /* CarPanel1MenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarPanel1MenuView.xib; sourceTree = "<group>"; };
 		2B8C5CAB174134B700260836 /* PlaceSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceSearchViewController.h; sourceTree = "<group>"; };
 		2B8C5CAC174134B700260836 /* PlaceSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceSearchViewController.m; sourceTree = "<group>"; };
-		2B8EE0C417AD41BD005FBF6B /* BuyAllViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyAllViewController.h; sourceTree = "<group>"; };
-		2B8EE0C517AD41BD005FBF6B /* BuyAllViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyAllViewController.m; sourceTree = "<group>"; };
+		2B8EE0C417AD41BD005FBF6B /* BuyUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyUIViewController.h; sourceTree = "<group>"; };
+		2B8EE0C517AD41BD005FBF6B /* BuyUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyUIViewController.m; sourceTree = "<group>"; };
 		2B9351071775433600721094 /* DebugMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugMenuViewController.h; path = NavierIOS/DebugMenuViewController.h; sourceTree = "<group>"; };
 		2B9351081775433600721094 /* DebugMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DebugMenuViewController.m; path = NavierIOS/DebugMenuViewController.m; sourceTree = "<group>"; };
 		2B93510B177546B500721094 /* DebugMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DebugMenu.xib; path = NavierIOS/DebugMenu.xib; sourceTree = "<group>"; };
@@ -417,6 +421,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B1372F81894EC9A00B398FD /* Security.framework in Frameworks */,
+				2B7697FC1894A43400DB8F5A /* StoreKit.framework in Frameworks */,
 				2B98933B184B4B7200811F5B /* GoogleMaps.framework in Frameworks */,
 				2B04D481184396E100233B2D /* SystemConfiguration.framework in Frameworks */,
 				2B04D480184396D600233B2D /* QuartzCore.framework in Frameworks */,
@@ -620,6 +626,8 @@
 		2B9A430C16DB955F00FD1A54 = {
 			isa = PBXGroup;
 			children = (
+				2B1372F71894EC9A00B398FD /* Security.framework */,
+				2B7697FB1894A43300DB8F5A /* StoreKit.framework */,
 				2B9A431E16DB955F00FD1A54 /* NavierIOS */,
 				2B8EE0BC17AD1D6C005FBF6B /* xib */,
 				2B9A434516DB955F00FD1A54 /* NavierIOSTests */,
@@ -824,8 +832,8 @@
 				2B036BBB1759CCEF003E4683 /* SavePlaceViewController.m */,
 				2B4B311F175AF25800426D60 /* SelectPlaceViewController.h */,
 				2B4B3120175AF25800426D60 /* SelectPlaceViewController.m */,
-				2B8EE0C417AD41BD005FBF6B /* BuyAllViewController.h */,
-				2B8EE0C517AD41BD005FBF6B /* BuyAllViewController.m */,
+				2B8EE0C417AD41BD005FBF6B /* BuyUIViewController.h */,
+				2B8EE0C517AD41BD005FBF6B /* BuyUIViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1134,7 +1142,7 @@
 				2B76744A175CDD91008E6566 /* RouteNavigationViewController.m in Sources */,
 				2B9351091775433600721094 /* DebugMenuViewController.m in Sources */,
 				2B831C2A177E779B006E35CD /* CarPanel1ViewController.m in Sources */,
-				2B8EE0C617AD41BD005FBF6B /* BuyAllViewController.m in Sources */,
+				2B8EE0C617AD41BD005FBF6B /* BuyUIViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
