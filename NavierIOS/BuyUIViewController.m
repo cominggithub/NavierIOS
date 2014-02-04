@@ -30,6 +30,17 @@
     return self;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self)
+    {
+        [self initSelf];
+    }
+    
+    return self;
+}
+
 - (void)initSelf
 {
     
@@ -43,11 +54,15 @@
                                              selector:@selector(receiveNotification:)
                                                  name:IAPHelperProductUpdatedNotification
                                                object:nil];
+    
+
+    product = nil;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.buyButton setTitle:[SystemManager getLanguageString:self.buyButton.titleLabel.text] forState:UIControlStateNormal];
 	// Do any additional setup after loading the view.
 }
 
@@ -80,23 +95,19 @@
 
 - (void) receiveNotification:(NSNotification *) notification
 {
-    logfn();
     if ([[notification name] isEqualToString:IAPHelperProductPurchasedNotification])
     {
-        logfn();
         NSString* productIdentifier = [notification object];
         NSLog (@"%@: %@", IAPHelperProductPurchasedNotification, productIdentifier);
     }
     else if ([[notification name] isEqualToString:IAPHelperProductUpdatedNotification])
     {
-        logfn();
         [self updateProduct];
     }
 }
 
 - (void) updateProduct
 {
-    logfn();
     product                         = [NavierHUDIAPHelper productByKey:IAP_NO_AD_STORE_USER_PLACE];
     self.productTitle.text          = product.localizedTitle;
     self.productDescription.text    = product.localizedDescription;
@@ -104,5 +115,15 @@
 
 }
 
+
+- (IBAction)pressBuyButton:(id)sender
+{
+    logfn();
+    if (nil != product)
+    {
+        logfn();
+        [NavierHUDIAPHelper buyProduct:product];
+    }
+}
 
 @end

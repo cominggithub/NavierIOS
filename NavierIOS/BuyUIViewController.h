@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *productTitle;
 @property (weak, nonatomic) IBOutlet UILabel *productDescription;
 @property (weak, nonatomic) IBOutlet UILabel *productPrice;
+- (IBAction)pressBuyButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *buyButton;
 
 
 @end

@@ -53,6 +53,7 @@
     
     MapManager *mapManager;
     int zoomLevel;
+    UIAlertView *alert;
 }
 
 - (void)didReceiveMemoryWarning
@@ -102,7 +103,7 @@
     [super viewDidLoad];
     
     
-//    self.view.frame = [SystemManager lanscapeScreenRect];
+    alert                               = nil;
 
     isMapMovedAfterTappingMarker        = FALSE;
     /* google map initialization */
@@ -742,6 +743,14 @@
     
 }
 
+-(void) showAlertTitle:(NSString*) title message:(NSString*) message
+{
+    if (nil == alert)
+    {
+        alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:[SystemManager getLanguageString:@"OK"] otherButtonTitles:nil,nil];
+        [alert show];
+    }
+}
 #pragma  mark - UI Actions
 
 - (IBAction)pressZoomOutButton:(id)sender
@@ -940,31 +949,33 @@
 
 -(void) mapManager:(MapManager*) mapManager routePlanning:(BOOL) result
 {
+    logfn();
     if (FALSE == result)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[SystemManager getLanguageString:@"Failed to plan route"]
-                                                        message:[SystemManager getLanguageString:@"Forget to enable network connections?"] delegate:self cancelButtonTitle:[SystemManager getLanguageString:@"OK"] otherButtonTitles:nil,nil];
-        [alert show];
+        [self showAlertTitle:[SystemManager getLanguageString:@"Failed to plan route"]
+                     message:[SystemManager getLanguageString:@"Forget to enable network connections?"]];
     }
 }
 
 -(void) mapManager:(MapManager*) mapManager searchPlaces:(BOOL) result
 {
+    logfn();
     if (FALSE == result)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[SystemManager getLanguageString:@"Searching places failed"]
-                                                        message:[SystemManager getLanguageString:@"Forget to enable network connections?"] delegate:self cancelButtonTitle:[SystemManager getLanguageString:@"OK"] otherButtonTitles:nil,nil];
-        [alert show];
+        [self showAlertTitle:[SystemManager getLanguageString:@"Searching places failed"]
+                     message:[SystemManager getLanguageString:@"Forget to enable network connections?"]];
     }
 }
 
 -(void) mapManager:(MapManager *)mapManager connectToServer:(BOOL) result
 {
+    logfn();
+    logBool(result);
     if (FALSE == result)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[SystemManager getLanguageString:@"Canno connect to server"]
-                                                        message:[SystemManager getLanguageString:@"Forget to enable network connections?"] delegate:self cancelButtonTitle:[SystemManager getLanguageString:@"OK"] otherButtonTitles:nil,nil];
-        [alert show];
+        logfn();
+        [self showAlertTitle:[SystemManager getLanguageString:@"Cannot connect to server"]
+                     message:[SystemManager getLanguageString:@"Forget to enable network connections?"]];
     }
 }
 -(void) placeSearchResultPanelView:(PlaceSearchResultPanelView*) pv moveToPlace:(Place*) p;
@@ -994,5 +1005,11 @@
         [mapManager refreshMap];
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    logI(buttonIndex);
+    logfn();
+    alert = nil;
+}
 @end
 
