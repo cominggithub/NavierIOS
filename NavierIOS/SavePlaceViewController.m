@@ -9,6 +9,7 @@
 #import "SavePlaceViewController.h"
 #import "GoogleMapUIViewController.h"
 #import <NaviUtil/NaviUtil.h>
+#import <NaviUtil/UIImage+category.h>
 
 #define FILE_DEBUG FALSE
 #include <NaviUtil/Log.h>
@@ -48,15 +49,19 @@
     [placeIcons insertObject:[UIImage imageNamed:@"search34"] atIndex:kPlaceType_SearchedPlaceText];
     [placeIcons insertObject:[UIImage imageNamed:@"search34"] atIndex:kPlaceType_CurrentPlace];
     
-    [self.backButton setTitle:[SystemManager getLanguageString:self.backButton.titleLabel.text] forState:UIControlStateNormal];
-
     [self.saveButton setTitle:[SystemManager getLanguageString:self.saveButton.titleLabel.text] forState:UIControlStateNormal];
+    
+    /* configure navigation button icon */
+    self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
+    [self.backButton setTitle:[SystemManager getLanguageString:self.backButton.titleLabel.text] forState:UIControlStateNormal];
+    
     
     
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
     [self updateUIFromCurrentPlace];
 }
 - (void)didReceiveMemoryWarning

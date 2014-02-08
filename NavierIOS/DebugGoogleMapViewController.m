@@ -69,7 +69,6 @@
                         change:(NSDictionary *)change
                        context:(void *)context {
     if (!firstLocationUpdate_) {
-        printf("WWwwwWWWWWWWWWW\n");
         // If the first location update has not yet been recieved, then jump to that
         // location.
         firstLocationUpdate_ = YES;
@@ -83,8 +82,6 @@
 {
     CGPoint p;
     p = [tmapView.projection pointForCoordinate:coordinate];
-    NSLog(@"tap at coor (%.0f, %.0f)\n", coordinate.latitude, coordinate.longitude);
-    NSLog(@"tap at (%.0f, %.0f)\n", p.x, p.y);
     
 }
 

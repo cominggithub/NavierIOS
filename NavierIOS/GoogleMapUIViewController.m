@@ -135,7 +135,7 @@
     
 //    self.topView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.85];
     
-    [self.backButton setTitle:[SystemManager getLanguageString:self.backButton.titleLabel.text] forState:UIControlStateNormal];
+
     
     /* configure routePlaceView */
     self.routePlaceView.backgroundColor     = [[UIColor whiteColor] colorWithAlphaComponent:0.9];
@@ -153,6 +153,7 @@
     
     /* configure navigation button icon */
     self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
+    [self.backButton setTitle:[SystemManager getLanguageString:self.backButton.titleLabel.text] forState:UIControlStateNormal];
 }
 
 
@@ -182,6 +183,8 @@
     mapManager.useCurrentPlaceAsRouteStart  = TRUE;
     
     [self checkIAPItem];
+    
+    self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
 
 }
 
@@ -959,7 +962,6 @@
 
 -(void) mapManager:(MapManager*) mapManager searchPlaces:(BOOL) result
 {
-    logfn();
     if (FALSE == result)
     {
         [self showAlertTitle:[SystemManager getLanguageString:@"Searching places failed"]
@@ -969,11 +971,8 @@
 
 -(void) mapManager:(MapManager *)mapManager connectToServer:(BOOL) result
 {
-    logfn();
-    logBool(result);
     if (FALSE == result)
     {
-        logfn();
         [self showAlertTitle:[SystemManager getLanguageString:@"Cannot connect to server"]
                      message:[SystemManager getLanguageString:@"Forget to enable network connections?"]];
     }
@@ -1007,8 +1006,6 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    logI(buttonIndex);
-    logfn();
     alert = nil;
 }
 @end

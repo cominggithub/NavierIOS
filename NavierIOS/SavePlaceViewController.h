@@ -27,6 +27,8 @@
 @property id<SavePlaceViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
+@property (weak, nonatomic) IBOutlet UIButton *naviLeftButton;
+
 
 - (IBAction)pressSaveButton:(id)sender;
 - (IBAction)pressBackButton:(id)sender;

@@ -9,7 +9,9 @@
 #import "BuyUIViewController.h"
 #import <NaviUtil/NaviUtil.h>
 #import <NaviUtil/SKProduct+category.h>
+#import <NaviUtil/UIImage+category.h>
 
+#define FILE_DEBUG TRUE
 #include "Log.h"
 
 @interface BuyUIViewController ()
@@ -63,6 +65,10 @@
 {
     [super viewDidLoad];
     [self.buyButton setTitle:[SystemManager getLanguageString:self.buyButton.titleLabel.text] forState:UIControlStateNormal];
+    
+    self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
+    [self.backButton setTitle:[SystemManager getLanguageString:self.backButton.titleLabel.text] forState:UIControlStateNormal];
+    
 	// Do any additional setup after loading the view.
 }
 
@@ -73,19 +79,13 @@
 }
 
 - (void)viewDidUnload {
-    [self setScroller:nil];
-    [self setPageControl:nil];
     [super viewDidUnload];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
     [self updateProduct];
-}
-
-- (IBAction)pressLogoButton:(id)sender
-{
-    [self dismissViewControllerAnimated:TRUE completion:nil];
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -97,8 +97,10 @@
 {
     if ([[notification name] isEqualToString:IAPHelperProductPurchasedNotification])
     {
+#if FILE_DEBUG == TRUE
         NSString* productIdentifier = [notification object];
-        NSLog (@"%@: %@", IAPHelperProductPurchasedNotification, productIdentifier);
+        mlogDebug(@"%@: %@", IAPHelperProductPurchasedNotification, productIdentifier);
+#endif
     }
     else if ([[notification name] isEqualToString:IAPHelperProductUpdatedNotification])
     {
@@ -126,4 +128,7 @@
     }
 }
 
+- (IBAction)pressBackButton:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
+}
 @end

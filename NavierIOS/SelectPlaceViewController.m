@@ -72,6 +72,7 @@
 -(void) viewWillAppear:(BOOL)animated
 {
 
+    self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
     [self.tableView reloadData];
 }
 

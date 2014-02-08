@@ -145,6 +145,8 @@
         self.buyButton.hidden = NO;
     }
     self.bannerIsVisible = [SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD] && [SystemConfig getBoolValue:CONFIG_IS_AD];
+    
+    self.buyButton.hidden = NO;
 }
 
 - (void) receiveNotification:(NSNotification *) notification
@@ -488,14 +490,14 @@
         audioPlayer.numberOfLoops = -1;
         
         [audioPlayer play];
-        NSLog(@"%@", audioPlayer);
+        mlogDebug(@"%@", audioPlayer);
     }
     @catch (NSException *exception) {
-        NSLog(@"%@", [exception reason]);
+        mlogDebug(@"%@", [exception reason]);
     }
     
     
-    NSLog(@"%@", audioPlayer);
+    mlogDebug(@"%@", audioPlayer);
 //    AudioServicesPlaySystemSound(1003);
     @try {
         [audioPlayer play];

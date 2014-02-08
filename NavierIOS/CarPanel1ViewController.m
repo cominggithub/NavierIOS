@@ -200,7 +200,7 @@
 -(void) addUIComponents
 {
     
-    _clockView                  = [[ClockView alloc] initWithFrame:CGRectMake(320 + [SystemManager lanscapeScreenRect].size.width - 480, 8, 120, 50)];
+    _clockView                  = [[ClockView alloc] initWithFrame:CGRectMake([SystemManager lanscapeScreenRect].size.width - 160 - 8, 8, 160, 50)];
     _systemStatusView           = [[SystemStatusView alloc] initWithFrame:CGRectMake(0, 0, 180, 50)];
     
     [self.contentView addSubview:_clockView];

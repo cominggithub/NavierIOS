@@ -208,7 +208,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Icon.png" width="57" height="57"/>
+        <image name="Icon.png" width="60" height="60"/>
         <image name="course frame.png" width="452" height="69"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
