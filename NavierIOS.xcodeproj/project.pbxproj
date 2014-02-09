@@ -28,12 +28,6 @@
 		2B1372F81894EC9A00B398FD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B1372F71894EC9A00B398FD /* Security.framework */; };
 		2B14651A1870284300AC4651 /* trafficlight.MP3 in Resources */ = {isa = PBXBuildFile; fileRef = 2B1465191870284300AC4651 /* trafficlight.MP3 */; };
 		2B15A20B17D0F39600F3AFE5 /* MarkerMenuFloat.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B15A20A17D0F39600F3AFE5 /* MarkerMenuFloat.xib */; };
-		2B240ED718A3B61D006068BD /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B240ECF18A3B61D006068BD /* Icon-29.png */; };
-		2B240ED818A3B61D006068BD /* Icon-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B240ED018A3B61D006068BD /* Icon-29@2x.png */; };
-		2B240ED918A3B61D006068BD /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B240ED118A3B61D006068BD /* Icon-40.png */; };
-		2B240EDA18A3B61D006068BD /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B240ED218A3B61D006068BD /* Icon-40@2x.png */; };
-		2B240EE518A3B877006068BD /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B240EE318A3B877006068BD /* Icon.png */; };
-		2B240EE618A3B877006068BD /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B240EE418A3B877006068BD /* Icon@2x.png */; };
 		2B3907F1176D6B0A00E5F428 /* RouteGuideMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3907F0176D6B0A00E5F428 /* RouteGuideMenu.xib */; };
 		2B4B3121175AF25800426D60 /* SelectPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4B3120175AF25800426D60 /* SelectPlaceViewController.m */; };
 		2B5B12981868739500C464C0 /* marker_home.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B12901868739500C464C0 /* marker_home.png */; };
@@ -87,6 +81,12 @@
 		2B6EC03118633C730008642C /* speed_btn_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B6EC02D18633C730008642C /* speed_btn_pressed.png */; };
 		2B6EC03218633C730008642C /* speed_btn_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B6EC02E18633C730008642C /* speed_btn_pressed@2x.png */; };
 		2B6FCDC0178D9CAF00DCFAAF /* CarPanels.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B6FCDBF178D9CAF00DCFAAF /* CarPanels.storyboard */; };
+		2B70307E18A7960D00FDA856 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B70307C18A7960D00FDA856 /* Icon.png */; };
+		2B70307F18A7960D00FDA856 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B70307D18A7960D00FDA856 /* Icon@2x.png */; };
+		2B70308418A7973700FDA856 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B70308018A7973700FDA856 /* Icon-29.png */; };
+		2B70308518A7973700FDA856 /* Icon-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B70308118A7973700FDA856 /* Icon-29@2x.png */; };
+		2B70308618A7973700FDA856 /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B70308218A7973700FDA856 /* Icon-40.png */; };
+		2B70308718A7973700FDA856 /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B70308318A7973700FDA856 /* Icon-40@2x.png */; };
 		2B76744A175CDD91008E6566 /* RouteNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B767449175CDD91008E6566 /* RouteNavigationViewController.m */; };
 		2B7697FC1894A43400DB8F5A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B7697FB1894A43300DB8F5A /* StoreKit.framework */; };
 		2B79232F17C9C129009463F8 /* 3g_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B79232B17C9C129009463F8 /* 3g_off.png */; };
@@ -223,12 +223,6 @@
 		2B1465191870284300AC4651 /* trafficlight.MP3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = trafficlight.MP3; sourceTree = "<group>"; };
 		2B15A20A17D0F39600F3AFE5 /* MarkerMenuFloat.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MarkerMenuFloat.xib; sourceTree = "<group>"; };
 		2B18AA8D174877BC00277F52 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		2B240ECF18A3B61D006068BD /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
-		2B240ED018A3B61D006068BD /* Icon-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29@2x.png"; sourceTree = "<group>"; };
-		2B240ED118A3B61D006068BD /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
-		2B240ED218A3B61D006068BD /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
-		2B240EE318A3B877006068BD /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		2B240EE418A3B877006068BD /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		2B3907F0176D6B0A00E5F428 /* RouteGuideMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RouteGuideMenu.xib; path = NavierIOS/RouteGuideMenu.xib; sourceTree = "<group>"; };
 		2B3A145417BE67B60023D666 /* car_panel_1_direction_panel_inner_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_panel_1_direction_panel_inner_circle.png; sourceTree = "<group>"; };
 		2B3A145517BE67B60023D666 /* car_panel_1_direction_panel_outer_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_panel_1_direction_panel_outer_circle.png; sourceTree = "<group>"; };
@@ -285,6 +279,12 @@
 		2B6EC02D18633C730008642C /* speed_btn_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speed_btn_pressed.png; sourceTree = "<group>"; };
 		2B6EC02E18633C730008642C /* speed_btn_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "speed_btn_pressed@2x.png"; sourceTree = "<group>"; };
 		2B6FCDBF178D9CAF00DCFAAF /* CarPanels.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CarPanels.storyboard; sourceTree = "<group>"; };
+		2B70307C18A7960D00FDA856 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		2B70307D18A7960D00FDA856 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		2B70308018A7973700FDA856 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
+		2B70308118A7973700FDA856 /* Icon-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29@2x.png"; sourceTree = "<group>"; };
+		2B70308218A7973700FDA856 /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
+		2B70308318A7973700FDA856 /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
 		2B767448175CDD91008E6566 /* RouteNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteNavigationViewController.h; sourceTree = "<group>"; };
 		2B767449175CDD91008E6566 /* RouteNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteNavigationViewController.m; sourceTree = "<group>"; };
 		2B7697FB1894A43300DB8F5A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -684,12 +684,12 @@
 		2B9A431F16DB955F00FD1A54 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2B240EE318A3B877006068BD /* Icon.png */,
-				2B240EE418A3B877006068BD /* Icon@2x.png */,
-				2B240ECF18A3B61D006068BD /* Icon-29.png */,
-				2B240ED018A3B61D006068BD /* Icon-29@2x.png */,
-				2B240ED118A3B61D006068BD /* Icon-40.png */,
-				2B240ED218A3B61D006068BD /* Icon-40@2x.png */,
+				2B70308018A7973700FDA856 /* Icon-29.png */,
+				2B70308118A7973700FDA856 /* Icon-29@2x.png */,
+				2B70308218A7973700FDA856 /* Icon-40.png */,
+				2B70308318A7973700FDA856 /* Icon-40@2x.png */,
+				2B70307C18A7960D00FDA856 /* Icon.png */,
+				2B70307D18A7960D00FDA856 /* Icon@2x.png */,
 				2B1465191870284300AC4651 /* trafficlight.MP3 */,
 				2BD8CE801701EB7500BDA678 /* Default.png */,
 				2B9A432016DB955F00FD1A54 /* NavierIOS-Info.plist */,
@@ -962,6 +962,7 @@
 				2B5B12AE1868832400C464C0 /* marker_favor.png in Resources */,
 				2B9A432F16DB955F00FD1A54 /* Default-568h@2x.png in Resources */,
 				2B66BDA518672FE900A9D75D /* search34.png in Resources */,
+				2B70308718A7973700FDA856 /* Icon-40@2x.png in Resources */,
 				2B9A433216DB955F00FD1A54 /* MainStoryboard_iPhone.storyboard in Resources */,
 				2B5B12991868739500C464C0 /* marker_home@2x.png in Resources */,
 				2B5B12AF1868832400C464C0 /* marker_favor@2x.png in Resources */,
@@ -980,12 +981,12 @@
 				2B5B129E1868739500C464C0 /* marker_search.png in Resources */,
 				2B6EC03018633C730008642C /* speed_btn_default@2x.png in Resources */,
 				2B6EC028186338260008642C /* map_btn_default@2x.png in Resources */,
-				2B240ED718A3B61D006068BD /* Icon-29.png in Resources */,
 				2BC839511866ECD8002477AF /* button_buy.png in Resources */,
 				2B6EC027186338260008642C /* map_btn_default.png in Resources */,
 				2BC3D36B186699250092F02F /* quit@2x.png in Resources */,
 				2B3907F1176D6B0A00E5F428 /* RouteGuideMenu.xib in Resources */,
 				2B93510C177546B500721094 /* DebugMenu.xib in Resources */,
+				2B70308518A7973700FDA856 /* Icon-29@2x.png in Resources */,
 				2BC3D368186699250092F02F /* close.png in Resources */,
 				2BC3D37418669CA90092F02F /* button_menu.png in Resources */,
 				2B6EC02A186338260008642C /* map_btn_pressed@2x.png in Resources */,
@@ -996,7 +997,6 @@
 				2B5B12A71868742A00C464C0 /* button_zoom_out@2x.png in Resources */,
 				2B66BDA318672FE900A9D75D /* office34.png in Resources */,
 				2B067CE61850C6B600A0054E /* button_search_transparent.png in Resources */,
-				2B240EDA18A3B61D006068BD /* Icon-40@2x.png in Resources */,
 				2B94C8E517A5407C002581F3 /* jasmineupcbold.ttf in Resources */,
 				2B94C8F817A554D6002581F3 /* 3g.png in Resources */,
 				2B94C8F917A554D6002581F3 /* 3g@2x.png in Resources */,
@@ -1007,10 +1007,10 @@
 				2B94C8FC17A554D6002581F3 /* course frame.png in Resources */,
 				2B5B12AB1868743100C464C0 /* button_mylocation@2x.png in Resources */,
 				2B5B12A41868742A00C464C0 /* button_zoom_in.png in Resources */,
+				2B70307E18A7960D00FDA856 /* Icon.png in Resources */,
 				2BC3D35A186691300092F02F /* background_main.png in Resources */,
 				2B6EC03118633C730008642C /* speed_btn_pressed.png in Resources */,
 				2BC3D37518669CA90092F02F /* button_menu@2x.png in Resources */,
-				2B240ED818A3B61D006068BD /* Icon-29@2x.png in Resources */,
 				2B94C8FD17A554D6002581F3 /* course frame@2x.png in Resources */,
 				2BC839491866DE2D002477AF /* button_search.png in Resources */,
 				2B94C8FE17A554D6002581F3 /* gps.png in Resources */,
@@ -1022,7 +1022,6 @@
 				2B89A7B517B60CE90042539F /* CarPanel1MenuView.xib in Resources */,
 				2B5B12981868739500C464C0 /* marker_home.png in Resources */,
 				2BE8FDFD17C06C920060395E /* route_current_location.png in Resources */,
-				2B240EE518A3B877006068BD /* Icon.png in Resources */,
 				2BE8FDFE17C06C920060395E /* route_current_location@2x.png in Resources */,
 				2B9A1368186EF94200AB7945 /* icon_navi_left.png in Resources */,
 				2B9A1369186EF94200AB7945 /* icon_navi_left@2x.png in Resources */,
@@ -1035,7 +1034,6 @@
 				2BC3D3631866973F0092F02F /* car_panel1_menu_background@2x.png in Resources */,
 				2BE6DA6217C39CCD00DE20E8 /* turn_left90.png in Resources */,
 				2BE6DA6317C39CCD00DE20E8 /* turn_right45.png in Resources */,
-				2B240EE618A3B877006068BD /* Icon@2x.png in Resources */,
 				2BE6DA6417C39CCD00DE20E8 /* turn_right90.png in Resources */,
 				2BE6DA6517C39CCD00DE20E8 /* turn_straight.png in Resources */,
 				2B66BDA218672FE900A9D75D /* home34@2x.png in Resources */,
@@ -1044,6 +1042,7 @@
 				2B98933D184B4B7A00811F5B /* GoogleMaps.bundle in Resources */,
 				2BC3D37A1866CE0F0092F02F /* marker_menu_bg.png in Resources */,
 				2B66BD951867244400A9D75D /* icon_transparent32.png in Resources */,
+				2B70308618A7973700FDA856 /* Icon-40.png in Resources */,
 				2B6EC02F18633C730008642C /* speed_btn_default.png in Resources */,
 				2B66BD8418671CC000A9D75D /* button_shift_left.png in Resources */,
 				2BC839451866D989002477AF /* top_button_v_separator.png in Resources */,
@@ -1059,18 +1058,19 @@
 				2BCBA31D186538EB008110A2 /* background_tableview.png in Resources */,
 				2B66BDA018672FE900A9D75D /* favor34@2x.png in Resources */,
 				2B5D9A6E17C7A57D00A22132 /* button_current_location_off.png in Resources */,
-				2B240ED918A3B61D006068BD /* Icon-40.png in Resources */,
 				2BC3D3561866901B0092F02F /* background_main_tableview.png in Resources */,
 				2B5B129F1868739500C464C0 /* marker_search@2x.png in Resources */,
 				2B66BD8718671CC000A9D75D /* button_shift_right@2x.png in Resources */,
 				2B5D9A6F17C7A57D00A22132 /* button_current_location_off@2x.png in Resources */,
 				2B5D9A7017C7A57D00A22132 /* button_current_location_on.png in Resources */,
 				2B66BDA418672FE900A9D75D /* office34@2x.png in Resources */,
+				2B70308418A7973700FDA856 /* Icon-29.png in Resources */,
 				2BC8394A1866DE2D002477AF /* button_search@2x.png in Resources */,
 				2B5D9A7117C7A57D00A22132 /* button_current_location_on@2x.png in Resources */,
 				2BC3D37718669CA90092F02F /* button_settings@2x.png in Resources */,
 				2B5D9A7217C7A57D00A22132 /* button_map.png in Resources */,
 				2B5D9A7317C7A57D00A22132 /* button_map@2x.png in Resources */,
+				2B70307F18A7960D00FDA856 /* Icon@2x.png in Resources */,
 				2B5B129D1868739500C464C0 /* marker_office@2x.png in Resources */,
 				2B5D9A7617C7A57D00A22132 /* button_shop.png in Resources */,
 				2B087A241861EBEF000E8D3B /* inner_showdow_bg.png in Resources */,
@@ -1208,6 +1208,79 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2B70308818A7B4E400FDA856 /* Release Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE_TEST=1";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release Test";
+		};
+		2B70308918A7B4E400FDA856 /* Release Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)",
+					/Data/Program/NavierIOS,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NavierIOS/NavierIOS-Prefix.pch";
+				HEADER_SEARCH_PATHS = "/Data/Program/NaviUtil/**";
+				INFOPLIST_FILE = "NavierIOS/NavierIOS-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../ios/framework/TestFlightSDK1.2.6\"",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = NavierHUD;
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = "Release Test";
+		};
+		2B70308A18A7B4E400FDA856 /* Release Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/NavierIOS.app/NavierIOS";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NavierIOS/NavierIOS-Prefix.pch";
+				INFOPLIST_FILE = "NavierIOSTests/NavierIOSTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Release Test";
+		};
 		2B9A434E16DB955F00FD1A54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1255,6 +1328,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -1364,6 +1438,7 @@
 			buildConfigurations = (
 				2B9A434E16DB955F00FD1A54 /* Debug */,
 				2B9A434F16DB955F00FD1A54 /* Release */,
+				2B70308818A7B4E400FDA856 /* Release Test */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1373,6 +1448,7 @@
 			buildConfigurations = (
 				2B9A435116DB955F00FD1A54 /* Debug */,
 				2B9A435216DB955F00FD1A54 /* Release */,
+				2B70308918A7B4E400FDA856 /* Release Test */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1382,6 +1458,7 @@
 			buildConfigurations = (
 				2B9A435416DB955F00FD1A54 /* Debug */,
 				2B9A435516DB955F00FD1A54 /* Release */,
+				2B70308A18A7B4E400FDA856 /* Release Test */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

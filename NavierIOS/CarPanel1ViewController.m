@@ -117,7 +117,7 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
-    self.debugMsgLabel.hidden = ![SystemConfig getBoolValue:CONFIG_IS_DEBUG];
+    self.debugMsgLabel.hidden = ![SystemConfig getBoolValue:CONFIG_H_IS_DEBUG];
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -449,7 +449,7 @@
     _systemStatusView.color     = _color;
     
     
-    if ( YES == [SystemConfig getBoolValue:CONFIG_IS_DEBUG])
+    if ( YES == [SystemConfig getBoolValue:CONFIG_H_IS_DEBUG])
     {
         _courseCutLabel.textColor   = _color;
     }

@@ -58,5 +58,6 @@
 "Failed to plan route" = "路徑規畫失敗";
 "Cannot connect to server" = "無法連線到主機";
 "Forget to enable network connections?" = "忘記啟動網路連線?";
-
+"Cannot navigate to current place" = "無法導航到目前位置";
+"Must start navigation from current place" = "必須從目前位置開始導航";
 "Buy" = "購買";

@@ -210,10 +210,13 @@
     
     self.startPlace = startPlace;
     self.endPlace   = endPlace;
-    
-    [User addRecentPlace:self.endPlace];
-    [User save];
-    [self.guideRouteUIView startRouteNavigationFrom:self.startPlace To:self.endPlace];
+
+    if (kPlaceType_CurrentPlace != self.endPlace.placeType)
+    {
+        [User addRecentPlace:self.endPlace];
+        [User save];
+        [self.guideRouteUIView startRouteNavigationFrom:self.startPlace To:self.endPlace];
+    }
     
 }
 
@@ -258,7 +261,7 @@
     self.isSpeedUnitMph = [SystemConfig getBoolValue:CONFIG_RN1_IS_SPEED_UNIT_MPH];
 
     
-    if (YES == [SystemConfig getBoolValue:CONFIG_IS_DEBUG])
+    if (YES == [SystemConfig getBoolValue:CONFIG_H_IS_DEBUG])
     {
         self.textButton.hidden = NO;
         self.autoButton.hidden = NO;
@@ -275,12 +278,12 @@
     
     [self.guideRouteUIView active];
     
-    if (YES == [SystemConfig getBoolValue:CONFIG_IS_DEBUG])
+    if (YES == [SystemConfig getBoolValue:CONFIG_H_IS_DEBUG])
     {
         [LocationManager startLocationTracking];
     }
     
-    if (YES == [SystemConfig getBoolValue:CONFIG_IS_LOCATION_SIMULATOR])
+    if (YES == [SystemConfig getBoolValue:CONFIG_H_IS_LOCATION_SIMULATOR])
     {
         [LocationManager stopMonitorLocation];
     }
@@ -298,7 +301,7 @@
     [self.guideRouteUIView inactive];
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     
-    if (YES == [SystemConfig getBoolValue:CONFIG_IS_DEBUG])
+    if (YES == [SystemConfig getBoolValue:CONFIG_H_IS_DEBUG])
     {
         [LocationManager stopLocationTracking];
     }

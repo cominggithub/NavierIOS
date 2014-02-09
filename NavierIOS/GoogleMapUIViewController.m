@@ -154,6 +154,7 @@
     /* configure navigation button icon */
     self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
     [self.backButton setTitle:[SystemManager getLanguageString:self.backButton.titleLabel.text] forState:UIControlStateNormal];
+    
 }
 
 
@@ -198,7 +199,7 @@
 #pragma  mark - Banner
 -(void) addBanner:(UIView*) contentView
 {
-    if (FALSE == [SystemConfig getBoolValue:CONFIG_IS_AD])
+    if (FALSE == [SystemConfig getBoolValue:CONFIG_H_IS_AD])
         return;
     
     if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)])
@@ -740,8 +741,8 @@
 
 -(void) checkIAPItem
 {
-    self.bannerIsVisible        = [SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD] && [SystemConfig getBoolValue:CONFIG_IS_AD];
-    self.userPlace              = [SystemConfig getBoolValue:CONFIG_IAP_IS_USER_PLACE] && [SystemConfig getBoolValue:CONFIG_IS_USER_PLACE];
+    self.bannerIsVisible        = [SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD] && [SystemConfig getBoolValue:CONFIG_H_IS_AD];
+    self.userPlace              = [SystemConfig getBoolValue:CONFIG_IAP_IS_USER_PLACE] && [SystemConfig getBoolValue:CONFIG_H_IS_USER_PLACE];
     self.placeButton.hidden     = !self.userPlace;
     
 }
@@ -786,13 +787,25 @@
 
 - (IBAction)pressNavigationButton:(id)sender
 {
-    if (YES == mapManager.hasRoute)
+    if (kPlaceType_CurrentPlace != mapManager.routeStartPlace.placeType)
     {
-        [self presentViewController:routeNavigationViewController animated:YES completion:nil];
-        [routeNavigationViewController startRouteNavigationFrom:mapManager.routeStartPlace To:mapManager.routeEndPlace];
+        [self showAlertTitle:[SystemManager getLanguageString:@"Must start navigation from current place"]
+                     message:[SystemManager getLanguageString:@""]];
     }
-
-    [self hideMarkerMenuFloat];
+    else if (kPlaceType_CurrentPlace == mapManager.routeEndPlace.placeType)
+    {
+        [self showAlertTitle:[SystemManager getLanguageString:@"Destination Error"]
+                     message:[SystemManager getLanguageString:@"Cannot navigate to current place"]];
+    }
+    else
+    {
+        if (YES == mapManager.hasRoute)
+        {
+            [self presentViewController:routeNavigationViewController animated:YES completion:nil];
+            [routeNavigationViewController startRouteNavigationFrom:mapManager.routeStartPlace To:mapManager.routeEndPlace];
+            [self hideMarkerMenuFloat];
+        }
+    }
 }
 
 - (IBAction)pressTestButton:(id)sender
@@ -952,7 +965,6 @@
 
 -(void) mapManager:(MapManager*) mapManager routePlanning:(BOOL) result
 {
-    logfn();
     if (FALSE == result)
     {
         [self showAlertTitle:[SystemManager getLanguageString:@"Failed to plan route"]

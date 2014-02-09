@@ -133,27 +133,27 @@
 
     [LocationManager setCurrentManualPlace:[LocationManager getManualPlaceByIndex:[_debugMenuPlacePickerView selectedRowInComponent:0]]];
 
-    [SystemConfig setValue:CONFIG_IS_DEBUG BOOL:_debugMenuIsDebugSwitch.on];
-    [SystemConfig setValue:CONFIG_IS_AD BOOL:_debugMenuIsAdSwitch.on];
-    [SystemConfig setValue:CONFIG_IS_DEBUG_ROUTE_DRAW BOOL:_debugMenuIsDebugRouteDrawSwitch.on];
-    [SystemConfig setValue:CONFIG_IS_MANUAL_PLACE BOOL:_debugMenuIsManualPlaceSwitch.on];
+    [SystemConfig setValue:CONFIG_H_IS_DEBUG BOOL:_debugMenuIsDebugSwitch.on];
+    [SystemConfig setValue:CONFIG_H_IS_AD BOOL:_debugMenuIsAdSwitch.on];
+    [SystemConfig setValue:CONFIG_H_IS_DEBUG_ROUTE_DRAW BOOL:_debugMenuIsDebugRouteDrawSwitch.on];
+    [SystemConfig setValue:CONFIG_H_IS_MANUAL_PLACE BOOL:_debugMenuIsManualPlaceSwitch.on];
     [SystemConfig setValue:CONFIG_IS_SPEECH BOOL:_debugMenuIsSpeechSwitch.on];
-    [SystemConfig setValue:CONFIG_IS_LOCATION_SIMULATOR BOOL:_debugMenuIsLocationSimulatorSwitch.on];
+    [SystemConfig setValue:CONFIG_H_IS_LOCATION_SIMULATOR BOOL:_debugMenuIsLocationSimulatorSwitch.on];
     [SystemConfig setValue:CONFIG_IS_TRACK_FILE BOOL:_debugMenuIsTrackFileSwitch.on];
-    [SystemConfig setValue:CONFIG_IS_USER_PLACE BOOL:_debugMenuIsUserPlaceSwitch.on];
+    [SystemConfig setValue:CONFIG_H_IS_USER_PLACE BOOL:_debugMenuIsUserPlaceSwitch.on];
 
 }
 
 -(void) updateUIFromConfig
 {
-    _debugMenuIsDebugSwitch.on              = [SystemConfig getBoolValue:CONFIG_IS_DEBUG];
-    _debugMenuIsAdSwitch.on                 = [SystemConfig getBoolValue:CONFIG_IS_AD];
-    _debugMenuIsDebugRouteDrawSwitch.on     = [SystemConfig getBoolValue:CONFIG_IS_DEBUG_ROUTE_DRAW];
-    _debugMenuIsManualPlaceSwitch.on        = [SystemConfig getBoolValue:CONFIG_IS_MANUAL_PLACE];
+    _debugMenuIsDebugSwitch.on              = [SystemConfig getBoolValue:CONFIG_H_IS_DEBUG];
+    _debugMenuIsAdSwitch.on                 = [SystemConfig getBoolValue:CONFIG_H_IS_AD];
+    _debugMenuIsDebugRouteDrawSwitch.on     = [SystemConfig getBoolValue:CONFIG_H_IS_DEBUG_ROUTE_DRAW];
+    _debugMenuIsManualPlaceSwitch.on        = [SystemConfig getBoolValue:CONFIG_H_IS_MANUAL_PLACE];
     _debugMenuIsSpeechSwitch.on             = [SystemConfig getBoolValue:CONFIG_IS_SPEECH];
-    _debugMenuIsLocationSimulatorSwitch.on  = [SystemConfig getBoolValue:CONFIG_IS_LOCATION_SIMULATOR];
+    _debugMenuIsLocationSimulatorSwitch.on  = [SystemConfig getBoolValue:CONFIG_H_IS_LOCATION_SIMULATOR];
     _debugMenuIsTrackFileSwitch.on          = [SystemConfig getBoolValue:CONFIG_IS_TRACK_FILE];
-    _debugMenuIsUserPlaceSwitch.on          = [SystemConfig getBoolValue:CONFIG_IS_USER_PLACE];
+    _debugMenuIsUserPlaceSwitch.on          = [SystemConfig getBoolValue:CONFIG_H_IS_USER_PLACE];
     
 }
 

@@ -34,6 +34,9 @@
     SectionMode sectionMode;
     NSMutableArray* placeIcons;
     AVAudioPlayer *audioPlayer;
+    UIAlertView *alert;
+    Place* routeStartPlace;
+    Place* routeEndPlace;
 }
 
 - (void)viewDidLoad
@@ -41,16 +44,18 @@
     CGFloat xoffset;
     [super viewDidLoad];
     
+    
+    
     [self addBanner:self.contentView];
     
-    routeNavigationViewController = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass
-                                 ([RouteNavigationViewController class])];
-
+    alert                           = nil;
+    routeNavigationViewController   = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass ([RouteNavigationViewController class])];
     oriProtraitMapButtonFrame       = self.mapButton.frame;
     oriLandscapeMapButtonFrame      = self.mapButton.frame;
     oriMapButtonAutoresizingMask    = self.mapButton.autoresizingMask;
+    routeStartPlace                 = nil;
+    routeEndPlace                   = nil;
 
-    
     xoffset = self.view.bounds.size.width > self.view.bounds.size.height ? 0 : self.view.bounds.size.height - self.view.bounds.size.width;
     
     oriLandscapeMapButtonFrame.origin.x      += xoffset;
@@ -102,8 +107,6 @@
 }
 #endif
 
-
-
 - (void)viewDidUnload {
 
     [self setContentView:nil];
@@ -120,6 +123,8 @@
 #else
     self.debugConfigButton.hidden = YES;
 #endif
+    
+    [self active];
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -144,17 +149,15 @@
     {
         self.buyButton.hidden = NO;
     }
-    self.bannerIsVisible = [SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD] && [SystemConfig getBoolValue:CONFIG_IS_AD];
+    self.bannerIsVisible = [SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD] && [SystemConfig getBoolValue:CONFIG_H_IS_AD];
     
     self.buyButton.hidden = NO;
 }
 
 - (void) receiveNotification:(NSNotification *) notification
 {
-    logfn();
     if ([[notification name] isEqualToString:IAPHelperProductUpdatedNotification])
     {
-        logfn();
         [self checkIAPItem];
     }
 }
@@ -279,23 +282,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    Place* routeStartPlace;
-    Place* routeEndPlace;
-
     if (User.recentPlaces.count < 1)
         return;
     
     routeStartPlace = [LocationManager currentPlace];
     routeEndPlace   = [User.recentPlaces objectAtIndex:indexPath.row];
     
-    logO(routeStartPlace);
-    if (nil != routeStartPlace && nil != routeEndPlace && ![routeStartPlace isCoordinateEqualTo:routeEndPlace])
+    
+    if (FALSE == [self checkNavigationCondition])
     {
-        [self presentViewController:routeNavigationViewController animated:YES completion:nil];
-        [routeNavigationViewController startRouteNavigationFrom:routeStartPlace To:routeEndPlace];
+        return;
     }
-
+    
+    [self presentViewController:routeNavigationViewController animated:YES completion:nil];
+    [routeNavigationViewController startRouteNavigationFrom:routeStartPlace To:routeEndPlace];
 }
 
 #if 0
@@ -344,7 +344,7 @@
 
 -(void) addBanner:(UIView*) contentView
 {
-    if (FALSE == [SystemConfig getBoolValue:CONFIG_IS_AD])
+    if (FALSE == [SystemConfig getBoolValue:CONFIG_H_IS_AD])
         return;
     
     if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)])
@@ -468,15 +468,7 @@
 
 -(IBAction) pressTestButton:(id)sender
 {
-    
-    NSBundle *uiKitBundle = [NSBundle bundleWithIdentifier:@"com.apple.UIKit"];
-    NSString *yesText = uiKitBundle ? [uiKitBundle localizedStringForKey:@"設定" value:nil table:nil] : @"YES";
-    NSString *noText = uiKitBundle ? [uiKitBundle localizedStringForKey:@"No" value:nil table:nil] : @"NO";
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"YOur Message" message:@"Your description"
-												   delegate:self cancelButtonTitle:noText otherButtonTitles:yesText, nil];
-	[alert show];
-    
+
     
 }
 
@@ -498,7 +490,7 @@
     
     
     mlogDebug(@"%@", audioPlayer);
-//    AudioServicesPlaySystemSound(1003);
+
     @try {
         [audioPlayer play];
     }
@@ -508,4 +500,61 @@
     
     
 }
+
+
+#pragma mark -- operation
+- (void)active
+{
+    [LocationManager startMonitorLocation];
+}
+
+- (void)inactive
+{
+    [LocationManager startMonitorLocation];
+}
+
+- (BOOL)checkNavigationCondition
+{
+    if (FALSE == [NaviQueryManager mapServerReachable])
+    {
+        [self showAlertTitle:[SystemManager getLanguageString:@"Failed to plan route"]
+                     message:[SystemManager getLanguageString:@"Forget to enable network connections?"]];
+        return FALSE;
+    }
+    
+    if (nil == routeStartPlace || nil == routeEndPlace)
+    {
+        [self showAlertTitle:[SystemManager getLanguageString:@"No GPS Signal"] message:@""];
+        return FALSE;
+    }
+
+    if (routeStartPlace.coordinate.latitude == 0 && routeStartPlace.coordinate.longitude == 0)
+    {
+        [self showAlertTitle:[SystemManager getLanguageString:@"No GPS Signal"] message:@""];
+        return FALSE;
+    }
+    
+    if (TRUE == [routeStartPlace isCoordinateEqualTo:routeEndPlace])
+    {
+        [self showAlertTitle:[SystemManager getLanguageString:@"Destination Error"] message:@""];
+        return FALSE;
+    }
+    
+    return TRUE;
+}
+
+-(void) showAlertTitle:(NSString*) title message:(NSString*) message
+{
+    if (nil == alert)
+    {
+        alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:[SystemManager getLanguageString:@"OK"] otherButtonTitles:nil,nil];
+        [alert show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    alert = nil;
+}
+
 @end
