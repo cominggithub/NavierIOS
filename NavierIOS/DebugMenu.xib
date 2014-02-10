@@ -68,7 +68,7 @@
                                     </segments>
                                 </segmentedControl>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Languge" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="191">
-                                    <rect key="frame" x="22" y="217" width="318" height="21"/>
+                                    <rect key="frame" x="20" y="217" width="318" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -167,6 +167,18 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="onTintColor" red="0.33650335059999997" green="0.81746253189999996" blue="0.26242422100000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </switch>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Simulate Location Lost" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xcm-4i-w4c">
+                                    <rect key="frame" x="23" y="157" width="148" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <color key="textColor" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <switch opaque="NO" tag="111" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="YfK-hn-SI6" userLabel="Switch - Location Lost">
+                                    <rect key="frame" x="179" y="166" width="51" height="31"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="onTintColor" red="0.33650335059999997" green="0.81746253189999996" blue="0.26242422100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </switch>
                             </subviews>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="size" keyPath="contentSize">
@@ -184,6 +196,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Icon.png" width="57" height="57"/>
+        <image name="Icon.png" width="60" height="60"/>
     </resources>
 </document>
