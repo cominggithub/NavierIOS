@@ -741,8 +741,8 @@
 
 -(void) checkIAPItem
 {
-    self.bannerIsVisible        = [SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD] && [SystemConfig getBoolValue:CONFIG_H_IS_AD];
-    self.userPlace              = [SystemConfig getBoolValue:CONFIG_IAP_IS_USER_PLACE] && [SystemConfig getBoolValue:CONFIG_H_IS_USER_PLACE];
+    self.bannerIsVisible        = [SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD_AND_STORE_USER_PLACE] && [SystemConfig getBoolValue:CONFIG_H_IS_AD];
+    self.userPlace              = [SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD_AND_STORE_USER_PLACE] && [SystemConfig getBoolValue:CONFIG_H_IS_USER_PLACE];
     self.placeButton.hidden     = !self.userPlace;
     
 }

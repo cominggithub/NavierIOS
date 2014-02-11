@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *naviLeftButton;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 - (IBAction)pressBackButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *restoreIapItemButton;
+- (IBAction)pressRestorePurchasedItemButton:(id)sender;
 
 
 @end

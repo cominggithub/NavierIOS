@@ -892,7 +892,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MQg-CN-vep">
-                                <rect key="frame" x="306" y="225" width="121" height="44"/>
+                                <rect key="frame" x="309" y="214" width="121" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.1032912648" green="0.54669602689999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
@@ -959,6 +959,22 @@
                                     <action selector="pressBackButton:" destination="upQ-4M-J2U" eventType="touchUpInside" id="ThD-pN-drd"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="As0-Eu-etJ">
+                                <rect key="frame" x="309" y="266" width="121" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="0.1032912648" green="0.54669602689999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="9"/>
+                                <state key="normal" title="Restore Purchased Item">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressRestorePurchasedItemButton:" destination="upQ-4M-J2U" eventType="touchUpInside" id="0fr-dP-4ef"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -973,6 +989,7 @@
                         <outlet property="productDescription" destination="6ta-Ym-t0Z" id="bo4-k2-4gu"/>
                         <outlet property="productPrice" destination="mHZ-TY-5uf" id="3gf-ku-i8E"/>
                         <outlet property="productTitle" destination="FP3-en-QuR" id="8qs-Ho-qft"/>
+                        <outlet property="restoreIapItemButton" destination="As0-Eu-etJ" id="Oi4-AS-LUg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UlT-sC-I1C" userLabel="First Responder" sceneMemberID="firstResponder"/>

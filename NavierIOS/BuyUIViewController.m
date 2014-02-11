@@ -10,6 +10,7 @@
 #import <NaviUtil/NaviUtil.h>
 #import <NaviUtil/SKProduct+category.h>
 #import <NaviUtil/UIImage+category.h>
+#import <NaviUtil/IAPHelper.h>
 
 #define FILE_DEBUG TRUE
 #include "Log.h"
@@ -101,6 +102,7 @@
         NSString* productIdentifier = [notification object];
         mlogDebug(@"%@: %@", IAPHelperProductPurchasedNotification, productIdentifier);
 #endif
+        [self dismissViewControllerAnimated:true completion:nil];
     }
     else if ([[notification name] isEqualToString:IAPHelperProductUpdatedNotification])
     {
@@ -120,15 +122,17 @@
 
 - (IBAction)pressBuyButton:(id)sender
 {
-    logfn();
     if (nil != product)
     {
-        logfn();
         [NavierHUDIAPHelper buyProduct:product];
     }
 }
 
 - (IBAction)pressBackButton:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
+}
+- (IBAction)pressRestorePurchasedItemButton:(id)sender
+{
+    [NavierHUDIAPHelper retrieveProduct];
 }
 @end
