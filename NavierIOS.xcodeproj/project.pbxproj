@@ -163,6 +163,10 @@
 		2BCC02A31839087E0018174B /* DebugGoogleMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCC02A21839087E0018174B /* DebugGoogleMapViewController.m */; };
 		2BCFE04317031BE200636F58 /* RouteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCFE04217031BE200636F58 /* RouteTableViewController.m */; };
 		2BD8CE811701EB7500BDA678 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD8CE801701EB7500BDA678 /* Default.png */; };
+		2BD97FA518ABB88C00937C31 /* IAP_NoAdStoreUserPlace_bg_4_tw.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD97FA118ABB88B00937C31 /* IAP_NoAdStoreUserPlace_bg_4_tw.png */; };
+		2BD97FA618ABB88C00937C31 /* IAP_NoAdStoreUserPlace_bg_4_tw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD97FA218ABB88B00937C31 /* IAP_NoAdStoreUserPlace_bg_4_tw@2x.png */; };
+		2BD97FA718ABB88C00937C31 /* IAP_NoAdStoreUserPlace_bg_35_tw.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD97FA318ABB88B00937C31 /* IAP_NoAdStoreUserPlace_bg_35_tw.png */; };
+		2BD97FA818ABB88C00937C31 /* IAP_NoAdStoreUserPlace_bg_35_tw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD97FA418ABB88C00937C31 /* IAP_NoAdStoreUserPlace_bg_35_tw@2x.png */; };
 		2BE1CE6C174BA5830053995F /* MarkMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BE1CE6B174BA5830053995F /* MarkMenu.xib */; };
 		2BE6DA5717C39C2200DE20E8 /* dashboard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BE6DA5317C39C2200DE20E8 /* dashboard@2x.png */; };
 		2BE6DA5817C39C2200DE20E8 /* indicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BE6DA5417C39C2200DE20E8 /* indicator@2x.png */; };
@@ -391,6 +395,10 @@
 		2BCFE04117031BE200636F58 /* RouteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RouteTableViewController.h; path = NavierIOS/RouteTableViewController.h; sourceTree = "<group>"; };
 		2BCFE04217031BE200636F58 /* RouteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RouteTableViewController.m; path = NavierIOS/RouteTableViewController.m; sourceTree = "<group>"; };
 		2BD8CE801701EB7500BDA678 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		2BD97FA118ABB88B00937C31 /* IAP_NoAdStoreUserPlace_bg_4_tw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IAP_NoAdStoreUserPlace_bg_4_tw.png; sourceTree = "<group>"; };
+		2BD97FA218ABB88B00937C31 /* IAP_NoAdStoreUserPlace_bg_4_tw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IAP_NoAdStoreUserPlace_bg_4_tw@2x.png"; sourceTree = "<group>"; };
+		2BD97FA318ABB88B00937C31 /* IAP_NoAdStoreUserPlace_bg_35_tw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IAP_NoAdStoreUserPlace_bg_35_tw.png; sourceTree = "<group>"; };
+		2BD97FA418ABB88C00937C31 /* IAP_NoAdStoreUserPlace_bg_35_tw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IAP_NoAdStoreUserPlace_bg_35_tw@2x.png"; sourceTree = "<group>"; };
 		2BE1CE6B174BA5830053995F /* MarkMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MarkMenu.xib; path = NavierIOS/MarkMenu.xib; sourceTree = "<group>"; };
 		2BE6DA5317C39C2200DE20E8 /* dashboard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dashboard@2x.png"; sourceTree = "<group>"; };
 		2BE6DA5417C39C2200DE20E8 /* indicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "indicator@2x.png"; sourceTree = "<group>"; };
@@ -579,6 +587,10 @@
 		2B8C06E71788F0730021E4F3 /* Icon and Background */ = {
 			isa = PBXGroup;
 			children = (
+				2BD97FA118ABB88B00937C31 /* IAP_NoAdStoreUserPlace_bg_4_tw.png */,
+				2BD97FA218ABB88B00937C31 /* IAP_NoAdStoreUserPlace_bg_4_tw@2x.png */,
+				2BD97FA318ABB88B00937C31 /* IAP_NoAdStoreUserPlace_bg_35_tw.png */,
+				2BD97FA418ABB88C00937C31 /* IAP_NoAdStoreUserPlace_bg_35_tw@2x.png */,
 				2B9A1366186EF94200AB7945 /* icon_navi_left.png */,
 				2B9A1367186EF94200AB7945 /* icon_navi_left@2x.png */,
 				2B66BD9718672FE900A9D75D /* favor34.png */,
@@ -989,6 +1001,7 @@
 				2B70308518A7973700FDA856 /* Icon-29@2x.png in Resources */,
 				2BC3D368186699250092F02F /* close.png in Resources */,
 				2BC3D37418669CA90092F02F /* button_menu.png in Resources */,
+				2BD97FA818ABB88C00937C31 /* IAP_NoAdStoreUserPlace_bg_35_tw@2x.png in Resources */,
 				2B6EC02A186338260008642C /* map_btn_pressed@2x.png in Resources */,
 				2B5B12A61868742A00C464C0 /* button_zoom_out.png in Resources */,
 				2B66BDA118672FE900A9D75D /* home34.png in Resources */,
@@ -998,6 +1011,7 @@
 				2B66BDA318672FE900A9D75D /* office34.png in Resources */,
 				2B067CE61850C6B600A0054E /* button_search_transparent.png in Resources */,
 				2B94C8E517A5407C002581F3 /* jasmineupcbold.ttf in Resources */,
+				2BD97FA618ABB88C00937C31 /* IAP_NoAdStoreUserPlace_bg_4_tw@2x.png in Resources */,
 				2B94C8F817A554D6002581F3 /* 3g.png in Resources */,
 				2B94C8F917A554D6002581F3 /* 3g@2x.png in Resources */,
 				2B94C8FB17A554D6002581F3 /* battery@2x.png in Resources */,
@@ -1013,6 +1027,7 @@
 				2BC3D37518669CA90092F02F /* button_menu@2x.png in Resources */,
 				2B94C8FD17A554D6002581F3 /* course frame@2x.png in Resources */,
 				2BC839491866DE2D002477AF /* button_search.png in Resources */,
+				2BD97FA718ABB88C00937C31 /* IAP_NoAdStoreUserPlace_bg_35_tw.png in Resources */,
 				2B94C8FE17A554D6002581F3 /* gps.png in Resources */,
 				2B94C8FF17A554D6002581F3 /* gps@2x.png in Resources */,
 				2B94C90317A55548002581F3 /* battery.png in Resources */,
@@ -1060,6 +1075,7 @@
 				2B5D9A6E17C7A57D00A22132 /* button_current_location_off.png in Resources */,
 				2BC3D3561866901B0092F02F /* background_main_tableview.png in Resources */,
 				2B5B129F1868739500C464C0 /* marker_search@2x.png in Resources */,
+				2BD97FA518ABB88C00937C31 /* IAP_NoAdStoreUserPlace_bg_4_tw.png in Resources */,
 				2B66BD8718671CC000A9D75D /* button_shift_right@2x.png in Resources */,
 				2B5D9A6F17C7A57D00A22132 /* button_current_location_off@2x.png in Resources */,
 				2B5D9A7017C7A57D00A22132 /* button_current_location_on.png in Resources */,

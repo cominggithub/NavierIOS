@@ -67,8 +67,19 @@
     [super viewDidLoad];
     [self.buyButton setTitle:[SystemManager getLanguageString:self.buyButton.titleLabel.text] forState:UIControlStateNormal];
     
+
+    self.restoreIapItemButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.restoreIapItemButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [self.restoreIapItemButton setTitle:[SystemManager getLanguageString:self.restoreIapItemButton.titleLabel.text] forState:UIControlStateNormal];
+    
     self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
     [self.backButton setTitle:[SystemManager getLanguageString:self.backButton.titleLabel.text] forState:UIControlStateNormal];
+    
+    self.purchasePanel.backgroundColor     = [[UIColor whiteColor] colorWithAlphaComponent:0.9];
+    self.purchasePanel.layer.borderColor   = [UIColor grayColor].CGColor;
+    self.purchasePanel.layer.borderWidth   = 1;
+    self.purchasePanel.layer.cornerRadius  = 2.0f;
+    self.purchasePanel.layer.masksToBounds = TRUE;
     
 	// Do any additional setup after loading the view.
 }
