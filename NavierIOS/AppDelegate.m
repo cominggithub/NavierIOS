@@ -90,6 +90,9 @@ void uncaughtExceptionHandler(NSException *exception) {
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+#if RELEASE_TEST
+    [SystemConfig removeIAPItem:CONFIG_IAP_IS_NO_AD_AND_STORE_USER_PLACE];
+#endif
 }
 
 @end

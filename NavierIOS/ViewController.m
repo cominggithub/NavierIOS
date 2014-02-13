@@ -153,7 +153,7 @@
     {
         self.buyButton.hidden = NO;
     }
-    self.bannerIsVisible = [SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD_AND_STORE_USER_PLACE] && [SystemConfig getBoolValue:CONFIG_H_IS_AD];
+    self.bannerIsVisible = [SystemConfig getBoolValue:CONFIG_H_IS_AD] && (![SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD_AND_STORE_USER_PLACE]);
 }
 
 - (void) receiveNotification:(NSNotification *) notification

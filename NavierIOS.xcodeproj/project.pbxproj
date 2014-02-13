@@ -542,13 +542,6 @@
 			name = button;
 			sourceTree = "<group>";
 		};
-		2B5D9A7817C7A66C00A22132 /* background */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = background;
-			sourceTree = "<group>";
-		};
 		2B6CBFF416DFAA030095CBD4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -572,7 +565,6 @@
 				2BC839421866D97C002477AF /* Interface */,
 				2B6EC00E1863212F0008642C /* Place */,
 				2BB7E6DF18609020005AB333 /* Table */,
-				2B5D9A7817C7A66C00A22132 /* background */,
 				2B5D9A3F17C78CC000A22132 /* button */,
 				2B5D9A2517C78C7E00A22132 /* icon */,
 				2BEBB82417BF2A7400B336E6 /* Navigation */,
@@ -1271,7 +1263,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../ios/framework/TestFlightSDK1.2.6\"",
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = NavierHUD;
 				PROVISIONING_PROFILE = "";
@@ -1376,6 +1368,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../ios/framework/TestFlightSDK1.2.6\"",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = NavierHUD;
 				PROVISIONING_PROFILE = "";
@@ -1403,7 +1396,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../ios/framework/TestFlightSDK1.2.6\"",
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = NavierHUD;
 				PROVISIONING_PROFILE = "";

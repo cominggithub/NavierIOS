@@ -741,8 +741,8 @@
 
 -(void) checkIAPItem
 {
-    self.bannerIsVisible        = [SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD_AND_STORE_USER_PLACE] && [SystemConfig getBoolValue:CONFIG_H_IS_AD];
-    self.userPlace              = [SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD_AND_STORE_USER_PLACE] && [SystemConfig getBoolValue:CONFIG_H_IS_USER_PLACE];
+    self.bannerIsVisible        = [SystemConfig getBoolValue:CONFIG_H_IS_AD] && (![SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD_AND_STORE_USER_PLACE]);
+    self.userPlace              = [SystemConfig getBoolValue:CONFIG_H_IS_USER_PLACE] && [SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD_AND_STORE_USER_PLACE];
 //    self.placeButton.hidden     = !self.userPlace;
     self.placeButton.hidden     = NO;
     
@@ -788,7 +788,11 @@
 
 - (IBAction)pressNavigationButton:(id)sender
 {
-    if (kPlaceType_CurrentPlace != mapManager.routeStartPlace.placeType)
+    if (nil == mapManager.routeStartPlace || nil == mapManager.routeEndPlace)
+        return;
+    
+    if (kPlaceType_CurrentPlace != mapManager.routeStartPlace.placeType &&
+        TRUE != [mapManager.currentPlace isCoordinateEqualTo:mapManager.routeStartPlace])
     {
         [self showAlertTitle:[SystemManager getLanguageString:@"Must start navigation from current place"]
                      message:[SystemManager getLanguageString:@""]];

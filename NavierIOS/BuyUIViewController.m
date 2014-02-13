@@ -70,7 +70,8 @@
 
     self.restoreIapItemButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.restoreIapItemButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [self.restoreIapItemButton setTitle:[SystemManager getLanguageString:self.restoreIapItemButton.titleLabel.text] forState:UIControlStateNormal];
+    [self.restoreIapItemButton setTitle:[SystemManager getLanguageString:self.restoreIapItemButton.titleLabel.text]
+                               forState:UIControlStateNormal];
     
     self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
     [self.backButton setTitle:[SystemManager getLanguageString:self.backButton.titleLabel.text] forState:UIControlStateNormal];
@@ -81,7 +82,16 @@
     self.purchasePanel.layer.cornerRadius  = 2.0f;
     self.purchasePanel.layer.masksToBounds = TRUE;
     
+    if (480 == SystemManager.lanscapeScreenRect.size.width)
+    {
+        self.bgImageView.image = [UIImage imageNamed:@"IAP_NoAdStoreUserPlace_bg_35_tw"];
+    }
+    else
+    {
+        self.bgImageView.image = [UIImage imageNamed:@"IAP_NoAdStoreUserPlace_bg_4_tw"];
+    }
 	// Do any additional setup after loading the view.
+
 }
 
 - (void)didReceiveMemoryWarning

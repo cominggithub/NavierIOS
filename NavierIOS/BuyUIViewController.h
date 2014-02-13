@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *restoreIapItemButton;
 - (IBAction)pressRestorePurchasedItemButton:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *purchasePanel;
+@property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
+
 
 
 @end

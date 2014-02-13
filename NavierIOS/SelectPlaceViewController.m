@@ -48,6 +48,7 @@
     [placeIcons insertObject:[UIImage imageNamed:@"search34"] atIndex:kPlaceType_CurrentPlace];
     
     [self.backButton setTitle:[SystemManager getLanguageString:self.backButton.titleLabel.text] forState:UIControlStateNormal];
+    [self.editButton setTitle:[SystemManager getLanguageString:self.editButton.titleLabel.text] forState:UIControlStateNormal];
     
     self.tableView.delegate         = self;
     self.tableView.dataSource       = self;

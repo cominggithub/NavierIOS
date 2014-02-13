@@ -36,6 +36,8 @@
 "Arrive Desitnation" = "抵達目的地";
 "Destination Error" = "目的地錯誤";
 "Main Menu" = "主選單";
+"Edit" = "編輯";
+"Done" = "完成";
 "No searched records" = "尚無搜尋記錄";
 "route start place and end place are the same" = "出發地與目的地相同";
 "routeGuideText0"= "龍龍龍 龍-";
