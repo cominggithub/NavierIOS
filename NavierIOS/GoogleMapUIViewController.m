@@ -554,6 +554,7 @@
         [self hideMarkMenu];
         return;
     }
+
     savePlaceViewController.currentPlace = p;
     savePlaceViewController.sectionMode  = kSectionMode_Home;
     [self presentModalViewController:savePlaceViewController animated:YES];
@@ -791,8 +792,13 @@
     if (nil == mapManager.routeStartPlace || nil == mapManager.routeEndPlace)
         return;
     
+    logBool(kPlaceType_CurrentPlace != mapManager.routeStartPlace.placeType);
+    logBool(TRUE != [mapManager.currentPlace isVeryCloseTo:mapManager.routeStartPlace]);
+    logBool(kPlaceType_CurrentPlace != mapManager.routeStartPlace.placeType &&
+            (TRUE != [mapManager.currentPlace isVeryCloseTo:mapManager.routeStartPlace]));
+    
     if (kPlaceType_CurrentPlace != mapManager.routeStartPlace.placeType &&
-        TRUE != [mapManager.currentPlace isCoordinateEqualTo:mapManager.routeStartPlace])
+        (TRUE != [mapManager.currentPlace isVeryCloseTo:mapManager.routeStartPlace]))
     {
         [self showAlertTitle:[SystemManager getLanguageString:@"Must start navigation from current place"]
                      message:[SystemManager getLanguageString:@""]];
@@ -1000,10 +1006,26 @@
     [mapManager moveToPlace:p];
 }
 
--(void) savePlaceViewController:(SavePlaceViewController*) spvc placeChanged:(BOOL) placeChanged
+-(void) savePlaceViewController:(SavePlaceViewController*) spvc placeChanged:(BOOL) placeChanged place:(Place*) place
 {
     if (YES == placeChanged)
+    {
+        logO([mapManager routeStartPlace]);
+        logO([mapManager routeEndPlace]);
+        if (YES == [[mapManager routeStartPlace] isCoordinateEqualTo:place])
+        {
+            logfn();
+            [mapManager setRouteStartPlace:place];
+        }
+        else if (YES == [[mapManager routeEndPlace] isCoordinateEqualTo:place])
+        {
+            logfn();
+            [mapManager setRouteEndPlace:place];
+        }
+        
+        logfn();
         [mapManager refreshMap];
+    }
 }
 
 -(void) selectPlaceViewController:(SelectPlaceViewController*) s placeSelected:(Place*) p

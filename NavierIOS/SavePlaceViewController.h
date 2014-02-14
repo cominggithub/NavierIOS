@@ -13,7 +13,7 @@
 @class SavePlaceViewController;
 
 @protocol SavePlaceViewControllerDelegate <NSObject>
--(void) savePlaceViewController:(SavePlaceViewController*) spvc placeChanged:(BOOL) placeChanged;
+-(void) savePlaceViewController:(SavePlaceViewController*) spvc placeChanged:(BOOL) placeChanged place:(Place*)place;
 @end
 
 @interface SavePlaceViewController : UIViewController <UITextFieldDelegate>

@@ -63,6 +63,8 @@
 {
     self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
     [self updateUIFromCurrentPlace];
+
+
 }
 - (void)didReceiveMemoryWarning
 {
@@ -116,14 +118,20 @@
     [User updateRecentPlacesByPlace:self.currentPlace];
     [User save];
 
-    self.currentPlace = nil;
+
     [self.savePlaceTableView reloadData];
 
     /* notify the delegate */
-    if (nil != self.delegate && [self.delegate respondsToSelector:@selector(savePlaceViewController:placeChanged:)])
+    logO(self.delegate);
+    logBool([self.delegate respondsToSelector:@selector(savePlaceViewController:placeChanged:place:)]);
+    if (nil != self.delegate && [self.delegate respondsToSelector:@selector(savePlaceViewController:placeChanged:place:)])
     {
-        [self.delegate savePlaceViewController:self placeChanged:YES];
+        logfn();
+        [self.delegate savePlaceViewController:self placeChanged:YES place:self.currentPlace];
     }
+    logfn();
+    
+    self.currentPlace = nil;
     
 }
 -(void) setSectionMode:(SectionMode)sectionMode
@@ -256,7 +264,16 @@
 {
     if (nil != self.currentPlace)
     {
-        self.nameTextField.text = self.currentPlace.name;
+        if (YES == [self.currentPlace.name isEqualToString:[SystemManager getLanguageString:@"Current Location"]])
+        {
+            self.nameTextField.text         = @"";
+            self.nameTextField.placeholder  = [SystemManager getLanguageString:@"Current Location"];
+        }
+        else
+        {
+            self.nameTextField.text         = self.currentPlace.name;
+            self.nameTextField.placeholder  = @"";
+        }
         self.addressLabel.text  = self.currentPlace.address;
     }
 }
