@@ -145,7 +145,7 @@
        [NavierHUDIAPHelper retrieveProduct];
         self.buyButton.hidden = YES;
     }
-    else if (YES == [SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD_AND_STORE_USER_PLACE])
+    else if (YES == [SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION])
     {
         self.buyButton.hidden = YES;
     }
@@ -153,7 +153,7 @@
     {
         self.buyButton.hidden = NO;
     }
-    self.bannerIsVisible = [SystemConfig getBoolValue:CONFIG_H_IS_AD] && (![SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD_AND_STORE_USER_PLACE]);
+    self.bannerIsVisible = [SystemConfig getBoolValue:CONFIG_H_IS_AD] && (![SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION]);
 }
 
 - (void) receiveNotification:(NSNotification *) notification

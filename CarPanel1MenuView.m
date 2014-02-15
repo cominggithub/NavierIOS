@@ -62,6 +62,10 @@
     self.panelColor3Button  = (UIButton*) [self viewWithTag:103];
     self.panelColor4Button  = (UIButton*) [self viewWithTag:104];
     self.panelColor5Button  = (UIButton*) [self viewWithTag:105];
+
+    self.panelColor3Lock    = (UIImageView*) [self viewWithTag:503];
+    self.panelColor4Lock    = (UIImageView*) [self viewWithTag:504];
+    self.panelColor5Lock    = (UIImageView*) [self viewWithTag:505];
     
     self.hudLabel           = (UILabel*) [self viewWithTag:201];
     self.speedUnitLabel     = (UILabel*) [self viewWithTag:203];
@@ -113,7 +117,7 @@
                             self.frame.size.height
                             );
     
-    
+    self.lockColorSelection = TRUE;
 }
 
 
@@ -155,17 +159,47 @@
 
 -(IBAction) pressPanelColor3Button:(id) sender
 {
-    self.panelColor = self.panelColor3Button.backgroundColor;
+    if (NO == self.lockColorSelection)
+    {
+        self.panelColor = self.panelColor3Button.backgroundColor;
+    }
+    else
+    {
+        if (nil != self.delegate && [self.delegate respondsToSelector:@selector(carPanel1MenuView:pressBuyButton:)])
+        {
+            [self.delegate carPanel1MenuView:self pressBuyButton:TRUE];
+        }
+    }
 }
 
 -(IBAction) pressPanelColor4Button:(id) sender
 {
-    self.panelColor = self.panelColor4Button.backgroundColor;
+    if (NO == self.lockColorSelection)
+    {
+        self.panelColor = self.panelColor4Button.backgroundColor;
+    }
+    else
+    {
+        if (nil != self.delegate && [self.delegate respondsToSelector:@selector(carPanel1MenuView:pressBuyButton:)])
+        {
+            [self.delegate carPanel1MenuView:self pressBuyButton:TRUE];
+        }
+    }
 }
 
 -(IBAction) pressPanelColor5Button:(id) sender
 {
-    self.panelColor = self.panelColor5Button.backgroundColor;
+    if (NO == self.lockColorSelection)
+    {
+        self.panelColor = self.panelColor5Button.backgroundColor;
+    }
+    else
+    {
+        if (nil != self.delegate && [self.delegate respondsToSelector:@selector(carPanel1MenuView:pressBuyButton:)])
+        {
+            [self.delegate carPanel1MenuView:self pressBuyButton:TRUE];
+        }
+    }
 }
 
 -(IBAction) hudSwitchValueChanged:(id) sender
@@ -303,4 +337,21 @@
     _panelColor5Button.backgroundColor = panelColor5;
 }
 
+-(void) setLockColorSelection:(BOOL)lockColorSelection
+{
+    _lockColorSelection = lockColorSelection;
+
+    if (TRUE == self.lockColorSelection)
+    {
+        self.panelColor3Lock.hidden     = FALSE;
+        self.panelColor4Lock.hidden     = FALSE;
+        self.panelColor5Lock.hidden     = FALSE;
+    }
+    else
+    {
+        self.panelColor3Lock.hidden     = TRUE;
+        self.panelColor4Lock.hidden     = TRUE;
+        self.panelColor5Lock.hidden     = TRUE;
+    }
+}
 @end

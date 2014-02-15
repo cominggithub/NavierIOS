@@ -7,6 +7,7 @@
 //
 
 #import "RouteNavigationViewController.h"
+#import "BuyUIViewController.h"
 
 #define FILE_DEBUG TRUE
 #include <NaviUtil/Log.h>
@@ -32,6 +33,7 @@
     
     /* CarPanel1MenuView */
     CarPanel1MenuView *carPanelMenuView;
+    BuyUIViewController *buyViewController;
 }
 
 -(void) initSelf
@@ -39,6 +41,8 @@
     isShowRouteGuideMenu    = FALSE;
     _isShowKeyboard         = FALSE;
     routeTextIndex          = 0;
+    buyViewController   = (BuyUIViewController *)[self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass ([BuyUIViewController class])];
+
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -56,22 +60,26 @@
     [self initSelf];
     //    [self addRouteGuideMenu];
     [self addCarPanelMenu];
-    
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
-
+    [self checkIapItem];
+    [self active];
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
-    [self active];
+
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
 }
 
 -(void) viewWillDisappear:(BOOL)animated
 {
-    
     [self inactive];
 }
 
@@ -108,10 +116,12 @@
     if(self.isHud == TRUE)
     {
         self.contentView.transform = CGAffineTransformMakeScale(1,-1);
+        [[UIScreen mainScreen] setBrightness:1.0];
     }
     else
     {
         self.contentView.transform = CGAffineTransformMakeScale(1, 1);
+        [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
     }
 }
 
@@ -180,6 +190,11 @@
         self.guideRouteUIView.messageBoxText = @"";
 }
 
+- (IBAction)pressContentViewButton:(id)sender
+{
+    carPanelMenuView.hidden = !carPanelMenuView.hidden;
+}
+
 -(IBAction) beginShowKeyboard:(id)sender
 {
     _isShowKeyboard = TRUE;
@@ -218,6 +233,11 @@
         [self.guideRouteUIView startRouteNavigationFrom:self.startPlace To:self.endPlace];
     }
     
+}
+
+- (void)checkIapItem
+{
+    carPanelMenuView.lockColorSelection = ![SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION];
 }
 
 
@@ -292,7 +312,6 @@
         [LocationManager startMonitorLocation];
     }
     
-
     carPanelMenuView.hidden = YES;
 }
 
@@ -305,8 +324,10 @@
     {
         [LocationManager stopLocationTracking];
     }
-    [LocationManager stopMonitorLocation];
 
+    logF([SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]);
+    [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
+    [LocationManager stopMonitorLocation];
     carPanelMenuView.hidden = YES;
 }
 
@@ -459,9 +480,19 @@
     }
 }
 
+-(void) carPanel1MenuView:(CarPanel1MenuView*) cpm pressBuyButton:(BOOL) isPressed
+{
+    if (YES == isPressed && NavierHUDIAPHelper.iapItemCount > 0)
+    {
+        [self presentViewController:buyViewController animated:YES completion:nil];
+    }
+    carPanelMenuView.hidden = YES;
+}
+
+
 - (IBAction)tagAction:(id)sender
 {
-    
+    UITapGestureRecognizer* tapRecognizer;
     if (YES == _isShowKeyboard)
     {
         _isShowKeyboard = NO;
@@ -472,7 +503,14 @@
         return;
     }
 
-    carPanelMenuView.hidden = !carPanelMenuView.hidden;
+    tapRecognizer = (UITapGestureRecognizer*)sender;
+
+    if (!CGRectContainsPoint(carPanelMenuView.bounds, [tapRecognizer locationInView:carPanelMenuView]))
+    {
+        carPanelMenuView.hidden = !carPanelMenuView.hidden;
+    }
+    else if (carPanelMenuView.hidden)
+        carPanelMenuView.hidden = NO;
 }
 
 

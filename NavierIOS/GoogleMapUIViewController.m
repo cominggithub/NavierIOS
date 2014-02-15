@@ -742,11 +742,9 @@
 
 -(void) checkIAPItem
 {
-    self.bannerIsVisible        = [SystemConfig getBoolValue:CONFIG_H_IS_AD] && (![SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD_AND_STORE_USER_PLACE]);
-    self.userPlace              = [SystemConfig getBoolValue:CONFIG_H_IS_USER_PLACE] && [SystemConfig getBoolValue:CONFIG_IAP_IS_NO_AD_AND_STORE_USER_PLACE];
-//    self.placeButton.hidden     = !self.userPlace;
-    self.placeButton.hidden     = NO;
-    
+    self.bannerIsVisible        = [SystemConfig getBoolValue:CONFIG_H_IS_AD] && (![SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION]);
+    self.userPlace              = [SystemConfig getBoolValue:CONFIG_H_IS_USER_PLACE] && [SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION];
+    self.placeButton.hidden     = !self.userPlace;
 }
 
 -(void) showAlertTitle:(NSString*) title message:(NSString*) message
@@ -789,16 +787,11 @@
 
 - (IBAction)pressNavigationButton:(id)sender
 {
-    if (nil == mapManager.routeStartPlace || nil == mapManager.routeEndPlace)
-        return;
-    
-    logBool(kPlaceType_CurrentPlace != mapManager.routeStartPlace.placeType);
-    logBool(TRUE != [mapManager.currentPlace isVeryCloseTo:mapManager.routeStartPlace]);
-    logBool(kPlaceType_CurrentPlace != mapManager.routeStartPlace.placeType &&
-            (TRUE != [mapManager.currentPlace isVeryCloseTo:mapManager.routeStartPlace]));
+    mlogAssertNotNil(mapManager.routeStartPlace);
+    mlogAssertNotNil(mapManager.routeEndPlace);
     
     if (kPlaceType_CurrentPlace != mapManager.routeStartPlace.placeType &&
-        (TRUE != [mapManager.currentPlace isVeryCloseTo:mapManager.routeStartPlace]))
+        (TRUE != [mapManager.currentPlace isCloseTo:mapManager.routeStartPlace]))
     {
         [self showAlertTitle:[SystemManager getLanguageString:@"Must start navigation from current place"]
                      message:[SystemManager getLanguageString:@""]];
@@ -810,12 +803,9 @@
     }
     else
     {
-        if (YES == mapManager.hasRoute)
-        {
-            [self presentViewController:routeNavigationViewController animated:YES completion:nil];
-            [routeNavigationViewController startRouteNavigationFrom:mapManager.routeStartPlace To:mapManager.routeEndPlace];
-            [self hideMarkerMenuFloat];
-        }
+        [self presentViewController:routeNavigationViewController animated:YES completion:nil];
+        [routeNavigationViewController startRouteNavigationFrom:mapManager.routeStartPlace To:mapManager.routeEndPlace];
+        [self hideMarkerMenuFloat];
     }
 }
 

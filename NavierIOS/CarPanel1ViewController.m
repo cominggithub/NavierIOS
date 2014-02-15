@@ -11,6 +11,7 @@
 #import "ClockView.h"
 #import "SystemStatusView.h"
 #import "CarPanel1MenuView.h"
+#import "BuyUIViewController.h"
 
 #define FILE_DEBUG TRUE
 #include <NaviUtil/Log.h>
@@ -46,6 +47,7 @@
     NSMutableArray *_colorButtons;
     CGSize _colorButtonUnselectedSize;
     CGSize _colorButtonSelectedSize;
+    BuyUIViewController *buyViewController;
 }
 @end
 
@@ -63,10 +65,15 @@
 
 - (void) initSelf
 {
-    _redrawInterval = 0.5;
-    _redrawTimer    = nil;
-    _colorButtons   = [[NSMutableArray alloc] initWithCapacity:5];
+    UIStoryboard *storyboard;
+    
+    _redrawInterval     = 0.5;
+    _redrawTimer        = nil;
+    _colorButtons       = [[NSMutableArray alloc] initWithCapacity:5];
+    storyboard          = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+    buyViewController   = (BuyUIViewController *)[storyboard instantiateViewControllerWithIdentifier:NSStringFromClass ([BuyUIViewController class])];
 
+    
     [self addUIComponents];
     
     self.isHud      = FALSE;
@@ -118,6 +125,8 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     self.debugMsgLabel.hidden = ![SystemConfig getBoolValue:CONFIG_H_IS_DEBUG];
+    [self active];
+    [self checkIapItem];
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -126,9 +135,13 @@
 }
 -(void) viewDidAppear:(BOOL)animated
 {
-    [self active];
+
 }
 
+-(void) viewDidDisappear:(BOOL)animated
+{
+    [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -156,6 +169,11 @@
 
     [_clockView active];
     [_systemStatusView active];
+
+    if (self.isHud)
+    {
+        [[UIScreen mainScreen] setBrightness:1.0];
+    }
     
 }
 
@@ -169,6 +187,8 @@
     
     [_clockView inactive];
     [_systemStatusView inactive];
+    
+    [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
     
 }
 - (void)viewDidUnload
@@ -432,10 +452,12 @@
     if(_isHud == TRUE)
     {
         self.contentView.transform = CGAffineTransformMakeScale(1,-1);
+        [[UIScreen mainScreen] setBrightness:1.0];
     }
     else
     {
         self.contentView.transform = CGAffineTransformMakeScale(1, 1);
+        [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
     }
     
 }
@@ -659,13 +681,35 @@
     if (YES == isPressed)
     {
         carPanelMenuView.hidden = YES;
-        
     }
+}
+
+-(void) carPanel1MenuView:(CarPanel1MenuView*) cpm pressBuyButton:(BOOL) isPressed
+{
+    if (YES == isPressed && NavierHUDIAPHelper.iapItemCount > 0)
+    {
+        [self presentViewController:buyViewController animated:YES completion:nil];
+    }
+    carPanelMenuView.hidden = YES;
 }
 
 - (IBAction)tagAction:(id)sender
 {
-    carPanelMenuView.hidden = !carPanelMenuView.hidden;
+
+   UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer*)sender;
+    
+    if (!CGRectContainsPoint(carPanelMenuView.bounds, [tapRecognizer locationInView:carPanelMenuView]))
+    {
+        carPanelMenuView.hidden = !carPanelMenuView.hidden;
+    }
+    else if (carPanelMenuView.hidden)
+        carPanelMenuView.hidden = NO;
+}
+
+#pragma mark -- operation
+- (void)checkIapItem
+{
+    carPanelMenuView.lockColorSelection = ![SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION];
 }
 
 @end

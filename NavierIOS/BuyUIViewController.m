@@ -29,6 +29,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self initSelf];
     }
     return self;
 }
@@ -44,9 +45,18 @@
     return self;
 }
 
+- (id) init
+{
+    self = [super init];
+    if (self) {
+        [self initSelf];
+    }
+    
+    return self;
+}
+
 - (void)initSelf
 {
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveNotification:)
                                                  name:IAPHelperProductPurchasedNotification
@@ -72,7 +82,7 @@
     self.restoreIapItemButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.restoreIapItemButton setTitle:[SystemManager getLanguageString:self.restoreIapItemButton.titleLabel.text]
                                forState:UIControlStateNormal];
-    
+
     self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
     [self.backButton setTitle:[SystemManager getLanguageString:self.backButton.titleLabel.text] forState:UIControlStateNormal];
     
@@ -154,6 +164,6 @@
 }
 - (IBAction)pressRestorePurchasedItemButton:(id)sender
 {
-    [NavierHUDIAPHelper retrieveProduct];
+    [NavierHUDIAPHelper restorePurchasedProduct];
 }
 @end
