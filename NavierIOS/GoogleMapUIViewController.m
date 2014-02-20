@@ -789,6 +789,7 @@
 {
     mlogAssertNotNil(mapManager.routeStartPlace);
     mlogAssertNotNil(mapManager.routeEndPlace);
+    logfn();
     
     if (kPlaceType_CurrentPlace != mapManager.routeStartPlace.placeType &&
         (TRUE != [mapManager.currentPlace isCloseTo:mapManager.routeStartPlace]))
