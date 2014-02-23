@@ -88,51 +88,6 @@
                                              selector:@selector(receiveNotification:)
                                                  name:IAPHelperProductUpdatedNotification
                                                object:nil];
-    
-    float p90, p180, p270, p360;
-
-    p90 = [GeoUtil getAngleByLocation1:CLLocationCoordinate2DMake(1, 0)
-                       Location2:CLLocationCoordinate2DMake(0, 0)
-                       Location3:CLLocationCoordinate2DMake(0, 1)];
-    
-    p180 = [GeoUtil getAngleByLocation1:CLLocationCoordinate2DMake(1, 0)
-                             Location2:CLLocationCoordinate2DMake(0, 0)
-                             Location3:CLLocationCoordinate2DMake(-1, 0)];
-    
-    p270 = [GeoUtil getAngleByLocation1:CLLocationCoordinate2DMake(1, 0)
-                             Location2:CLLocationCoordinate2DMake(0, 0)
-                             Location3:CLLocationCoordinate2DMake(0, -1)];
-    
-    p360 = [GeoUtil getAngleByLocation1:CLLocationCoordinate2DMake(1, 0)
-                             Location2:CLLocationCoordinate2DMake(0, 0)
-                             Location3:CLLocationCoordinate2DMake(1, 0)];
-    
-    logF(p90);
-    logF(p180);
-    logF(p270);
-    logF(p360);
-
-    p90 = [GeoUtil getAngle360ByLocation1:CLLocationCoordinate2DMake(1, 0)
-                             Location2:CLLocationCoordinate2DMake(0, 0)
-                             Location3:CLLocationCoordinate2DMake(0, 1)];
-    
-    p180 = [GeoUtil getAngle360ByLocation1:CLLocationCoordinate2DMake(1, 0)
-                              Location2:CLLocationCoordinate2DMake(0, 0)
-                              Location3:CLLocationCoordinate2DMake(-1, 0)];
-    
-    p270 = [GeoUtil getAngle360ByLocation1:CLLocationCoordinate2DMake(1, 0)
-                              Location2:CLLocationCoordinate2DMake(0, 0)
-                              Location3:CLLocationCoordinate2DMake(0, -1)];
-    
-    p360 = [GeoUtil getAngle360ByLocation1:CLLocationCoordinate2DMake(1, 0)
-                              Location2:CLLocationCoordinate2DMake(0, 0)
-                              Location3:CLLocationCoordinate2DMake(1, 0)];
-    
-    logF(p90);
-    logF(p180);
-    logF(p270);
-    logF(p360);
-    
 }
 
 - (void)didReceiveMemoryWarning

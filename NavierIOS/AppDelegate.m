@@ -55,9 +55,23 @@ void uncaughtExceptionHandler(NSException *exception) {
     [NaviUtil setGoogleAPIKey:GOOGLE_API_Key];
     [NaviUtil setGooglePlaceAPIKey:GOOGLE_PLACE_API_Key];
     [NaviUtil init];
-    logF([UIScreen mainScreen].brightness);
     [SystemConfig setValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
     [User save];
+    
+    [Appirater setAppId:@"806144673"];    // Change for your "Your APP ID"
+    [Appirater setDaysUntilPrompt:0];     // Days from first entered the app until prompt
+#if RELEASE
+    [Appirater setUsesUntilPrompt:10];     // Number of uses until prompt
+#else
+    [Appirater setUsesUntilPrompt:3];     // Number of uses until prompt
+#endif
+    [Appirater setTimeBeforeReminding:2];
+    
+#if DEBUG
+    [Appirater setDebug:YES];
+#else
+    [Appirater setDebug:NO];
+#endif
     
     return YES;
 }
@@ -66,8 +80,6 @@ void uncaughtExceptionHandler(NSException *exception) {
 - (void)applicationWillResignActive:(UIApplication *)application
 {
 
-    logfn();
-    logF([SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]);
     /* restore to default brightnes */
     [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -77,8 +89,6 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    logfn();
-    logF([SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]);
     /* restore to default brightnes */
     [[UIScreen mainScreen] setBrightness:0.1536];
 
@@ -88,7 +98,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    logF([UIScreen mainScreen].brightness);
+    [Appirater appEnteredForeground:YES];
     /* get the default brightness */
     [SystemConfig setValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
@@ -96,7 +106,6 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    logF([UIScreen mainScreen].brightness);
     /* get the default brightness */
     [SystemConfig setValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"applicationDidBecomeActive" object:self];
@@ -107,7 +116,6 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    logfn();
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     /* restore to default brightnes */
     [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];

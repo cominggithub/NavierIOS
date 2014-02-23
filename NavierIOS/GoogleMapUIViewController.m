@@ -186,7 +186,6 @@
     [self checkIAPItem];
     
     self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
-
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -1001,20 +1000,15 @@
 {
     if (YES == placeChanged)
     {
-        logO([mapManager routeStartPlace]);
-        logO([mapManager routeEndPlace]);
         if (YES == [[mapManager routeStartPlace] isCoordinateEqualTo:place])
         {
-            logfn();
             [mapManager setRouteStartPlace:place];
         }
         else if (YES == [[mapManager routeEndPlace] isCoordinateEqualTo:place])
         {
-            logfn();
             [mapManager setRouteEndPlace:place];
         }
         
-        logfn();
         [mapManager refreshMap];
     }
 }
@@ -1031,7 +1025,9 @@
 -(void) selectPlaceViewController:(SelectPlaceViewController*) s placeEdited:(BOOL) placeEdited
 {
     if (YES == placeEdited)
+    {
         [mapManager refreshMap];
+    }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

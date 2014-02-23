@@ -6,3 +6,7 @@
   Copyright (c) 2013 Coming. All rights reserved.
 */
 "N" = "北t";
+"If you enjoy using %@, would you mind taking a moment to rate it? It won't take more than a minute. Thanks for your support!" = "幫忙一下啦！我們很需要您的幫忙評論 %@ 好不好用！謝啦！";
+"Rate %@" = "給%@評分";
+"No, Thanks" = "不，謝謝";
+"Remind me later" = "改天吧";
