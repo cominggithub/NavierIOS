@@ -143,7 +143,7 @@
 
 -(IBAction) pressAutoButton:(id)sender
 {
-    if (false == self.guideRouteUIView.isAutoSimulatorLocationUpdateStarted)
+    if ([self.autoButton.titleLabel.text isEqualToString:@"Auto"])
     {
         [self.autoButton setTitle:@"Stop" forState:UIControlStateNormal];
         [LocationManager setLocationUpdateType:kLocationManagerLocationUpdateType_ManualRoute];
@@ -325,10 +325,14 @@
         [LocationManager stopLocationTracking];
     }
 
-    logF([SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]);
     [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
     [LocationManager stopMonitorLocation];
     carPanelMenuView.hidden = YES;
+    
+    [self.autoButton setTitle:@"Auto" forState:UIControlStateNormal];
+    [LocationManager setLocationUpdateType:kLocationManagerLocationUpdateType_ManualRoute];
+    [LocationManager stopLocationSimulation];
+    
 }
 
 - (BOOL)prefersStatusBarHidden

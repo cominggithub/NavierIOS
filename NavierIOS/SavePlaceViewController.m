@@ -122,17 +122,11 @@
     [self.savePlaceTableView reloadData];
 
     /* notify the delegate */
-    logO(self.delegate);
-    logBool([self.delegate respondsToSelector:@selector(savePlaceViewController:placeChanged:place:)]);
     if (nil != self.delegate && [self.delegate respondsToSelector:@selector(savePlaceViewController:placeChanged:place:)])
     {
-        logfn();
         [self.delegate savePlaceViewController:self placeChanged:YES place:self.currentPlace];
     }
-    logfn();
-    
-    self.currentPlace = nil;
-    
+
 }
 -(void) setSectionMode:(SectionMode)sectionMode
 {

@@ -26,6 +26,7 @@
 @property (weak, nonatomic) UIButton* panelColor4Button;
 @property (weak, nonatomic) UIButton* panelColor5Button;
 
+@property (weak, nonatomic) UIImageView* panelColor2Lock;
 @property (weak, nonatomic) UIImageView* panelColor3Lock;
 @property (weak, nonatomic) UIImageView* panelColor4Lock;
 @property (weak, nonatomic) UIImageView* panelColor5Lock;

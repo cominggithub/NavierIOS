@@ -63,6 +63,7 @@
     self.panelColor4Button  = (UIButton*) [self viewWithTag:104];
     self.panelColor5Button  = (UIButton*) [self viewWithTag:105];
 
+    self.panelColor2Lock    = (UIImageView*) [self viewWithTag:502];
     self.panelColor3Lock    = (UIImageView*) [self viewWithTag:503];
     self.panelColor4Lock    = (UIImageView*) [self viewWithTag:504];
     self.panelColor5Lock    = (UIImageView*) [self viewWithTag:505];
@@ -154,7 +155,17 @@
 
 -(IBAction) pressPanelColor2Button:(id) sender
 {
-    self.panelColor = self.panelColor2Button.backgroundColor;
+    if (NO == self.lockColorSelection)
+    {
+        self.panelColor = self.panelColor2Button.backgroundColor;
+    }
+    else
+    {
+        if (nil != self.delegate && [self.delegate respondsToSelector:@selector(carPanel1MenuView:pressBuyButton:)])
+        {
+            [self.delegate carPanel1MenuView:self pressBuyButton:TRUE];
+        }
+    }
 }
 
 -(IBAction) pressPanelColor3Button:(id) sender
@@ -343,12 +354,14 @@
 
     if (TRUE == self.lockColorSelection)
     {
+        self.panelColor2Lock.hidden     = FALSE;
         self.panelColor3Lock.hidden     = FALSE;
         self.panelColor4Lock.hidden     = FALSE;
         self.panelColor5Lock.hidden     = FALSE;
     }
     else
     {
+        self.panelColor2Lock.hidden     = TRUE;
         self.panelColor3Lock.hidden     = TRUE;
         self.panelColor4Lock.hidden     = TRUE;
         self.panelColor5Lock.hidden     = TRUE;
