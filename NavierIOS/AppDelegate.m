@@ -73,6 +73,39 @@ void uncaughtExceptionHandler(NSException *exception) {
     [Appirater setDebug:NO];
 #endif
     
+    // 23.002518, 120.203524
+    
+/*
+    Place *p1 = [[Place alloc] initWithName:@"甜蜜的家" address:@"冬山" coordinate:CLLocationCoordinate2DMake(23.011051, 120.194082)];
+    p1.placeType = kPlaceType_Home;
+    
+    Place *p2 = [[Place alloc] initWithName:@"血汗辦公室" address:@"南科" coordinate:CLLocationCoordinate2DMake(23.013895, 120.232277)];
+    p2.placeType = kPlaceType_Office;
+
+    Place *p3 = [[Place alloc] initWithName:@"台南牛肉湯" address:@"冬山" coordinate:CLLocationCoordinate2DMake(23.002992, 120.186701)];
+    p3.placeType = kPlaceType_Favor;
+
+    Place *p4 = [[Place alloc] initWithName:@"雞湯塊鼎王" address:@"冬山" coordinate:CLLocationCoordinate2DMake(22.989719, 120.201979)];
+    p4.placeType = kPlaceType_Favor;
+
+    Place *p5 = [[Place alloc] initWithName:@"搜尋-天然食品" address:@"冬山" coordinate:CLLocationCoordinate2DMake(22.990509, 120.225496)];
+    p5.placeType = kPlaceType_SearchedPlace;
+    
+
+    [User clearConfig];
+    [User addHomePlace:p1];
+    [User addOfficePlace:p2];
+    [User addFavorPlace:p3];
+    [User addFavorPlace:p4];
+
+    [User addRecentPlace:p5];
+    [User addRecentPlace:p4];
+    [User addRecentPlace:p3];
+    [User addRecentPlace:p2];
+    [User addRecentPlace:p1];
+    
+*/
+    
     return YES;
 }
 

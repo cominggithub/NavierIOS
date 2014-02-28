@@ -443,6 +443,21 @@
     [NaviQueryManager planRouteStartLocation:yufon EndLocation:ampin];
 }
 
+- (IBAction)pressMail:(id)sender
+{
+
+    NSString* to = @"misscoming@gmail.com";
+    NSString* subject= @"11";
+    NSString* body = @"\n22";
+    
+    NSString *mailString = [NSString stringWithFormat:@"mailto:?to=%@&subject=%@&body=%@",
+                            [to stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding],
+                            [subject stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding],
+                            [body stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:mailString]];
+
+}
+
 - (IBAction)pressTextRoute:(id)sender
 {
     [NaviQueryManager planRouteStartLocationText:@"成大" EndLocationText:@"台南一中"];

@@ -534,6 +534,7 @@
     
     _speed = speed;
     _speedLabel.text = [NSString stringWithFormat:@"%.0f", speed];
+//    _speedLabel.text = @"116";
 }
 
 
