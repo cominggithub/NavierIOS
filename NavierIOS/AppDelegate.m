@@ -73,6 +73,8 @@ void uncaughtExceptionHandler(NSException *exception) {
     [Appirater setDebug:NO];
 #endif
     
+    [SystemConfig setValue:CONFIG_USE_COUNT int:[SystemConfig getIntValue:CONFIG_USE_COUNT]+1];
+    
     // 23.002518, 120.203524
     
 /*
@@ -103,7 +105,6 @@ void uncaughtExceptionHandler(NSException *exception) {
     [User addRecentPlace:p3];
     [User addRecentPlace:p2];
     [User addRecentPlace:p1];
-    
 */
     
     return YES;
@@ -132,14 +133,20 @@ void uncaughtExceptionHandler(NSException *exception) {
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     [Appirater appEnteredForeground:YES];
+    [SystemConfig setValue:CONFIG_USE_COUNT int:[SystemConfig getIntValue:CONFIG_USE_COUNT]+1];
+    
     /* get the default brightness */
     [SystemConfig setValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"applicationWillEnterForeground" object:self];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     /* get the default brightness */
+    
+
+    
     [SystemConfig setValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"applicationDidBecomeActive" object:self];
 

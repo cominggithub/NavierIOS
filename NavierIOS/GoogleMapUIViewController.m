@@ -786,9 +786,8 @@
 
 - (IBAction)pressNavigationButton:(id)sender
 {
-    mlogAssertNotNil(mapManager.routeStartPlace);
-    mlogAssertNotNil(mapManager.routeEndPlace);
-    logfn();
+    if(nil == mapManager.routeStartPlace || nil == mapManager.routeEndPlace)
+        return;
     
     if (kPlaceType_CurrentPlace != mapManager.routeStartPlace.placeType &&
         (TRUE != [mapManager.currentPlace isCloseTo:mapManager.routeStartPlace]))

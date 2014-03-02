@@ -88,6 +88,14 @@
                                              selector:@selector(receiveNotification:)
                                                  name:IAPHelperProductUpdatedNotification
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveNotification:)
+                                                 name:@"applicationDidBecomeActive"
+                                               object:nil];
+    
+ 
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -122,13 +130,12 @@
 #else
     self.debugConfigButton.hidden = YES;
 #endif
-    
     [self active];
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
-    
+    [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     [self showAdAnimated:NO];
 }
 
@@ -160,6 +167,10 @@
     if ([[notification name] isEqualToString:IAPHelperProductUpdatedNotification])
     {
         [self checkIAPItem];
+    }
+    else if ([[notification name] isEqualToString:@"applicationDidBecomeActive"])
+    {
+        [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     }
 }
 
@@ -263,12 +274,14 @@
     }
     else
     {
-        CGRect frame;
-        frame           = nameLabel.frame;
-        nameLabel.text  = [SystemManager getLanguageString:@"There is no recent place now"];
+        nameLabel.text  = [SystemManager getLanguageString:@"No recent place"];
         icon.image      = [placeIcons objectAtIndex:kPlaceType_Favor];
     }
 
+    UIView *selectedView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 52)];
+    selectedView.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.1];
+    cell.selectedBackgroundView = selectedView;
+    
     return cell;
 }
 
@@ -446,9 +459,21 @@
 - (IBAction)pressMail:(id)sender
 {
 
-    NSString* to = @"misscoming@gmail.com";
-    NSString* subject= @"11";
-    NSString* body = @"\n22";
+    NSString* to = @"navierhudios@gmail.com";
+    NSString* subject= @"Navier HUD iOS";
+    NSString* body = @"";
+    
+    
+    body = [NSString stringWithFormat:@"\n\n---------\n\n\n%@ %@\n%@, %@, %@, %@, %@, %d\n",
+            [SystemConfig getStringValue:CONFIG_NAVIER_NAME],
+            [SystemConfig getStringValue:CONFIG_NAVIER_VERSION],
+            [SystemConfig getStringValue:CONFIG_DEVICE_MACHINE_NAME],
+            [SystemConfig getStringValue:CONFIG_DEVICE_SCREEN],
+            [SystemConfig getStringValue:CONFIG_DEVICE_SYSTEM_NAME],
+            [SystemConfig getStringValue:CONFIG_DEVICE_SYSTEM_VERSION],
+            [SystemConfig getStringValue:CONFIG_LOCALE],
+            [SystemConfig getIntValue:CONFIG_USE_COUNT]*50 + ([SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION] ? 1:0)
+            ];
     
     NSString *mailString = [NSString stringWithFormat:@"mailto:?to=%@&subject=%@&body=%@",
                             [to stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding],

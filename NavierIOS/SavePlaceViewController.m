@@ -112,8 +112,6 @@
     if (nil == self.currentPlace.name || self.currentPlace.name.length < 1)
         return;
 
-
-
     [User addPlaceBySectionMode:self.sectionMode section:0 place:self.currentPlace];
     [User updateRecentPlacesByPlace:self.currentPlace];
     [User save];

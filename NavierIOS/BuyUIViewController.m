@@ -12,7 +12,7 @@
 #import <NaviUtil/UIImage+category.h>
 #import <NaviUtil/IAPHelper.h>
 
-#define FILE_DEBUG TRUE
+#define FILE_DEBUG FALSE
 #include "Log.h"
 
 @interface BuyUIViewController ()
@@ -22,6 +22,7 @@
 @implementation BuyUIViewController
 {
     SKProduct *product;
+    UIAlertView *alert;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -70,6 +71,7 @@
     
 
     product = nil;
+    alert   = nil;
 }
 
 - (void)viewDidLoad
@@ -129,11 +131,18 @@
 {
     if ([[notification name] isEqualToString:IAPHelperProductPurchasedNotification])
     {
-#if FILE_DEBUG == TRUE
         NSString* productIdentifier = [notification object];
+#if FILE_DEBUG == TRUE
+
         mlogDebug(@"%@: %@", IAPHelperProductPurchasedNotification, productIdentifier);
 #endif
-        [self dismissViewControllerAnimated:true completion:nil];
+        if ([productIdentifier isEqualToString:@"com.coming.NavierHUD.Iap.AdvancedVersion"])
+        {
+            mlogDebug(@"%@: %@", IAPHelperProductPurchasedNotification, productIdentifier);
+            [self showAlertTitle:[SystemManager getLanguageString:@"Purchase successfully"]
+                         message:[SystemManager getLanguageString:@"Thanks! NavierHUD now is upgradded to Advanced version"]];
+             
+        }
     }
     else if ([[notification name] isEqualToString:IAPHelperProductUpdatedNotification])
     {
@@ -166,4 +175,20 @@
 {
     [NavierHUDIAPHelper restorePurchasedProduct];
 }
+
+-(void) showAlertTitle:(NSString*) title message:(NSString*) message
+{
+    if (nil == alert)
+    {
+        alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:[SystemManager getLanguageString:@"OK"] otherButtonTitles:nil,nil];
+        [alert show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    alert = nil;
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
 @end

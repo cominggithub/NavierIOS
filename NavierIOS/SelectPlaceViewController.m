@@ -293,19 +293,15 @@
     {
         case 0:
             headerLabel.text = [SystemManager getLanguageString:@"Home"];
-            logfn();
             break;
         case 1:
             headerLabel.text =  [SystemManager getLanguageString:@"Office"];
-            logfn();
             break;
         case 2:
             headerLabel.text =  [SystemManager getLanguageString:@"Favor"];
-            logfn();
             break;
         default:
             headerLabel.text =  [SystemManager getLanguageString:@"GGG"];
-            logfn();
             break;
     }
     
