@@ -182,6 +182,7 @@
 
     /* update current place and reset the route start place */
     mapManager.useCurrentPlaceAsRouteStart  = TRUE;
+    mapManager.viewAppear                   = TRUE;
     
     [self checkIAPItem];
     
@@ -195,6 +196,10 @@
     [mapManager refreshMap];
 }
 
+-(void) viewWillDisappear:(BOOL)animated
+{
+    mapManager.viewAppear = FALSE;
+}
 #pragma  mark - Banner
 -(void) addBanner:(UIView*) contentView
 {
@@ -818,12 +823,14 @@
 
 -(IBAction) pressRouteStartButton:(id) sender
 {
+    mapManager.isShowPlanRouteFailedForCurrentPlace = TRUE;
     mapManager.routeStartPlace = selectedPlace;
     [self hideMarkerMenuFloat];
 }
 
 -(IBAction) pressRouteEndButton:(id) sender
 {
+    mapManager.isShowPlanRouteFailedForCurrentPlace = TRUE;
     mapManager.routeEndPlace = selectedPlace;
     [self hideMarkerMenuFloat];
 }
@@ -963,9 +970,9 @@
     
 }
 
--(void) mapManager:(MapManager*) mapManager routePlanning:(BOOL) result
+-(void) mapManager:(MapManager*) mm routePlanning:(BOOL) result
 {
-    if (FALSE == result)
+    if (FALSE == result && TRUE == mapManager.isShowPlanRouteFailedForCurrentPlace && nil != self.view.window)
     {
         [self showAlertTitle:[SystemManager getLanguageString:@"Failed to plan route"]
                      message:[SystemManager getLanguageString:@"Forget to enable network connections?"]];
@@ -981,13 +988,14 @@
     }
 }
 
--(void) mapManager:(MapManager *)mapManager connectToServer:(BOOL) result
+-(void) mapManager:(MapManager *)mm connectToServer:(BOOL) result
 {
-    if (FALSE == result)
+    if (FALSE == result && TRUE == mapManager.isShowPlanRouteFailedForCurrentPlace && nil != self.view.window)
     {
         [self showAlertTitle:[SystemManager getLanguageString:@"Cannot connect to server"]
                      message:[SystemManager getLanguageString:@"Forget to enable network connections?"]];
     }
+
 }
 -(void) placeSearchResultPanelView:(PlaceSearchResultPanelView*) pv moveToPlace:(Place*) p;
 {

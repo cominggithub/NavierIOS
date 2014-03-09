@@ -286,8 +286,6 @@
         self.textButton.hidden = NO;
         self.autoButton.hidden = NO;
         self.stepButton.hidden = NO;
-        
-        [LocationManager startLocationTracking];
     }
     else
     {
@@ -311,6 +309,11 @@
     {
         [LocationManager startMonitorLocation];
     }
+ 
+    if (YES == [SystemConfig getBoolValue:CONFIG_IS_TRACK_LOCATION])
+    {
+        [LocationManager startLocationTracking];
+    }
     
     carPanelMenuView.hidden = YES;
 }
@@ -331,7 +334,14 @@
     
     [self.autoButton setTitle:@"Auto" forState:UIControlStateNormal];
     [LocationManager setLocationUpdateType:kLocationManagerLocationUpdateType_ManualRoute];
-    [LocationManager stopLocationSimulation];
+    if (YES == [SystemConfig getBoolValue:CONFIG_H_IS_LOCATION_SIMULATOR])
+    {
+        if (NO == [SystemConfig getBoolValue:CONFIG_H_IS_SIMULATE_CAR_MOVEMENT])
+        {
+            [LocationManager stopLocationSimulation];
+        }
+    }
+    [LocationManager stopLocationTracking];
     
 }
 

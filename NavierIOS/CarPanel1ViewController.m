@@ -157,8 +157,21 @@
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     [SystemManager addDelegate:self];
     [LocationManager addDelegate:self];
-    [LocationManager startMonitorLocation];
-    [LocationManager startLocationTracking];
+    
+    if (YES == [SystemConfig getBoolValue:CONFIG_H_IS_LOCATION_SIMULATOR])
+    {
+        [LocationManager stopMonitorLocation];
+    }
+    else
+    {
+        [LocationManager startMonitorLocation];
+    }
+
+    if (YES == [SystemConfig getBoolValue:CONFIG_IS_TRACK_LOCATION])
+    {
+        [LocationManager startLocationTracking];
+    }
+    
     
     [[NSNotificationCenter defaultCenter]
      postNotificationName:UIDeviceBatteryLevelDidChangeNotification
@@ -184,7 +197,6 @@
     [LocationManager removeDelegate:self];
     [LocationManager stopMonitorLocation];
     [LocationManager stopLocationTracking];
-    
     [_clockView inactive];
     [_systemStatusView inactive];
     
@@ -583,7 +595,7 @@
 {
     
     [self hideCarPanelMenu];
-    [LocationManager stopLocationSimulation];
+    [self inactive];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -672,7 +684,7 @@
     if (YES == isPressed)
     {
         [self hideCarPanelMenu];
-        [LocationManager stopLocationSimulation];
+        [self inactive];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }

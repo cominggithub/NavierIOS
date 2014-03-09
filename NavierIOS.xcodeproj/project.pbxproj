@@ -30,6 +30,7 @@
 		2B15A20B17D0F39600F3AFE5 /* MarkerMenuFloat.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B15A20A17D0F39600F3AFE5 /* MarkerMenuFloat.xib */; };
 		2B1DDF7918C0159F00DBC200 /* button_mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1DDF7718C0159F00DBC200 /* button_mail.png */; };
 		2B1DDF7A18C0159F00DBC200 /* button_mail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1DDF7818C0159F00DBC200 /* button_mail@2x.png */; };
+		2B24ECA518CC0C1E0079CAD5 /* Track.tr in Resources */ = {isa = PBXBuildFile; fileRef = 2B24ECA418CC0C1E0079CAD5 /* Track.tr */; };
 		2B3907F1176D6B0A00E5F428 /* RouteGuideMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3907F0176D6B0A00E5F428 /* RouteGuideMenu.xib */; };
 		2B3BA08918B0BC5D00416119 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2B3BA08818B0BC5D00416119 /* GoogleMaps.bundle */; };
 		2B3BA08F18B0BCD200416119 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B3BA08E18B0BCD200416119 /* GoogleMaps.framework */; };
@@ -238,6 +239,7 @@
 		2B18AA8D174877BC00277F52 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		2B1DDF7718C0159F00DBC200 /* button_mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_mail.png; sourceTree = "<group>"; };
 		2B1DDF7818C0159F00DBC200 /* button_mail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_mail@2x.png"; sourceTree = "<group>"; };
+		2B24ECA418CC0C1E0079CAD5 /* Track.tr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Track.tr; sourceTree = "<group>"; };
 		2B3907F0176D6B0A00E5F428 /* RouteGuideMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RouteGuideMenu.xib; path = NavierIOS/RouteGuideMenu.xib; sourceTree = "<group>"; };
 		2B3BA08818B0BC5D00416119 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../../ios/framework/GoogleMaps-iOS-1.7.0/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
 		2B3BA08E18B0BCD200416119 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
@@ -691,6 +693,7 @@
 		2B9A431F16DB955F00FD1A54 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2B24ECA418CC0C1E0079CAD5 /* Track.tr */,
 				2B70308018A7973700FDA856 /* Icon-29.png */,
 				2B70308118A7973700FDA856 /* Icon-29@2x.png */,
 				2B70308218A7973700FDA856 /* Icon-40.png */,
@@ -985,6 +988,7 @@
 				2B66BD9F18672FE900A9D75D /* favor34.png in Resources */,
 				2B5B12AA1868743100C464C0 /* button_mylocation.png in Resources */,
 				2BC8393E1866D882002477AF /* button_navigation@2x.png in Resources */,
+				2B24ECA518CC0C1E0079CAD5 /* Track.tr in Resources */,
 				2BC839521866ECD8002477AF /* button_buy@2x.png in Resources */,
 				2BC3D369186699250092F02F /* close@2x.png in Resources */,
 				2B5B12A51868742A00C464C0 /* button_zoom_in@2x.png in Resources */,

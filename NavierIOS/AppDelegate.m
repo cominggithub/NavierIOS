@@ -57,7 +57,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     [NaviUtil init];
     [SystemConfig setValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
     [User save];
-    
+
     [Appirater setAppId:@"806144673"];    // Change for your "Your APP ID"
     [Appirater setDaysUntilPrompt:0];     // Days from first entered the app until prompt
 #if RELEASE
@@ -124,7 +124,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     /* restore to default brightnes */
-    [[UIScreen mainScreen] setBrightness:0.1536];
+    [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
 
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.

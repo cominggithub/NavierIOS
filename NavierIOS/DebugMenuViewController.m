@@ -24,10 +24,12 @@
     UISwitch *_debugMenuIsLocationSimulatorSwitch;
     UISwitch *_debugMenuIsTrackFileSwitch;
     UISwitch *_debugMenuIsSimulateLocationLostSwitch;
+    UISwitch *_debugMenuIsSimulateCarMovementSwitch;
     UISegmentedControl *_debugMenuLanguageSegmentControl;
     UIPickerView *_debugMenuPlacePickerView;
     
     UIScrollView *_debugMenuScrollView;
+    LocationSimulator *locationSimulator;
     
 }
 @end
@@ -52,6 +54,7 @@
     _debugMenuIsTrackFileSwitch             = (UISwitch *)          [_debugMenuView viewWithTag:109];
     _debugMenuIsUserPlaceSwitch             = (UISwitch *)          [_debugMenuView viewWithTag:110];
     _debugMenuIsSimulateLocationLostSwitch  = (UISwitch *)          [_debugMenuView viewWithTag:111];
+    _debugMenuIsSimulateCarMovementSwitch   = (UISwitch *)          [_debugMenuView viewWithTag:112];
     _debugMenuScrollView                    = (UIScrollView *)      [_debugMenuView viewWithTag:200];
 
     [_debugMenuScrollView setContentSize:CGSizeMake(468, 1000)];
@@ -70,6 +73,7 @@
     [_debugMenuIsTrackFileSwitch                addTarget:self action:@selector(uiValueChanged:) forControlEvents:UIControlEventValueChanged];
     [_debugMenuIsUserPlaceSwitch                addTarget:self action:@selector(uiValueChanged:) forControlEvents:UIControlEventValueChanged];
     [_debugMenuIsSimulateLocationLostSwitch     addTarget:self action:@selector(uiValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [_debugMenuIsSimulateCarMovementSwitch      addTarget:self action:@selector(uiValueChanged:) forControlEvents:UIControlEventValueChanged];
 
     _debugMenuPlacePickerView.delegate    = self;
     _debugMenuPlacePickerView.dataSource  = self;
@@ -145,6 +149,7 @@
     [SystemConfig setValue:CONFIG_IS_TRACK_FILE BOOL:_debugMenuIsTrackFileSwitch.on];
     [SystemConfig setValue:CONFIG_H_IS_USER_PLACE BOOL:_debugMenuIsUserPlaceSwitch.on];
     [SystemConfig setValue:CONFIG_H_IS_SIMULATE_LOCATION_LOST BOOL:_debugMenuIsSimulateLocationLostSwitch.on];
+    [SystemConfig setValue:CONFIG_H_IS_SIMULATE_CAR_MOVEMENT BOOL:_debugMenuIsSimulateCarMovementSwitch.on];
 
 }
 
@@ -159,12 +164,22 @@
     _debugMenuIsTrackFileSwitch.on              = [SystemConfig getBoolValue:CONFIG_IS_TRACK_FILE];
     _debugMenuIsUserPlaceSwitch.on              = [SystemConfig getBoolValue:CONFIG_H_IS_USER_PLACE];
     _debugMenuIsSimulateLocationLostSwitch.on   = [SystemConfig getBoolValue:CONFIG_H_IS_SIMULATE_LOCATION_LOST];
+    _debugMenuIsSimulateCarMovementSwitch.on    = [SystemConfig getBoolValue:CONFIG_H_IS_SIMULATE_CAR_MOVEMENT];
     
 }
 
 -(void) uiValueChanged:(id) sender
 {
     [self saveConfigFromUI];
+    if (TRUE == [SystemConfig getBoolValue:CONFIG_H_IS_SIMULATE_CAR_MOVEMENT])
+    {
+        [LocationManager setLocationUpdateType:kLocationManagerLocationUpdateType_File];
+        [LocationManager startLocationSimulation];
+    }
+    else
+    {
+        [LocationManager stopLocationSimulation];
+    }
 }
 
 -(void) viewDidUnload

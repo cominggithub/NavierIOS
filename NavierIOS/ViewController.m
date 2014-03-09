@@ -277,11 +277,11 @@
         nameLabel.text  = [SystemManager getLanguageString:@"No recent place"];
         icon.image      = [placeIcons objectAtIndex:kPlaceType_Favor];
     }
-
+/*
     UIView *selectedView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 52)];
     selectedView.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.1];
     cell.selectedBackgroundView = selectedView;
-    
+*/
     return cell;
 }
 
@@ -546,7 +546,14 @@
 #pragma mark -- operation
 - (void)active
 {
-    [LocationManager startMonitorLocation];
+    if (YES == [SystemConfig getBoolValue:CONFIG_H_IS_LOCATION_SIMULATOR])
+    {
+        [LocationManager stopMonitorLocation];
+    }
+    else
+    {
+        [LocationManager startMonitorLocation];
+    }
 }
 
 - (void)inactive
