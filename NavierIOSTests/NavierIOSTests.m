@@ -26,7 +26,7 @@
 
 - (void)testExample
 {
-    STFail(@"Unit tests are not implemented yet in NavierIOSTests");
+    XCTFail(@"Unit tests are not implemented yet in NavierIOSTests");
 }
 
 @end

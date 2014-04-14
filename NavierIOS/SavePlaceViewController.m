@@ -148,13 +148,13 @@
     cell  = [self.savePlaceTableView dequeueReusableCellWithIdentifier:@"SavePlaceCell"];
 
     
-    count = [User getPlaceCountBySectionMode:_sectionMode section:indexPath.row];
+    count = [User getPlaceCountBySectionMode:_sectionMode section:(int)indexPath.row];
 
         
     
     place = [User getPlaceBySectionMode:_sectionMode
-                                section:indexPath.section
-                                  index:indexPath.row];
+                                section:(int)indexPath.section
+                                  index:(int)indexPath.row];
 
     nameLabel           = (UILabel*)[cell viewWithTag:3];
     addressLabel        = (UILabel*)[cell viewWithTag:4];
@@ -175,12 +175,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    int count = [User getPlaceCountBySectionMode:_sectionMode section:section];
+    int count = [User getPlaceCountBySectionMode:_sectionMode section:(int)section];
     
     if (count < 1)
         return 1;
     return [User getPlaceCountBySectionMode:_sectionMode
-                                    section:section];
+                                    section:(int)section];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -208,7 +208,7 @@
     UIImageView *imgView;
     PlaceType placeType;
     
-    placeType = [User translatSectionIndexIntoPlaceType:self.sectionMode section:section];
+    placeType = [User translatSectionIndexIntoPlaceType:self.sectionMode section:(int)section];
     
     
     imgView             = [[UIImageView alloc] initWithImage:[placeIcons objectAtIndex:placeType]];
@@ -236,7 +236,7 @@
         // Begin update
         [tableView beginUpdates];
         
-        [User removePlaceBySectionMode:_sectionMode section:indexPath.section index:indexPath.row];
+        [User removePlaceBySectionMode:_sectionMode section:(int)indexPath.section index:(int)indexPath.row];
         [User save];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
 

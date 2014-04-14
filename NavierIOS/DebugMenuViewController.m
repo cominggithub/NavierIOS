@@ -138,40 +138,40 @@
 -(void) saveConfigFromUI
 {
 
-    [LocationManager setCurrentManualPlace:[LocationManager getManualPlaceByIndex:[_debugMenuPlacePickerView selectedRowInComponent:0]]];
+    [LocationManager setCurrentManualPlace:[LocationManager getManualPlaceByIndex:(int)[_debugMenuPlacePickerView selectedRowInComponent:0]]];
 
-    [SystemConfig setValue:CONFIG_H_IS_DEBUG BOOL:_debugMenuIsDebugSwitch.on];
-    [SystemConfig setValue:CONFIG_H_IS_AD BOOL:_debugMenuIsAdSwitch.on];
-    [SystemConfig setValue:CONFIG_H_IS_DEBUG_ROUTE_DRAW BOOL:_debugMenuIsDebugRouteDrawSwitch.on];
-    [SystemConfig setValue:CONFIG_H_IS_MANUAL_PLACE BOOL:_debugMenuIsManualPlaceSwitch.on];
-    [SystemConfig setValue:CONFIG_IS_SPEECH BOOL:_debugMenuIsSpeechSwitch.on];
-    [SystemConfig setValue:CONFIG_H_IS_LOCATION_SIMULATOR BOOL:_debugMenuIsLocationSimulatorSwitch.on];
-    [SystemConfig setValue:CONFIG_IS_TRACK_FILE BOOL:_debugMenuIsTrackFileSwitch.on];
-    [SystemConfig setValue:CONFIG_H_IS_USER_PLACE BOOL:_debugMenuIsUserPlaceSwitch.on];
-    [SystemConfig setValue:CONFIG_H_IS_SIMULATE_LOCATION_LOST BOOL:_debugMenuIsSimulateLocationLostSwitch.on];
-    [SystemConfig setValue:CONFIG_H_IS_SIMULATE_CAR_MOVEMENT BOOL:_debugMenuIsSimulateCarMovementSwitch.on];
+    [SysConfig setValue:CONFIG_H_IS_DEBUG BOOL:_debugMenuIsDebugSwitch.on];
+    [SysConfig setValue:CONFIG_H_IS_AD BOOL:_debugMenuIsAdSwitch.on];
+    [SysConfig setValue:CONFIG_H_IS_DEBUG_ROUTE_DRAW BOOL:_debugMenuIsDebugRouteDrawSwitch.on];
+    [SysConfig setValue:CONFIG_H_IS_MANUAL_PLACE BOOL:_debugMenuIsManualPlaceSwitch.on];
+    [SysConfig setValue:CONFIG_IS_SPEECH BOOL:_debugMenuIsSpeechSwitch.on];
+    [SysConfig setValue:CONFIG_H_IS_LOCATION_SIMULATOR BOOL:_debugMenuIsLocationSimulatorSwitch.on];
+    [SysConfig setValue:CONFIG_IS_TRACK_FILE BOOL:_debugMenuIsTrackFileSwitch.on];
+    [SysConfig setValue:CONFIG_H_IS_USER_PLACE BOOL:_debugMenuIsUserPlaceSwitch.on];
+    [SysConfig setValue:CONFIG_H_IS_SIMULATE_LOCATION_LOST BOOL:_debugMenuIsSimulateLocationLostSwitch.on];
+    [SysConfig setValue:CONFIG_H_IS_SIMULATE_CAR_MOVEMENT BOOL:_debugMenuIsSimulateCarMovementSwitch.on];
 
 }
 
 -(void) updateUIFromConfig
 {
-    _debugMenuIsDebugSwitch.on                  = [SystemConfig getBoolValue:CONFIG_H_IS_DEBUG];
-    _debugMenuIsAdSwitch.on                     = [SystemConfig getBoolValue:CONFIG_H_IS_AD];
-    _debugMenuIsDebugRouteDrawSwitch.on         = [SystemConfig getBoolValue:CONFIG_H_IS_DEBUG_ROUTE_DRAW];
-    _debugMenuIsManualPlaceSwitch.on            = [SystemConfig getBoolValue:CONFIG_H_IS_MANUAL_PLACE];
-    _debugMenuIsSpeechSwitch.on                 = [SystemConfig getBoolValue:CONFIG_IS_SPEECH];
-    _debugMenuIsLocationSimulatorSwitch.on      = [SystemConfig getBoolValue:CONFIG_H_IS_LOCATION_SIMULATOR];
-    _debugMenuIsTrackFileSwitch.on              = [SystemConfig getBoolValue:CONFIG_IS_TRACK_FILE];
-    _debugMenuIsUserPlaceSwitch.on              = [SystemConfig getBoolValue:CONFIG_H_IS_USER_PLACE];
-    _debugMenuIsSimulateLocationLostSwitch.on   = [SystemConfig getBoolValue:CONFIG_H_IS_SIMULATE_LOCATION_LOST];
-    _debugMenuIsSimulateCarMovementSwitch.on    = [SystemConfig getBoolValue:CONFIG_H_IS_SIMULATE_CAR_MOVEMENT];
+    _debugMenuIsDebugSwitch.on                  = [SysConfig getBoolValue:CONFIG_H_IS_DEBUG];
+    _debugMenuIsAdSwitch.on                     = [SysConfig getBoolValue:CONFIG_H_IS_AD];
+    _debugMenuIsDebugRouteDrawSwitch.on         = [SysConfig getBoolValue:CONFIG_H_IS_DEBUG_ROUTE_DRAW];
+    _debugMenuIsManualPlaceSwitch.on            = [SysConfig getBoolValue:CONFIG_H_IS_MANUAL_PLACE];
+    _debugMenuIsSpeechSwitch.on                 = [SysConfig getBoolValue:CONFIG_IS_SPEECH];
+    _debugMenuIsLocationSimulatorSwitch.on      = [SysConfig getBoolValue:CONFIG_H_IS_LOCATION_SIMULATOR];
+    _debugMenuIsTrackFileSwitch.on              = [SysConfig getBoolValue:CONFIG_IS_TRACK_FILE];
+    _debugMenuIsUserPlaceSwitch.on              = [SysConfig getBoolValue:CONFIG_H_IS_USER_PLACE];
+    _debugMenuIsSimulateLocationLostSwitch.on   = [SysConfig getBoolValue:CONFIG_H_IS_SIMULATE_LOCATION_LOST];
+    _debugMenuIsSimulateCarMovementSwitch.on    = [SysConfig getBoolValue:CONFIG_H_IS_SIMULATE_CAR_MOVEMENT];
     
 }
 
 -(void) uiValueChanged:(id) sender
 {
     [self saveConfigFromUI];
-    if (TRUE == [SystemConfig getBoolValue:CONFIG_H_IS_SIMULATE_CAR_MOVEMENT])
+    if (TRUE == [SysConfig getBoolValue:CONFIG_H_IS_SIMULATE_CAR_MOVEMENT])
     {
         [LocationManager setLocationUpdateType:kLocationManagerLocationUpdateType_File];
         [LocationManager startLocationSimulation];
@@ -207,7 +207,7 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component;
 {
-    return ((Place*)[LocationManager getManualPlaceByIndex:row]).name;
+    return ((Place*)[LocationManager getManualPlaceByIndex:(int)row]).name;
 }
 
 

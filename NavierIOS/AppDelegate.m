@@ -11,18 +11,12 @@
 #import <NaviUtil/NaviUtil.h>
 #import "GoogleAPIKey.h"
 
+#import "RSSecrets.h"
+
+
 #define FILE_DEBUG FALSE
 #include <NaviUtil/Log.h>
 
-void SignalHandler(int sig)
-{
-    TFLog(@"This is where we save the application data during a signal");
-    // Save application data on crash
-}
-void uncaughtExceptionHandler(NSException *exception) {
-    mlogException(exception);
-    // Internal error reporting
-}
 
 @implementation AppDelegate
 {
@@ -32,30 +26,12 @@ void uncaughtExceptionHandler(NSException *exception) {
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-    
-    // create the signal action structure
-    struct sigaction newSignalAction;
-    // initialize the signal action structure
-    memset(&newSignalAction, 0, sizeof(newSignalAction));
-    // set SignalHandler as the handler in the signal action structure
-    newSignalAction.sa_handler = &SignalHandler;
-    // set SignalHandler as the handlers for SIGABRT, SIGILL and SIGBUS
-    sigaction(SIGABRT, &newSignalAction, NULL);
-    sigaction(SIGILL, &newSignalAction, NULL);
-    sigaction(SIGBUS, &newSignalAction, NULL);
-    
-
-    [TestFlight takeOff:@"c2d1ac33-37d1-4f22-8a60-876d335e7614"];
-
-    [TestFlight setOptions:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:@"logToSTDERR"]];
-    [TestFlight setOptions:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:@"logToConsole"]];
     
     [GMSServices provideAPIKey:GOOGLE_API_Key];
     [NaviUtil setGoogleAPIKey:GOOGLE_API_Key];
     [NaviUtil setGooglePlaceAPIKey:GOOGLE_PLACE_API_Key];
     [NaviUtil init];
-    [SystemConfig setValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
+    [SysConfig setFloatValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
     [User save];
 
     [Appirater setAppId:@"806144673"];    // Change for your "Your APP ID"
@@ -73,7 +49,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     [Appirater setDebug:NO];
 #endif
     
-    [SystemConfig setValue:CONFIG_USE_COUNT int:[SystemConfig getIntValue:CONFIG_USE_COUNT]+1];
+    [SysConfig setValue:CONFIG_USE_COUNT int:[SysConfig getIntValue:CONFIG_USE_COUNT]+1];
     
     // 23.002518, 120.203524
     
@@ -106,16 +82,18 @@ void uncaughtExceptionHandler(NSException *exception) {
     [User addRecentPlace:p2];
     [User addRecentPlace:p1];
 */
-    
+#if DEBUG
+//    [RSSecrets addKey:@"IAP_AdvancedVersion"];
+//    NSLog(@"%@: %@", @"IAP_AdvancedVersion", [RSSecrets hasKey:@"IAP_AdvancedVersion"]?@"TRUE":@"FALSE");
+#endif
     return YES;
 }
 
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-
     /* restore to default brightnes */
-    [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
+    [[UIScreen mainScreen] setBrightness:[SysConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 
@@ -124,7 +102,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     /* restore to default brightnes */
-    [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
+    [[UIScreen mainScreen] setBrightness:[SysConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
 
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
@@ -133,10 +111,11 @@ void uncaughtExceptionHandler(NSException *exception) {
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     [Appirater appEnteredForeground:YES];
-    [SystemConfig setValue:CONFIG_USE_COUNT int:[SystemConfig getIntValue:CONFIG_USE_COUNT]+1];
+    [SysConfig setValue:CONFIG_USE_COUNT int:[SysConfig getIntValue:CONFIG_USE_COUNT]+1];
     
     /* get the default brightness */
-    [SystemConfig setValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
+    [SysConfig setFloatValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
+    
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     [[NSNotificationCenter defaultCenter] postNotificationName:@"applicationWillEnterForeground" object:self];
 }
@@ -145,11 +124,8 @@ void uncaughtExceptionHandler(NSException *exception) {
 {
     /* get the default brightness */
     
-
-    
-    [SystemConfig setValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
+    [SysConfig setFloatValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"applicationDidBecomeActive" object:self];
-
     
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
@@ -158,10 +134,11 @@ void uncaughtExceptionHandler(NSException *exception) {
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     /* restore to default brightnes */
-    [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
+    [[UIScreen mainScreen] setBrightness:[SysConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
 #if RELEASE_TEST
     [SystemConfig removeIAPItem:CONFIG_IAP_IS_ADVANCED_VERSION];
 #endif
+
 }
 
 @end

@@ -93,7 +93,7 @@
 {
 
     return [User getPlaceCountBySectionMode:self.sectionMode
-                                    section:section];
+                                    section:(int)section];
 
 }
 
@@ -110,8 +110,8 @@
     if ( 3 > indexPath.section)
     {
         place = [User getPlaceBySectionMode:self.sectionMode
-                                    section:indexPath.section
-                                      index:indexPath.row];
+                                    section:(int)indexPath.section
+                                      index:(int)indexPath.row];
     }
     else
     {
@@ -177,8 +177,8 @@
     
     Place *selectedPlace;
     selectedPlace = [User getPlaceBySectionMode:self.sectionMode
-                                        section:indexPath.section
-                                          index:indexPath.row];
+                                        section:(int)indexPath.section
+                                          index:(int)indexPath.row];
     if (nil != selectedPlace)
     {
         if(self.delegate != nil && [self.delegate respondsToSelector:@selector(selectPlaceViewController:placeSelected:)])
@@ -228,7 +228,7 @@
     headerTitle             = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 480, 44)];
     headerTitle.textColor   = [UIColor whiteColor];
     
-    placeType = [User translatSectionIndexIntoPlaceType:self.sectionMode section:section];
+    placeType = [User translatSectionIndexIntoPlaceType:self.sectionMode section:(int)section];
     
     switch(placeType)
     {
@@ -402,7 +402,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
 
-        [User removePlaceBySectionMode:self.sectionMode section:indexPath.section index:indexPath.row];
+        [User removePlaceBySectionMode:self.sectionMode section:(int)indexPath.section index:(int)indexPath.row];
         [User save];
 
         [self.tableView reloadData];

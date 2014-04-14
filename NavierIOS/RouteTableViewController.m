@@ -60,9 +60,9 @@
     instruction         = (UILabel*)[cell viewWithTag:1];
     distance            = (UILabel*)[cell viewWithTag:2];
     duration            = (UILabel*)[cell viewWithTag:3];
-    instruction.text    = [self.route getStepInstruction:indexPath.row];
-    distance.text       = [self.route getStepDistanceString:indexPath.row];
-    duration.text       = [self.route getStepDurationString:indexPath.row];
+    instruction.text    = [self.route getStepInstruction:(int)indexPath.row];
+    distance.text       = [self.route getStepDistanceString:(int)indexPath.row];
+    duration.text       = [self.route getStepDurationString:(int)indexPath.row];
     
     return cell;
 }

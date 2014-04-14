@@ -6,8 +6,8 @@
 //  Copyright (c) 2013年 Coming. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface NavierIOSTests : SenTestCase
+@interface NavierIOSTests : XCTestCase
 
 @end

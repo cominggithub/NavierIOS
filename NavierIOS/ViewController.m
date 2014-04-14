@@ -151,7 +151,7 @@
        [NavierHUDIAPHelper retrieveProduct];
         self.buyButton.hidden = YES;
     }
-    else if (YES == [SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION])
+    else if (YES == [SysConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION])
     {
         self.buyButton.hidden = YES;
     }
@@ -159,7 +159,7 @@
     {
         self.buyButton.hidden = NO;
     }
-    self.bannerIsVisible = [SystemConfig getBoolValue:CONFIG_H_IS_AD] && (![SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION]);
+    self.bannerIsVisible = [SysConfig getBoolValue:CONFIG_H_IS_AD] && (![SysConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION]);
 }
 
 - (void) receiveNotification:(NSNotification *) notification
@@ -358,7 +358,7 @@
 
 -(void) addBanner:(UIView*) contentView
 {
-    if (FALSE == [SystemConfig getBoolValue:CONFIG_H_IS_AD])
+    if (FALSE == [SysConfig getBoolValue:CONFIG_H_IS_AD])
         return;
     
     if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)])
@@ -465,14 +465,14 @@
     
     
     body = [NSString stringWithFormat:@"\n\n---------\n\n\n%@ %@\n%@, %@, %@, %@, %@, %d\n",
-            [SystemConfig getStringValue:CONFIG_NAVIER_NAME],
-            [SystemConfig getStringValue:CONFIG_NAVIER_VERSION],
-            [SystemConfig getStringValue:CONFIG_DEVICE_MACHINE_NAME],
-            [SystemConfig getStringValue:CONFIG_DEVICE_SCREEN],
-            [SystemConfig getStringValue:CONFIG_DEVICE_SYSTEM_NAME],
-            [SystemConfig getStringValue:CONFIG_DEVICE_SYSTEM_VERSION],
-            [SystemConfig getStringValue:CONFIG_LOCALE],
-            [SystemConfig getIntValue:CONFIG_USE_COUNT]*50 + ([SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION] ? 1:0)
+            [SysConfig getStringValue:CONFIG_NAVIER_NAME],
+            [SysConfig getStringValue:CONFIG_NAVIER_VERSION],
+            [SysConfig getStringValue:CONFIG_DEVICE_MACHINE_NAME],
+            [SysConfig getStringValue:CONFIG_DEVICE_SCREEN],
+            [SysConfig getStringValue:CONFIG_DEVICE_SYSTEM_NAME],
+            [SysConfig getStringValue:CONFIG_DEVICE_SYSTEM_VERSION],
+            [SysConfig getStringValue:CONFIG_LOCALE],
+            [SysConfig getIntValue:CONFIG_USE_COUNT]*50 + ([SysConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION] ? 1:0)
             ];
     
     NSString *mailString = [NSString stringWithFormat:@"mailto:?to=%@&subject=%@&body=%@",
@@ -485,7 +485,7 @@
 
 - (IBAction)pressTextRoute:(id)sender
 {
-    [NaviQueryManager planRouteStartLocationText:@"成大" EndLocationText:@"台南一中"];
+//    [NaviQueryManager planRouteStartLocationText:@"成大" EndLocationText:@"台南一中"];
 }
 
 - (IBAction)pressCarPanel:(id)sender
@@ -532,7 +532,8 @@
     
     mlogDebug(@"%@", audioPlayer);
 
-    @try {
+    @try
+    {
         [audioPlayer play];
     }
     @catch (NSException *exception) {
@@ -546,7 +547,7 @@
 #pragma mark -- operation
 - (void)active
 {
-    if (YES == [SystemConfig getBoolValue:CONFIG_H_IS_LOCATION_SIMULATOR])
+    if (YES == [SysConfig getBoolValue:CONFIG_H_IS_LOCATION_SIMULATOR])
     {
         [LocationManager stopMonitorLocation];
     }

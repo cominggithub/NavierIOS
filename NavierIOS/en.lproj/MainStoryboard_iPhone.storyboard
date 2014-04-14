@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -88,7 +88,7 @@
                                         </connections>
                                     </tableView>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pQs-qv-abD" userLabel="Setting Button">
-                                        <rect key="frame" x="178" y="15" width="32" height="32"/>
+                                        <rect key="frame" x="32" y="15" width="32" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <accessibility key="accessibilityConfiguration" label="SettingButton"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -408,7 +408,7 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" id="l4A-EK-r6F" userLabel="Route Place">
-                                                <rect key="frame" x="5" y="39" width="143" height="53"/>
+                                                <rect key="frame" x="5" y="47" width="143" height="53"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OVW-qU-NPI" userLabel="From Place Label">
@@ -449,16 +449,16 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" id="dbV-yq-37j" userLabel="Top" colorLabel="IBBuiltInLabel-Red">
-                                        <rect key="frame" x="0.0" y="0.0" width="480" height="32"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="480" height="42"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" id="XpZ-mg-1xn" userLabel="separator">
-                                                <rect key="frame" x="425" y="4" width="1" height="23"/>
+                                                <rect key="frame" x="425" y="0.0" width="1" height="42"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                                 <color key="backgroundColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="deviceRGB"/>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ojl-Oe-bju" userLabel="Navigation">
-                                                <rect key="frame" x="437" y="0.0" width="32" height="32"/>
+                                                <rect key="frame" x="437" y="0.0" width="32" height="42"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <accessibility key="accessibilityConfiguration" label="NavigationButton"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
@@ -474,7 +474,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TO2-3r-xYQ" userLabel="HomeButton">
-                                                <rect key="frame" x="0.0" y="-2" width="38" height="36"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="38" height="42"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <accessibility key="accessibilityConfiguration" label="homeButton"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
@@ -490,7 +490,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="b1v-ji-pD6" userLabel="HomeButton">
-                                                <rect key="frame" x="33" y="4" width="120" height="25"/>
+                                                <rect key="frame" x="33" y="4" width="120" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <accessibility key="accessibilityConfiguration" label="homeButton"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -505,7 +505,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uXP-hU-fTA" userLabel="Msg">
-                                                <rect key="frame" x="137" y="0.0" width="206" height="32"/>
+                                                <rect key="frame" x="137" y="0.0" width="206" height="42"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <accessibility key="accessibilityConfiguration" label="msg"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
@@ -513,7 +513,7 @@
                                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qGw-Kk-Lou" userLabel="Place">
-                                                <rect key="frame" x="345" y="0.0" width="32" height="32"/>
+                                                <rect key="frame" x="345" y="0.0" width="32" height="42"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <accessibility key="accessibilityConfiguration" label="placeButton"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
@@ -529,7 +529,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0My-uk-NwJ" userLabel="search button">
-                                                <rect key="frame" x="385" y="0.0" width="32" height="32"/>
+                                                <rect key="frame" x="385" y="0.0" width="32" height="42"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                 <accessibility key="accessibilityConfiguration" label="searchButton"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -588,7 +588,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_tableview.png" id="jEN-0w-uVf">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="320.00000000000006"/>
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="44" sectionFooterHeight="1" id="CTT-Z0-v4p">
@@ -953,7 +953,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="2.99" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mHZ-TY-5uf">
-                                        <rect key="frame" x="0.0" y="114" width="208" height="40"/>
+                                        <rect key="frame" x="0.0" y="113" width="208" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1019,7 +1019,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UlT-sC-I1C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="-440"/>
+            <point key="canvasLocation" x="15" y="-622"/>
         </scene>
         <!--Save Place View Controller-->
         <scene sceneID="3hB-c2-SHg">

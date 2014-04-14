@@ -55,17 +55,29 @@
     UILabel *placeName;
     UILabel *placeAddr;
     CGRect frame;
+    static int round = 0;
     
-    [[self.scrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+//    [[self.scrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    while ([self.scrollView .subviews count] > 0) {
+        //NSLog(@"subviews Count=%d",[[myScrollView subviews]count]);
+        [[[self.scrollView  subviews] objectAtIndex:0] removeFromSuperview];
+    }
 
     _places = [[NSArray alloc] initWithArray:places];
     
-    for (i=0; i<places.count; i++)
+    round++;
+    if (places.count > 0)
     {
+        self.pageNum                    = 0;
+    }
+    
+    for (i=0; i<places.count && i<3; i++)
+    {
+
         place       = (Place*) [places objectAtIndex:i];
-        
         placeName   = [[UILabel alloc] init];
-        [placeName setText: place.name];
+        [placeName setText:[NSString stringWithFormat:@"%@", place.name]];
         [placeName setFont:self.nameLabel.font];
         [placeName setTextColor:self.nameLabel.textColor];
         [placeName setTextAlignment:self.nameLabel.textAlignment];
@@ -90,22 +102,27 @@
         [self.scrollView addSubview:placeAddr];
     }
     
-    self.scrollView.contentSize     = CGSizeMake(self.scrollView.frame.size.width*i, self.scrollView.frame.size.height);
-    self.scrollView.pagingEnabled   = YES;
-    self.pageControl.numberOfPages  = i;
-    self.pageNum                    = 0;
-    
+    if (places.count > 0)
+    {
+        self.scrollView.contentSize     = CGSizeMake(self.scrollView.frame.size.width*i, self.scrollView.frame.size.height);
+        self.scrollView.pagingEnabled   = YES;
+        self.pageControl.numberOfPages  = i;
+        
+        [self.scrollView setContentOffset:CGPointMake(0,0) animated:YES];
+
+    }
 }
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
+    
     int page;
 
     page = self.scrollView.contentOffset.x/self.scrollView.frame.size.width;
     
     if (page >= _places.count)
         return;
-
+    
     self.pageNum = page;
 }
 
@@ -116,15 +133,28 @@
 
 -(void) setPageNum:(int)pageNum
 {
+
     if (pageNum >= _places.count || pageNum < 0)
     {
         return;
     }
     _pageNum = pageNum;
 
-    self.pageControl.currentPage = self.pageNum;
-    self.leftButton.hidden  = self.pageNum == 0 ? YES:NO;
-    self.rightButton.hidden = self.pageNum == self.pageControl.numberOfPages-1 ? YES:NO;
+    self.pageControl.currentPage    = self.pageNum;
+    self.leftButton.hidden          = self.pageNum == 0 ? YES:NO;
+    
+    if (nil != _places && _places.count > 1)
+    {
+        self.rightButton.hidden         = self.pageNum == self.pageControl.numberOfPages-1 ? YES:NO;
+    }
+    else
+    {
+        self.rightButton.hidden = YES;
+    }
+
+    
+    [self.scrollView setContentOffset:CGPointMake(self.scrollView.frame.size.width*self.pageNum,0) animated:YES];
+
     
     /* notify the delegate */
     if (nil != self.delegate && [self.delegate respondsToSelector:@selector(placeSearchResultPanelView:moveToPlace:)])

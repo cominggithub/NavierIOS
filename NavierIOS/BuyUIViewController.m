@@ -155,7 +155,15 @@
     product                         = [NavierHUDIAPHelper productByKey:IAP_NO_AD_STORE_USER_PLACE];
     self.productTitle.text          = product.localizedTitle;
     self.productDescription.text    = product.localizedDescription;
-    self.productPrice.text          = product.localizedPrice;
+
+    if([product.price floatValue] == 0)
+    {
+        self.productPrice.text      = [SystemManager getLanguageString:@"Free"];
+    }
+    else
+    {
+        self.productPrice.text      = product.localizedPrice;
+    }
 
 }
 

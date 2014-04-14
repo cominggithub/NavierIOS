@@ -116,15 +116,15 @@
     [self updateUILanguageFont:[SystemManager getSystemLanguage]];
     
     
-    self.color          = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
-    self.isHud          = [SystemConfig getBoolValue:CONFIG_CP1_IS_HUD];
-    self.isSpeedUnitMph = [SystemConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
+    self.color          = [SysConfig getUIColorValue:CONFIG_CP1_COLOR];
+    self.isHud          = [SysConfig getBoolValue:CONFIG_CP1_IS_HUD];
+    self.isSpeedUnitMph = [SysConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
 	// Do any additional setup after loading the view.
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
-    self.debugMsgLabel.hidden = ![SystemConfig getBoolValue:CONFIG_H_IS_DEBUG];
+    self.debugMsgLabel.hidden = ![SysConfig getBoolValue:CONFIG_H_IS_DEBUG];
     [self active];
     [self checkIapItem];
 }
@@ -140,7 +140,7 @@
 
 -(void) viewDidDisappear:(BOOL)animated
 {
-    [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
+    [[UIScreen mainScreen] setBrightness:[SysConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -158,7 +158,7 @@
     [SystemManager addDelegate:self];
     [LocationManager addDelegate:self];
     
-    if (YES == [SystemConfig getBoolValue:CONFIG_H_IS_LOCATION_SIMULATOR])
+    if (YES == [SysConfig getBoolValue:CONFIG_H_IS_LOCATION_SIMULATOR])
     {
         [LocationManager stopMonitorLocation];
     }
@@ -167,7 +167,7 @@
         [LocationManager startMonitorLocation];
     }
 
-    if (YES == [SystemConfig getBoolValue:CONFIG_IS_TRACK_LOCATION])
+    if (YES == [SysConfig getBoolValue:CONFIG_IS_TRACK_LOCATION])
     {
         [LocationManager startLocationTracking];
     }
@@ -183,11 +183,7 @@
     [_clockView active];
     [_systemStatusView active];
 
-    if (self.isHud)
-    {
-        [[UIScreen mainScreen] setBrightness:1.0];
-    }
-    
+    [[UIScreen mainScreen] setBrightness:1.0];
 }
 
 -(void) inactive
@@ -200,7 +196,7 @@
     [_clockView inactive];
     [_systemStatusView inactive];
     
-    [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
+    [[UIScreen mainScreen] setBrightness:[SysConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
     
 }
 - (void)viewDidUnload
@@ -247,12 +243,12 @@
 
 -(void) updateUIFromConfig
 {
-    _carPanelMenuHudSwitch.on       = [SystemConfig getBoolValue:CONFIG_CP1_IS_HUD];
-    _carPanelMenuCourseSwitch.on    = [SystemConfig getBoolValue:CONFIG_CP1_IS_COURSE];
+    _carPanelMenuHudSwitch.on       = [SysConfig getBoolValue:CONFIG_CP1_IS_HUD];
+    _carPanelMenuCourseSwitch.on    = [SysConfig getBoolValue:CONFIG_CP1_IS_COURSE];
 
     self.isHud          = _carPanelMenuHudSwitch.on;
     self.isCourse       = _carPanelMenuCourseSwitch.on;
-    self.isSpeedUnitMph = [SystemConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
+    self.isSpeedUnitMph = [SysConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
     
     if (YES == self.isSpeedUnitMph)
     {
@@ -274,7 +270,7 @@
     UIButton *button;
     UIColor *defaultColor;
     
-    defaultColor = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
+    defaultColor = [SysConfig getUIColorValue:CONFIG_CP1_COLOR];
     
     for( i=0; i<_colorButtons.count; i++)
     {
@@ -464,14 +460,11 @@
     if(_isHud == TRUE)
     {
         self.contentView.transform = CGAffineTransformMakeScale(1,-1);
-        [[UIScreen mainScreen] setBrightness:1.0];
     }
     else
     {
         self.contentView.transform = CGAffineTransformMakeScale(1, 1);
-        [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
     }
-    
 }
 
 -(void) setColor:(UIColor*) color
@@ -483,7 +476,7 @@
     _systemStatusView.color     = _color;
     
     
-    if (YES == [SystemConfig getBoolValue:CONFIG_H_IS_DEBUG])
+    if (YES == [SysConfig getBoolValue:CONFIG_H_IS_DEBUG])
     {
         _courseCutLabel.textColor   = _color;
     }
@@ -584,9 +577,9 @@
     carPanelMenuView.accessibilityLabel = @"carPanel1MenuView";
     carPanelMenuView.delegate           = self;
     
-    carPanelMenuView.isHud              = [SystemConfig getBoolValue:CONFIG_CP1_IS_HUD];
-    carPanelMenuView.isSpeedUnitMph     = [SystemConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
-    carPanelMenuView.panelColor         = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
+    carPanelMenuView.isHud              = [SysConfig getBoolValue:CONFIG_CP1_IS_HUD];
+    carPanelMenuView.isSpeedUnitMph     = [SysConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
+    carPanelMenuView.panelColor         = [SysConfig getUIColorValue:CONFIG_CP1_COLOR];
 
     [self.view addSubview:carPanelMenuView];
 }
@@ -604,8 +597,8 @@
 {
     UIButton *button = (UIButton*) sender;
     
-    [SystemConfig setValue:CONFIG_CP1_COLOR uicolor:button.backgroundColor];
-    self.color = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
+    [SysConfig setValue:CONFIG_CP1_COLOR uicolor:button.backgroundColor];
+    self.color = [SysConfig getUIColorValue:CONFIG_CP1_COLOR];
     [self updateColorFromConfig];
 }
 
@@ -617,7 +610,7 @@
 
 -(IBAction) pressMphButton:(id) sender
 {
-    [SystemConfig setValue:CONFIG_CP1_IS_SPEED_UNIT_MPH BOOL:TRUE];
+    [SysConfig setValue:CONFIG_CP1_IS_SPEED_UNIT_MPH BOOL:TRUE];
     [self updateUIFromConfig];
     
 }
@@ -625,7 +618,7 @@
 -(IBAction) pressKmhButton:(id) sender
 {
     
-    [SystemConfig setValue:CONFIG_CP1_IS_SPEED_UNIT_MPH BOOL:FALSE];
+    [SysConfig setValue:CONFIG_CP1_IS_SPEED_UNIT_MPH BOOL:FALSE];
     [self updateUIFromConfig];
 }
 
@@ -633,11 +626,11 @@
 {
     if (sender == _carPanelMenuHudSwitch)
     {
-        [SystemConfig setValue:CONFIG_CP1_IS_HUD BOOL:_carPanelMenuHudSwitch.on];
+        [SysConfig setValue:CONFIG_CP1_IS_HUD BOOL:_carPanelMenuHudSwitch.on];
     }
     else if (sender == _carPanelMenuCourseSwitch)
     {
-        [SystemConfig setValue:CONFIG_CP1_IS_COURSE BOOL:_carPanelMenuCourseSwitch.on];
+        [SysConfig setValue:CONFIG_CP1_IS_COURSE BOOL:_carPanelMenuCourseSwitch.on];
     }
     
     [self updateUIFromConfig];
@@ -662,21 +655,21 @@
 #pragma mark -- delegate
 -(void) carPanel1MenuView:(CarPanel1MenuView*) cpm changeColor:(UIColor*) color
 {
-    [SystemConfig setValue:CONFIG_CP1_COLOR uicolor:color];
-    self.color = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
+    [SysConfig setValue:CONFIG_CP1_COLOR uicolor:color];
+    self.color = [SysConfig getUIColorValue:CONFIG_CP1_COLOR];
 }
 
 -(void) carPanel1MenuView:(CarPanel1MenuView*) cpm changeHud:(BOOL) isHud
 {
-    [SystemConfig setValue:CONFIG_CP1_IS_HUD BOOL:isHud];
-    self.isHud = [SystemConfig getBoolValue:CONFIG_CP1_IS_HUD];
+    [SysConfig setValue:CONFIG_CP1_IS_HUD BOOL:isHud];
+    self.isHud = [SysConfig getBoolValue:CONFIG_CP1_IS_HUD];
 }
 
 -(void) carPanel1MenuView:(CarPanel1MenuView*) cpm changeSpeedUnit:(BOOL) isMph
 {
 
-    [SystemConfig setValue:CONFIG_CP1_IS_SPEED_UNIT_MPH BOOL:isMph];
-    self.isSpeedUnitMph = [SystemConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
+    [SysConfig setValue:CONFIG_CP1_IS_SPEED_UNIT_MPH BOOL:isMph];
+    self.isSpeedUnitMph = [SysConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
 }
 
 -(void) carPanel1MenuView:(CarPanel1MenuView*) cpm pressLogoButton:(BOOL) isPressed
@@ -722,7 +715,7 @@
 #pragma mark -- operation
 - (void)checkIapItem
 {
-    carPanelMenuView.lockColorSelection = ![SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION];
+    carPanelMenuView.lockColorSelection = ![SysConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION];
 }
 
 @end

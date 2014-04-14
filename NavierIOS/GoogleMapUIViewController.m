@@ -203,7 +203,7 @@
 #pragma  mark - Banner
 -(void) addBanner:(UIView*) contentView
 {
-    if (FALSE == [SystemConfig getBoolValue:CONFIG_H_IS_AD])
+    if (FALSE == [SysConfig getBoolValue:CONFIG_H_IS_AD])
         return;
     
     if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)])
@@ -746,8 +746,8 @@
 
 -(void) checkIAPItem
 {
-    self.bannerIsVisible        = [SystemConfig getBoolValue:CONFIG_H_IS_AD] && (![SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION]);
-    self.userPlace              = [SystemConfig getBoolValue:CONFIG_H_IS_USER_PLACE] && [SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION];
+    self.bannerIsVisible        = [SysConfig getBoolValue:CONFIG_H_IS_AD] && (![SysConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION]);
+    self.userPlace              = [SysConfig getBoolValue:CONFIG_H_IS_USER_PLACE] && [SysConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION];
     self.placeButton.hidden     = !self.userPlace;
 }
 
@@ -974,7 +974,7 @@
 {
     if (FALSE == result && TRUE == mapManager.isShowPlanRouteFailedForCurrentPlace && nil != self.view.window)
     {
-        [self showAlertTitle:[SystemManager getLanguageString:@"Failed to plan route"]
+        [self showAlertTitle:[SystemManager getLanguageString:@"Fail to plan route"]
                      message:[SystemManager getLanguageString:@"Forget to enable network connections?"]];
     }
 }
@@ -983,7 +983,7 @@
 {
     if (FALSE == result)
     {
-        [self showAlertTitle:[SystemManager getLanguageString:@"Searching places failed"]
+        [self showAlertTitle:[SystemManager getLanguageString:@"Search place failed"]
                      message:[SystemManager getLanguageString:@"Forget to enable network connections?"]];
     }
 }

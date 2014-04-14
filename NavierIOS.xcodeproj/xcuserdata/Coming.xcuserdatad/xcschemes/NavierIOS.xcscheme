@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2B9A433D16DB955F00FD1A54"
-               BuildableName = "NavierIOSTests.octest"
+               BuildableName = "NavierIOSTests.xctest"
                BlueprintName = "NavierIOSTests"
                ReferencedContainer = "container:NavierIOS.xcodeproj">
             </BuildableReference>
@@ -54,7 +54,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">

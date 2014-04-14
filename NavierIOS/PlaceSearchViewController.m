@@ -64,7 +64,7 @@
     
     if (User.searchedPlaceText.count > 0)
     {
-        placeLabel.text    = [User getSearchedPlaceTextByIndex:indexPath.row];
+        placeLabel.text    = [User getSearchedPlaceTextByIndex:(int)indexPath.row];
         //    cell.textLabel.text      = [User getSearchedPlaceTextByIndex:indexPath.row];
     }
     else
@@ -76,7 +76,7 @@
 
 - (void)tableView: (UITableView *)tableView didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 {
-    [self dismissAndSearchPlace:[User getSearchedPlaceTextByIndex:indexPath.row]];
+    [self dismissAndSearchPlace:[User getSearchedPlaceTextByIndex:(int)indexPath.row]];
 }
 
 - (void) dismissAndSearchPlace:(NSString*) place
