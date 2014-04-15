@@ -83,7 +83,8 @@
     [User addRecentPlace:p1];
 */
 #if DEBUG
-//    [RSSecrets addKey:@"IAP_AdvancedVersion"];
+//    [RSSecrets removeKey:@"IAP_AdvancedVersion"];
+    [RSSecrets addKey:@"IAP_AdvancedVersion"];
 //    NSLog(@"%@: %@", @"IAP_AdvancedVersion", [RSSecrets hasKey:@"IAP_AdvancedVersion"]?@"TRUE":@"FALSE");
 #endif
     return YES;

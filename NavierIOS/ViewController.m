@@ -126,7 +126,7 @@
     [self.tableView reloadData];
     [self checkIAPItem];
 #if DEBUG
-    self.debugConfigButton.hidden = NO;
+//    self.debugConfigButton.hidden = NO;
 #else
     self.debugConfigButton.hidden = YES;
 #endif

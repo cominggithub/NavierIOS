@@ -96,12 +96,34 @@
     
     if (480 == SystemManager.lanscapeScreenRect.size.width)
     {
-        self.bgImageView.image = [UIImage imageNamed:@"IAP_NoAdStoreUserPlace_bg_35_tw"];
+        if ([[SystemManager getSystemLanguage] isEqualToString:@"zh-hant"])
+        {
+            self.bgImageView.image = [UIImage imageNamed:@"IAP_NoAdStoreUserPlace_bg_35_tw"];
+        }
+        else
+        {
+            self.bgImageView.image = [UIImage imageNamed:@"IAP_NoAdStoreUserPlace_bg_35"];
+        }
     }
     else
     {
-        self.bgImageView.image = [UIImage imageNamed:@"IAP_NoAdStoreUserPlace_bg_4_tw"];
+        if ([[SystemManager getSystemLanguage] isEqualToString:@"zh-hant"])
+        {
+            self.bgImageView.image = [UIImage imageNamed:@"IAP_NoAdStoreUserPlace_bg_4_tw"];
+        }
+        else
+        {
+            self.bgImageView.image = [UIImage imageNamed:@"IAP_NoAdStoreUserPlace_bg_4"];
+        }
     }
+    
+    
+    /* configure route Label */
+    self.fromLabel.text         = [NSString stringWithFormat:@"%@:", [SystemManager getLanguageString:self.fromLabel.text]];
+    self.toLabel.text           = [NSString stringWithFormat:@"%@:", [SystemManager getLanguageString:self.toLabel.text]];
+    self.fromPlaceLabel.text    = [SystemManager getLanguageString:self.fromPlaceLabel.text];
+    self.toPlaceLabel.text    = [SystemManager getLanguageString:self.toPlaceLabel.text];
+    
 	// Do any additional setup after loading the view.
 
 }

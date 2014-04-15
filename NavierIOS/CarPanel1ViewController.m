@@ -48,6 +48,7 @@
     CGSize _colorButtonUnselectedSize;
     CGSize _colorButtonSelectedSize;
     BuyUIViewController *buyViewController;
+    UIAlertView *alert;
 }
 @end
 
@@ -692,10 +693,19 @@
 
 -(void) carPanel1MenuView:(CarPanel1MenuView*) cpm pressBuyButton:(BOOL) isPressed
 {
-    if (YES == isPressed && NavierHUDIAPHelper.iapItemCount > 0)
+    if (YES == isPressed)
     {
-        [self presentViewController:buyViewController animated:YES completion:nil];
+        if (NavierHUDIAPHelper.iapItemCount > 0)
+        {
+            [self presentViewController:buyViewController animated:YES completion:nil];
+        }
+        else
+        {
+            [self showAlertTitle:[SystemManager getLanguageString:@"Cannot retrieve IAP items"]
+                          message:[SystemManager getLanguageString:@"Forget to enable network connections?"]];
+        }
     }
+    
     carPanelMenuView.hidden = YES;
 }
 
@@ -712,10 +722,25 @@
         carPanelMenuView.hidden = NO;
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    alert = nil;
+}
+
 #pragma mark -- operation
 - (void)checkIapItem
 {
     carPanelMenuView.lockColorSelection = ![SysConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION];
 }
+
+-(void) showAlertTitle:(NSString*) title message:(NSString*) message
+{
+    if (nil == alert)
+    {
+        alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:[SystemManager getLanguageString:@"OK"] otherButtonTitles:nil,nil];
+        [alert show];
+    }
+}
+
 
 @end

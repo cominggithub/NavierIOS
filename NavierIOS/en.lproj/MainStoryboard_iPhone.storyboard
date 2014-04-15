@@ -198,7 +198,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4sT-tK-llY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-214" y="-816"/>
+            <point key="canvasLocation" x="-493" y="-888"/>
         </scene>
         <!--Debug Transformation View Controller-->
         <scene sceneID="iEE-yQ-NHT">
@@ -408,11 +408,11 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" id="l4A-EK-r6F" userLabel="Route Place">
-                                                <rect key="frame" x="5" y="47" width="143" height="53"/>
+                                                <rect key="frame" x="5" y="47" width="166" height="53"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OVW-qU-NPI" userLabel="From Place Label">
-                                                        <rect key="frame" x="43" y="7" width="94" height="21"/>
+                                                        <rect key="frame" x="43" y="7" width="118" height="21"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="highlightedColor"/>
@@ -424,7 +424,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Set Yet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="R7U-rA-RRc" userLabel="To Place Label">
-                                                        <rect key="frame" x="43" y="27" width="94" height="21"/>
+                                                        <rect key="frame" x="43" y="27" width="118" height="21"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="highlightedColor"/>
@@ -999,6 +999,37 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <view contentMode="scaleToFill" id="bGG-ox-gl1" userLabel="Route Place">
+                                <rect key="frame" x="5" y="39" width="166" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="02P-ok-ieV" userLabel="From Place Label">
+                                        <rect key="frame" x="43" y="7" width="118" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FromPlace" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dsj-wv-UDU" userLabel="From Label">
+                                        <rect key="frame" x="0.0" y="7" width="40" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Set Yet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sx8-07-h7D" userLabel="To Place Label">
+                                        <rect key="frame" x="43" y="27" width="118" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ToPlace" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ONz-eN-1hk" userLabel="To Label">
+                                        <rect key="frame" x="0.0" y="27" width="40" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -1009,12 +1040,16 @@
                         <outlet property="backButton" destination="6ir-Vh-EeV" id="xYJ-Wx-bpW"/>
                         <outlet property="bgImageView" destination="E1A-2y-fGP" id="UbS-PA-uil"/>
                         <outlet property="buyButton" destination="MQg-CN-vep" id="7J4-QK-gby"/>
+                        <outlet property="fromLabel" destination="dsj-wv-UDU" id="ZL1-Dj-ECC"/>
+                        <outlet property="fromPlaceLabel" destination="02P-ok-ieV" id="Xip-1k-5Yk"/>
                         <outlet property="naviLeftButton" destination="Bhu-i3-EPU" id="l6e-E6-Kdr"/>
                         <outlet property="productDescription" destination="6ta-Ym-t0Z" id="bo4-k2-4gu"/>
                         <outlet property="productPrice" destination="mHZ-TY-5uf" id="3gf-ku-i8E"/>
                         <outlet property="productTitle" destination="FP3-en-QuR" id="8qs-Ho-qft"/>
                         <outlet property="purchasePanel" destination="I58-mH-Hvl" id="YkE-pf-DZZ"/>
                         <outlet property="restoreIapItemButton" destination="As0-Eu-etJ" id="Oi4-AS-LUg"/>
+                        <outlet property="toLabel" destination="ONz-eN-1hk" id="WQ1-qK-Lct"/>
+                        <outlet property="toPlaceLabel" destination="Sx8-07-h7D" id="HRI-4k-jXj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UlT-sC-I1C" userLabel="First Responder" sceneMemberID="firstResponder"/>

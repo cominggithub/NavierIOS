@@ -65,6 +65,7 @@
 "Must start navigation from current place" = "必須從目前位置開始導航";
 "Buy" = "購買";
 "Restore Purchases" = "恢復已購買";
+"Cannot retrieve IAP items" = "無法取得內購項目";
 "Home"="家";
 "Office"="辦公室";
 "Favor"="喜好";
