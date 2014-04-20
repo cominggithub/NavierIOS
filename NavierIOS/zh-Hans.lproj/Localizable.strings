@@ -1,0 +1,66 @@
+/*
+ Localizable.strings
+ NavierIOS
+ 
+ Created by Coming on 8/10/13.
+ Copyright (c) 2013 Coming. All rights reserved.
+ */
+
+"N" = "北";
+"ne" = "东北";
+"E" = "东";
+"se" = "东南";
+"S" = "南";
+"sw" = "西南";
+"W" = "西";
+"nw" = "西北";
+"mph" = "英里/小时";
+"kmh" = "公里/小时";
+"am" = "上午";
+"pm" = "下午";
+"HUD" = "抬头显示";
+"Course" = "方位";
+"Speed Unit" = "速度单位";
+"Route Planning" = "路径规划中";
+"Route Start" = "起点";
+"Route End" = "目的地";
+"No GPS Signal" = "无 GPS 信号";
+"No Network" = "无连接";
+"No place now" = "目前尚无地点";
+"Place" = "地点";
+"Navigate" = "导航";
+"No recent place" = "尚无去过的地点";
+"Current Location" = "当前位置";
+"Not Set Yet" = "尚未设置";
+"Route Re-Planning" = "路径重新规划中";
+"Arrive Desitnation" = "抵达目的地";
+"Destination Error" = "目的地错误";
+"Main Menu" = "主菜单";
+"Edit" = "编辑";
+"Done" = "完成";
+"No searched records" = "尚无搜索记录";
+"Search place failed" = "搜索失败";
+"route start place and end place are the same" = "出发地与目的地相同";
+"Map" = "地图";
+"Back" = "返回";
+"Save" = "储存";
+"FromPlace" = "起点";
+"ToPlace" = "终点";
+"Failed to plan route" = "路径规划失败";
+"Cannot connect to server" = "无法连接到主机";
+"Forget to enable network connections?" = "忘记打开网络连接?";
+"Cannot navigate to current place" = "无法导航到当前位置";
+"Must start navigation from current place" = "必须从当前位置开始导航";
+"Buy" = "购买";
+"Restore Purchases" = "恢复已购项目";
+"Cannot retrieve IAP items" = "无法获取内购项目";
+"Home"="家";
+"Office"="办公室";
+"Favor"="喜好";
+"If you enjoy using %@, would you mind taking a moment to rate it? It won't take more than a minute. Thanks for your support!" = "帮忙一下啦！我们很需要您的帮忙评论 %@ 好不好用！谢啦！";
+"Rate %@" = "给 %@ 评分";
+"No, Thanks" = "不，谢谢";
+"Remind me later" = "改天吧";
+"Purchase successfully" = "购买成功";
+"Thanks! Navier HUD now is upgradded to Advanced version" = "感谢您！现在 Navier HUD 已经升级到进阶版";
+"Free" = "免费";

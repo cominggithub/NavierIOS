@@ -41,23 +41,11 @@
 "No searched records" = "尚無搜尋記錄";
 "Search place failed" = "搜尋失敗";
 "route start place and end place are the same" = "出發地與目的地相同";
-"routeGuideText0"= "龍龍龍 龍-";
-"routeGuideText1"= "龍龍龍 龍龍龍 龍龍 龍龍 龍龍龍龍-";
-"routeGuideText2"= "龍龍龍龍龍龍龍龍龍龍龍龍龍龍龍龍龍龍龍龍龍龍龍龍-";
-"routeGuideText3"= "龍龍龍龍龍龍龍 10.1 龍-";
-"routeGuideText4"= "龍龍龍龍龍龍龍龍龍 龍龍  龍龍龍龍龍龍龍龍-";
-"routeGuideText5"= "龍龍龍龍龍 龍 龍 龍 龍 龍 龍 龍龍龍龍龍龍龍龍龍龍龍-";
-"routeGuideText6"= "龍龍龍龍龍龍 龍龍 龍龍龍龍龍龍龍龍-";
-"routeGuideText7"= "龍龍龍龍龍龍龍龍龍龍的的的 10.1龍龍龍龍龍龍龍龍龍龍龍龍-";
-"routeGuideText8"= "龍龍龍龍龍龍龍龍龍龍龍 左轉 龍龍龍龍龍龍龍龍龍龍-";
-"routeGuideText9"= "";
-
 "Map" = "地圖";
 "Back" = "返回";
 "Save" = "儲存";
 "FromPlace" = "起點";
 "ToPlace" = "終點";
-
 "Failed to plan route" = "路徑規畫失敗";
 "Cannot connect to server" = "無法連線到主機";
 "Forget to enable network connections?" = "忘記啟動網路連線?";
@@ -74,5 +62,5 @@
 "No, Thanks" = "不，謝謝";
 "Remind me later" = "改天吧";
 "Purchase successfully" = "購買成功";
-"Thanks! NavierHUD now is upgradded to Advanced version" = "感謝您！現在 NavierHUD 已經升級到進階版";
+"Thanks! Navier HUD now is upgradded to Advanced version" = "感謝您！現在 NavierHUD 已經升級到進階版";
 "Free" = "免費";

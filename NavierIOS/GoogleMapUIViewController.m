@@ -29,31 +29,28 @@
 
 @implementation GoogleMapUIViewController
 {
-    ADBannerView *adView;
-    int markMenuOffset;
-    bool isShowMarkMenu;
-    bool isShowMarkMenuFloat;
-    UIView *markMenu;
-    MarkerMenuFloatView *markerMenuFloatView;
-    PlaceSearchResultPanelView *placeSearchResultPanel;
-
-    RouteNavigationViewController *routeNavigationViewController;
-    Place *selectedPlace;
-    
-    UILabel *markMenuNameLabel;
-    UILabel *markMenuSnippetLabel;
-    UIButton *markMenuSetStartButton;
-    UIButton *markMenuSetEndButton;
-    UIButton *markMenuSaveAsHomeButton;
-    UIButton *markMenuSaveAsOfficeButton;
-    UIButton *markMenuSaveAsFavorButton;
-    
-    SavePlaceViewController *savePlaceViewController;
-    SelectPlaceViewController *selectPlaceViewController;
-    
-    MapManager *mapManager;
-    int zoomLevel;
-    UIAlertView *alert;
+    ADBannerView                    *adView;
+    int                             markMenuOffset;
+    BOOL                            isShowMarkMenu;
+    BOOL                            isShowMarkMenuFloat;
+    BOOL                            bannerIsVisible;
+    UIView                          *markMenu;
+    MarkerMenuFloatView             *markerMenuFloatView;
+    PlaceSearchResultPanelView      *placeSearchResultPanel;
+    RouteNavigationViewController   *routeNavigationViewController;
+    Place                           *selectedPlace;
+    UILabel                         *markMenuNameLabel;
+    UILabel                         *markMenuSnippetLabel;
+    UIButton                        *markMenuSetStartButton;
+    UIButton                        *markMenuSetEndButton;
+    UIButton                        *markMenuSaveAsHomeButton;
+    UIButton                        *markMenuSaveAsOfficeButton;
+    UIButton                        *markMenuSaveAsFavorButton;
+    SavePlaceViewController         *savePlaceViewController;
+    SelectPlaceViewController       *selectPlaceViewController;
+    MapManager                      *mapManager;
+    int                             zoomLevel;
+    UIAlertView                     *alert;
 }
 
 - (void)didReceiveMemoryWarning
@@ -130,6 +127,7 @@
     savePlaceViewController.delegate    = self;
     selectPlaceViewController.delegate  = self;
     
+    /* banner */
     [self addBanner:self.contentView];
     [self showAdAnimated:NO];
     
@@ -203,7 +201,7 @@
 #pragma  mark - Banner
 -(void) addBanner:(UIView*) contentView
 {
-    if (FALSE == [SysConfig getBoolValue:CONFIG_H_IS_AD])
+    if (FALSE == [SystemConfig getBoolValue:CONFIG_H_IS_AD])
         return;
     
     if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)])
@@ -234,7 +232,7 @@
     CGRect bannerFrame      = adView.frame;
     CGRect zoomPanelFrame   = self.zoomPanel.frame;
     
-    if (adView.bannerLoaded && self.bannerIsVisible)
+    if (adView.bannerLoaded && bannerIsVisible)
     {
         
         contentFrame.origin.y = adView.frame.size.height;
@@ -746,8 +744,8 @@
 
 -(void) checkIAPItem
 {
-    self.bannerIsVisible        = [SysConfig getBoolValue:CONFIG_H_IS_AD] && (![SysConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION]);
-    self.userPlace              = [SysConfig getBoolValue:CONFIG_H_IS_USER_PLACE] && [SysConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION];
+    bannerIsVisible             = [SystemConfig getBoolValue:CONFIG_H_IS_AD] && (![SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION]);
+    self.userPlace              = [SystemConfig getBoolValue:CONFIG_H_IS_USER_PLACE] && [SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION];
     self.placeButton.hidden     = !self.userPlace;
 }
 

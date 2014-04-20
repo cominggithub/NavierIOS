@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <NaviUtil/NaviUtil.h>
+#import <iAd/iAd.h>
 #import "CarPanel1MenuView.h"
 
 
-@interface CarPanel1ViewController : UIViewController<LocationManagerDelegate, SystemManagerDelegate, CarPane1MenuViewDelegate>
+@interface CarPanel1ViewController : UIViewController<LocationManagerDelegate, SystemManagerDelegate, CarPane1MenuViewDelegate, ADBannerViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *debugMsgLabel;
 @property (weak, nonatomic) IBOutlet UIView *courseLabelView;
 @property (weak, nonatomic) IBOutlet UILabel *courseCutLabel;

@@ -129,7 +129,7 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9UD-TJ-RKU">
-                                        <rect key="frame" x="23" y="20" width="99" height="56"/>
+                                        <rect key="frame" x="80" y="40" width="99" height="56"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="41"/>
@@ -900,67 +900,142 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="IAP_NoAdStoreUserPlace_bg_4_tw.png" id="E1A-2y-fGP">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" id="E1A-2y-fGP">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Bhu-i3-EPU" userLabel="BackButton">
-                                <rect key="frame" x="5" y="0.0" width="38" height="36"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="marker_favor.png" id="6Qa-3t-PHd">
+                                <rect key="frame" x="159" y="204" width="32" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" label="homeButton"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" image="icon_navi_left.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="pressBackButton:" destination="upQ-4M-J2U" eventType="touchUpInside" id="TNv-fp-eGx"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6ir-Vh-EeV" userLabel="NaviLeftButton">
-                                <rect key="frame" x="38" y="6" width="120" height="25"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="marker_favor.png" id="CdD-af-DWl">
+                                <rect key="frame" x="25" y="204" width="32" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" label="homeButton"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Back">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="pressBackButton:" destination="upQ-4M-J2U" eventType="touchUpInside" id="ThD-pN-drd"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" id="I58-mH-Hvl">
-                                <rect key="frame" x="253" y="50" width="208" height="263"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="marker_favor.png" id="PYV-e2-tGp">
+                                <rect key="frame" x="183" y="88" width="32" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="marker_favor.png" id="OdS-q0-cui">
+                                <rect key="frame" x="108" y="232" width="32" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="marker_favor.png" id="J2a-c9-dwx">
+                                <rect key="frame" x="131" y="145" width="32" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="marker_office.png" id="y3c-3T-WYU">
+                                <rect key="frame" x="183" y="238" width="32" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" id="hoJ-Rw-13E" userLabel="Top">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="42"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="NiZ-Zf-N3E" userLabel="separator">
+                                        <rect key="frame" x="425" y="0.0" width="1" height="42"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                                        <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="deviceRGB"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JUF-KB-E9v" userLabel="search button">
+                                        <rect key="frame" x="385" y="0.0" width="32" height="42"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" label="searchButton"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="button_search.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8HW-ba-Koj" userLabel="Place">
+                                        <rect key="frame" x="345" y="0.0" width="32" height="42"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" label="placeButton"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <state key="normal" image="button_place.png">
+                                            <color key="titleColor" red="7.4888549979999997e-05" green="0.38351223470000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sGp-zn-Vir" userLabel="Navigation">
+                                        <rect key="frame" x="437" y="0.0" width="32" height="42"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" label="NavigationButton"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <state key="normal" image="button_navigation.png">
+                                            <color key="titleColor" red="7.4888549979999997e-05" green="0.38351223470000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6ir-Vh-EeV" userLabel="NaviLeftButton">
+                                        <rect key="frame" x="32" y="9" width="129" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" label="homeButton"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="Back">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pressBackButton:" destination="upQ-4M-J2U" eventType="touchUpInside" id="ThD-pN-drd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Bhu-i3-EPU" userLabel="BackButton">
+                                        <rect key="frame" x="0.0" y="3" width="38" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" label="homeButton"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="icon_navi_left.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pressBackButton:" destination="upQ-4M-J2U" eventType="touchUpInside" id="TNv-fp-eGx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.058164416730000001" green="0.1862693896" blue="0.1901633523" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="I58-mH-Hvl" userLabel="BuyView">
+                                <rect key="frame" x="268" y="50" width="205" height="263"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Full version" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FP3-en-QuR">
-                                        <rect key="frame" x="4" y="14" width="204" height="28"/>
+                                        <rect key="frame" x="-2" y="14" width="209" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1. Remove Ads" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6ta-Ym-t0Z">
-                                        <rect key="frame" x="20" y="50" width="161" height="63"/>
+                                        <rect key="frame" x="14" y="50" width="171" height="63"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="2.99" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mHZ-TY-5uf">
-                                        <rect key="frame" x="0.0" y="113" width="208" height="40"/>
+                                        <rect key="frame" x="-2" y="112" width="208" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="As0-Eu-etJ">
-                                        <rect key="frame" x="40" y="206" width="121" height="52"/>
+                                        <rect key="frame" x="42" y="206" width="121" height="52"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                         <color key="backgroundColor" red="0.1032912648" green="0.54669602689999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -976,7 +1051,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MQg-CN-vep">
-                                        <rect key="frame" x="40" y="154" width="121" height="44"/>
+                                        <rect key="frame" x="42" y="154" width="121" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                         <color key="backgroundColor" red="0.1032912648" green="0.54669602689999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -992,7 +1067,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" id="slv-Sr-MPl">
-                                        <rect key="frame" x="0.0" y="44" width="208" height="5"/>
+                                        <rect key="frame" x="-15" y="44" width="220" height="5"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.058164416730000001" green="0.1862693896" blue="0.1901633523" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
@@ -1000,7 +1075,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="bGG-ox-gl1" userLabel="Route Place">
-                                <rect key="frame" x="5" y="39" width="166" height="53"/>
+                                <rect key="frame" x="5" y="48" width="166" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="02P-ok-ieV" userLabel="From Place Label">
@@ -1028,10 +1103,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="marker_home.png" id="neb-YF-SXn">
+                                <rect key="frame" x="72" y="157" width="32" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.1032912648" green="0.54669602689999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -1040,6 +1119,7 @@
                         <outlet property="backButton" destination="6ir-Vh-EeV" id="xYJ-Wx-bpW"/>
                         <outlet property="bgImageView" destination="E1A-2y-fGP" id="UbS-PA-uil"/>
                         <outlet property="buyButton" destination="MQg-CN-vep" id="7J4-QK-gby"/>
+                        <outlet property="contentView" destination="3Lg-ev-wAB" id="S5p-cV-Ssa"/>
                         <outlet property="fromLabel" destination="dsj-wv-UDU" id="ZL1-Dj-ECC"/>
                         <outlet property="fromPlaceLabel" destination="02P-ok-ieV" id="Xip-1k-5Yk"/>
                         <outlet property="naviLeftButton" destination="Bhu-i3-EPU" id="l6e-E6-Kdr"/>
@@ -1048,6 +1128,7 @@
                         <outlet property="productTitle" destination="FP3-en-QuR" id="8qs-Ho-qft"/>
                         <outlet property="purchasePanel" destination="I58-mH-Hvl" id="YkE-pf-DZZ"/>
                         <outlet property="restoreIapItemButton" destination="As0-Eu-etJ" id="Oi4-AS-LUg"/>
+                        <outlet property="routePlaceView" destination="bGG-ox-gl1" id="2AD-Mp-xxG"/>
                         <outlet property="toLabel" destination="ONz-eN-1hk" id="WQ1-qK-Lct"/>
                         <outlet property="toPlaceLabel" destination="Sx8-07-h7D" id="HRI-4k-jXj"/>
                     </connections>
@@ -1182,7 +1263,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="IAP_NoAdStoreUserPlace_bg_4_tw.png" width="480" height="320"/>
         <image name="background_main.png" width="568" height="320"/>
         <image name="background_main_tableview.png" width="195" height="320"/>
         <image name="background_tableview.png" width="568" height="10"/>
@@ -1198,6 +1278,9 @@
         <image name="h_seperator.png" width="568" height="3"/>
         <image name="icon_navi_left.png" width="13" height="21"/>
         <image name="map_btn_default.png" width="139" height="139"/>
+        <image name="marker_favor.png" width="32" height="49"/>
+        <image name="marker_home.png" width="32" height="49"/>
+        <image name="marker_office.png" width="32" height="49"/>
         <image name="speed_btn_default.png" width="139" height="139"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

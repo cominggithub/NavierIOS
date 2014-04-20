@@ -75,7 +75,7 @@
 
 -(void) viewDidDisappear:(BOOL)animated
 {
-    [[UIScreen mainScreen] setBrightness:[SysConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
+    [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -235,7 +235,7 @@
 
 - (void)checkIapItem
 {
-    carPanelMenuView.lockColorSelection = ![SysConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION];
+    carPanelMenuView.lockColorSelection = ![SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION];
 }
 
 
@@ -247,9 +247,9 @@
     
     if (nil != newColor)
     {
-        [SysConfig setValue:CONFIG_RN1_COLOR uicolor:newColor];
-        colorPanel.backgroundColor      = [SysConfig getUIColorValue:CONFIG_RN1_COLOR];
-        self.guideRouteUIView.color     = [SysConfig getUIColorValue:CONFIG_RN1_COLOR];
+        [SystemConfig setValue:CONFIG_RN1_COLOR uicolor:newColor];
+        colorPanel.backgroundColor      = [SystemConfig getUIColorValue:CONFIG_RN1_COLOR];
+        self.guideRouteUIView.color     = [SystemConfig getUIColorValue:CONFIG_RN1_COLOR];
     }
 }
 
@@ -261,11 +261,11 @@
     CGFloat blue;
     CGFloat alpha;
 
-    color = [SysConfig getUIColorValue:CONFIG_RN1_COLOR];
+    color = [SystemConfig getUIColorValue:CONFIG_RN1_COLOR];
     [color getRed:&red green:&green blue:&blue alpha:&alpha];
     
     rgbHexCodeTextField.text = [color getRGBHexCode];
-    colorPanel.backgroundColor = [SysConfig getUIColorValue:CONFIG_RN1_COLOR];
+    colorPanel.backgroundColor = [SystemConfig getUIColorValue:CONFIG_RN1_COLOR];
  
 }
 
@@ -274,12 +274,12 @@
 {
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
-    self.isHud          = [SysConfig getBoolValue:CONFIG_RN1_IS_HUD];
-    self.color          = [SysConfig getUIColorValue:CONFIG_RN1_COLOR];
-    self.isSpeedUnitMph = [SysConfig getBoolValue:CONFIG_RN1_IS_SPEED_UNIT_MPH];
+    self.isHud          = [SystemConfig getBoolValue:CONFIG_RN1_IS_HUD];
+    self.color          = [SystemConfig getUIColorValue:CONFIG_RN1_COLOR];
+    self.isSpeedUnitMph = [SystemConfig getBoolValue:CONFIG_RN1_IS_SPEED_UNIT_MPH];
 
     
-    if (YES == [SysConfig getBoolValue:CONFIG_H_IS_DEBUG])
+    if (YES == [SystemConfig getBoolValue:CONFIG_H_IS_DEBUG])
     {
         self.textButton.hidden = NO;
         self.autoButton.hidden = NO;
@@ -294,12 +294,12 @@
     
     [self.guideRouteUIView active];
     
-    if (YES == [SysConfig getBoolValue:CONFIG_H_IS_DEBUG])
+    if (YES == [SystemConfig getBoolValue:CONFIG_H_IS_DEBUG])
     {
         [LocationManager startLocationTracking];
     }
     
-    if (YES == [SysConfig getBoolValue:CONFIG_H_IS_LOCATION_SIMULATOR])
+    if (YES == [SystemConfig getBoolValue:CONFIG_H_IS_LOCATION_SIMULATOR])
     {
         [LocationManager stopMonitorLocation];
     }
@@ -308,7 +308,7 @@
         [LocationManager startMonitorLocation];
     }
  
-    if (YES == [SysConfig getBoolValue:CONFIG_IS_TRACK_LOCATION])
+    if (YES == [SystemConfig getBoolValue:CONFIG_IS_TRACK_LOCATION])
     {
         [LocationManager startLocationTracking];
     }
@@ -323,20 +323,20 @@
     [self.guideRouteUIView inactive];
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     
-    if (YES == [SysConfig getBoolValue:CONFIG_H_IS_DEBUG])
+    if (YES == [SystemConfig getBoolValue:CONFIG_H_IS_DEBUG])
     {
         [LocationManager stopLocationTracking];
     }
 
-    [[UIScreen mainScreen] setBrightness:[SysConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
+    [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
     [LocationManager stopMonitorLocation];
     carPanelMenuView.hidden = YES;
     
     [self.autoButton setTitle:@"Auto" forState:UIControlStateNormal];
     [LocationManager setLocationUpdateType:kLocationManagerLocationUpdateType_ManualRoute];
-    if (YES == [SysConfig getBoolValue:CONFIG_H_IS_LOCATION_SIMULATOR])
+    if (YES == [SystemConfig getBoolValue:CONFIG_H_IS_LOCATION_SIMULATOR])
     {
-        if (NO == [SysConfig getBoolValue:CONFIG_H_IS_SIMULATE_CAR_MOVEMENT])
+        if (NO == [SystemConfig getBoolValue:CONFIG_H_IS_SIMULATE_CAR_MOVEMENT])
         {
             [LocationManager stopLocationSimulation];
         }
@@ -359,9 +359,9 @@
     carPanelMenuView.accessibilityLabel = @"carPanel1MenuView";
     carPanelMenuView.delegate           = self;
     
-    carPanelMenuView.isHud              = [SysConfig getBoolValue:CONFIG_RN1_IS_HUD];
-    carPanelMenuView.isSpeedUnitMph     = [SysConfig getBoolValue:CONFIG_RN1_IS_SPEED_UNIT_MPH];
-    carPanelMenuView.panelColor         = [SysConfig getUIColorValue:CONFIG_RN1_COLOR];
+    carPanelMenuView.isHud              = [SystemConfig getBoolValue:CONFIG_RN1_IS_HUD];
+    carPanelMenuView.isSpeedUnitMph     = [SystemConfig getBoolValue:CONFIG_RN1_IS_SPEED_UNIT_MPH];
+    carPanelMenuView.panelColor         = [SystemConfig getUIColorValue:CONFIG_RN1_COLOR];
     
     [self.view addSubview:carPanelMenuView];
 }
@@ -458,20 +458,20 @@
 
 -(void) carPanel1MenuView:(CarPanel1MenuView*) cpm changeColor:(UIColor*) color
 {
-    [SysConfig setValue:CONFIG_RN1_COLOR uicolor:color];
-    self.color = [SysConfig getUIColorValue:CONFIG_RN1_COLOR];
+    [SystemConfig setValue:CONFIG_RN1_COLOR uicolor:color];
+    self.color = [SystemConfig getUIColorValue:CONFIG_RN1_COLOR];
 }
 
 -(void) carPanel1MenuView:(CarPanel1MenuView*) cpm changeHud:(BOOL) isHud
 {
-    [SysConfig setValue:CONFIG_RN1_IS_HUD BOOL:isHud];
-    self.isHud = [SysConfig getBoolValue:CONFIG_RN1_IS_HUD];
+    [SystemConfig setValue:CONFIG_RN1_IS_HUD BOOL:isHud];
+    self.isHud = [SystemConfig getBoolValue:CONFIG_RN1_IS_HUD];
 }
 
 -(void) carPanel1MenuView:(CarPanel1MenuView*) cpm changeSpeedUnit:(BOOL) isMph
 {
-    [SysConfig setValue:CONFIG_RN1_IS_SPEED_UNIT_MPH BOOL:isMph];
-    self.isSpeedUnitMph = [SysConfig getBoolValue:CONFIG_RN1_IS_SPEED_UNIT_MPH];
+    [SystemConfig setValue:CONFIG_RN1_IS_SPEED_UNIT_MPH BOOL:isMph];
+    self.isSpeedUnitMph = [SystemConfig getBoolValue:CONFIG_RN1_IS_SPEED_UNIT_MPH];
 }
 
 -(void) carPanel1MenuView:(CarPanel1MenuView*) cpm pressLogoButton:(BOOL) isPressed

@@ -18,37 +18,33 @@
 
 @interface CarPanel1ViewController ()
 {
-    CarPanel1UIView *_carPanel1;
-    NSTimer *_redrawTimer;
-    int _redrawInterval;
-    NSMutableArray *_courseLabelArray;
-    ClockView *_clockView;
-    SystemStatusView *_systemStatusView;
-    
-    
-    
-    float _courseAngleToPixelOffset;
-    CGPoint _courseLabelOrigins[8];
-    float _courseCenterNOffset;
-    BOOL _isShowCarPanelMenu;
-    CarPanel1MenuView *carPanelMenuView;
-    UIButton *_carPanelMenuLogoButton;
-    UIButton *_carPanelMenuHudButton;
-    UIButton *_carPanelMenuSpeedMphButton;
-    UIButton *_carPanelMenuSpeedKmhButton;
-    
-    UILabel *_carPanelMenuHudLabel;
-    UILabel *_carPanelMenuCourseLabel;
-    UILabel *_carPanelMenuUnitLabel;
-  
-    UISwitch *_carPanelMenuHudSwitch;
-    UISwitch *_carPanelMenuCourseSwitch;
-    
-    NSMutableArray *_colorButtons;
-    CGSize _colorButtonUnselectedSize;
-    CGSize _colorButtonSelectedSize;
-    BuyUIViewController *buyViewController;
-    UIAlertView *alert;
+    CarPanel1UIView             *_carPanel1;
+    NSTimer                     *_redrawTimer;
+    int                         _redrawInterval;
+    NSMutableArray              *_courseLabelArray;
+    ClockView                   *_clockView;
+    SystemStatusView            *_systemStatusView;
+    float                       _courseAngleToPixelOffset;
+    CGPoint                     _courseLabelOrigins[8];
+    float                       _courseCenterNOffset;
+    BOOL                        _isShowCarPanelMenu;
+    CarPanel1MenuView           *carPanelMenuView;
+    UIButton                    *_carPanelMenuLogoButton;
+    UIButton                    *_carPanelMenuHudButton;
+    UIButton                    *_carPanelMenuSpeedMphButton;
+    UIButton                    *_carPanelMenuSpeedKmhButton;
+    UILabel                     *_carPanelMenuHudLabel;
+    UILabel                     *_carPanelMenuCourseLabel;
+    UILabel                     *_carPanelMenuUnitLabel;
+    UISwitch                    *_carPanelMenuHudSwitch;
+    UISwitch                    *_carPanelMenuCourseSwitch;
+    NSMutableArray              *_colorButtons;
+    CGSize                      _colorButtonUnselectedSize;
+    CGSize                      _colorButtonSelectedSize;
+    BuyUIViewController         *buyViewController;
+    UIAlertView                 *alert;
+    ADBannerView                *adView;
+    BOOL                        bannerIsVisible;
 }
 @end
 
@@ -117,15 +113,19 @@
     [self updateUILanguageFont:[SystemManager getSystemLanguage]];
     
     
-    self.color          = [SysConfig getUIColorValue:CONFIG_CP1_COLOR];
-    self.isHud          = [SysConfig getBoolValue:CONFIG_CP1_IS_HUD];
-    self.isSpeedUnitMph = [SysConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
-	// Do any additional setup after loading the view.
+    self.color          = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
+    self.isHud          = [SystemConfig getBoolValue:CONFIG_CP1_IS_HUD];
+    self.isSpeedUnitMph = [SystemConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
+    
+    /* banner */
+    [self addBanner:self.contentView];
+    [self showAdAnimated:NO];
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
-    self.debugMsgLabel.hidden = ![SysConfig getBoolValue:CONFIG_H_IS_DEBUG];
+    self.debugMsgLabel.hidden = ![SystemConfig getBoolValue:CONFIG_H_IS_DEBUG];
     [self active];
     [self checkIapItem];
 }
@@ -141,7 +141,7 @@
 
 -(void) viewDidDisappear:(BOOL)animated
 {
-    [[UIScreen mainScreen] setBrightness:[SysConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
+    [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -159,7 +159,7 @@
     [SystemManager addDelegate:self];
     [LocationManager addDelegate:self];
     
-    if (YES == [SysConfig getBoolValue:CONFIG_H_IS_LOCATION_SIMULATOR])
+    if (YES == [SystemConfig getBoolValue:CONFIG_H_IS_LOCATION_SIMULATOR])
     {
         [LocationManager stopMonitorLocation];
     }
@@ -168,7 +168,7 @@
         [LocationManager startMonitorLocation];
     }
 
-    if (YES == [SysConfig getBoolValue:CONFIG_IS_TRACK_LOCATION])
+    if (YES == [SystemConfig getBoolValue:CONFIG_IS_TRACK_LOCATION])
     {
         [LocationManager startLocationTracking];
     }
@@ -197,7 +197,7 @@
     [_clockView inactive];
     [_systemStatusView inactive];
     
-    [[UIScreen mainScreen] setBrightness:[SysConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
+    [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
     
 }
 - (void)viewDidUnload
@@ -222,6 +222,86 @@
     [super viewDidUnload];
 }
 
+#pragma  mark - Banner
+-(void) addBanner:(UIView*) contentView
+{
+    if (FALSE == [SystemConfig getBoolValue:CONFIG_H_IS_AD])
+        return;
+    
+    if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)])
+    {
+        adView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
+    } else
+    {
+        adView = [[ADBannerView alloc] init];
+    }
+    
+    [adView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    adView.delegate                            = self;
+    adView.accessibilityLabel                  = @"banner";
+    
+    
+    [self.view addSubview:adView];
+    
+    [self showAdAnimated:NO];
+}
+
+- (void)showAdAnimated:(BOOL)animated
+{
+    
+    if (nil == adView)
+        return;
+    
+    CGRect bannerFrame      = adView.frame;
+    
+    if (adView.bannerLoaded && bannerIsVisible)
+    {
+        bannerFrame.origin.y = self.contentView.frame.size.height-adView.frame.size.height;
+        
+    } else
+    {
+        bannerFrame.origin.y  = self.contentView.frame.size.height;
+    }
+    
+    [UIView animateWithDuration:animated ? 0.25 : 0.0 animations:^{
+        adView.frame        = bannerFrame;
+    }];
+    
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    
+    [self showAdAnimated:YES];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    [self showAdAnimated:YES];
+}
+
+- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
+{
+    BOOL shouldExecuteAction = true; // your application implements this method
+    
+    if (!willLeave && shouldExecuteAction)
+    {
+        // insert code here to suspend any services that might conflict with the advertisement
+    }
+    
+    return shouldExecuteAction;
+    
+    return false;
+}
+
+
+
+- (void)bannerViewActionDidFinish:(ADBannerView *)banner
+{
+    
+}
+
+
 
 
 #pragma mark - Update UI
@@ -244,12 +324,12 @@
 
 -(void) updateUIFromConfig
 {
-    _carPanelMenuHudSwitch.on       = [SysConfig getBoolValue:CONFIG_CP1_IS_HUD];
-    _carPanelMenuCourseSwitch.on    = [SysConfig getBoolValue:CONFIG_CP1_IS_COURSE];
+    _carPanelMenuHudSwitch.on       = [SystemConfig getBoolValue:CONFIG_CP1_IS_HUD];
+    _carPanelMenuCourseSwitch.on    = [SystemConfig getBoolValue:CONFIG_CP1_IS_COURSE];
 
     self.isHud          = _carPanelMenuHudSwitch.on;
     self.isCourse       = _carPanelMenuCourseSwitch.on;
-    self.isSpeedUnitMph = [SysConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
+    self.isSpeedUnitMph = [SystemConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
     
     if (YES == self.isSpeedUnitMph)
     {
@@ -271,7 +351,7 @@
     UIButton *button;
     UIColor *defaultColor;
     
-    defaultColor = [SysConfig getUIColorValue:CONFIG_CP1_COLOR];
+    defaultColor = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
     
     for( i=0; i<_colorButtons.count; i++)
     {
@@ -433,7 +513,7 @@
 -(void) updateUILanguageFont:(NSString*) language
 {
     
-    if ([language isEqualToString:@"zh-Hant"])
+    if ([language isEqualToString:@"zh-Hant"] || [language isEqualToString:@"zh-Hans"])
     {
         self.speedUnitLabel.font = [self.speedUnitLabel.font newFontsize:15];
         
@@ -477,7 +557,7 @@
     _systemStatusView.color     = _color;
     
     
-    if (YES == [SysConfig getBoolValue:CONFIG_H_IS_DEBUG])
+    if (YES == [SystemConfig getBoolValue:CONFIG_H_IS_DEBUG])
     {
         _courseCutLabel.textColor   = _color;
     }
@@ -578,9 +658,9 @@
     carPanelMenuView.accessibilityLabel = @"carPanel1MenuView";
     carPanelMenuView.delegate           = self;
     
-    carPanelMenuView.isHud              = [SysConfig getBoolValue:CONFIG_CP1_IS_HUD];
-    carPanelMenuView.isSpeedUnitMph     = [SysConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
-    carPanelMenuView.panelColor         = [SysConfig getUIColorValue:CONFIG_CP1_COLOR];
+    carPanelMenuView.isHud              = [SystemConfig getBoolValue:CONFIG_CP1_IS_HUD];
+    carPanelMenuView.isSpeedUnitMph     = [SystemConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
+    carPanelMenuView.panelColor         = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
 
     [self.view addSubview:carPanelMenuView];
 }
@@ -598,8 +678,8 @@
 {
     UIButton *button = (UIButton*) sender;
     
-    [SysConfig setValue:CONFIG_CP1_COLOR uicolor:button.backgroundColor];
-    self.color = [SysConfig getUIColorValue:CONFIG_CP1_COLOR];
+    [SystemConfig setValue:CONFIG_CP1_COLOR uicolor:button.backgroundColor];
+    self.color = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
     [self updateColorFromConfig];
 }
 
@@ -611,7 +691,7 @@
 
 -(IBAction) pressMphButton:(id) sender
 {
-    [SysConfig setValue:CONFIG_CP1_IS_SPEED_UNIT_MPH BOOL:TRUE];
+    [SystemConfig setValue:CONFIG_CP1_IS_SPEED_UNIT_MPH BOOL:TRUE];
     [self updateUIFromConfig];
     
 }
@@ -619,7 +699,7 @@
 -(IBAction) pressKmhButton:(id) sender
 {
     
-    [SysConfig setValue:CONFIG_CP1_IS_SPEED_UNIT_MPH BOOL:FALSE];
+    [SystemConfig setValue:CONFIG_CP1_IS_SPEED_UNIT_MPH BOOL:FALSE];
     [self updateUIFromConfig];
 }
 
@@ -627,11 +707,11 @@
 {
     if (sender == _carPanelMenuHudSwitch)
     {
-        [SysConfig setValue:CONFIG_CP1_IS_HUD BOOL:_carPanelMenuHudSwitch.on];
+        [SystemConfig setValue:CONFIG_CP1_IS_HUD BOOL:_carPanelMenuHudSwitch.on];
     }
     else if (sender == _carPanelMenuCourseSwitch)
     {
-        [SysConfig setValue:CONFIG_CP1_IS_COURSE BOOL:_carPanelMenuCourseSwitch.on];
+        [SystemConfig setValue:CONFIG_CP1_IS_COURSE BOOL:_carPanelMenuCourseSwitch.on];
     }
     
     [self updateUIFromConfig];
@@ -656,21 +736,21 @@
 #pragma mark -- delegate
 -(void) carPanel1MenuView:(CarPanel1MenuView*) cpm changeColor:(UIColor*) color
 {
-    [SysConfig setValue:CONFIG_CP1_COLOR uicolor:color];
-    self.color = [SysConfig getUIColorValue:CONFIG_CP1_COLOR];
+    [SystemConfig setValue:CONFIG_CP1_COLOR uicolor:color];
+    self.color = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
 }
 
 -(void) carPanel1MenuView:(CarPanel1MenuView*) cpm changeHud:(BOOL) isHud
 {
-    [SysConfig setValue:CONFIG_CP1_IS_HUD BOOL:isHud];
-    self.isHud = [SysConfig getBoolValue:CONFIG_CP1_IS_HUD];
+    [SystemConfig setValue:CONFIG_CP1_IS_HUD BOOL:isHud];
+    self.isHud = [SystemConfig getBoolValue:CONFIG_CP1_IS_HUD];
 }
 
 -(void) carPanel1MenuView:(CarPanel1MenuView*) cpm changeSpeedUnit:(BOOL) isMph
 {
 
-    [SysConfig setValue:CONFIG_CP1_IS_SPEED_UNIT_MPH BOOL:isMph];
-    self.isSpeedUnitMph = [SysConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
+    [SystemConfig setValue:CONFIG_CP1_IS_SPEED_UNIT_MPH BOOL:isMph];
+    self.isSpeedUnitMph = [SystemConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
 }
 
 -(void) carPanel1MenuView:(CarPanel1MenuView*) cpm pressLogoButton:(BOOL) isPressed
@@ -730,7 +810,8 @@
 #pragma mark -- operation
 - (void)checkIapItem
 {
-    carPanelMenuView.lockColorSelection = ![SysConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION];
+    bannerIsVisible                     = [SystemConfig getBoolValue:CONFIG_H_IS_AD] && (![SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION]);
+    carPanelMenuView.lockColorSelection = ![SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION];
 }
 
 -(void) showAlertTitle:(NSString*) title message:(NSString*) message

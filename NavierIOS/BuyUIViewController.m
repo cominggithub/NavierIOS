@@ -11,6 +11,7 @@
 #import <NaviUtil/SKProduct+category.h>
 #import <NaviUtil/UIImage+category.h>
 #import <NaviUtil/IAPHelper.h>
+#import <GoogleMaps/GoogleMaps.h>
 
 #define FILE_DEBUG FALSE
 #include "Log.h"
@@ -23,6 +24,7 @@
 {
     SKProduct *product;
     UIAlertView *alert;
+    GMSMapView *mapView;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -94,10 +96,14 @@
     self.purchasePanel.layer.cornerRadius  = 2.0f;
     self.purchasePanel.layer.masksToBounds = TRUE;
     
+    logO([SystemManager getSystemLanguage]);
+    
     if (480 == SystemManager.lanscapeScreenRect.size.width)
     {
-        if ([[SystemManager getSystemLanguage] isEqualToString:@"zh-hant"])
+
+        if ([[SystemManager getSystemLanguage] isEqualToString:@"zh-Hant"])
         {
+            self.routePlaceView.hidden = YES;
             self.bgImageView.image = [UIImage imageNamed:@"IAP_NoAdStoreUserPlace_bg_35_tw"];
         }
         else
@@ -107,8 +113,9 @@
     }
     else
     {
-        if ([[SystemManager getSystemLanguage] isEqualToString:@"zh-hant"])
+        if ([[SystemManager getSystemLanguage] isEqualToString:@"zh-Hant"])
         {
+            self.routePlaceView.hidden = YES;
             self.bgImageView.image = [UIImage imageNamed:@"IAP_NoAdStoreUserPlace_bg_4_tw"];
         }
         else
@@ -118,14 +125,62 @@
     }
     
     
+    /* configure routePlaceView */
+    self.routePlaceView.backgroundColor     = [[UIColor whiteColor] colorWithAlphaComponent:0.9];
+    self.routePlaceView.layer.borderColor   = [UIColor grayColor].CGColor;
+    self.routePlaceView.layer.borderWidth   = 1;
+    self.routePlaceView.layer.cornerRadius  = 2.0f;
+    self.routePlaceView.layer.masksToBounds = TRUE;
+    self.routePlaceView.hidden              = FALSE;
+    
     /* configure route Label */
     self.fromLabel.text         = [NSString stringWithFormat:@"%@:", [SystemManager getLanguageString:self.fromLabel.text]];
     self.toLabel.text           = [NSString stringWithFormat:@"%@:", [SystemManager getLanguageString:self.toLabel.text]];
     self.fromPlaceLabel.text    = [SystemManager getLanguageString:self.fromPlaceLabel.text];
-    self.toPlaceLabel.text    = [SystemManager getLanguageString:self.toPlaceLabel.text];
+    self.toPlaceLabel.text      = [SystemManager getLanguageString:self.toPlaceLabel.text];
     
 	// Do any additional setup after loading the view.
+    
+    
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:23.845650
+                                                            longitude:120.893555
+                                                                 zoom:6];
+    mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    mapView.frame            = CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height);
+    mapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    
+    Place* currentPlace                = [LocationManager currentPlace];
 
+    mapView.camera = [GMSCameraPosition cameraWithLatitude:currentPlace.coordinate.latitude
+                                                  longitude:currentPlace.coordinate.longitude
+                                                       zoom:12
+                                                    bearing:10.f
+                                               viewingAngle:10];
+
+    [mapView addObserver:self
+               forKeyPath:@"myLocation"
+                  options:NSKeyValueObservingOptionNew
+                  context:NULL];
+    
+    [mapView.settings setAllGesturesEnabled:FALSE];
+
+    // Ask for My Location data after the map has already been added to the UI.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        mapView.myLocationEnabled = YES;
+    });
+    
+    [self.contentView insertSubview:mapView atIndex:1];
+}
+
+-(void) observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    CLLocation *location;
+    location        = [change objectForKey:NSKeyValueChangeNewKey];
+    mapView.camera  = [GMSCameraPosition cameraWithTarget:location.coordinate zoom:12];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -162,7 +217,7 @@
         {
             mlogDebug(@"%@: %@", IAPHelperProductPurchasedNotification, productIdentifier);
             [self showAlertTitle:[SystemManager getLanguageString:@"Purchase successfully"]
-                         message:[SystemManager getLanguageString:@"Thanks! NavierHUD now is upgradded to Advanced version"]];
+                         message:[SystemManager getLanguageString:@"Thanks! Navier HUD now is upgradded to Advanced version"]];
              
         }
     }

@@ -31,7 +31,7 @@
     [NaviUtil setGoogleAPIKey:GOOGLE_API_Key];
     [NaviUtil setGooglePlaceAPIKey:GOOGLE_PLACE_API_Key];
     [NaviUtil init];
-    [SysConfig setFloatValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
+    [SystemConfig setFloatValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
     [User save];
 
     [Appirater setAppId:@"806144673"];    // Change for your "Your APP ID"
@@ -49,7 +49,7 @@
     [Appirater setDebug:NO];
 #endif
     
-    [SysConfig setValue:CONFIG_USE_COUNT int:[SysConfig getIntValue:CONFIG_USE_COUNT]+1];
+    [SystemConfig setValue:CONFIG_USE_COUNT int:[SystemConfig getIntValue:CONFIG_USE_COUNT]+1];
     
     // 23.002518, 120.203524
     
@@ -86,7 +86,11 @@
 //    [RSSecrets removeKey:@"IAP_AdvancedVersion"];
     [RSSecrets addKey:@"IAP_AdvancedVersion"];
 //    NSLog(@"%@: %@", @"IAP_AdvancedVersion", [RSSecrets hasKey:@"IAP_AdvancedVersion"]?@"TRUE":@"FALSE");
+#elif RELEASE_TEST
+    [RSSecrets addKey:@"IAP_AdvancedVersion"];
+#elif RELEASE
 #endif
+
     return YES;
 }
 
@@ -94,7 +98,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     /* restore to default brightnes */
-    [[UIScreen mainScreen] setBrightness:[SysConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
+    [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 
@@ -103,7 +107,7 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     /* restore to default brightnes */
-    [[UIScreen mainScreen] setBrightness:[SysConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
+    [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
 
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
@@ -112,10 +116,10 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     [Appirater appEnteredForeground:YES];
-    [SysConfig setValue:CONFIG_USE_COUNT int:[SysConfig getIntValue:CONFIG_USE_COUNT]+1];
+    [SystemConfig setValue:CONFIG_USE_COUNT int:[SystemConfig getIntValue:CONFIG_USE_COUNT]+1];
     
     /* get the default brightness */
-    [SysConfig setFloatValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
+    [SystemConfig setFloatValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
     
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     [[NSNotificationCenter defaultCenter] postNotificationName:@"applicationWillEnterForeground" object:self];
@@ -125,7 +129,7 @@
 {
     /* get the default brightness */
     
-    [SysConfig setFloatValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
+    [SystemConfig setFloatValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"applicationDidBecomeActive" object:self];
     
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
@@ -135,7 +139,7 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     /* restore to default brightnes */
-    [[UIScreen mainScreen] setBrightness:[SysConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
+    [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
 #if RELEASE_TEST
     [SystemConfig removeIAPItem:CONFIG_IAP_IS_ADVANCED_VERSION];
 #endif
