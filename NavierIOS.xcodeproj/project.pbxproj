@@ -34,10 +34,10 @@
 		2B1C31D218FD772400CF021C /* IAP_NoAdStoreUserPlace_bg_35@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1C31CE18FD772400CF021C /* IAP_NoAdStoreUserPlace_bg_35@2x.png */; };
 		2B1DDF7918C0159F00DBC200 /* button_mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1DDF7718C0159F00DBC200 /* button_mail.png */; };
 		2B1DDF7A18C0159F00DBC200 /* button_mail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1DDF7818C0159F00DBC200 /* button_mail@2x.png */; };
+		2B1F365D19094745007E0C9A /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B1F365C19094745007E0C9A /* GoogleMaps.framework */; };
+		2B1F365F1909476F007E0C9A /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2B1F365E1909476F007E0C9A /* GoogleMaps.bundle */; };
 		2B24ECA518CC0C1E0079CAD5 /* Track.tr in Resources */ = {isa = PBXBuildFile; fileRef = 2B24ECA418CC0C1E0079CAD5 /* Track.tr */; };
 		2B3907F1176D6B0A00E5F428 /* RouteGuideMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3907F0176D6B0A00E5F428 /* RouteGuideMenu.xib */; };
-		2B3BA08918B0BC5D00416119 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2B3BA08818B0BC5D00416119 /* GoogleMaps.bundle */; };
-		2B3BA08F18B0BCD200416119 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B3BA08E18B0BCD200416119 /* GoogleMaps.framework */; };
 		2B4B3121175AF25800426D60 /* SelectPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4B3120175AF25800426D60 /* SelectPlaceViewController.m */; };
 		2B5B12981868739500C464C0 /* marker_home.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B12901868739500C464C0 /* marker_home.png */; };
 		2B5B12991868739500C464C0 /* marker_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B12911868739500C464C0 /* marker_home@2x.png */; };
@@ -245,10 +245,10 @@
 		2B1C31CE18FD772400CF021C /* IAP_NoAdStoreUserPlace_bg_35@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IAP_NoAdStoreUserPlace_bg_35@2x.png"; sourceTree = "<group>"; };
 		2B1DDF7718C0159F00DBC200 /* button_mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_mail.png; sourceTree = "<group>"; };
 		2B1DDF7818C0159F00DBC200 /* button_mail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_mail@2x.png"; sourceTree = "<group>"; };
+		2B1F365C19094745007E0C9A /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		2B1F365E1909476F007E0C9A /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../../ios/framework/GoogleMaps-iOS-1.7.2/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
 		2B24ECA418CC0C1E0079CAD5 /* Track.tr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Track.tr; sourceTree = "<group>"; };
 		2B3907F0176D6B0A00E5F428 /* RouteGuideMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RouteGuideMenu.xib; path = NavierIOS/RouteGuideMenu.xib; sourceTree = "<group>"; };
-		2B3BA08818B0BC5D00416119 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../../ios/framework/GoogleMaps-iOS-1.7.0/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
-		2B3BA08E18B0BCD200416119 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		2B4B311F175AF25800426D60 /* SelectPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPlaceViewController.h; sourceTree = "<group>"; };
 		2B4B3120175AF25800426D60 /* SelectPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPlaceViewController.m; sourceTree = "<group>"; };
 		2B5B12901868739500C464C0 /* marker_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker_home.png; sourceTree = "<group>"; };
@@ -460,11 +460,11 @@
 				2B04D4781843962400233B2D /* CoreLocation.framework in Frameworks */,
 				2B04D4771843960000233B2D /* CoreData.framework in Frameworks */,
 				2B04D475184395EB00233B2D /* AVFoundation.framework in Frameworks */,
-				2B3BA08F18B0BCD200416119 /* GoogleMaps.framework in Frameworks */,
 				2BECCE241709B78100F58CE0 /* iAd.framework in Frameworks */,
 				2B6CBFFE16DFAA180095CBD4 /* libNaviUtil.a in Frameworks */,
 				2B9A431916DB955F00FD1A54 /* UIKit.framework in Frameworks */,
 				2B9A431B16DB955F00FD1A54 /* Foundation.framework in Frameworks */,
+				2B1F365D19094745007E0C9A /* GoogleMaps.framework in Frameworks */,
 				2B9A431D16DB955F00FD1A54 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -630,8 +630,6 @@
 		2B9A430C16DB955F00FD1A54 = {
 			isa = PBXGroup;
 			children = (
-				2B1372F71894EC9A00B398FD /* Security.framework */,
-				2B7697FB1894A43300DB8F5A /* StoreKit.framework */,
 				2B9A431E16DB955F00FD1A54 /* NavierIOS */,
 				2B8EE0BC17AD1D6C005FBF6B /* xib */,
 				2B9A434516DB955F00FD1A54 /* NavierIOSTests */,
@@ -653,8 +651,10 @@
 		2B9A431716DB955F00FD1A54 /* frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2B3BA08E18B0BCD200416119 /* GoogleMaps.framework */,
-				2B3BA08818B0BC5D00416119 /* GoogleMaps.bundle */,
+				2B1F365E1909476F007E0C9A /* GoogleMaps.bundle */,
+				2B1F365C19094745007E0C9A /* GoogleMaps.framework */,
+				2B1372F71894EC9A00B398FD /* Security.framework */,
+				2B7697FB1894A43300DB8F5A /* StoreKit.framework */,
 				2B6CBFF316DFAA030095CBD4 /* NaviUtil.xcodeproj */,
 				2B6A6BF1178719D8005FC851 /* libTestFlight.a */,
 				2BECCE231709B78100F58CE0 /* iAd.framework */,
@@ -1022,9 +1022,9 @@
 				2B6FCDC0178D9CAF00DCFAAF /* CarPanels.storyboard in Resources */,
 				2B14651A1870284300AC4651 /* trafficlight.MP3 in Resources */,
 				2B5B12A71868742A00C464C0 /* button_zoom_out@2x.png in Resources */,
+				2B1F365F1909476F007E0C9A /* GoogleMaps.bundle in Resources */,
 				2B66BDA318672FE900A9D75D /* office34.png in Resources */,
 				2B067CE61850C6B600A0054E /* button_search_transparent.png in Resources */,
-				2B3BA08918B0BC5D00416119 /* GoogleMaps.bundle in Resources */,
 				2B94C8E517A5407C002581F3 /* jasmineupcbold.ttf in Resources */,
 				2BD97FA618ABB88C00937C31 /* IAP_NoAdStoreUserPlace_bg_4_tw@2x.png in Resources */,
 				2B94C8F817A554D6002581F3 /* 3g.png in Resources */,
@@ -1287,6 +1287,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					/Data/Program/NavierIOS,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NavierIOS/NavierIOS-Prefix.pch";
@@ -1396,6 +1397,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					/Data/Program/NavierIOS,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NavierIOS/NavierIOS-Prefix.pch";
@@ -1424,6 +1426,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					/Data/Program/NavierIOS,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NavierIOS/NavierIOS-Prefix.pch";

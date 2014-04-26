@@ -107,7 +107,6 @@
     mapManager                          = [[MapManager alloc] init];
     mapManager.mapView.frame            = CGRectMake(0, 0, self.googleMapView.frame.size.width, self.googleMapView.frame.size.height);
     mapManager.mapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    mapManager.mapView.delegate         = self;
     mapManager.delegate                 = self;
     [self.googleMapView insertSubview:mapManager.mapView atIndex:0];
 
@@ -859,18 +858,18 @@
 
 #pragma mark - delegates
 
-- (BOOL) mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker
+- (BOOL) mapManager:(MapManager *)mm didTapMarker:(GMSMarker *)marker
 {
 
     CGPoint point;
     Place* p;
     p = (Place*)marker.userData;
 
-    point = [mapView.projection pointForCoordinate:marker.position];
+    point = [mapManager.mapView.projection pointForCoordinate:marker.position];
 
     if (nil != p)
     {
-        point = [mapView.projection pointForCoordinate:marker.position];
+        point = [mapManager.mapView.projection pointForCoordinate:marker.position];
         /* tap a new marker */
         if (p != selectedPlace)
         {
@@ -895,7 +894,7 @@
         }
     }
     
-    if ( nil == mapView.selectedMarker)
+    if ( nil == mapManager.mapView.selectedMarker)
     {
         [self showMarkerMenuFloat:point];
     }
@@ -906,10 +905,10 @@
 }
 
 
-- (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
+- (void)mapManager:(MapManager *)mm didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
 {
     CGPoint p;
-    p = [mapView.projection pointForCoordinate:coordinate];
+    p = [mapManager.mapView.projection pointForCoordinate:coordinate];
     
     if (YES == isShowMarkMenuFloat)
     {
@@ -918,17 +917,17 @@
     
 }
 
-- (void)mapView:(GMSMapView *)mapView didChangeCameraPosition:(GMSCameraPosition *)position
+- (void)mapManager:(MapManager *)mm didChangeCameraPosition:(GMSCameraPosition *)position
 {
     if (YES == isShowMarkMenuFloat)
     {
-        [self moveMarkerMenuFloat:[mapView.projection pointForCoordinate:position.target]];
+        [self moveMarkerMenuFloat:[mapManager.mapView.projection pointForCoordinate:position.target]];
     }
 
     isMapMovedAfterTappingMarker = TRUE;
 }
 
-- (void)mapView:(GMSMapView *)mapView willMove:(BOOL)gesture;
+- (void)mapManager:(MapManager *)mm willMove:(BOOL)gesture;
 {
     if (YES == gesture)
     {
