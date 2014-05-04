@@ -45,10 +45,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *fromLabel;
 @property (weak, nonatomic) IBOutlet UILabel *toPlaceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *toLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
 
 - (IBAction)pressTestButton:(id)sender;
--(void) mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate;
 -(void) searchPlace:(NSString*) placeText;
 
 

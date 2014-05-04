@@ -738,6 +738,8 @@
 
 -(void) searchPlace:(NSString*) placeText
 {
+    self.spinner.hidden = FALSE;
+    [self.spinner startAnimating];
     [mapManager searchPlace:placeText];
 }
 
@@ -942,6 +944,8 @@
         [placeSearchResultPanel updatePlaces:places];
         [self showSearchPlacePanel];
     }
+    
+    [self.spinner stopAnimating];
 }
 
 -(void) mapManager: (MapManager*) mapManager updateCurrentPlace:(Place*) place
@@ -967,6 +971,18 @@
     
 }
 
+-(void) mapManager:(MapManager*) mm startRoutePlanning:(BOOL) result
+{
+    if (FALSE == result && TRUE == mapManager.isShowPlanRouteFailedForCurrentPlace && nil != self.view.window)
+    {
+        [self showAlertTitle:[SystemManager getLanguageString:@"Fail to plan route"]
+                     message:[SystemManager getLanguageString:@"Forget to enable network connections?"]];
+    }
+    
+    self.spinner.hidden = NO;
+    [self.spinner startAnimating];
+}
+
 -(void) mapManager:(MapManager*) mm routePlanning:(BOOL) result
 {
     if (FALSE == result && TRUE == mapManager.isShowPlanRouteFailedForCurrentPlace && nil != self.view.window)
@@ -974,6 +990,8 @@
         [self showAlertTitle:[SystemManager getLanguageString:@"Fail to plan route"]
                      message:[SystemManager getLanguageString:@"Forget to enable network connections?"]];
     }
+    
+    [self.spinner stopAnimating];
 }
 
 -(void) mapManager:(MapManager*) mapManager searchPlaces:(BOOL) result
@@ -983,6 +1001,8 @@
         [self showAlertTitle:[SystemManager getLanguageString:@"Search place failed"]
                      message:[SystemManager getLanguageString:@"Forget to enable network connections?"]];
     }
+    
+    [self.spinner stopAnimating];
 }
 
 -(void) mapManager:(MapManager *)mm connectToServer:(BOOL) result

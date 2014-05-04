@@ -545,6 +545,11 @@
                                                     <segue destination="kia-zl-eow" kind="modal" id="yq5-CV-yRs"/>
                                                 </connections>
                                             </button>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="dmD-9D-UUH" userLabel="spinner">
+                                                <rect key="frame" x="230" y="11" width="20" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
+                                                <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.027450980618596077" green="0.15686275064945221" blue="0.18823529779911041" alpha="1" colorSpace="calibratedRGB"/>
                                         <accessibility key="accessibilityConfiguration" label="TopView"/>
@@ -569,6 +574,7 @@
                         <outlet property="navigationButton" destination="Ojl-Oe-bju" id="AZh-w9-CIX"/>
                         <outlet property="placeButton" destination="qGw-Kk-Lou" id="ij1-Mt-fuW"/>
                         <outlet property="routePlaceView" destination="l4A-EK-r6F" id="Kk5-jo-JoD"/>
+                        <outlet property="spinner" destination="dmD-9D-UUH" id="uvm-Ce-AWw"/>
                         <outlet property="titleLabel" destination="uXP-hU-fTA" id="nI7-KI-FzB"/>
                         <outlet property="toLabel" destination="UXq-UA-4VT" id="S64-7o-1Xr"/>
                         <outlet property="toPlaceLabel" destination="R7U-rA-RRc" id="Pnd-rL-GjJ"/>

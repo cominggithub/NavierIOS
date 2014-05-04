@@ -183,8 +183,6 @@
 
     [_clockView active];
     [_systemStatusView active];
-
-    [[UIScreen mainScreen] setBrightness:1.0];
 }
 
 -(void) inactive
@@ -196,8 +194,6 @@
     [LocationManager stopLocationTracking];
     [_clockView inactive];
     [_systemStatusView inactive];
-    
-    [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
     
 }
 - (void)viewDidUnload
@@ -541,10 +537,12 @@
     if(_isHud == TRUE)
     {
         self.contentView.transform = CGAffineTransformMakeScale(1,-1);
+        [[UIScreen mainScreen] setBrightness:1.0];
     }
     else
     {
         self.contentView.transform = CGAffineTransformMakeScale(1, 1);
+        [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
     }
 }
 
