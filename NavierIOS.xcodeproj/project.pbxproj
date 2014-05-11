@@ -25,6 +25,10 @@
 		2B067CE91850CD2400A0054E /* PlaceSearchResultPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B067CE81850CD2400A0054E /* PlaceSearchResultPanel.xib */; };
 		2B087A241861EBEF000E8D3B /* inner_showdow_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B087A231861EBEF000E8D3B /* inner_showdow_bg.png */; };
 		2B087A2C1861ECE6000E8D3B /* inner_showdow_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B087A2B1861ECE6000E8D3B /* inner_showdow_bg@2x.png */; };
+		2B130735191E45E800F83D52 /* 好事多回家.tr in Resources */ = {isa = PBXBuildFile; fileRef = 2B130732191E45E800F83D52 /* 好事多回家.tr */; };
+		2B130736191E45E800F83D52 /* 家到緩緩.tr in Resources */ = {isa = PBXBuildFile; fileRef = 2B130733191E45E800F83D52 /* 家到緩緩.tr */; };
+		2B130737191E45E800F83D52 /* 緩緩到好事多.tr in Resources */ = {isa = PBXBuildFile; fileRef = 2B130734191E45E800F83D52 /* 緩緩到好事多.tr */; };
+		2B13073B191E46D000F83D52 /* 太平橋到南台.tr in Resources */ = {isa = PBXBuildFile; fileRef = 2B13073A191E46D000F83D52 /* 太平橋到南台.tr */; };
 		2B1372F81894EC9A00B398FD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B1372F71894EC9A00B398FD /* Security.framework */; };
 		2B14651A1870284300AC4651 /* trafficlight.MP3 in Resources */ = {isa = PBXBuildFile; fileRef = 2B1465191870284300AC4651 /* trafficlight.MP3 */; };
 		2B15A20B17D0F39600F3AFE5 /* MarkerMenuFloat.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B15A20A17D0F39600F3AFE5 /* MarkerMenuFloat.xib */; };
@@ -36,7 +40,8 @@
 		2B1DDF7A18C0159F00DBC200 /* button_mail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1DDF7818C0159F00DBC200 /* button_mail@2x.png */; };
 		2B1F365D19094745007E0C9A /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B1F365C19094745007E0C9A /* GoogleMaps.framework */; };
 		2B1F365F1909476F007E0C9A /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2B1F365E1909476F007E0C9A /* GoogleMaps.bundle */; };
-		2B24ECA518CC0C1E0079CAD5 /* Track.tr in Resources */ = {isa = PBXBuildFile; fileRef = 2B24ECA418CC0C1E0079CAD5 /* Track.tr */; };
+		2B24ECA518CC0C1E0079CAD5 /* 裕文圖書館.tr in Resources */ = {isa = PBXBuildFile; fileRef = 2B24ECA418CC0C1E0079CAD5 /* 裕文圖書館.tr */; };
+		2B382156191DEADA0017F24A /* 自強家.tr in Resources */ = {isa = PBXBuildFile; fileRef = 2B382155191DEADA0017F24A /* 自強家.tr */; };
 		2B3907F1176D6B0A00E5F428 /* RouteGuideMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3907F0176D6B0A00E5F428 /* RouteGuideMenu.xib */; };
 		2B4B3121175AF25800426D60 /* SelectPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4B3120175AF25800426D60 /* SelectPlaceViewController.m */; };
 		2B5B12981868739500C464C0 /* marker_home.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B12901868739500C464C0 /* marker_home.png */; };
@@ -235,6 +240,10 @@
 		2B067CE81850CD2400A0054E /* PlaceSearchResultPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceSearchResultPanel.xib; sourceTree = "<group>"; };
 		2B087A231861EBEF000E8D3B /* inner_showdow_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inner_showdow_bg.png; sourceTree = "<group>"; };
 		2B087A2B1861ECE6000E8D3B /* inner_showdow_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inner_showdow_bg@2x.png"; sourceTree = "<group>"; };
+		2B130732191E45E800F83D52 /* 好事多回家.tr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "好事多回家.tr"; path = "../../../ios/development/track data/好事多回家.tr"; sourceTree = "<group>"; };
+		2B130733191E45E800F83D52 /* 家到緩緩.tr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "家到緩緩.tr"; path = "../../../ios/development/track data/家到緩緩.tr"; sourceTree = "<group>"; };
+		2B130734191E45E800F83D52 /* 緩緩到好事多.tr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "緩緩到好事多.tr"; path = "../../../ios/development/track data/緩緩到好事多.tr"; sourceTree = "<group>"; };
+		2B13073A191E46D000F83D52 /* 太平橋到南台.tr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "太平橋到南台.tr"; sourceTree = "<group>"; };
 		2B1372F71894EC9A00B398FD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		2B1465191870284300AC4651 /* trafficlight.MP3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = trafficlight.MP3; sourceTree = "<group>"; };
 		2B15A20A17D0F39600F3AFE5 /* MarkerMenuFloat.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MarkerMenuFloat.xib; sourceTree = "<group>"; };
@@ -247,7 +256,8 @@
 		2B1DDF7818C0159F00DBC200 /* button_mail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_mail@2x.png"; sourceTree = "<group>"; };
 		2B1F365C19094745007E0C9A /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		2B1F365E1909476F007E0C9A /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../../ios/framework/GoogleMaps-iOS-1.7.2/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
-		2B24ECA418CC0C1E0079CAD5 /* Track.tr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Track.tr; sourceTree = "<group>"; };
+		2B24ECA418CC0C1E0079CAD5 /* 裕文圖書館.tr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "裕文圖書館.tr"; sourceTree = "<group>"; };
+		2B382155191DEADA0017F24A /* 自強家.tr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "自強家.tr"; sourceTree = "<group>"; };
 		2B3907F0176D6B0A00E5F428 /* RouteGuideMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RouteGuideMenu.xib; path = NavierIOS/RouteGuideMenu.xib; sourceTree = "<group>"; };
 		2B4B311F175AF25800426D60 /* SelectPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPlaceViewController.h; sourceTree = "<group>"; };
 		2B4B3120175AF25800426D60 /* SelectPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPlaceViewController.m; sourceTree = "<group>"; };
@@ -699,7 +709,10 @@
 		2B9A431F16DB955F00FD1A54 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2B24ECA418CC0C1E0079CAD5 /* Track.tr */,
+				2B130732191E45E800F83D52 /* 好事多回家.tr */,
+				2B130733191E45E800F83D52 /* 家到緩緩.tr */,
+				2B130734191E45E800F83D52 /* 緩緩到好事多.tr */,
+				2B24ECA418CC0C1E0079CAD5 /* 裕文圖書館.tr */,
 				2B70308018A7973700FDA856 /* Icon-29.png */,
 				2B70308118A7973700FDA856 /* Icon-29@2x.png */,
 				2B70308218A7973700FDA856 /* Icon-40.png */,
@@ -715,6 +728,8 @@
 				2B9A432C16DB955F00FD1A54 /* Default@2x.png */,
 				2B9A432E16DB955F00FD1A54 /* Default-568h@2x.png */,
 				2B89A7AB17B5E7550042539F /* Localizable.strings */,
+				2B382155191DEADA0017F24A /* 自強家.tr */,
+				2B13073A191E46D000F83D52 /* 太平橋到南台.tr */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -990,13 +1005,14 @@
 				2B9A433216DB955F00FD1A54 /* MainStoryboard_iPhone.storyboard in Resources */,
 				2B5B12991868739500C464C0 /* marker_home@2x.png in Resources */,
 				2B5B12AF1868832400C464C0 /* marker_favor@2x.png in Resources */,
+				2B130736191E45E800F83D52 /* 家到緩緩.tr in Resources */,
 				2B66BDA618672FE900A9D75D /* search34@2x.png in Resources */,
 				2B9A433516DB955F00FD1A54 /* MainStoryboard_iPad.storyboard in Resources */,
 				2B067CE91850CD2400A0054E /* PlaceSearchResultPanel.xib in Resources */,
 				2B66BD9F18672FE900A9D75D /* favor34.png in Resources */,
 				2B5B12AA1868743100C464C0 /* button_mylocation.png in Resources */,
 				2BC8393E1866D882002477AF /* button_navigation@2x.png in Resources */,
-				2B24ECA518CC0C1E0079CAD5 /* Track.tr in Resources */,
+				2B24ECA518CC0C1E0079CAD5 /* 裕文圖書館.tr in Resources */,
 				2BC839521866ECD8002477AF /* button_buy@2x.png in Resources */,
 				2BC3D369186699250092F02F /* close@2x.png in Resources */,
 				2B5B12A51868742A00C464C0 /* button_zoom_in@2x.png in Resources */,
@@ -1017,6 +1033,7 @@
 				2BD97FA818ABB88C00937C31 /* IAP_NoAdStoreUserPlace_bg_35_tw@2x.png in Resources */,
 				2B6EC02A186338260008642C /* map_btn_pressed@2x.png in Resources */,
 				2B5B12A61868742A00C464C0 /* button_zoom_out.png in Resources */,
+				2B130737191E45E800F83D52 /* 緩緩到好事多.tr in Resources */,
 				2B66BDA118672FE900A9D75D /* home34.png in Resources */,
 				2B781E5F18B7AA4600DD22BA /* turn_right90@2x.png in Resources */,
 				2B6FCDC0178D9CAF00DCFAAF /* CarPanels.storyboard in Resources */,
@@ -1060,6 +1077,7 @@
 				2B9A1368186EF94200AB7945 /* icon_navi_left.png in Resources */,
 				2B1C31D018FD772400CF021C /* IAP_NoAdStoreUserPlace_bg_4@2x.png in Resources */,
 				2B9A1369186EF94200AB7945 /* icon_navi_left@2x.png in Resources */,
+				2B382156191DEADA0017F24A /* 自強家.tr in Resources */,
 				2B781E5B18B7AA4600DD22BA /* turn_left90@2x.png in Resources */,
 				2B781E3F18B7875E00DD22BA /* car_location@2x.png in Resources */,
 				2BE6DA5717C39C2200DE20E8 /* dashboard@2x.png in Resources */,
@@ -1112,6 +1130,7 @@
 				2B781E5A18B7AA4600DD22BA /* turn_left90.png in Resources */,
 				2BB2E1F418BA424C008BB41B /* turn_left45@2x.png in Resources */,
 				2B5D9A7617C7A57D00A22132 /* button_shop.png in Resources */,
+				2B130735191E45E800F83D52 /* 好事多回家.tr in Resources */,
 				2B087A241861EBEF000E8D3B /* inner_showdow_bg.png in Resources */,
 				2BC8393D1866D882002477AF /* button_navigation.png in Resources */,
 				2B5D9A7717C7A57D00A22132 /* button_shop@2x.png in Resources */,
@@ -1125,6 +1144,7 @@
 				2B79233117C9C129009463F8 /* gps_off.png in Resources */,
 				2B79233217C9C129009463F8 /* gps_off@2x.png in Resources */,
 				2B15A20B17D0F39600F3AFE5 /* MarkerMenuFloat.xib in Resources */,
+				2B13073B191E46D000F83D52 /* 太平橋到南台.tr in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

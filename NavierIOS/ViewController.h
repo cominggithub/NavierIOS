@@ -16,6 +16,7 @@
     LocationManager* locationManager;
     LocationSimulator *locationSimulator;
 }
+- (IBAction)pressMapButton:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
 - (IBAction)pressPlace:(id)sender;

@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "RouteNavigationViewController.h"
+#import "GoogleMapUIViewController.h"
 #import "CarPanel1ViewController.h"
 #import <AVFoundation/AVFoundation.h>
 
@@ -22,6 +23,7 @@
 @implementation ViewController
 {
     RouteNavigationViewController *routeNavigationViewController;
+    GoogleMapUIViewController *googleMapUIViewController;
     ADBannerView *adView;
     
     /* bug: bounds don't change to landscape mode */
@@ -50,6 +52,8 @@
     
     alert                           = nil;
     routeNavigationViewController   = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass ([RouteNavigationViewController class])];
+    googleMapUIViewController       = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass ([GoogleMapUIViewController class])];
+    
     oriProtraitMapButtonFrame       = self.mapButton.frame;
     oriLandscapeMapButtonFrame      = self.mapButton.frame;
     oriMapButtonAutoresizingMask    = self.mapButton.autoresizingMask;
@@ -148,12 +152,7 @@
 
 -(void) checkIAPItem
 {
-    if (NavierHUDIAPHelper.iapItemCount < 1)
-    {
-       [NavierHUDIAPHelper retrieveProduct];
-        self.buyButton.hidden = YES;
-    }
-    else if (YES == [SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION])
+    if (YES == [SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION])
     {
         self.buyButton.hidden = YES;
     }
@@ -360,6 +359,7 @@
 
 -(void) addBanner:(UIView*) contentView
 {
+
     if (FALSE == [SystemConfig getBoolValue:CONFIG_H_IS_AD])
         return;
     
@@ -490,6 +490,11 @@
 //    [NaviQueryManager planRouteStartLocationText:@"成大" EndLocationText:@"台南一中"];
 }
 
+- (IBAction)pressMapButton:(id)sender
+{
+    [self presentViewController:googleMapUIViewController animated:YES completion:nil];
+}
+
 - (IBAction)pressCarPanel:(id)sender
 {
     // Get the storyboard named secondStoryBoard from the main bundle:
@@ -607,5 +612,7 @@
 {
     alert = nil;
 }
+
+
 
 @end

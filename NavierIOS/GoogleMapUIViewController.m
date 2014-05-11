@@ -61,7 +61,7 @@
 
 - (void)dealloc
 {
-    
+
 }
 
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -75,6 +75,11 @@
         }
     }
     return self;
+}
+
+-(void) initSelf
+{
+    
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -92,16 +97,12 @@
 
 - (void)viewDidLoad
 {
-    
-    
-    NSString* navigationText;
-    NSString* placeText;
-
     [super viewDidLoad];
-    
     
     alert                               = nil;
 
+    
+    
     isMapMovedAfterTappingMarker        = FALSE;
     /* google map initialization */
     mapManager                          = [[MapManager alloc] init];
@@ -110,9 +111,6 @@
     mapManager.delegate                 = self;
     [self.googleMapView insertSubview:mapManager.mapView atIndex:0];
 
-    [self.navigationButton setTitle:navigationText forState:UIControlStateNormal];
-    [self.placeButton setTitle:placeText forState:UIControlStateNormal];
-    
     [self addMarkerMenuFloat];
     [self addPlaceSearchResultPanel];
     
@@ -126,13 +124,14 @@
     savePlaceViewController.delegate    = self;
     selectPlaceViewController.delegate  = self;
     
-    /* banner */
-    [self addBanner:self.contentView];
-    [self showAdAnimated:NO];
+
     
 //    self.topView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.85];
     
 
+    /* banner */
+    [self addBanner:self.contentView];
+    [self showAdAnimated:NO];
     
     /* configure routePlaceView */
     self.routePlaceView.backgroundColor     = [[UIColor whiteColor] colorWithAlphaComponent:0.9];
@@ -155,7 +154,9 @@
 }
 
 
-- (void)viewDidUnload {
+- (void)viewDidUnload
+{
+    [self removeBanner];
     [self setTitleLabel:nil];
     [self setNavigationButton:nil];
     [self setPlaceButton:nil];
@@ -163,11 +164,13 @@
     [self setGoogleMapView:nil];
     [self setTopView:nil];
     [self setZoomPanel:nil];
+
     [super viewDidUnload];
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
+
     
     if(self.placeToSearch != nil && self.placeToSearch.length > 0)
     {
@@ -197,11 +200,18 @@
 {
     mapManager.viewAppear = FALSE;
 }
+
+
 #pragma  mark - Banner
 -(void) addBanner:(UIView*) contentView
 {
     if (FALSE == [SystemConfig getBoolValue:CONFIG_H_IS_AD])
         return;
+    
+    if (nil != adView)
+    {
+        return;
+    }
     
     if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)])
     {
@@ -221,6 +231,15 @@
     [self showAdAnimated:NO];
 }
 
+-(void) removeBanner
+{
+    if (nil != adView)
+    {
+        [adView removeFromSuperview];
+        adView.delegate = nil;
+        adView          = nil;
+    }
+}
 - (void)showAdAnimated:(BOOL)animated
 {
 
@@ -292,6 +311,9 @@
 #pragma  mark - MarkMenuFloat
 -(void) addMarkerMenuFloat
 {
+    if (nil != markerMenuFloatView)
+        return;
+    
     isShowMarkMenu = false;
 
     NSArray *xibContents = [[NSBundle mainBundle] loadNibNamed:@"MarkerMenuFloat" owner:self options:nil];
@@ -601,7 +623,12 @@
 
 -(void) addMarkMenu
 {
+    
+    
     isShowMarkMenu = false;
+    
+    if (nil != _markMenu)
+        return;
     
     NSArray *xibContents = [[NSBundle mainBundle] loadNibNamed:@"MarkMenu" owner:self options:nil];
     
@@ -689,6 +716,8 @@
     CGRect landscapeFrame;
     NSArray *xibContents = [[NSBundle mainBundle] loadNibNamed:@"PlaceSearchResultPanel" owner:self options:nil];
     
+    if (nil != placeSearchResultPanel)
+        return;
     
     placeSearchResultPanel          = [xibContents objectAtIndex:0];
     placeSearchResultPanel.hidden   = YES;

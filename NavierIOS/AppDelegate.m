@@ -84,7 +84,7 @@
 */
 #if DEBUG
 //    [RSSecrets removeKey:@"IAP_AdvancedVersion"];
-    [RSSecrets addKey:@"IAP_AdvancedVersion"];
+//    [RSSecrets addKey:@"IAP_AdvancedVersion"];
 //    NSLog(@"%@: %@", @"IAP_AdvancedVersion", [RSSecrets hasKey:@"IAP_AdvancedVersion"]?@"TRUE":@"FALSE");
 #elif RELEASE_TEST
     [RSSecrets addKey:@"IAP_AdvancedVersion"];
@@ -140,8 +140,12 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     /* restore to default brightnes */
     [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
-#if RELEASE_TEST
-    [SystemConfig removeIAPItem:CONFIG_IAP_IS_ADVANCED_VERSION];
+#if DEBUG
+    [RSSecrets removeKey:@"IAP_AdvancedVersion"];
+    NSLog(@"%@: %@", @"IAP_AdvancedVersion", [RSSecrets hasKey:@"IAP_AdvancedVersion"]?@"TRUE":@"FALSE");
+#elif RELEASE_TEST
+    [RSSecrets removeKey:@"IAP_AdvancedVersion"];
+#elif RELEASE
 #endif
 
 }

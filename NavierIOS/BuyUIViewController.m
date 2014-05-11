@@ -96,8 +96,6 @@
     self.purchasePanel.layer.cornerRadius  = 2.0f;
     self.purchasePanel.layer.masksToBounds = TRUE;
     
-    logO([SystemManager getSystemLanguage]);
-    
     if (480 == SystemManager.lanscapeScreenRect.size.width)
     {
 
@@ -274,6 +272,15 @@
 {
     alert = nil;
     [self dismissViewControllerAnimated:true completion:nil];
+}
+
+- (void)dealloc {
+    if (mapView != nil)
+    {
+        [mapView removeObserver:self
+                      forKeyPath:@"myLocation"
+                         context:NULL];
+    }
 }
 
 @end

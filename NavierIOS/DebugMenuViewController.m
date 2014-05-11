@@ -27,9 +27,12 @@
     UISwitch *_debugMenuIsSimulateCarMovementSwitch;
     UISegmentedControl *_debugMenuLanguageSegmentControl;
     UIPickerView *_debugMenuPlacePickerView;
+    UIPickerView *_debugMenuTrackPickerView;
     
     UIScrollView *_debugMenuScrollView;
     LocationSimulator *locationSimulator;
+    NSMutableArray *trackFiles;
+    NSString *selectedTrackFile;
     
 }
 @end
@@ -56,7 +59,10 @@
     _debugMenuIsSimulateLocationLostSwitch  = (UISwitch *)          [_debugMenuView viewWithTag:111];
     _debugMenuIsSimulateCarMovementSwitch   = (UISwitch *)          [_debugMenuView viewWithTag:112];
     _debugMenuScrollView                    = (UIScrollView *)      [_debugMenuView viewWithTag:200];
+    _debugMenuTrackPickerView               = (UIPickerView *)      [_debugMenuView viewWithTag:201];
 
+    
+    
     [_debugMenuScrollView setContentSize:CGSizeMake(468, 1000)];
     
     [_debugMenuLogoButton addTarget:self
@@ -75,8 +81,11 @@
     [_debugMenuIsSimulateLocationLostSwitch     addTarget:self action:@selector(uiValueChanged:) forControlEvents:UIControlEventValueChanged];
     [_debugMenuIsSimulateCarMovementSwitch      addTarget:self action:@selector(uiValueChanged:) forControlEvents:UIControlEventValueChanged];
 
-    _debugMenuPlacePickerView.delegate    = self;
-    _debugMenuPlacePickerView.dataSource  = self;
+    _debugMenuPlacePickerView.delegate      = self;
+    _debugMenuPlacePickerView.dataSource    = self;
+    
+    _debugMenuTrackPickerView.delegate      = self;
+    _debugMenuTrackPickerView.dataSource    = self;
     
 //    _debugMenuView.frame = self.view.frame;
     
@@ -96,6 +105,13 @@
 {
     [self addDebugMenu];
     [super viewDidLoad];
+    trackFiles          = [self getTrackFiles];
+    selectedTrackFile   = nil;
+
+    [SystemConfig setValue:CONFIG_DEFAULT_TRACK_FILE string:
+     [NSString stringWithFormat:@"%@.tr",
+      [trackFiles objectAtIndex:[_debugMenuTrackPickerView selectedRowInComponent:0]]]];
+    
 	// Do any additional setup after loading the view.
 }
 
@@ -132,6 +148,7 @@
 {
     [User createDebugConfig];
     [User save];
+    
 }
 
 
@@ -150,7 +167,12 @@
     [SystemConfig setValue:CONFIG_H_IS_USER_PLACE BOOL:_debugMenuIsUserPlaceSwitch.on];
     [SystemConfig setValue:CONFIG_H_IS_SIMULATE_LOCATION_LOST BOOL:_debugMenuIsSimulateLocationLostSwitch.on];
     [SystemConfig setValue:CONFIG_H_IS_SIMULATE_CAR_MOVEMENT BOOL:_debugMenuIsSimulateCarMovementSwitch.on];
-
+    logfn();
+    [SystemConfig setValue:CONFIG_DEFAULT_TRACK_FILE string:
+     [NSString stringWithFormat:@"%@.tr", 
+     [trackFiles objectAtIndex:[_debugMenuTrackPickerView selectedRowInComponent:0]]]];
+    logO([SystemConfig getStringValue:CONFIG_DEFAULT_TRACK_FILE]);
+    logfn();
 }
 
 -(void) updateUIFromConfig
@@ -170,16 +192,22 @@
 
 -(void) uiValueChanged:(id) sender
 {
+    logfn();
     [self saveConfigFromUI];
     if (TRUE == [SystemConfig getBoolValue:CONFIG_H_IS_SIMULATE_CAR_MOVEMENT])
     {
+        logfn();
         [LocationManager setLocationUpdateType:kLocationManagerLocationUpdateType_File];
+        logfn();
         [LocationManager startLocationSimulation];
+        logfn();
     }
     else
     {
+        logfn();
         [LocationManager stopLocationSimulation];
     }
+    logfn();
 }
 
 -(void) viewDidUnload
@@ -202,12 +230,32 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component;
 {
-    return [LocationManager getManualPlaceCount];
+    return trackFiles.count;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component;
 {
-    return ((Place*)[LocationManager getManualPlaceByIndex:(int)row]).name;
+    return [trackFiles objectAtIndex:row];
+}
+
+-(NSMutableArray*) getTrackFiles
+{
+    NSArray* dirs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[[NSBundle mainBundle] resourcePath] error:NULL];
+    NSMutableArray *tmpTrackFiles = [[NSMutableArray alloc] init];
+
+    [dirs enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSString *fileName = (NSString *)obj;
+            NSString *extension = [[fileName pathExtension] lowercaseString];
+
+            if ([extension isEqualToString:@"tr"])
+            {
+                [tmpTrackFiles addObject:[obj stringByDeletingPathExtension]];
+
+            }
+        }
+     ];
+    
+    return tmpTrackFiles;
 }
 
 

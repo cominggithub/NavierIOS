@@ -310,10 +310,7 @@
         [LocationManager startMonitorLocation];
     }
  
-    if (YES == [SystemConfig getBoolValue:CONFIG_IS_TRACK_LOCATION])
-    {
-        [LocationManager startLocationTracking];
-    }
+    [LocationManager startLocationTracking];
     
     carPanelMenuView.hidden = YES;
 }
@@ -323,10 +320,7 @@
     [self.guideRouteUIView inactive];
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     
-    if (YES == [SystemConfig getBoolValue:CONFIG_H_IS_DEBUG])
-    {
-        [LocationManager stopLocationTracking];
-    }
+    [LocationManager stopLocationTracking];
 
     [LocationManager stopMonitorLocation];
     carPanelMenuView.hidden = YES;
