@@ -26,7 +26,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    
+    NSError *error;
     [GMSServices provideAPIKey:GOOGLE_API_Key];
     [NaviUtil setGoogleAPIKey:GOOGLE_API_Key];
     [NaviUtil setGooglePlaceAPIKey:GOOGLE_PLACE_API_Key];
@@ -48,9 +48,17 @@
 #else
     [Appirater setDebug:NO];
 #endif
+    [Appirater appEnteredForeground:YES];
+    
+    if (0 == [Appirater useCount])
+    {
+        [RSSecrets removeKey:@"IAP_AdvancedVersion"];
+    }
     
     [SystemConfig setValue:CONFIG_USE_COUNT int:[SystemConfig getIntValue:CONFIG_USE_COUNT]+1];
     
+    // mix voice guidance with playing music
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:&error];
     // 23.002518, 120.203524
     
 /*
@@ -116,6 +124,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     [Appirater appEnteredForeground:YES];
+
     [SystemConfig setValue:CONFIG_USE_COUNT int:[SystemConfig getIntValue:CONFIG_USE_COUNT]+1];
     
     /* get the default brightness */
