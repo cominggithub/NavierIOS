@@ -44,7 +44,7 @@
     [Appirater setTimeBeforeReminding:2];
     
 #if DEBUG
-    [Appirater setDebug:YES];
+    [Appirater setDebug:NO];
 #else
     [Appirater setDebug:NO];
 #endif

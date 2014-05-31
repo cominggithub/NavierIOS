@@ -183,6 +183,7 @@
 
 - (IBAction)pressTextButton:(id)sender
 {
+
     self.guideRouteUIView.messageBoxText = [SystemManager getLanguageString:[NSString stringWithFormat:@"routeGuideText%d", routeTextIndex++]];
     routeTextIndex = routeTextIndex%10;
     
