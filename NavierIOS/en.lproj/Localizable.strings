@@ -12,13 +12,7 @@
 "HUD" = "HUD";
 "routeGuideText0"= "AAA";
 "routeGuideText1"= "AAAAA dda ddasd das";
-"routeGuideText2"= "AAAAA bb bbb cccd ddaasd fw";
-"routeGuideText3"= "AAAAA bb bbb cccd ddaafwwwe dsasd";
-"routeGuideText4"= "AAsad bb bbb cccd ddaawe dsassd fsd fwd";
-"routeGuideText5"= "AAAAA dsd sdfbb bbb ccsadf scd ddaasd fwwwe dsasd";
-"routeGuideText6"= "AAAAA bb bbb cccd ddaasd fwwsdsdfwe dsasd";
-"routeGuideText7"= "AAAAA bb bbb sdf cccd ddaasd fwwwsdfsdfe dsasd";
-"routeGuideText8"= "AAAAA bb bbb cccd sd ddaasd fwwwe dsasd asdf asdfwef asdf er we";
-"routeGuideText9"= "";
+"routeGuideText2"= "AAAAA bb bbb cccd sd ddaasd fwwwe dsasd asdf asdfwef asdf er we";
+"routeGuideText3"= "AAAAA bb bbb cccd sd ddaasd fwwwe dsasd asdf asdfwef asdf er we ddaasd fwwwe dsasd asdf asdfwef asdf er we";
 "FromPlace" = "From";
 "ToPlace" = "To";
