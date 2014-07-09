@@ -38,11 +38,14 @@
 		2B1C31D218FD772400CF021C /* IAP_NoAdStoreUserPlace_bg_35@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1C31CE18FD772400CF021C /* IAP_NoAdStoreUserPlace_bg_35@2x.png */; };
 		2B1DDF7918C0159F00DBC200 /* button_mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1DDF7718C0159F00DBC200 /* button_mail.png */; };
 		2B1DDF7A18C0159F00DBC200 /* button_mail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1DDF7818C0159F00DBC200 /* button_mail@2x.png */; };
+		2B1E249B196780E000188EAD /* googleLanguage.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B1E249A196780E000188EAD /* googleLanguage.plist */; };
 		2B1F365D19094745007E0C9A /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B1F365C19094745007E0C9A /* GoogleMaps.framework */; };
 		2B1F365F1909476F007E0C9A /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2B1F365E1909476F007E0C9A /* GoogleMaps.bundle */; };
 		2B24ECA518CC0C1E0079CAD5 /* 裕文圖書館.tr in Resources */ = {isa = PBXBuildFile; fileRef = 2B24ECA418CC0C1E0079CAD5 /* 裕文圖書館.tr */; };
 		2B382156191DEADA0017F24A /* 自強家.tr in Resources */ = {isa = PBXBuildFile; fileRef = 2B382155191DEADA0017F24A /* 自強家.tr */; };
 		2B3907F1176D6B0A00E5F428 /* RouteGuideMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3907F0176D6B0A00E5F428 /* RouteGuideMenu.xib */; };
+		2B3FF26D196992EC004E1D8D /* 永康家.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 2B3FF26B196992EC004E1D8D /* 永康家.gpx */; };
+		2B3FF26E196992EC004E1D8D /* 高雄家.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 2B3FF26C196992EC004E1D8D /* 高雄家.gpx */; };
 		2B4B3121175AF25800426D60 /* SelectPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4B3120175AF25800426D60 /* SelectPlaceViewController.m */; };
 		2B5B12981868739500C464C0 /* marker_home.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B12901868739500C464C0 /* marker_home.png */; };
 		2B5B12991868739500C464C0 /* marker_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B12911868739500C464C0 /* marker_home@2x.png */; };
@@ -254,11 +257,14 @@
 		2B1C31CE18FD772400CF021C /* IAP_NoAdStoreUserPlace_bg_35@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IAP_NoAdStoreUserPlace_bg_35@2x.png"; sourceTree = "<group>"; };
 		2B1DDF7718C0159F00DBC200 /* button_mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_mail.png; sourceTree = "<group>"; };
 		2B1DDF7818C0159F00DBC200 /* button_mail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_mail@2x.png"; sourceTree = "<group>"; };
+		2B1E249A196780E000188EAD /* googleLanguage.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = googleLanguage.plist; sourceTree = "<group>"; };
 		2B1F365C19094745007E0C9A /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		2B1F365E1909476F007E0C9A /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../../ios/framework/GoogleMaps-iOS-1.7.2/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
 		2B24ECA418CC0C1E0079CAD5 /* 裕文圖書館.tr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "裕文圖書館.tr"; sourceTree = "<group>"; };
 		2B382155191DEADA0017F24A /* 自強家.tr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "自強家.tr"; sourceTree = "<group>"; };
 		2B3907F0176D6B0A00E5F428 /* RouteGuideMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RouteGuideMenu.xib; path = NavierIOS/RouteGuideMenu.xib; sourceTree = "<group>"; };
+		2B3FF26B196992EC004E1D8D /* 永康家.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "永康家.gpx"; path = "../../../../ios/gps/永康家.gpx"; sourceTree = "<group>"; };
+		2B3FF26C196992EC004E1D8D /* 高雄家.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "高雄家.gpx"; path = "../../../../ios/gps/高雄家.gpx"; sourceTree = "<group>"; };
 		2B4B311F175AF25800426D60 /* SelectPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPlaceViewController.h; sourceTree = "<group>"; };
 		2B4B3120175AF25800426D60 /* SelectPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPlaceViewController.m; sourceTree = "<group>"; };
 		2B5B12901868739500C464C0 /* marker_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker_home.png; sourceTree = "<group>"; };
@@ -578,6 +584,8 @@
 		2B7929D017007FC300353349 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2B3FF26B196992EC004E1D8D /* 永康家.gpx */,
+				2B3FF26C196992EC004E1D8D /* 高雄家.gpx */,
 				2B94C8E417A5407C002581F3 /* jasmineupcbold.ttf */,
 				2BC839421866D97C002477AF /* Interface */,
 				2B6EC00E1863212F0008642C /* Place */,
@@ -587,6 +595,7 @@
 				2B3A142217BE5B3E0023D666 /* Marker */,
 				2BE15351178ED65000C55363 /* CarPanel */,
 				2B8C06E71788F0730021E4F3 /* Icon and Background */,
+				2B1E249A196780E000188EAD /* googleLanguage.plist */,
 			);
 			name = Resources;
 			path = NavierIOS/Resources;
@@ -1076,6 +1085,7 @@
 				2B710AAF18AF90A5001CB675 /* lock.png in Resources */,
 				2B9A1368186EF94200AB7945 /* icon_navi_left.png in Resources */,
 				2B1C31D018FD772400CF021C /* IAP_NoAdStoreUserPlace_bg_4@2x.png in Resources */,
+				2B3FF26E196992EC004E1D8D /* 高雄家.gpx in Resources */,
 				2B9A1369186EF94200AB7945 /* icon_navi_left@2x.png in Resources */,
 				2B382156191DEADA0017F24A /* 自強家.tr in Resources */,
 				2B781E5B18B7AA4600DD22BA /* turn_left90@2x.png in Resources */,
@@ -1096,7 +1106,9 @@
 				2B781E5918B7AA4600DD22BA /* turn_left45.png in Resources */,
 				2B781E5E18B7AA4600DD22BA /* turn_right90.png in Resources */,
 				2B66BD8418671CC000A9D75D /* button_shift_left.png in Resources */,
+				2B3FF26D196992EC004E1D8D /* 永康家.gpx in Resources */,
 				2BC839451866D989002477AF /* top_button_v_separator.png in Resources */,
+				2B1E249B196780E000188EAD /* googleLanguage.plist in Resources */,
 				2BC3D37B1866CE0F0092F02F /* marker_menu_bg@2x.png in Resources */,
 				2B781E3E18B7875E00DD22BA /* car_location.png in Resources */,
 				2B781E5D18B7AA4600DD22BA /* turn_right45@2x.png in Resources */,
