@@ -10,6 +10,7 @@
 #import "RouteNavigationViewController.h"
 #import "GoogleMapUIViewController.h"
 #import "CarPanel1ViewController.h"
+#import <NaviUtil/CoordinateTranslator.h>
 #import <AVFoundation/AVFoundation.h>
 
 
@@ -99,6 +100,28 @@
                                                object:nil];
     
  
+    /*
+    CGPoint startPoint, endPoint, carPoint;
+    CGPoint startDrawPoint, endDrawPoint, carDrawPoint;
+    CGPoint screenOffset;
+    CLLocationCoordinate2D startLocation = CLLocationCoordinate2DMake(23.080097, 120.295464);
+    CLLocationCoordinate2D endLocation = CLLocationCoordinate2DMake(23.081440, 120.295426);
+    CLLocationCoordinate2D carLocation = CLLocationCoordinate2DMake(23.101606, 120.318070);
+    
+    screenOffset = CGPointMake(0, 0);
+    startPoint = [CoordinateTranslator projectCoordinate:startLocation];
+    endPoint = [CoordinateTranslator projectCoordinate:endLocation];
+    carPoint = [CoordinateTranslator projectCoordinate:carLocation];
+
+    startDrawPoint = [CoordinateTranslator getDrawPointByPoint:startPoint at:startPoint angle:0 screenOffset:screenOffset carCenterPoint:carPoint];
+    endDrawPoint = [CoordinateTranslator getDrawPointByPoint:endPoint at:startPoint angle:0 screenOffset:screenOffset carCenterPoint:carPoint];
+    
+    NSLog(@"start point: (%.1f, %.1f), (%.1f, %.1f)", startPoint.x, startPoint.y, endPoint.x, endPoint.y);
+    NSLog(@"(%.1f, %.1f)", startPoint.x - endPoint.x, startPoint.y - endPoint.y);
+    NSLog(@"draw  point: (%.1f, %.1f), (%.1f, %.1f)", startDrawPoint.x, startDrawPoint.y, endDrawPoint.x, endDrawPoint.y);
+    NSLog(@"(%.1f, %.1f)", startDrawPoint.x - endDrawPoint.x, startDrawPoint.y - endDrawPoint.y);
+    NSLog(@"distance: %.1f", [GeoUtil getGeoDistanceFromLocation:startLocation ToLocation:endLocation]);
+     */
     
 }
 
