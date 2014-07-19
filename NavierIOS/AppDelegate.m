@@ -61,7 +61,6 @@
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:&error];
     // 23.002518, 120.203524
 
-    
 /*
     Place *p1 = [[Place alloc] initWithName:@"甜蜜的家" address:@"冬山" coordinate:CLLocationCoordinate2DMake(23.011051, 120.194082)];
     p1.placeType = kPlaceType_Home;
