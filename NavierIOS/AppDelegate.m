@@ -60,6 +60,7 @@
     // mix voice guidance with playing music
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:&error];
     // 23.002518, 120.203524
+
     
 /*
     Place *p1 = [[Place alloc] initWithName:@"甜蜜的家" address:@"冬山" coordinate:CLLocationCoordinate2DMake(23.011051, 120.194082)];
@@ -92,7 +93,7 @@
 */
 #if DEBUG
 //    [RSSecrets removeKey:@"IAP_AdvancedVersion"];
-//    [RSSecrets addKey:@"IAP_AdvancedVersion"];
+    [RSSecrets addKey:@"IAP_AdvancedVersion"];
 //    NSLog(@"%@: %@", @"IAP_AdvancedVersion", [RSSecrets hasKey:@"IAP_AdvancedVersion"]?@"TRUE":@"FALSE");
 #elif RELEASE_TEST
     [RSSecrets addKey:@"IAP_AdvancedVersion"];

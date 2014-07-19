@@ -167,12 +167,9 @@
     [SystemConfig setValue:CONFIG_H_IS_USER_PLACE BOOL:_debugMenuIsUserPlaceSwitch.on];
     [SystemConfig setValue:CONFIG_H_IS_SIMULATE_LOCATION_LOST BOOL:_debugMenuIsSimulateLocationLostSwitch.on];
     [SystemConfig setValue:CONFIG_H_IS_SIMULATE_CAR_MOVEMENT BOOL:_debugMenuIsSimulateCarMovementSwitch.on];
-    logfn();
     [SystemConfig setValue:CONFIG_DEFAULT_TRACK_FILE string:
      [NSString stringWithFormat:@"%@.tr", 
      [trackFiles objectAtIndex:[_debugMenuTrackPickerView selectedRowInComponent:0]]]];
-    logO([SystemConfig getStringValue:CONFIG_DEFAULT_TRACK_FILE]);
-    logfn();
 }
 
 -(void) updateUIFromConfig
@@ -192,22 +189,16 @@
 
 -(void) uiValueChanged:(id) sender
 {
-    logfn();
     [self saveConfigFromUI];
     if (TRUE == [SystemConfig getBoolValue:CONFIG_H_IS_SIMULATE_CAR_MOVEMENT])
     {
-        logfn();
         [LocationManager setLocationUpdateType:kLocationManagerLocationUpdateType_File];
-        logfn();
         [LocationManager startLocationSimulation];
-        logfn();
     }
     else
     {
-        logfn();
         [LocationManager stopLocationSimulation];
     }
-    logfn();
 }
 
 -(void) viewDidUnload

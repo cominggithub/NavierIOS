@@ -44,6 +44,7 @@
 		2B24ECA518CC0C1E0079CAD5 /* 裕文圖書館.tr in Resources */ = {isa = PBXBuildFile; fileRef = 2B24ECA418CC0C1E0079CAD5 /* 裕文圖書館.tr */; };
 		2B382156191DEADA0017F24A /* 自強家.tr in Resources */ = {isa = PBXBuildFile; fileRef = 2B382155191DEADA0017F24A /* 自強家.tr */; };
 		2B3907F1176D6B0A00E5F428 /* RouteGuideMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3907F0176D6B0A00E5F428 /* RouteGuideMenu.xib */; };
+		2B39F924197A300100E7D829 /* 忠孝路到緩緩.tr in Resources */ = {isa = PBXBuildFile; fileRef = 2B39F923197A300100E7D829 /* 忠孝路到緩緩.tr */; };
 		2B3FF26D196992EC004E1D8D /* 永康家.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 2B3FF26B196992EC004E1D8D /* 永康家.gpx */; };
 		2B3FF26E196992EC004E1D8D /* 高雄家.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 2B3FF26C196992EC004E1D8D /* 高雄家.gpx */; };
 		2B4B3121175AF25800426D60 /* SelectPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4B3120175AF25800426D60 /* SelectPlaceViewController.m */; };
@@ -263,6 +264,7 @@
 		2B24ECA418CC0C1E0079CAD5 /* 裕文圖書館.tr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "裕文圖書館.tr"; sourceTree = "<group>"; };
 		2B382155191DEADA0017F24A /* 自強家.tr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "自強家.tr"; sourceTree = "<group>"; };
 		2B3907F0176D6B0A00E5F428 /* RouteGuideMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RouteGuideMenu.xib; path = NavierIOS/RouteGuideMenu.xib; sourceTree = "<group>"; };
+		2B39F923197A300100E7D829 /* 忠孝路到緩緩.tr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "忠孝路到緩緩.tr"; sourceTree = "<group>"; };
 		2B3FF26B196992EC004E1D8D /* 永康家.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "永康家.gpx"; path = "../../../../ios/gps/永康家.gpx"; sourceTree = "<group>"; };
 		2B3FF26C196992EC004E1D8D /* 高雄家.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "高雄家.gpx"; path = "../../../../ios/gps/高雄家.gpx"; sourceTree = "<group>"; };
 		2B4B311F175AF25800426D60 /* SelectPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPlaceViewController.h; sourceTree = "<group>"; };
@@ -718,6 +720,7 @@
 		2B9A431F16DB955F00FD1A54 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2B39F923197A300100E7D829 /* 忠孝路到緩緩.tr */,
 				2B130732191E45E800F83D52 /* 好事多回家.tr */,
 				2B130733191E45E800F83D52 /* 家到緩緩.tr */,
 				2B130734191E45E800F83D52 /* 緩緩到好事多.tr */,
@@ -1134,6 +1137,7 @@
 				2BC8394A1866DE2D002477AF /* button_search@2x.png in Resources */,
 				2B5D9A7117C7A57D00A22132 /* button_current_location_on@2x.png in Resources */,
 				2BC3D37718669CA90092F02F /* button_settings@2x.png in Resources */,
+				2B39F924197A300100E7D829 /* 忠孝路到緩緩.tr in Resources */,
 				2B5D9A7217C7A57D00A22132 /* button_map.png in Resources */,
 				2B5D9A7317C7A57D00A22132 /* button_map@2x.png in Resources */,
 				2B1DDF7A18C0159F00DBC200 /* button_mail@2x.png in Resources */,
