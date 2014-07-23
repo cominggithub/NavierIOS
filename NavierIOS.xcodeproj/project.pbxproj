@@ -190,6 +190,14 @@
 		2BCBA31E186538EB008110A2 /* background_tableview@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BCBA31C186538EB008110A2 /* background_tableview@2x.png */; };
 		2BCC02A31839087E0018174B /* DebugGoogleMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCC02A21839087E0018174B /* DebugGoogleMapViewController.m */; };
 		2BCFE04317031BE200636F58 /* RouteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCFE04217031BE200636F58 /* RouteTableViewController.m */; };
+		2BD71FF2197F88E3002E7E92 /* CarPanel2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD71FF1197F88E3002E7E92 /* CarPanel2ViewController.m */; };
+		2BD71FF5197F88F9002E7E92 /* CarPanel3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD71FF4197F88F9002E7E92 /* CarPanel3ViewController.m */; };
+		2BD71FF9197F8DE7002E7E92 /* cp2_course.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD71FF8197F8DE7002E7E92 /* cp2_course.png */; };
+		2BD71FFB197F8DF9002E7E92 /* cp2_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD71FFA197F8DF9002E7E92 /* cp2_circle.png */; };
+		2BD71FFF197F8E21002E7E92 /* cp2_mile.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD71FFC197F8E21002E7E92 /* cp2_mile.png */; };
+		2BD72000197F8E21002E7E92 /* cp2_mph.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD71FFD197F8E21002E7E92 /* cp2_mph.png */; };
+		2BD72001197F8E21002E7E92 /* cp2_pm.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD71FFE197F8E21002E7E92 /* cp2_pm.png */; };
+		2BD7200A197F9E65002E7E92 /* CarPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD72009197F9E65002E7E92 /* CarPanelViewController.m */; };
 		2BD8CE811701EB7500BDA678 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD8CE801701EB7500BDA678 /* Default.png */; };
 		2BD97FA518ABB88C00937C31 /* IAP_NoAdStoreUserPlace_bg_4_tw.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD97FA118ABB88B00937C31 /* IAP_NoAdStoreUserPlace_bg_4_tw.png */; };
 		2BD97FA618ABB88C00937C31 /* IAP_NoAdStoreUserPlace_bg_4_tw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD97FA218ABB88B00937C31 /* IAP_NoAdStoreUserPlace_bg_4_tw@2x.png */; };
@@ -441,6 +449,17 @@
 		2BCC02A21839087E0018174B /* DebugGoogleMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DebugGoogleMapViewController.m; path = NavierIOS/DebugGoogleMapViewController.m; sourceTree = "<group>"; };
 		2BCFE04117031BE200636F58 /* RouteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RouteTableViewController.h; path = NavierIOS/RouteTableViewController.h; sourceTree = "<group>"; };
 		2BCFE04217031BE200636F58 /* RouteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RouteTableViewController.m; path = NavierIOS/RouteTableViewController.m; sourceTree = "<group>"; };
+		2BD71FF0197F88E3002E7E92 /* CarPanel2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarPanel2ViewController.h; sourceTree = "<group>"; };
+		2BD71FF1197F88E3002E7E92 /* CarPanel2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarPanel2ViewController.m; sourceTree = "<group>"; };
+		2BD71FF3197F88F9002E7E92 /* CarPanel3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarPanel3ViewController.h; sourceTree = "<group>"; };
+		2BD71FF4197F88F9002E7E92 /* CarPanel3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarPanel3ViewController.m; sourceTree = "<group>"; };
+		2BD71FF8197F8DE7002E7E92 /* cp2_course.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cp2_course.png; sourceTree = "<group>"; };
+		2BD71FFA197F8DF9002E7E92 /* cp2_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cp2_circle.png; sourceTree = "<group>"; };
+		2BD71FFC197F8E21002E7E92 /* cp2_mile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cp2_mile.png; sourceTree = "<group>"; };
+		2BD71FFD197F8E21002E7E92 /* cp2_mph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cp2_mph.png; sourceTree = "<group>"; };
+		2BD71FFE197F8E21002E7E92 /* cp2_pm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cp2_pm.png; sourceTree = "<group>"; };
+		2BD72008197F9E65002E7E92 /* CarPanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarPanelViewController.h; sourceTree = "<group>"; };
+		2BD72009197F9E65002E7E92 /* CarPanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarPanelViewController.m; sourceTree = "<group>"; };
 		2BD8CE801701EB7500BDA678 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		2BD97FA118ABB88B00937C31 /* IAP_NoAdStoreUserPlace_bg_4_tw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IAP_NoAdStoreUserPlace_bg_4_tw.png; sourceTree = "<group>"; };
 		2BD97FA218ABB88B00937C31 /* IAP_NoAdStoreUserPlace_bg_4_tw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IAP_NoAdStoreUserPlace_bg_4_tw@2x.png"; sourceTree = "<group>"; };
@@ -802,6 +821,12 @@
 				2B6FCDBF178D9CAF00DCFAAF /* CarPanels.storyboard */,
 				2B831C28177E779B006E35CD /* CarPanel1ViewController.h */,
 				2B831C29177E779B006E35CD /* CarPanel1ViewController.m */,
+				2BD71FF0197F88E3002E7E92 /* CarPanel2ViewController.h */,
+				2BD71FF1197F88E3002E7E92 /* CarPanel2ViewController.m */,
+				2BD71FF3197F88F9002E7E92 /* CarPanel3ViewController.h */,
+				2BD71FF4197F88F9002E7E92 /* CarPanel3ViewController.m */,
+				2BD72008197F9E65002E7E92 /* CarPanelViewController.h */,
+				2BD72009197F9E65002E7E92 /* CarPanelViewController.m */,
 			);
 			name = CarPanel;
 			sourceTree = "<group>";
@@ -822,9 +847,38 @@
 			name = base;
 			sourceTree = "<group>";
 		};
+		2BD71FEC197F8865002E7E92 /* CarPanel1 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CarPanel1;
+			sourceTree = "<group>";
+		};
+		2BD71FEE197F8873002E7E92 /* CarPanel2 */ = {
+			isa = PBXGroup;
+			children = (
+				2BD71FFC197F8E21002E7E92 /* cp2_mile.png */,
+				2BD71FFD197F8E21002E7E92 /* cp2_mph.png */,
+				2BD71FFE197F8E21002E7E92 /* cp2_pm.png */,
+				2BD71FFA197F8DF9002E7E92 /* cp2_circle.png */,
+				2BD71FF8197F8DE7002E7E92 /* cp2_course.png */,
+			);
+			name = CarPanel2;
+			sourceTree = "<group>";
+		};
+		2BD71FEF197F887F002E7E92 /* CarPanel3 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CarPanel3;
+			sourceTree = "<group>";
+		};
 		2BE15351178ED65000C55363 /* CarPanel */ = {
 			isa = PBXGroup;
 			children = (
+				2BD71FEF197F887F002E7E92 /* CarPanel3 */,
+				2BD71FEE197F8873002E7E92 /* CarPanel2 */,
+				2BD71FEC197F8865002E7E92 /* CarPanel1 */,
 				2BC3D364186699250092F02F /* close.png */,
 				2BC3D365186699250092F02F /* close@2x.png */,
 				2BC3D366186699250092F02F /* quit.png */,
@@ -1008,6 +1062,7 @@
 			files = (
 				2BB2E1F218BA40CD008BB41B /* turn_straight@2x.png in Resources */,
 				2B9A432316DB955F00FD1A54 /* InfoPlist.strings in Resources */,
+				2BD71FF9197F8DE7002E7E92 /* cp2_course.png in Resources */,
 				2B9A432D16DB955F00FD1A54 /* Default@2x.png in Resources */,
 				2B5B12AE1868832400C464C0 /* marker_favor.png in Resources */,
 				2B9A432F16DB955F00FD1A54 /* Default-568h@2x.png in Resources */,
@@ -1021,6 +1076,7 @@
 				2B66BDA618672FE900A9D75D /* search34@2x.png in Resources */,
 				2B9A433516DB955F00FD1A54 /* MainStoryboard_iPad.storyboard in Resources */,
 				2B067CE91850CD2400A0054E /* PlaceSearchResultPanel.xib in Resources */,
+				2BD71FFF197F8E21002E7E92 /* cp2_mile.png in Resources */,
 				2B66BD9F18672FE900A9D75D /* favor34.png in Resources */,
 				2B5B12AA1868743100C464C0 /* button_mylocation.png in Resources */,
 				2BC8393E1866D882002477AF /* button_navigation@2x.png in Resources */,
@@ -1058,6 +1114,7 @@
 				2BD97FA618ABB88C00937C31 /* IAP_NoAdStoreUserPlace_bg_4_tw@2x.png in Resources */,
 				2B94C8F817A554D6002581F3 /* 3g.png in Resources */,
 				2B94C8F917A554D6002581F3 /* 3g@2x.png in Resources */,
+				2BD71FFB197F8DF9002E7E92 /* cp2_circle.png in Resources */,
 				2B710AB018AF90A5001CB675 /* lock@2x.png in Resources */,
 				2B94C8FB17A554D6002581F3 /* battery@2x.png in Resources */,
 				2B66BD961867244400A9D75D /* icon_transparent32@2x.png in Resources */,
@@ -1065,6 +1122,7 @@
 				2B5B129C1868739500C464C0 /* marker_office.png in Resources */,
 				2B66BD8618671CC000A9D75D /* button_shift_right.png in Resources */,
 				2B94C8FC17A554D6002581F3 /* course frame.png in Resources */,
+				2BD72001197F8E21002E7E92 /* cp2_pm.png in Resources */,
 				2B5B12AB1868743100C464C0 /* button_mylocation@2x.png in Resources */,
 				2B5B12A41868742A00C464C0 /* button_zoom_in.png in Resources */,
 				2B70307E18A7960D00FDA856 /* Icon.png in Resources */,
@@ -1114,6 +1172,7 @@
 				2B1E249B196780E000188EAD /* googleLanguage.plist in Resources */,
 				2BC3D37B1866CE0F0092F02F /* marker_menu_bg@2x.png in Resources */,
 				2B781E3E18B7875E00DD22BA /* car_location.png in Resources */,
+				2BD72000197F8E21002E7E92 /* cp2_mph.png in Resources */,
 				2B781E5D18B7AA4600DD22BA /* turn_right45@2x.png in Resources */,
 				2BC3D3621866973F0092F02F /* car_panel1_menu_background.png in Resources */,
 				2BC8393F1866D882002477AF /* button_place.png in Resources */,
@@ -1199,11 +1258,14 @@
 				2BFF01621853537900DA9735 /* MarkerMenuFloatView.m in Sources */,
 				2B9A432916DB955F00FD1A54 /* AppDelegate.m in Sources */,
 				2B9A433816DB955F00FD1A54 /* ViewController.m in Sources */,
+				2BD7200A197F9E65002E7E92 /* CarPanelViewController.m in Sources */,
 				2B9A437816DB9B5F00FD1A54 /* GoogleMapUIViewController.m in Sources */,
 				2BCFE04317031BE200636F58 /* RouteTableViewController.m in Sources */,
 				2B9F3032185AA8F400016518 /* CarPanel1MenuView.m in Sources */,
 				2BB35829185F392C0038E318 /* DebugTransformationViewController.m in Sources */,
+				2BD71FF5197F88F9002E7E92 /* CarPanel3ViewController.m in Sources */,
 				2B8C5CAD174134B700260836 /* PlaceSearchViewController.m in Sources */,
+				2BD71FF2197F88E3002E7E92 /* CarPanel2ViewController.m in Sources */,
 				2BFF015F1853517700DA9735 /* PlaceSearchResultPanelView.m in Sources */,
 				2BCC02A31839087E0018174B /* DebugGoogleMapViewController.m in Sources */,
 				2B036BBC1759CCEF003E4683 /* SavePlaceViewController.m in Sources */,
