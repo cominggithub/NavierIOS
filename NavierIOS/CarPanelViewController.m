@@ -126,11 +126,17 @@
 
 -(void)setSpeed:(double)speed
 {
-    logfn();
     if ([self.contentView respondsToSelector:@selector(setSpeed:)])
     {
-        logfn();
         [self.contentView setSpeed:speed];
+    }
+}
+
+-(void)setHeading:(double)heading
+{
+    if ([self.contentView respondsToSelector:@selector(setHeading:)])
+    {
+        [self.contentView setHeading:heading];
     }
 }
 #pragma mark - Car Panel Menu
@@ -304,7 +310,6 @@
 
 -(void) locationManager:(LocationManager *)locationManager update:(CLLocationCoordinate2D)location speed:(double)speed distance:(int)distance heading:(double)heading
 {
-    logfn();
     if (YES == _isSpeedUnitMph)
     {
         self.speed = MS_TO_MPH(speed);
@@ -313,6 +318,10 @@
     {
         self.speed = MS_TO_KMH(speed);
     }
+    
+    self.heading = heading;
+    
+    mlogDebug(@"location update: %.8f, %.8f heading: %.1f", location.latitude, location.longitude, TO_ANGLE(heading));
 
 }
 
