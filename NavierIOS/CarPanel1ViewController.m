@@ -110,7 +110,7 @@
     [_courseLabelArray addObject:self.courseNWLabel];
     
 
-    [self updateUILanguageFont:[SystemManager getSystemLanguage]];
+//    [self updateUILanguageFont:[SystemManager getSystemLanguage]];
     
     
     self.color          = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
@@ -505,21 +505,6 @@
     _courseCutLabel.frame = cutLabelFrame;
 }
 
-
--(void) updateUILanguageFont:(NSString*) language
-{
-    
-    if ([language isEqualToString:@"zh-Hant"] || [language isEqualToString:@"zh-Hans"])
-    {
-        self.speedUnitLabel.font = [self.speedUnitLabel.font newFontsize:15];
-        
-        self.courseNELabel.font = [self.courseNELabel.font newFontsize:16];
-        self.courseNWLabel.font = [self.courseNWLabel.font newFontsize:16];
-        self.courseSELabel.font = [self.courseSELabel.font newFontsize:16];
-        self.courseSWLabel.font = [self.courseSWLabel.font newFontsize:16];
-    }
-}
-
 #pragma mark - Property
 
 -(void) setIsCourse:(BOOL)isCourse
@@ -577,11 +562,11 @@
     
     if (YES == _isSpeedUnitMph)
     {
-        self.speedUnitLabel.text = [SystemManager getLanguageString:@"mph"];
+        self.speedUnitLabel.text = @"mph";
     }
     else
     {
-        self.speedUnitLabel.text = [SystemManager getLanguageString:@"kmh"];
+        self.speedUnitLabel.text = @"km/h";
     }
 }
 

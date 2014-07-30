@@ -1020,6 +1020,7 @@
 				"zh-Hant-TW",
 				"zh-Hant",
 				"zh-Hans",
+				vi,
 			);
 			mainGroup = 2B9A430C16DB955F00FD1A54;
 			productRefGroup = 2B9A431616DB955F00FD1A54 /* Products */;

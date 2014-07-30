@@ -7,7 +7,7 @@
  */
 
 "am" = "上午";
-"Arrive Desitnation" = "抵达目的地";
+"Arrive Destination" = "抵达目的地";
 "Back" = "返回";
 "Buy" = "购买";
 "Cannot connect to server" = "无法连接到主机";
@@ -23,7 +23,6 @@
 "Favor"="喜好";
 "Forget to enable network connections?" = "忘记打开网络连接?";
 "Free" = "免费";
-"FromPlace" = "起点";
 "Home"="家";
 "HUD" = "抬头显示";
 "If you enjoy using %@, would you mind taking a moment to rate it? It won't take more than a minute. Thanks for your support!" = "帮忙一下啦！我们很需要您的帮忙评论 %@ 好不好用！谢啦！";
@@ -62,6 +61,6 @@
 "Search place failed" = "搜索失败";
 "Speed Unit" = "速度单位";
 "sw" = "西南";
-"Thanks! Navier HUD now is upgradded to Advanced version" = "感谢您！现在 Navier HUD 已经升级到进阶版";
+"Thanks! Navier HUD now is upgraded to Advanced version" = "感谢您！现在 Navier HUD 已经升级到进阶版";
 "ToPlace" = "终点";
 "W" = "西";

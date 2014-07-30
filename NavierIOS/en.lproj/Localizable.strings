@@ -7,12 +7,10 @@
 */
 
 "N" = "N";
-"mph" = "mph";
-"kmh" = "km/h";
 "HUD" = "HUD";
 "routeGuideText0"= "AAA";
 "routeGuideText1"= "AAAAA dda ddasd das";
 "routeGuideText2"= "AAAAA bb bbb cccd sd ddaasd fwwwe dsasd asdf asdfwef asdf er we";
 "routeGuideText3"= "AAAAA bb bbb cccd sd ddaasd fwwwe dsasd asdf asdfwef asdf er we ddaasd fwwwe dsasd asdf asdfwef asdf er we";
-"FromPlace" = "From";
+"From Place" = "From";
 "ToPlace" = "To";

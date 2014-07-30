@@ -215,7 +215,8 @@
         {
             mlogDebug(@"%@: %@", IAPHelperProductPurchasedNotification, productIdentifier);
             [self showAlertTitle:[SystemManager getLanguageString:@"Purchase successfully"]
-                         message:[SystemManager getLanguageString:@"Thanks! Navier HUD now is upgradded to Advanced version"]];
+                         message:[NSString stringWithFormat:
+             [SystemManager getLanguageString:@"Thanks! %@ now is upgraded to Advanced version"], @"Naiver HUD"]];
              
         }
     }

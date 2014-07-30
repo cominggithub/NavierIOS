@@ -6,8 +6,7 @@
   Copyright (c) 2013 Coming. All rights reserved.
 */
 
-"am" = "上午";
-"Arrive Desitnation" = "抵達目的地";
+"Arrive Destination" = "抵達目的地";
 "Back" = "返回";
 "Buy" = "購買";
 "Cannot connect to server" = "無法連線到主機";
@@ -24,14 +23,10 @@
 "Favor"="喜好";
 "Forget to enable network connections?" = "忘記啟動網路連線?";
 "Free" = "免費";
-"FromPlace" = "起點";
 "Home"="家";
 "HUD" = "抬頭顯示";
-"If you enjoy using %@, would you mind taking a moment to rate it? It won't take more than a minute. Thanks for your support!" = "幫忙一下啦！我們很需要您的幫忙評論 %@ 好不好用！謝啦！";
-"kmh" = "公里/小時";
 "Main Menu" = "主選單";
 "Map" = "地圖";
-"mph" = "英里/小時";
 "Must start navigation from current place" = "必須從目前位置開始導航";
 "N" = "北";
 "Navigate" = "導航";
@@ -47,7 +42,6 @@
 "nw" = "西北";
 "Office"="辦公室";
 "Place" = "地點";
-"pm" = "下午";
 "Purchase successfully" = "購買成功";
 "Rate %@" = "給%@評分";
 "Remind me later" = "改天吧";
@@ -63,7 +57,7 @@
 "Search place failed" = "搜尋失敗";
 "Speed Unit" = "速度單位";
 "sw" = "西南";
-"Thanks! Navier HUD now is upgradded to Advanced version" = "感謝您！現在 NavierHUD 已經升級到進階版";
+"Thanks! Navier HUD now is upgraded to Advanced version" = "感謝您！現在 NavierHUD 已經升級到進階版";
 "ToPlace" = "終點";
 "W" = "西";
 
