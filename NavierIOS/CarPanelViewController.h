@@ -27,8 +27,10 @@
 @property (nonatomic) BOOL isHud;
 @property (nonatomic) BOOL isCourse;
 @property (nonatomic) BOOL isSpeedUnitMph;
+@property (nonatomic) CLLocationCoordinate2D location;
 
 @property (nonatomic) BOOL lockColorSelection;
 
 -(void)dismiss;
+
 @end

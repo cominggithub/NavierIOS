@@ -41,12 +41,12 @@
 #if RELEASE
     [Appirater setUsesUntilPrompt:5];     // Number of uses until prompt
 #else
-    [Appirater setUsesUntilPrompt:3];     // Number of uses until prompt
+    [Appirater setUsesUntilPrompt:100];     // Number of uses until prompt
 #endif
     [Appirater setTimeBeforeReminding:2];
     
 #if DEBUG
-    [Appirater setDebug:YES];
+    [Appirater setDebug:NO];
 #else
     [Appirater setDebug:NO];
 #endif
@@ -104,7 +104,6 @@
     [RSSecrets addKey:@"IAP_AdvancedVersion"];
 #elif RELEASE
 #endif
-
     return YES;
 }
 
@@ -151,16 +150,13 @@
     [SystemConfig setFloatValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"applicationDidBecomeActive" object:self];
     
-    
-    logfn();
-    logI([SystemConfig getIntValue:CONFIG_USE_COUNT]);
+#if 0
     if ([SystemConfig getIntValue:CONFIG_USE_COUNT] > 5 && [SystemConfig getIntValue:CONFIG_USE_COUNT] %2 == 0 &&
         [SystemConfig getBoolValue:CONFIG_H_IS_AD] && (![SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION]))
     {
         [(UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController] pushViewController:buyViewController animated:TRUE];
     }
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    
+#endif
     
 }
 

@@ -37,6 +37,9 @@
     UISwitch                    *carPanelMenuHudSwitch;
     UISwitch                    *carPanelMenuCourseSwitch;
     UITapGestureRecognizer      *tapGesture;
+    
+    NSTimer*                    headingTimer;
+    NSMutableArray              *colorButtons;
 }
 
 
@@ -56,17 +59,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     self.contentView    = (UIView<CarPanelViewProtocol>*)[self.view viewWithTag:10];
     tapGesture          = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
     [self.view addGestureRecognizer:tapGesture];
     
     [self addCarPanelMenu];
-    [self updateColorFromConfig];
+
     self.lockColorSelection = FALSE;
+    
+//    headingTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
+//                                     target:self
+//                                   selector:@selector(updateHeading)
+//                                   userInfo:nil
+//                                    repeats:YES];
+
 
     
     // Do any additional setup after loading the view.
+    [self updateUIFromConfig];
 }
 
 - (void)didReceiveMemoryWarning
@@ -102,14 +112,26 @@
 
 -(void) updateUIFromConfig
 {
+    carPanelMenuHudSwitch.on       = [SystemConfig getBoolValue:CONFIG_CP1_IS_HUD];
+    carPanelMenuCourseSwitch.on    = [SystemConfig getBoolValue:CONFIG_CP1_IS_COURSE];
+    
+    self.isHud          = carPanelMenuHudSwitch.on;
+    self.isSpeedUnitMph = [SystemConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
+    
+    if (YES == self.isSpeedUnitMph)
+    {
+        
+        [carPanelMenuSpeedMphButton setBackgroundColor:[UIColor blueColor]];
+        [carPanelMenuSpeedKmhButton setBackgroundColor:[UIColor blackColor]];
+    }
+    else
+    {
+        [carPanelMenuSpeedMphButton setBackgroundColor:[UIColor blackColor]];
+        [carPanelMenuSpeedKmhButton setBackgroundColor:[UIColor blueColor]];
+    }
 
+    self.color = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
 }
-
--(void)updateColorFromConfig
-{
-
-}
-
 
 #pragma mark -- Property
 -(void)setColor:(UIColor *)color
@@ -138,6 +160,32 @@
     if ([self.contentView respondsToSelector:@selector(setHeading:)])
     {
         [self.contentView setHeading:heading];
+    }
+}
+
+-(void)setIsSpeedUnitMph:(BOOL)isSpeedUnitMph
+{
+    if ([self.contentView respondsToSelector:@selector(setIsSpeedUnitMph:)])
+    {
+        [self.contentView setIsSpeedUnitMph:isSpeedUnitMph];
+    }
+}
+
+-(void)setIsHud:(BOOL)isHud
+{
+    if ([self.contentView respondsToSelector:@selector(setIsHud:)])
+    {
+        [self.contentView setIsHud:isHud];
+    }
+}
+
+-(void)setLocation:(CLLocationCoordinate2D)location
+{
+    logfn();
+    if ([self.contentView respondsToSelector:@selector(setLocation:)])
+    {
+        logfn();
+        [self.contentView setLocation:location];
     }
 }
 #pragma mark - Car Panel Menu
@@ -171,7 +219,7 @@
     UIButton *button = (UIButton*) sender;
     
     [SystemConfig setValue:CONFIG_CP1_COLOR uicolor:button.backgroundColor];
-    [self updateColorFromConfig];
+    self.color = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
 }
 
 -(IBAction) pressHudButton:(id) sender
@@ -229,12 +277,16 @@
     [SystemManager addDelegate:self];
     [LocationManager addDelegate:self];
     [self updateUIFromConfig];
+    [self.contentView active];
 }
 
 -(void) inactive
 {
     [SystemManager removeDelegate:self];
-    [LocationManager removeDelegate:self];}
+    [LocationManager removeDelegate:self];
+    [self.contentView inactive];
+
+}
 
 -(void) checkIapItem
 {
@@ -243,10 +295,9 @@
 
 -(void)dismiss
 {
-   
     [self hideCarPanelMenu];
     [self inactive];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:TRUE];
 }
 
 
@@ -274,9 +325,7 @@
 {
     if (YES == isPressed)
     {
-        [self hideCarPanelMenu];
-        [self inactive];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self dismiss];
     }
 }
 
@@ -321,9 +370,17 @@
     }
     
     self.heading = heading;
+    self.location = location;
     
     mlogDebug(@"location update: %.8f, %.8f heading: %.1f", location.latitude, location.longitude, TO_ANGLE(heading));
 
 }
 
+#pragma mark -- Test
+-(void)updateHeading
+{
+    static double angle = 0;
+    self.heading = angle;
+    angle += TO_RADIUS(10);
+}
 @end

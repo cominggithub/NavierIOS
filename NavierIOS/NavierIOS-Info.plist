@@ -39,6 +39,8 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>upcil.ttf</string>
+		<string>cordiau.ttf</string>
 		<string>jasmineupcbold.ttf</string>
 	</array>
 	<key>UIMainStoryboardFile</key>

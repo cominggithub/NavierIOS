@@ -518,10 +518,7 @@
     // Then push the new view controller in the usual way:
     //    [self.navigationController pushViewController:carPanel animated:YES];
     
-    logfn();
-    logO(carPanel);
     [self.navigationController pushViewController:carPanel animated:TRUE];
-    
 }
 
 -(IBAction) pressTestButton:(id)sender
