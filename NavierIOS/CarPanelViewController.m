@@ -88,6 +88,7 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    self.navigationController.navigationBarHidden = TRUE;
     [self active];
     [self checkIapItem];
 }
@@ -161,7 +162,7 @@
     
     [self hideCarPanelMenu];
     [self inactive];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:TRUE];
 }
 
 

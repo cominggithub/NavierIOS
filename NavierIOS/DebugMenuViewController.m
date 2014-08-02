@@ -117,6 +117,7 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    self.navigationController.navigationBarHidden = YES;
     [self updateUIFromConfig];
 }
 
@@ -135,7 +136,7 @@
 
 -(IBAction) pressLogoButton:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:TRUE];
 }
 
 - (IBAction)pressClearConfigButton:(id)sender

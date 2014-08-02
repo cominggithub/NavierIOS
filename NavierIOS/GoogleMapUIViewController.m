@@ -170,7 +170,7 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
-
+    self.navigationController.navigationBarHidden = YES;
     
     if(self.placeToSearch != nil && self.placeToSearch.length > 0)
     {
@@ -405,6 +405,7 @@
 
 -(void) saveAsHome:(Place*)p
 {
+    logfn();
     mlogAssertNotNil(p);
     if (p.placeType != kPlaceType_SearchedPlace && p.placeType != kPlaceType_CurrentPlace)
     {
@@ -414,11 +415,13 @@
     
     savePlaceViewController.currentPlace = p;
     savePlaceViewController.sectionMode  = kSectionMode_Home;
-    [self presentViewController:savePlaceViewController animated:YES completion:nil];
+    
+    [self.navigationController pushViewController:savePlaceViewController animated:YES];
 }
 
 -(void) saveAsOffice:(Place*)p
 {
+    logfn();
     mlogAssertNotNil(p);
     if (p.placeType != kPlaceType_SearchedPlace && p.placeType != kPlaceType_CurrentPlace)
     {
@@ -428,12 +431,13 @@
     
     savePlaceViewController.currentPlace = p;
     savePlaceViewController.sectionMode  = kSectionMode_Office;
-    [self presentViewController:savePlaceViewController animated:YES completion:nil];
+    [self.navigationController pushViewController:savePlaceViewController animated:YES];
+
 }
 
 -(void) saveAsFavor:(Place*)p
 {
-    
+    logfn();
     mlogAssertNotNil(p);
     if (p.placeType != kPlaceType_SearchedPlace && p.placeType != kPlaceType_CurrentPlace)
     {
@@ -443,7 +447,8 @@
     
     savePlaceViewController.currentPlace = p;
     savePlaceViewController.sectionMode  = kSectionMode_Favor;
-    [self presentViewController:savePlaceViewController animated:YES completion:nil];
+    [self.navigationController pushViewController:savePlaceViewController animated:YES];
+
 }
 
 
@@ -533,180 +538,6 @@
     }
     
 }
-
-#if 0
--(void) setRouteStart:(Place*) p
-{
-    if ([routeEndPlace isCoordinateEqualTo:p])
-    {
-        routeEndPlace = nil;
-    }
-    
-    if (![routeStartPlace isCoordinateEqualTo:p])
-    {
-        isRouteChanged                  = true;
-        routeStartPlace.placeRouteType  = kPlaceRouteType_None;
-        routeStartPlace                 = p;
-        routeStartPlace.placeRouteType  = kPlaceRouteType_Start;
-        [self planRoute];
-    }
-}
-
--(void) setRouteEnd:(Place*) p
-{
-    if ([routeStartPlace isCoordinateEqualTo:p])
-    {
-        routeStartPlace = nil;
-    }
-    
-    if (![routeEndPlace isCoordinateEqualTo:p])
-    {
-        isRouteChanged                  = true;
-        routeEndPlace.placeRouteType    = kPlaceRouteType_None;
-        routeEndPlace                   = p;
-        routeEndPlace.placeRouteType    = kPlaceRouteType_End;
-        [self planRoute];
-    }
-    
-}
-
--(void) saveAsHome:(Place*)p
-{
-    if (p.placeType != kPlaceRouteType_None)
-    {
-        [self hideMarkMenu];
-        return;
-    }
-
-    savePlaceViewController.currentPlace = p;
-    savePlaceViewController.sectionMode  = kSectionMode_Home;
-    [self presentModalViewController:savePlaceViewController animated:YES];
-}
-
--(void) saveAsOffice:(Place*)p
-{
-    if (p.placeType != kPlaceRouteType_None)
-    {
-        [self hideMarkMenu];
-        return;
-    }
-    
-    savePlaceViewController.currentPlace = p;
-    savePlaceViewController.sectionMode  = kSectionMode_Office;
-    [self presentModalViewController:savePlaceViewController animated:YES];
-}
-
--(void) saveAsFavor:(Place*)p
-{
-
-    if (p.placeType != kPlaceRouteType_None)
-    {
-        [self hideMarkMenu];
-        return;
-    }
-    
-    savePlaceViewController.currentPlace = p;
-    savePlaceViewController.sectionMode  = kSectionMode_Favor;
-    [self presentModalViewController:savePlaceViewController animated:YES];
-}
-
-
--(void) updateMarkMenu
-{
-    if (nil != selectedPlace)
-    {
-        
-        markMenuNameLabel.text      = selectedPlace.name;
-        markMenuSnippetLabel.text   = selectedPlace.address;
-    }
-}
-
--(void) addMarkMenu
-{
-    
-    
-    isShowMarkMenu = false;
-    
-    if (nil != _markMenu)
-        return;
-    
-    NSArray *xibContents = [[NSBundle mainBundle] loadNibNamed:@"MarkMenu" owner:self options:nil];
-    
-    CGRect frame;
-    
-    frame.origin.x      = self.view.frame.size.width;
-    frame.origin.y      = 0;
-    frame.size.width    = 200;
-    frame.size.height   = 460;
-    
-
-    
-    _markMenu = [xibContents lastObject];
-    _markMenu.accessibilityLabel = @"markMenu";
-    
-    _markMenu.frame = frame;
-    
-    markMenuNameLabel           =  (UILabel *)[_markMenu viewWithTag:1];
-    markMenuSnippetLabel        =  (UILabel *)[_markMenu viewWithTag:2];
-    markMenuSetStartButton      = (UIButton *)[_markMenu viewWithTag:3];
-    markMenuSetEndButton        = (UIButton *)[_markMenu viewWithTag:4];
-    markMenuSaveAsHomeButton    = (UIButton *)[_markMenu viewWithTag:5];
-    markMenuSaveAsOfficeButton  = (UIButton *)[_markMenu viewWithTag:6];
-    markMenuSaveAsFavorButton   = (UIButton *)[_markMenu viewWithTag:7];
-    
-    
-    
-    [markMenuSetStartButton addTarget:self
-                               action:@selector(pressSetStartButton:)
-                     forControlEvents:UIControlEventTouchUpInside];
-    
-    [markMenuSetEndButton addTarget:self
-                             action:@selector(pressSetEndButton:)
-                   forControlEvents:UIControlEventTouchUpInside];
-    
-    [markMenuSaveAsHomeButton addTarget:self
-                                 action:@selector(pressSaveAsHomeButton:)
-                       forControlEvents:UIControlEventTouchUpInside];
-    
-    [markMenuSaveAsOfficeButton addTarget:self
-                                   action:@selector(pressSaveAsOfficeButton:)
-                         forControlEvents:UIControlEventTouchUpInside];
-    
-    [markMenuSaveAsFavorButton addTarget:self
-                                  action:@selector(pressSaveAsFavorButton:)
-                        forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.googleMapView addSubview:_markMenu];
-}
-
--(void) showMarkMenu
-{
-    if (false == isShowMarkMenu)
-    {
-        isShowMarkMenu = true;
-        [self updateMarkMenu];
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:.4];
-        _markMenu.frame = CGRectOffset( _markMenu.frame, (-1)*markMenuOffset, 0 ); // offset by an amount
-        [UIView commitAnimations];
-    }
-}
-
--(void) hideMarkMenu
-{
-    if (true == isShowMarkMenu)
-    {
-        isShowMarkMenu = false;
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:.4];
-        _markMenu.frame = CGRectOffset( _markMenu.frame, markMenuOffset, 0 ); // offset by an amount
-        [UIView commitAnimations];
-    }
-    
-}
-
-#endif
-
 
 #pragma mark - Search Place
 
@@ -801,19 +632,19 @@
 
 - (IBAction)pressHomeButton:(id)sender
 {
-    [self dismissViewControllerAnimated:true completion:nil];
+    [self.navigationController popViewControllerAnimated:TRUE];
 }
 
 - (IBAction)pressSearchButton:(id)sender
 {
-    
+//    [self.navigationController pushViewController:searchPlaceViewController animated:YES];
 }
 
 - (IBAction)pressPlaceButton:(id)sender
 {
     if ([User getSectionCount:selectPlaceViewController.sectionMode] > 0)
     {
-        [self presentViewController:selectPlaceViewController animated:YES completion:nil];
+        [self.navigationController pushViewController:selectPlaceViewController animated:YES];
     }
 }
 
@@ -835,7 +666,7 @@
     }
     else
     {
-        [self presentViewController:routeNavigationViewController animated:YES completion:nil];
+        [self. navigationController pushViewController:routeNavigationViewController animated:TRUE];
         [routeNavigationViewController startRouteNavigationFrom:mapManager.routeStartPlace To:mapManager.routeEndPlace];
         [self hideMarkerMenuFloat];
     }

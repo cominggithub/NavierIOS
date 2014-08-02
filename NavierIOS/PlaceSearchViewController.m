@@ -42,6 +42,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.navigationController.navigationBarHidden = TRUE;
     self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
 }
 - (void)didReceiveMemoryWarning
@@ -87,13 +88,14 @@
     
     if( place.length > 0)
     {
-        GoogleMapUIViewController* gc = (GoogleMapUIViewController*) self.presentingViewController;
+        GoogleMapUIViewController* gc = (GoogleMapUIViewController*) self.navigationController.parentViewController;
+//        self.presentingViewController;
         [User addSearchedPlaceText:place];
         [User save];
         [gc searchPlace:place];
     }
     
-    [self dismissViewControllerAnimated:true completion:nil];
+    [self.navigationController popViewControllerAnimated:TRUE];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -129,7 +131,8 @@
 
 - (IBAction)pressLogoButton:(id)sender
 {
-    [self dismissViewControllerAnimated:true completion:nil];
+    [self.navigationController popViewControllerAnimated:TRUE];
+
 }
 
 - (BOOL)prefersStatusBarHidden

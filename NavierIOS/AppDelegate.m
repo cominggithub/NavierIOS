@@ -12,6 +12,7 @@
 #import "GoogleAPIKey.h"
 
 #import "RSSecrets.h"
+#import "BuyUIViewController.h"
 
 
 #define FILE_DEBUG FALSE
@@ -20,7 +21,8 @@
 
 @implementation AppDelegate
 {
-    AVAudioPlayer *audioPlayer;
+    AVAudioPlayer       *audioPlayer;
+    BuyUIViewController *buyViewController;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -37,7 +39,7 @@
     [Appirater setAppId:@"806144673"];    // Change for your "Your APP ID"
     [Appirater setDaysUntilPrompt:0];     // Days from first entered the app until prompt
 #if RELEASE
-    [Appirater setUsesUntilPrompt:10];     // Number of uses until prompt
+    [Appirater setUsesUntilPrompt:5];     // Number of uses until prompt
 #else
     [Appirater setUsesUntilPrompt:3];     // Number of uses until prompt
 #endif
@@ -61,6 +63,10 @@
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:&error];
     // 23.002518, 120.203524
 
+    UIStoryboard *storyboard          = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+    buyViewController   = (BuyUIViewController *)[storyboard instantiateViewControllerWithIdentifier:NSStringFromClass ([BuyUIViewController class])];
+
+    
 /*
     Place *p1 = [[Place alloc] initWithName:@"甜蜜的家" address:@"冬山" coordinate:CLLocationCoordinate2DMake(23.011051, 120.194082)];
     p1.placeType = kPlaceType_Home;
@@ -91,8 +97,8 @@
     [User addRecentPlace:p1];
 */
 #if DEBUG
-//    [RSSecrets removeKey:@"IAP_AdvancedVersion"];
-    [RSSecrets addKey:@"IAP_AdvancedVersion"];
+    [RSSecrets removeKey:@"IAP_AdvancedVersion"];
+//    [RSSecrets addKey:@"IAP_AdvancedVersion"];
 //    NSLog(@"%@: %@", @"IAP_AdvancedVersion", [RSSecrets hasKey:@"IAP_AdvancedVersion"]?@"TRUE":@"FALSE");
 #elif RELEASE_TEST
     [RSSecrets addKey:@"IAP_AdvancedVersion"];
@@ -129,19 +135,33 @@
     
     /* get the default brightness */
     [SystemConfig setFloatValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
+ 
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isBuyShown"];
     
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     [[NSNotificationCenter defaultCenter] postNotificationName:@"applicationWillEnterForeground" object:self];
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+
     /* get the default brightness */
     
     [SystemConfig setFloatValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"applicationDidBecomeActive" object:self];
     
+    
+    logfn();
+    logI([SystemConfig getIntValue:CONFIG_USE_COUNT]);
+    if ([SystemConfig getIntValue:CONFIG_USE_COUNT] > 5 && [SystemConfig getIntValue:CONFIG_USE_COUNT] %2 == 0 &&
+        [SystemConfig getBoolValue:CONFIG_H_IS_AD] && (![SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION]))
+    {
+        [(UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController] pushViewController:buyViewController animated:TRUE];
+    }
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

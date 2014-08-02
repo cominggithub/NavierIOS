@@ -71,7 +71,7 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
-
+    self.navigationController.navigationBarHidden = TRUE;
     self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
     [self.tableView reloadData];
 }
@@ -421,7 +421,7 @@
 
 -(IBAction) pressLogoButton:(UIView*) sender
 {
-    [self dismissViewControllerAnimated:true completion:nil];
+    [self.navigationController popViewControllerAnimated:TRUE];
 }
 
 -(IBAction) pressEditButton:(UIView*) sender

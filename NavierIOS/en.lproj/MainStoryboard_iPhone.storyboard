@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="PMi-4u-Q0l">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -44,7 +44,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="pressCarPanel:" destination="2" eventType="touchUpInside" id="2X5-NP-qnI"/>
+                                            <action selector="pressCarPanel:" destination="2" eventType="touchUpInside" id="byT-gf-JEH"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_main_tableview.png" id="HsS-0I-a9T" userLabel="Table View background">
@@ -100,7 +100,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="dZh-Ie-r5c" kind="modal" id="1OQ-2g-QIB"/>
+                                            <segue destination="dZh-Ie-r5c" kind="push" id="1OQ-2g-QIB"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PVg-N1-viw" userLabel="Buy Button">
@@ -115,7 +115,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="upQ-4M-J2U" kind="modal" id="Lg3-4d-obx"/>
+                                            <segue destination="upQ-4M-J2U" kind="push" identifier="buyButtonSeg" id="Lg3-4d-obx"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="1Bb-F7-gVj" userLabel="Map Button">
@@ -125,7 +125,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="pressMapButton:" destination="2" eventType="touchUpInside" id="kyz-ls-B9B"/>
+                                            <segue destination="F6q-Dq-rDZ" kind="push" id="I3h-6c-URr"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9UD-TJ-RKU">
@@ -148,6 +148,7 @@
                         <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <navigationItem key="navigationItem" id="xVC-lb-6H9"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
@@ -166,7 +167,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-463" y="-168"/>
+            <point key="canvasLocation" x="-158" y="-168"/>
         </scene>
         <!--Debug Google Map View Controller-->
         <scene sceneID="aZg-v0-gxA">
@@ -198,7 +199,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4sT-tK-llY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-493" y="-888"/>
+            <point key="canvasLocation" x="487" y="-609"/>
         </scene>
         <!--Debug Transformation View Controller-->
         <scene sceneID="iEE-yQ-NHT">
@@ -344,26 +345,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="91C-en-vG7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="669" y="555"/>
+            <point key="canvasLocation" x="929" y="698"/>
         </scene>
         <!--Google MapUI View Controller-->
         <scene sceneID="YaZ-hm-EnA">
             <objects>
                 <viewController storyboardIdentifier="GoogleMapUIViewController" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="F6q-Dq-rDZ" customClass="GoogleMapUIViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kmh-TZ-QM8">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="St4-f1-Rws" userLabel="ContentView">
-                                <rect key="frame" x="0.0" y="80" width="320" height="320"/>
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="a4t-7Y-pUY" userLabel="GoogleMapView">
-                                        <rect key="frame" x="0.0" y="0.0" width="338" height="320"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="498" height="320"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZKO-Qm-BCL" userLabel="plus">
-                                                <rect key="frame" x="279" y="253" width="32" height="32"/>
+                                                <rect key="frame" x="439" y="253" width="32" height="32"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <state key="normal" image="button_zoom_in.png">
@@ -378,7 +379,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="U8n-be-bbh" userLabel="minus">
-                                                <rect key="frame" x="279" y="282" width="32" height="32"/>
+                                                <rect key="frame" x="439" y="282" width="32" height="32"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <state key="normal" image="button_zoom_out.png">
@@ -449,16 +450,16 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" id="dbV-yq-37j" userLabel="Top" colorLabel="IBBuiltInLabel-Red">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="42"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="480" height="42"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" id="XpZ-mg-1xn" userLabel="separator">
-                                                <rect key="frame" x="265" y="0.0" width="1" height="42"/>
+                                                <rect key="frame" x="425" y="0.0" width="1" height="42"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                                 <color key="backgroundColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="deviceRGB"/>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ojl-Oe-bju" userLabel="Navigation">
-                                                <rect key="frame" x="277" y="0.0" width="32" height="42"/>
+                                                <rect key="frame" x="437" y="0.0" width="32" height="42"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <accessibility key="accessibilityConfiguration" label="NavigationButton"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
@@ -513,7 +514,7 @@
                                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qGw-Kk-Lou" userLabel="Place">
-                                                <rect key="frame" x="185" y="0.0" width="32" height="42"/>
+                                                <rect key="frame" x="345" y="0.0" width="32" height="42"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <accessibility key="accessibilityConfiguration" label="placeButton"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
@@ -529,7 +530,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0My-uk-NwJ" userLabel="search button">
-                                                <rect key="frame" x="225" y="0.0" width="32" height="42"/>
+                                                <rect key="frame" x="385" y="0.0" width="32" height="42"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                 <accessibility key="accessibilityConfiguration" label="searchButton"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -542,11 +543,11 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="pressSearchButton:" destination="F6q-Dq-rDZ" eventType="touchUpInside" id="z9d-bQ-2wP"/>
-                                                    <segue destination="kia-zl-eow" kind="modal" id="yq5-CV-yRs"/>
+                                                    <segue destination="kia-zl-eow" kind="push" id="yq5-CV-yRs"/>
                                                 </connections>
                                             </button>
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="dmD-9D-UUH" userLabel="spinner">
-                                                <rect key="frame" x="150" y="11" width="20" height="20"/>
+                                                <rect key="frame" x="230" y="11" width="20" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                                                 <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </activityIndicatorView>
@@ -561,8 +562,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration" label="view"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <navigationItem key="navigationItem" id="xUl-iK-Fgh"/>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="backButton" destination="b1v-ji-pD6" id="j6f-UG-gf6"/>
                         <outlet property="contentView" destination="St4-f1-Rws" id="RK5-Vg-HeG"/>
@@ -582,7 +586,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="atE-gi-cck" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="581" y="-271"/>
+            <point key="canvasLocation" x="487" y="-168"/>
         </scene>
         <!--Select Place View Controller-->
         <scene sceneID="5d1-Lu-OUE">
@@ -684,7 +688,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lgq-yc-iww" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="669" y="148"/>
+            <point key="canvasLocation" x="1169" y="65"/>
         </scene>
         <!--Place Search View Controller-->
         <scene sceneID="MSs-1D-bt9">
@@ -795,7 +799,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fjL-Ki-az3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1215" y="-279"/>
+            <point key="canvasLocation" x="1741" y="-279"/>
         </scene>
         <!--Route Navigation View Controller-->
         <scene sceneID="g9u-3f-uyk">
@@ -895,7 +899,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1265" y="159"/>
+            <point key="canvasLocation" x="1791" y="159"/>
         </scene>
         <!--BuyUI View Controller-->
         <scene sceneID="yUE-Jd-ptM">
@@ -1089,7 +1093,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FromPlace" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dsj-wv-UDU" userLabel="From Label">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dsj-wv-UDU" userLabel="From Label">
                                         <rect key="frame" x="0.0" y="7" width="40" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1101,7 +1105,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ToPlace" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ONz-eN-1hk" userLabel="To Label">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ONz-eN-1hk" userLabel="To Label">
                                         <rect key="frame" x="0.0" y="27" width="40" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1140,7 +1144,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UlT-sC-I1C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="15" y="-622"/>
+            <point key="canvasLocation" x="487" y="306"/>
         </scene>
         <!--Save Place View Controller-->
         <scene sceneID="3hB-c2-SHg">
@@ -1264,7 +1268,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ux-eR-CEU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="581" y="-717"/>
+            <point key="canvasLocation" x="1050" y="-701"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0J0-qX-12E">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PMi-4u-Q0l" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tGm-kC-u2Y">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2" kind="relationship" relationship="rootViewController" id="fh1-dp-PX9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L1z-B0-xwE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-703" y="-168"/>
         </scene>
     </scenes>
     <resources>

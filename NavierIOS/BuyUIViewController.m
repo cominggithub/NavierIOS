@@ -193,6 +193,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.navigationController.navigationBarHidden = YES;
     self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
     [self updateProduct];
 }
@@ -252,8 +253,9 @@
     }
 }
 
-- (IBAction)pressBackButton:(id)sender {
-    [self dismissViewControllerAnimated:true completion:nil];
+- (IBAction)pressBackButton:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:TRUE];
 }
 - (IBAction)pressRestorePurchasedItemButton:(id)sender
 {

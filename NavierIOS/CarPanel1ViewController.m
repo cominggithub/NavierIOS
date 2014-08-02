@@ -125,6 +125,7 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    self.navigationController.navigationBarHidden = TRUE;
     self.debugMsgLabel.hidden = ![SystemConfig getBoolValue:CONFIG_H_IS_DEBUG];
     [self active];
     [self checkIapItem];
@@ -653,7 +654,8 @@
     
     [self hideCarPanelMenu];
     [self inactive];
-    [self dismissViewControllerAnimated:YES completion:nil];
+
+    [self.navigationController popViewControllerAnimated:TRUE];
 }
 
 
@@ -742,7 +744,7 @@
     {
         [self hideCarPanelMenu];
         [self inactive];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self.navigationController popViewControllerAnimated:TRUE];
     }
 }
 
@@ -760,7 +762,7 @@
     {
         if (NavierHUDIAPHelper.iapItemCount > 0)
         {
-            [self presentViewController:buyViewController animated:YES completion:nil];
+            [self.navigationController pushViewController:buyViewController animated:TRUE];
         }
         else
         {

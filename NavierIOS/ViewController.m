@@ -18,6 +18,9 @@
 #include <NaviUtil/Log.h>
 
 @interface ViewController ()
+{
+    BOOL isBuyShown;
+}
 
 @end
 
@@ -25,6 +28,7 @@
 {
     RouteNavigationViewController *routeNavigationViewController;
     GoogleMapUIViewController *googleMapUIViewController;
+    UIViewController *carPanel;
     ADBannerView *adView;
     
     /* bug: bounds don't change to landscape mode */
@@ -99,6 +103,10 @@
                                                  name:@"applicationDidBecomeActive"
                                                object:nil];
 
+    
+    UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"CarPanels" bundle:nil];
+    carPanel = [secondStoryBoard instantiateInitialViewController];
+    isBuyShown = FALSE;
 }
 
 - (void)didReceiveMemoryWarning
@@ -126,6 +134,7 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    self.navigationController.navigationBarHidden = YES;
     [self.tableView reloadData];
     [self checkIAPItem];
 #if DEBUG
@@ -142,7 +151,9 @@
 {
     [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     [self showAdAnimated:NO];
+
 }
+
 
 - (BOOL)prefersStatusBarHidden
 {
@@ -308,7 +319,7 @@
         return;
     }
     
-    [self presentViewController:routeNavigationViewController animated:YES completion:nil];
+    [self.navigationController pushViewController:routeNavigationViewController animated:TRUE];
     [routeNavigationViewController startRouteNavigationFrom:routeStartPlace To:routeEndPlace];
 }
 
@@ -496,9 +507,7 @@
 
 - (IBAction)pressCarPanel:(id)sender
 {
-    // Get the storyboard named secondStoryBoard from the main bundle:
-    UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"CarPanels" bundle:nil];
-    UIViewController *carPanel = [secondStoryBoard instantiateInitialViewController];
+
     //
     // **OR**
     //
@@ -509,7 +518,9 @@
     // Then push the new view controller in the usual way:
     //    [self.navigationController pushViewController:carPanel animated:YES];
     
-    [self presentViewController:carPanel animated:TRUE completion:nil];
+    logfn();
+    logO(carPanel);
+    [self.navigationController pushViewController:carPanel animated:TRUE];
     
 }
 

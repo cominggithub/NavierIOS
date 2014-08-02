@@ -64,6 +64,7 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    self.navigationController.navigationBarHidden = TRUE;
     [self checkIapItem];
     [self active];
 }
@@ -167,7 +168,7 @@
 -(IBAction) pressLogoButton:(id) sender
 {
     [self hideRouteGuideMenu];
-    [self dismissViewControllerAnimated:true completion:nil];
+    [self.navigationController popViewControllerAnimated:TRUE];
 }
 
 -(IBAction) pressHUDButton:(id) sender
@@ -492,7 +493,7 @@
 {
     if (YES == isPressed && NavierHUDIAPHelper.iapItemCount > 0)
     {
-        [self presentViewController:buyViewController animated:YES completion:nil];
+        [self.navigationController pushViewController:buyViewController animated:TRUE];
     }
     carPanelMenuView.hidden = YES;
 }

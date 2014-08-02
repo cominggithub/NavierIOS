@@ -81,6 +81,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    self.navigationController.navigationBarHidden = TRUE;
     self.currentPlace = nil;
 }
 
@@ -91,7 +92,7 @@
 
 - (IBAction)pressBackButton:(id)sender
 {
-    [self dismissViewControllerAnimated:true completion:nil];
+    [self.navigationController popViewControllerAnimated:TRUE];
 }
 
 - (BOOL)prefersStatusBarHidden
