@@ -67,11 +67,8 @@
     self.navigationController.navigationBarHidden = TRUE;
     [self checkIapItem];
     [self active];
-}
-
--(void) viewDidAppear:(BOOL)animated
-{
-
+    
+    [GoogleUtil sendScreenView:@"Route Navigation"];
 }
 
 -(void) viewDidDisappear:(BOOL)animated

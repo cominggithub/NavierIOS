@@ -9,6 +9,7 @@
 #import "SelectPlaceViewController.h"
 #import <NaviUtil/NaviUtil.h>
 #import <NaviUtil/UIImage+category.h>
+#import "GoogleUtil.h"
 
 #define FILE_DEBUG FALSE
 #include <NaviUtil/Log.h>
@@ -69,11 +70,18 @@
     [super viewDidUnload];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+}
 -(void) viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBarHidden = TRUE;
     self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
     [self.tableView reloadData];
+    
+    [GoogleUtil sendScreenView:@"Select Place"];
 }
 
 - (void)didReceiveMemoryWarning

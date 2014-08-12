@@ -245,6 +245,75 @@
             </objects>
             <point key="canvasLocation" x="-18" y="1131"/>
         </scene>
+        <!--Buy Collection View Controller-->
+        <scene sceneID="UXl-4f-Da6">
+            <objects>
+                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="CPo-Yk-1Re" customClass="BuyCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="yWD-7p-476">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="20" minimumInteritemSpacing="0.0" id="QFf-sx-owj">
+                            <size key="itemSize" width="384" height="320"/>
+                            <size key="headerReferenceSize" width="0.0" height="32"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="48" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="iapImageCell" id="UlC-yd-Khm" customClass="IAPImageCell">
+                                <rect key="frame" x="48" y="0.0" width="384" height="320"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="384" height="320"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="iUT-2D-7NP">
+                                            <rect key="frame" x="0.0" y="32" width="384" height="256"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XGM-xe-xdW">
+                                            <rect key="frame" x="88" y="290" width="99" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Restore">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PRd-QK-nuW">
+                                            <rect key="frame" x="180" y="290" width="99" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Buy">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sr6-Km-ZXk">
+                                            <rect key="frame" x="0.0" y="8" width="384" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="imageView" destination="iUT-2D-7NP" id="XYq-Hu-s2r"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="ELm-SW-Kqj">
+                            <autoresizingMask key="autoresizingMask"/>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="CPo-Yk-1Re" id="aPe-hy-DPg"/>
+                            <outlet property="delegate" destination="CPo-Yk-1Re" id="fNX-Wt-BiA"/>
+                        </connections>
+                    </collectionView>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kIn-aX-2fL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-703" y="233"/>
+        </scene>
         <!--Route Table View Controller-->
         <scene sceneID="KIL-EH-YIK">
             <objects>
@@ -345,7 +414,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="91C-en-vG7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="929" y="698"/>
+            <point key="canvasLocation" x="1026" y="847"/>
         </scene>
         <!--Google MapUI View Controller-->
         <scene sceneID="YaZ-hm-EnA">
@@ -1144,7 +1213,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UlT-sC-I1C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="487" y="306"/>
+            <point key="canvasLocation" x="487" y="241"/>
         </scene>
         <!--Save Place View Controller-->
         <scene sceneID="3hB-c2-SHg">

@@ -8,15 +8,15 @@
 
 #import "CarPanelViewController.h"
 #import <CoreLocation/CoreLocation.h>
-#import <NaviUtil/SystemConfig.h>
+#import <NaviUtil/NaviUtil.h>
 #import "BuyUIViewController.h"
 
 #if DEBUG
-#define FILE_DEBUG TRUE
+#define FILE_DEBUG FALSE
 #elif RELEASE_TEST
-#define FILE_DEBUG TRUE
+#define FILE_DEBUG FALSE
 #else
-#define FILE_DEBUG TRUE
+#define FILE_DEBUG FALSE
 #endif
 
 #include "Log.h"
@@ -108,6 +108,11 @@
     [self inactive];
 }
 
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
 #pragma mark -- Update UI
 
 -(void) updateUIFromConfig
@@ -181,10 +186,8 @@
 
 -(void)setLocation:(CLLocationCoordinate2D)location
 {
-    logfn();
     if ([self.contentView respondsToSelector:@selector(setLocation:)])
     {
-        logfn();
         [self.contentView setLocation:location];
     }
 }

@@ -14,7 +14,6 @@
 #import "PlaceSearchResultPanelView.h"
 #import "SavePlaceViewController.h"
 
-
 @interface GoogleMapUIViewController : UIViewController<GMSMapViewDelegate, SelectPlaceViewControllerDelegate, ADBannerViewDelegate, MapManagerDelegate, PlaceSearchResultPanelViewDelegate, SavePlaceViewControllerDelegate>
 
 /** GMSMapView managed by this controller. */

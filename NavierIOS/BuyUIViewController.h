@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAITrackedViewController.h"
 
-@interface BuyUIViewController : UIViewController
+@interface BuyUIViewController : GAITrackedViewController
 @property (weak, nonatomic) IBOutlet UILabel *productTitle;
 @property (weak, nonatomic) IBOutlet UILabel *productDescription;
 @property (weak, nonatomic) IBOutlet UILabel *productPrice;

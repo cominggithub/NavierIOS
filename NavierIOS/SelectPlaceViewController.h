@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <NaviUtil/NaviUtil.h>
+
 @class SelectPlaceViewController;
 
 @protocol SelectPlaceViewControllerDelegate <NSObject>

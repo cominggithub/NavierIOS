@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <NaviUtil/NaviUtil.h>
 #import "CarPanel1MenuView.h"
+#import "GAITrackedViewController.h"
 
 @interface RouteNavigationViewController : UIViewController<UITextFieldDelegate, CarPane1MenuViewDelegate>
 {

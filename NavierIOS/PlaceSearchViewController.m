@@ -9,6 +9,7 @@
 #import "PlaceSearchViewController.h"
 #import <NaviUtil/NaviUtil.h>
 #import <NaviUtil/UIImage+category.h>
+#import "GoogleUtil.h"
 
 #define FILE_DEBUG FALSE
 #include <NaviUtil/Log.h>
@@ -44,6 +45,14 @@
 {
     self.navigationController.navigationBarHidden = TRUE;
     self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
+    
+    [GoogleUtil sendScreenView:@"Place Search"];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [GoogleUtil sendScreenView:@"Place Search"];
 }
 - (void)didReceiveMemoryWarning
 {

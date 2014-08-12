@@ -14,6 +14,17 @@
 #import "BuyUIViewController.h"
 #import <NaviUtil/CarPanel2View.h>
 
+#if DEBUG
+#define FILE_DEBUG TRUE
+#elif RELEASE_TEST
+#define FILE_DEBUG TRUE
+#else
+#define FILE_DEBUG TRUE
+#endif
+
+#include "Log.h"
+
+
 @interface CarPanel2ViewController ()
 {
     CarPanel2View* _carPanel2View;
@@ -48,6 +59,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     // Do any additional setup after loading the view.
 }
 
@@ -57,6 +69,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [GoogleUtil sendScreenView:@"Car Panel 2"];
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
 /*
 #pragma mark - Navigation
 

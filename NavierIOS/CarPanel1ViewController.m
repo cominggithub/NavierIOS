@@ -12,9 +12,18 @@
 #import "SystemStatusView.h"
 #import "CarPanel1MenuView.h"
 #import "BuyUIViewController.h"
+#import "GoogleUtil.h"
 
+#if DEBUG
 #define FILE_DEBUG TRUE
-#include <NaviUtil/Log.h>
+#elif RELEASE_TEST
+#define FILE_DEBUG TRUE
+#else
+#define FILE_DEBUG TRUE
+#endif
+
+#include "Log.h"
+
 
 @interface CarPanel1ViewController ()
 {
@@ -92,7 +101,6 @@
 - (void)viewDidLoad
 {
     [self initSelf];
-    
     [super viewDidLoad];
   
     
@@ -137,6 +145,8 @@
 }
 -(void) viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+    [GoogleUtil sendScreenView:@"Car Panel 1"];
 
 }
 

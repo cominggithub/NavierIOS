@@ -9,10 +9,14 @@
 #import "AppDelegate.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import <NaviUtil/NaviUtil.h>
+#import <FacebookSDK/FacebookSDK.h>
 #import "GoogleAPIKey.h"
+#import "GoogleUtil.h"
+
 
 #import "RSSecrets.h"
 #import "BuyUIViewController.h"
+
 
 
 #define FILE_DEBUG FALSE
@@ -66,7 +70,9 @@
     UIStoryboard *storyboard          = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
     buyViewController   = (BuyUIViewController *)[storyboard instantiateViewControllerWithIdentifier:NSStringFromClass ([BuyUIViewController class])];
 
-    
+
+    [GoogleUtil initializeGoogleAnalytics];
+    [GoogleUtil setVerbose:FALSE];
 /*
     Place *p1 = [[Place alloc] initWithName:@"甜蜜的家" address:@"冬山" coordinate:CLLocationCoordinate2DMake(23.011051, 120.194082)];
     p1.placeType = kPlaceType_Home;
@@ -174,5 +180,23 @@
 #endif
 
 }
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    
+    BOOL urlWasHandled = [FBAppCall handleOpenURL:url
+                                sourceApplication:sourceApplication
+                                  fallbackHandler:^(FBAppCall *call) {
+                                      NSLog(@"Unhandled deep link: %@", url);
+                                      // Here goes the code to handle the links
+                                      // Use the links to show a relevant view of your app to the user
+                                  }];
+    
+    return urlWasHandled;
+}
+
+
 
 @end

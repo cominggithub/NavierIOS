@@ -7,6 +7,8 @@
 //
 
 #import "CarPanel3ViewController.h"
+#import <NaviUtil/NaviUtil.h>
+#import "GoogleUtil.h"
 
 @interface CarPanel3ViewController ()
 
@@ -33,6 +35,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [GoogleUtil sendScreenView:@"Car Panel 3"];
 }
 
 /*

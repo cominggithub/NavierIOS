@@ -14,6 +14,8 @@
 #import <AVFoundation/AVFoundation.h>
 
 
+
+
 #define FILE_DEBUG FALSE
 #include <NaviUtil/Log.h>
 
@@ -28,6 +30,7 @@
 {
     RouteNavigationViewController *routeNavigationViewController;
     GoogleMapUIViewController *googleMapUIViewController;
+    SLComposeViewController *twitterViewController;
     UIViewController *carPanel;
     ADBannerView *adView;
     
@@ -107,6 +110,10 @@
     UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"CarPanels" bundle:nil];
     carPanel = [secondStoryBoard instantiateInitialViewController];
     isBuyShown = FALSE;
+    
+
+
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -145,10 +152,13 @@
     self.debugConfigButton.hidden = YES;
 #endif
     [self active];
+    
+    [GoogleUtil sendScreenView:@"Main Menu"];
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     [self showAdAnimated:NO];
 
@@ -518,7 +528,33 @@
     // Then push the new view controller in the usual way:
     //    [self.navigationController pushViewController:carPanel animated:YES];
     
-    [self.navigationController pushViewController:carPanel animated:TRUE];
+//    [self.navigationController pushViewController:carPanel animated:TRUE];
+//    [FBUtil shareAppleStoreLink];
+//    [self shareAppStoreLink];
+//    [FBUtil shareAppleStoreLink:self];
+    [TwitterUtil shareAppStoreLink:self];
+}
+
+-(void)shareAppStoreLink
+{
+    logfn();
+    twitterViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+    NSString *titleToShare = @"i am a string a super string the most super string that ever existed in the world of the super string universe which as it happens is very super as well";
+    
+    logfn();
+    if (titleToShare.length > 140) {
+        titleToShare = [titleToShare substringToIndex:140];
+    }
+    
+    [twitterViewController setInitialText:titleToShare];
+    
+    if (![twitterViewController addURL:[NSURL URLWithString:@"http://google.com"]]) {
+        logfn();
+        NSLog(@"Couldn't add.");
+    }
+    
+    //    [[[UIApplication sharedApplication].keyWindow.rootViewController].navigationController pushViewController:twitterViewController animated:TRUE];
+    [self.navigationController pushViewController:twitterViewController animated:TRUE];
 }
 
 -(IBAction) pressTestButton:(id)sender

@@ -11,7 +11,6 @@
 #import <iAd/iAd.h>
 #import "CarPanel1MenuView.h"
 
-
 @interface CarPanel1ViewController : UIViewController<LocationManagerDelegate, SystemManagerDelegate, CarPane1MenuViewDelegate, ADBannerViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *debugMsgLabel;
 @property (weak, nonatomic) IBOutlet UIView *courseLabelView;

@@ -13,7 +13,14 @@
 #import <NaviUtil/IAPHelper.h>
 #import <GoogleMaps/GoogleMaps.h>
 
-#define FILE_DEBUG FALSE
+#if DEBUG
+#define FILE_DEBUG TRUE
+#elif RELEASE_TEST
+#define FILE_DEBUG TRUE
+#else
+#define FILE_DEBUG TRUE
+#endif
+
 #include "Log.h"
 
 @interface BuyUIViewController ()
@@ -79,6 +86,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     [self.buyButton setTitle:[SystemManager getLanguageString:self.buyButton.titleLabel.text] forState:UIControlStateNormal];
     
 
@@ -196,6 +204,8 @@
     self.navigationController.navigationBarHidden = YES;
     self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
     [self updateProduct];
+    
+    [GoogleUtil sendScreenView:@"Buy View"];
 }
 
 - (BOOL)prefersStatusBarHidden

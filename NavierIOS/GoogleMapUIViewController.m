@@ -13,6 +13,7 @@
 #import "MarkerMenuFloatView.h"
 #import "PlaceSearchResultPanelView.h"
 #import <NaviUtil/UIImage+category.h>
+#import "GoogleUtil.h"
 
 #define FILE_DEBUG TRUE
 #include <NaviUtil/Log.h>
@@ -79,7 +80,7 @@
 
 -(void) initSelf
 {
-    
+
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -98,7 +99,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     alert                               = nil;
 
     
@@ -151,6 +152,8 @@
     self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
     [self.backButton setTitle:[SystemManager getLanguageString:self.backButton.titleLabel.text] forState:UIControlStateNormal];
     
+
+    
 }
 
 
@@ -170,6 +173,7 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    
     self.navigationController.navigationBarHidden = YES;
     
     if(self.placeToSearch != nil && self.placeToSearch.length > 0)
@@ -187,12 +191,17 @@
     [self checkIAPItem];
     
     self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
+    
+    [GoogleUtil sendScreenView:@"Map"];
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
     /* user places aren't shown when it is first added in the map */
     /* refresh here to force re-added user places */
+
+    [super viewDidAppear:animated];
+    
     [mapManager refreshMap];
 }
 

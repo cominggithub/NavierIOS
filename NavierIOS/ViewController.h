@@ -10,7 +10,6 @@
 #import <NaviUtil/NaviUtil.h>
 #import <iAd/iAd.h>
 
-
 @interface ViewController : UIViewController<ADBannerViewDelegate>
 {
     LocationManager* locationManager;

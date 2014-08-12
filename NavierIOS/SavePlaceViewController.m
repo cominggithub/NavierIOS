@@ -10,6 +10,7 @@
 #import "GoogleMapUIViewController.h"
 #import <NaviUtil/NaviUtil.h>
 #import <NaviUtil/UIImage+category.h>
+#import "GoogleUtil.h"
 
 #define FILE_DEBUG FALSE
 #include <NaviUtil/Log.h>
@@ -54,7 +55,7 @@
     /* configure navigation button icon */
     self.naviLeftButton.imageView.image = [self.naviLeftButton.imageView.image imageTintedWithColor:self.naviLeftButton.tintColor];
     [self.backButton setTitle:[SystemManager getLanguageString:self.backButton.titleLabel.text] forState:UIControlStateNormal];
-    
+    [GoogleUtil sendScreenView:@"Save Place"];
     
     
 }
@@ -65,6 +66,12 @@
     [self updateUIFromCurrentPlace];
 
 
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [GoogleUtil sendScreenView:@"Save Place"];
 }
 - (void)didReceiveMemoryWarning
 {

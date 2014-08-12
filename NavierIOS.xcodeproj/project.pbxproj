@@ -25,6 +25,13 @@
 		2B067CE91850CD2400A0054E /* PlaceSearchResultPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B067CE81850CD2400A0054E /* PlaceSearchResultPanel.xib */; };
 		2B087A241861EBEF000E8D3B /* inner_showdow_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B087A231861EBEF000E8D3B /* inner_showdow_bg.png */; };
 		2B087A2C1861ECE6000E8D3B /* inner_showdow_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B087A2B1861ECE6000E8D3B /* inner_showdow_bg@2x.png */; };
+		2B1200A7198E25E200E5DEAB /* BuyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1200A6198E25E200E5DEAB /* BuyCollectionViewController.m */; };
+		2B1200AF198E2AEF00E5DEAB /* buy1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1200AA198E2AEF00E5DEAB /* buy1.png */; };
+		2B1200B0198E2AEF00E5DEAB /* buy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1200AB198E2AEF00E5DEAB /* buy2.png */; };
+		2B1200B1198E2AEF00E5DEAB /* buy3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1200AC198E2AEF00E5DEAB /* buy3.png */; };
+		2B1200B2198E2AEF00E5DEAB /* buy4.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1200AD198E2AEF00E5DEAB /* buy4.png */; };
+		2B1200B3198E2AEF00E5DEAB /* buy5.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1200AE198E2AEF00E5DEAB /* buy5.png */; };
+		2B1200B6198E2C1000E5DEAB /* IAPImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1200B5198E2C1000E5DEAB /* IAPImageCell.m */; };
 		2B130735191E45E800F83D52 /* 好事多回家.tr in Resources */ = {isa = PBXBuildFile; fileRef = 2B130732191E45E800F83D52 /* 好事多回家.tr */; };
 		2B130736191E45E800F83D52 /* 家到緩緩.tr in Resources */ = {isa = PBXBuildFile; fileRef = 2B130733191E45E800F83D52 /* 家到緩緩.tr */; };
 		2B130737191E45E800F83D52 /* 緩緩到好事多.tr in Resources */ = {isa = PBXBuildFile; fileRef = 2B130734191E45E800F83D52 /* 緩緩到好事多.tr */; };
@@ -36,6 +43,8 @@
 		2B1429C3198CD95D009B6B55 /* cp2_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1429C1198CD95D009B6B55 /* cp2_arrow@2x.png */; };
 		2B14651A1870284300AC4651 /* trafficlight.MP3 in Resources */ = {isa = PBXBuildFile; fileRef = 2B1465191870284300AC4651 /* trafficlight.MP3 */; };
 		2B15A20B17D0F39600F3AFE5 /* MarkerMenuFloat.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B15A20A17D0F39600F3AFE5 /* MarkerMenuFloat.xib */; };
+		2B17DC4B1999FE63004E9675 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B17DC4A1999FE63004E9675 /* FacebookSDK.framework */; };
+		2B17DC8A199A47B5004E9675 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B17DC89199A47B5004E9675 /* Social.framework */; };
 		2B1C31CF18FD772400CF021C /* IAP_NoAdStoreUserPlace_bg_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1C31CB18FD772400CF021C /* IAP_NoAdStoreUserPlace_bg_4.png */; };
 		2B1C31D018FD772400CF021C /* IAP_NoAdStoreUserPlace_bg_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1C31CC18FD772400CF021C /* IAP_NoAdStoreUserPlace_bg_4@2x.png */; };
 		2B1C31D118FD772400CF021C /* IAP_NoAdStoreUserPlace_bg_35@2x copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1C31CD18FD772400CF021C /* IAP_NoAdStoreUserPlace_bg_35@2x copy.png */; };
@@ -46,7 +55,8 @@
 		2B1F14E8198D29190013390A /* cordiau.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B1F14E2198CF9B20013390A /* cordiau.ttf */; };
 		2B1F14E9198D291B0013390A /* upcil.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B1F14E3198CF9B20013390A /* upcil.ttf */; };
 		2B1F365D19094745007E0C9A /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B1F365C19094745007E0C9A /* GoogleMaps.framework */; };
-		2B1F365F1909476F007E0C9A /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2B1F365E1909476F007E0C9A /* GoogleMaps.bundle */; };
+		2B24E7741993A26E007EF85D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B24E7731993A26E007EF85D /* AdSupport.framework */; };
+		2B24E77A1993A374007EF85D /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B24E7791993A374007EF85D /* libsqlite3.0.dylib */; };
 		2B24ECA518CC0C1E0079CAD5 /* 裕文圖書館.tr in Resources */ = {isa = PBXBuildFile; fileRef = 2B24ECA418CC0C1E0079CAD5 /* 裕文圖書館.tr */; };
 		2B382156191DEADA0017F24A /* 自強家.tr in Resources */ = {isa = PBXBuildFile; fileRef = 2B382155191DEADA0017F24A /* 自強家.tr */; };
 		2B3907F1176D6B0A00E5F428 /* RouteGuideMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3907F0176D6B0A00E5F428 /* RouteGuideMenu.xib */; };
@@ -215,6 +225,11 @@
 		2BE6DA5917C39C2200DE20E8 /* indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BE6DA5517C39C2200DE20E8 /* indicator.png */; };
 		2BE6DA5A17C39C2200DE20E8 /* dashboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BE6DA5617C39C2200DE20E8 /* dashboard.png */; };
 		2BECCE241709B78100F58CE0 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BECCE231709B78100F58CE0 /* iAd.framework */; };
+		2BFA63581997B7B7004402A9 /* fbshare_1136x640.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFA63571997B7B7004402A9 /* fbshare_1136x640.png */; };
+		2BFA635A1997B8F2004402A9 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BFA63591997B8F2004402A9 /* libGoogleAnalyticsServices.a */; };
+		2BFA635C1997BBA9004402A9 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2BFA635B1997BBA9004402A9 /* GoogleMaps.bundle */; };
+		2BFB3FF91999D1B600E5763C /* fbshare_1200x630.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFB3FF81999D1B600E5763C /* fbshare_1200x630.png */; };
+		2BFB3FFC1999D36C00E5763C /* protrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFB3FFB1999D36C00E5763C /* protrait.png */; };
 		2BFF015F1853517700DA9735 /* PlaceSearchResultPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BFF015E1853517700DA9735 /* PlaceSearchResultPanelView.m */; };
 		2BFF01621853537900DA9735 /* MarkerMenuFloatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BFF01611853537900DA9735 /* MarkerMenuFloatView.m */; };
 /* End PBXBuildFile section */
@@ -258,6 +273,16 @@
 		2B067CE81850CD2400A0054E /* PlaceSearchResultPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceSearchResultPanel.xib; sourceTree = "<group>"; };
 		2B087A231861EBEF000E8D3B /* inner_showdow_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inner_showdow_bg.png; sourceTree = "<group>"; };
 		2B087A2B1861ECE6000E8D3B /* inner_showdow_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inner_showdow_bg@2x.png"; sourceTree = "<group>"; };
+		2B1200A3198DBC6900E5DEAB /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2B1200A5198E25E200E5DEAB /* BuyCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyCollectionViewController.h; sourceTree = "<group>"; };
+		2B1200A6198E25E200E5DEAB /* BuyCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyCollectionViewController.m; sourceTree = "<group>"; };
+		2B1200AA198E2AEF00E5DEAB /* buy1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buy1.png; sourceTree = "<group>"; };
+		2B1200AB198E2AEF00E5DEAB /* buy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buy2.png; sourceTree = "<group>"; };
+		2B1200AC198E2AEF00E5DEAB /* buy3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buy3.png; sourceTree = "<group>"; };
+		2B1200AD198E2AEF00E5DEAB /* buy4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buy4.png; sourceTree = "<group>"; };
+		2B1200AE198E2AEF00E5DEAB /* buy5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buy5.png; sourceTree = "<group>"; };
+		2B1200B4198E2C1000E5DEAB /* IAPImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPImageCell.h; sourceTree = "<group>"; };
+		2B1200B5198E2C1000E5DEAB /* IAPImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPImageCell.m; sourceTree = "<group>"; };
 		2B130732191E45E800F83D52 /* 好事多回家.tr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "好事多回家.tr"; path = "../../../ios/development/track data/好事多回家.tr"; sourceTree = "<group>"; };
 		2B130733191E45E800F83D52 /* 家到緩緩.tr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "家到緩緩.tr"; path = "../../../ios/development/track data/家到緩緩.tr"; sourceTree = "<group>"; };
 		2B130734191E45E800F83D52 /* 緩緩到好事多.tr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "緩緩到好事多.tr"; path = "../../../ios/development/track data/緩緩到好事多.tr"; sourceTree = "<group>"; };
@@ -269,6 +294,8 @@
 		2B1429C1198CD95D009B6B55 /* cp2_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cp2_arrow@2x.png"; sourceTree = "<group>"; };
 		2B1465191870284300AC4651 /* trafficlight.MP3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = trafficlight.MP3; sourceTree = "<group>"; };
 		2B15A20A17D0F39600F3AFE5 /* MarkerMenuFloat.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MarkerMenuFloat.xib; sourceTree = "<group>"; };
+		2B17DC4A1999FE63004E9675 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Users/Coming/Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		2B17DC89199A47B5004E9675 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		2B18AA8D174877BC00277F52 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		2B1C31CB18FD772400CF021C /* IAP_NoAdStoreUserPlace_bg_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IAP_NoAdStoreUserPlace_bg_4.png; sourceTree = "<group>"; };
 		2B1C31CC18FD772400CF021C /* IAP_NoAdStoreUserPlace_bg_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IAP_NoAdStoreUserPlace_bg_4@2x.png"; sourceTree = "<group>"; };
@@ -280,7 +307,8 @@
 		2B1F14E2198CF9B20013390A /* cordiau.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = cordiau.ttf; sourceTree = "<group>"; };
 		2B1F14E3198CF9B20013390A /* upcil.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = upcil.ttf; sourceTree = "<group>"; };
 		2B1F365C19094745007E0C9A /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
-		2B1F365E1909476F007E0C9A /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../../ios/framework/GoogleMaps-iOS-1.7.2/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
+		2B24E7731993A26E007EF85D /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		2B24E7791993A374007EF85D /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		2B24ECA418CC0C1E0079CAD5 /* 裕文圖書館.tr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "裕文圖書館.tr"; sourceTree = "<group>"; };
 		2B382155191DEADA0017F24A /* 自強家.tr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "自強家.tr"; sourceTree = "<group>"; };
 		2B3907F0176D6B0A00E5F428 /* RouteGuideMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RouteGuideMenu.xib; path = NavierIOS/RouteGuideMenu.xib; sourceTree = "<group>"; };
@@ -483,6 +511,11 @@
 		2BE6DA5517C39C2200DE20E8 /* indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indicator.png; sourceTree = "<group>"; };
 		2BE6DA5617C39C2200DE20E8 /* dashboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard.png; sourceTree = "<group>"; };
 		2BECCE231709B78100F58CE0 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		2BFA63571997B7B7004402A9 /* fbshare_1136x640.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fbshare_1136x640.png; sourceTree = "<group>"; };
+		2BFA63591997B8F2004402A9 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		2BFA635B1997BBA9004402A9 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../../ios/framework/Google/GoogleMaps-iOS-1.7.2/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
+		2BFB3FF81999D1B600E5763C /* fbshare_1200x630.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fbshare_1200x630.png; sourceTree = "<group>"; };
+		2BFB3FFB1999D36C00E5763C /* protrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = protrait.png; sourceTree = "<group>"; };
 		2BFF015D1853517700DA9735 /* PlaceSearchResultPanelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceSearchResultPanelView.h; sourceTree = "<group>"; };
 		2BFF015E1853517700DA9735 /* PlaceSearchResultPanelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceSearchResultPanelView.m; sourceTree = "<group>"; };
 		2BFF01601853537900DA9735 /* MarkerMenuFloatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerMenuFloatView.h; sourceTree = "<group>"; };
@@ -495,14 +528,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B17DC8A199A47B5004E9675 /* Social.framework in Frameworks */,
+				2B24E77A1993A374007EF85D /* libsqlite3.0.dylib in Frameworks */,
+				2B24E7741993A26E007EF85D /* AdSupport.framework in Frameworks */,
 				2B1372F81894EC9A00B398FD /* Security.framework in Frameworks */,
 				2B7697FC1894A43400DB8F5A /* StoreKit.framework in Frameworks */,
 				2B04D481184396E100233B2D /* SystemConfiguration.framework in Frameworks */,
+				2B17DC4B1999FE63004E9675 /* FacebookSDK.framework in Frameworks */,
 				2B04D480184396D600233B2D /* QuartzCore.framework in Frameworks */,
 				2B04D47F184396C200233B2D /* OpenGLES.framework in Frameworks */,
 				2B04D47E184396AE00233B2D /* libz.dylib in Frameworks */,
 				2B04D47D1843969A00233B2D /* libicucore.dylib in Frameworks */,
 				2B04D47C1843966000233B2D /* libc++.dylib in Frameworks */,
+				2BFA635A1997B8F2004402A9 /* libGoogleAnalyticsServices.a in Frameworks */,
 				2B04D47B1843965000233B2D /* ImageIO.framework in Frameworks */,
 				2B04D47A1843964200233B2D /* GLKit.framework in Frameworks */,
 				2B04D4791843963500233B2D /* CoreText.framework in Frameworks */,
@@ -530,6 +568,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B1200A9198E2AC600E5DEAB /* Buy */ = {
+			isa = PBXGroup;
+			children = (
+				2B1200AA198E2AEF00E5DEAB /* buy1.png */,
+				2B1200AB198E2AEF00E5DEAB /* buy2.png */,
+				2B1200AC198E2AEF00E5DEAB /* buy3.png */,
+				2B1200AD198E2AEF00E5DEAB /* buy4.png */,
+				2B1200AE198E2AEF00E5DEAB /* buy5.png */,
+			);
+			name = Buy;
+			sourceTree = "<group>";
+		};
+		2B17DC66199A1DB9004E9675 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Share;
+			sourceTree = "<group>";
+		};
+		2B19239E198E5924000A6F5D /* GPX */ = {
+			isa = PBXGroup;
+			children = (
+				2B3FF26B196992EC004E1D8D /* 永康家.gpx */,
+				2B3FF26C196992EC004E1D8D /* 高雄家.gpx */,
+			);
+			name = GPX;
+			sourceTree = "<group>";
+		};
 		2B1F14E5198CF9B70013390A /* Fnot */ = {
 			isa = PBXGroup;
 			children = (
@@ -627,9 +693,10 @@
 		2B7929D017007FC300353349 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2BFA63561997B781004402A9 /* Share */,
+				2B19239E198E5924000A6F5D /* GPX */,
+				2B1200A9198E2AC600E5DEAB /* Buy */,
 				2B1F14E5198CF9B70013390A /* Fnot */,
-				2B3FF26B196992EC004E1D8D /* 永康家.gpx */,
-				2B3FF26C196992EC004E1D8D /* 高雄家.gpx */,
 				2BC839421866D97C002477AF /* Interface */,
 				2B6EC00E1863212F0008642C /* Place */,
 				2BB7E6DF18609020005AB333 /* Table */,
@@ -713,7 +780,12 @@
 		2B9A431716DB955F00FD1A54 /* frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2B1F365E1909476F007E0C9A /* GoogleMaps.bundle */,
+				2B17DC89199A47B5004E9675 /* Social.framework */,
+				2B24E7731993A26E007EF85D /* AdSupport.framework */,
+				2B17DC4A1999FE63004E9675 /* FacebookSDK.framework */,
+				2BFA635B1997BBA9004402A9 /* GoogleMaps.bundle */,
+				2BFA63591997B8F2004402A9 /* libGoogleAnalyticsServices.a */,
+				2B24E7791993A374007EF85D /* libsqlite3.0.dylib */,
 				2B1F365C19094745007E0C9A /* GoogleMaps.framework */,
 				2B1372F71894EC9A00B398FD /* Security.framework */,
 				2B7697FB1894A43300DB8F5A /* StoreKit.framework */,
@@ -742,6 +814,7 @@
 		2B9A431E16DB955F00FD1A54 /* NavierIOS */ = {
 			isa = PBXGroup;
 			children = (
+				2B17DC66199A1DB9004E9675 /* Share */,
 				2BCBD078183A5DD800B08D1D /* base */,
 				2BEBB82217BF0DD400B336E6 /* ViewControllers */,
 				2BC2C3C017A69D5D00A9AEE0 /* CarPanel */,
@@ -946,6 +1019,10 @@
 				2B4B3120175AF25800426D60 /* SelectPlaceViewController.m */,
 				2B8EE0C417AD41BD005FBF6B /* BuyUIViewController.h */,
 				2B8EE0C517AD41BD005FBF6B /* BuyUIViewController.m */,
+				2B1200A5198E25E200E5DEAB /* BuyCollectionViewController.h */,
+				2B1200A6198E25E200E5DEAB /* BuyCollectionViewController.m */,
+				2B1200B4198E2C1000E5DEAB /* IAPImageCell.h */,
+				2B1200B5198E2C1000E5DEAB /* IAPImageCell.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -967,6 +1044,16 @@
 				2B781E3D18B7875E00DD22BA /* car_location@2x.png */,
 			);
 			name = Navigation;
+			sourceTree = "<group>";
+		};
+		2BFA63561997B781004402A9 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				2BFB3FFB1999D36C00E5763C /* protrait.png */,
+				2BFB3FF81999D1B600E5763C /* fbshare_1200x630.png */,
+				2BFA63571997B7B7004402A9 /* fbshare_1136x640.png */,
+			);
+			name = Share;
 			sourceTree = "<group>";
 		};
 		2BFF015B1853513C00DA9735 /* View */ = {
@@ -1047,6 +1134,7 @@
 				"zh-Hant",
 				"zh-Hans",
 				vi,
+				nl,
 			);
 			mainGroup = 2B9A430C16DB955F00FD1A54;
 			productRefGroup = 2B9A431616DB955F00FD1A54 /* Products */;
@@ -1098,8 +1186,10 @@
 				2B66BDA518672FE900A9D75D /* search34.png in Resources */,
 				2B70308718A7973700FDA856 /* Icon-40@2x.png in Resources */,
 				2B9A433216DB955F00FD1A54 /* MainStoryboard_iPhone.storyboard in Resources */,
+				2BFA63581997B7B7004402A9 /* fbshare_1136x640.png in Resources */,
 				2B5B12991868739500C464C0 /* marker_home@2x.png in Resources */,
 				2B5B12AF1868832400C464C0 /* marker_favor@2x.png in Resources */,
+				2B1200B2198E2AEF00E5DEAB /* buy4.png in Resources */,
 				2B1429B7198CD0C9009B6B55 /* cp2_heading.png in Resources */,
 				2B130736191E45E800F83D52 /* 家到緩緩.tr in Resources */,
 				2B66BDA618672FE900A9D75D /* search34@2x.png in Resources */,
@@ -1113,6 +1203,7 @@
 				2BC839521866ECD8002477AF /* button_buy@2x.png in Resources */,
 				2BC3D369186699250092F02F /* close@2x.png in Resources */,
 				2B5B12A51868742A00C464C0 /* button_zoom_in@2x.png in Resources */,
+				2BFB3FFC1999D36C00E5763C /* protrait.png in Resources */,
 				2BD8CE811701EB7500BDA678 /* Default.png in Resources */,
 				2B1429C2198CD95D009B6B55 /* cp2_arrow.png in Resources */,
 				2B5B129A1868739500C464C0 /* marker_normal.png in Resources */,
@@ -1124,6 +1215,7 @@
 				2B6EC027186338260008642C /* map_btn_default.png in Resources */,
 				2BC3D36B186699250092F02F /* quit@2x.png in Resources */,
 				2B3907F1176D6B0A00E5F428 /* RouteGuideMenu.xib in Resources */,
+				2B1200B0198E2AEF00E5DEAB /* buy2.png in Resources */,
 				2B93510C177546B500721094 /* DebugMenu.xib in Resources */,
 				2B70308518A7973700FDA856 /* Icon-29@2x.png in Resources */,
 				2BC3D368186699250092F02F /* close.png in Resources */,
@@ -1137,17 +1229,18 @@
 				2B6FCDC0178D9CAF00DCFAAF /* CarPanels.storyboard in Resources */,
 				2B14651A1870284300AC4651 /* trafficlight.MP3 in Resources */,
 				2B5B12A71868742A00C464C0 /* button_zoom_out@2x.png in Resources */,
-				2B1F365F1909476F007E0C9A /* GoogleMaps.bundle in Resources */,
 				2B66BDA318672FE900A9D75D /* office34.png in Resources */,
 				2B067CE61850C6B600A0054E /* button_search_transparent.png in Resources */,
 				2B94C8E517A5407C002581F3 /* jasmineupcbold.ttf in Resources */,
 				2BD97FA618ABB88C00937C31 /* IAP_NoAdStoreUserPlace_bg_4_tw@2x.png in Resources */,
 				2B94C8F817A554D6002581F3 /* 3g.png in Resources */,
+				2B1200AF198E2AEF00E5DEAB /* buy1.png in Resources */,
 				2B94C8F917A554D6002581F3 /* 3g@2x.png in Resources */,
 				2BD71FFB197F8DF9002E7E92 /* cp2_circle.png in Resources */,
 				2B710AB018AF90A5001CB675 /* lock@2x.png in Resources */,
 				2B94C8FB17A554D6002581F3 /* battery@2x.png in Resources */,
 				2B66BD961867244400A9D75D /* icon_transparent32@2x.png in Resources */,
+				2B1200B1198E2AEF00E5DEAB /* buy3.png in Resources */,
 				2B1DDF7918C0159F00DBC200 /* button_mail.png in Resources */,
 				2B5B129C1868739500C464C0 /* marker_office.png in Resources */,
 				2B66BD8618671CC000A9D75D /* button_shift_right.png in Resources */,
@@ -1162,6 +1255,7 @@
 				2B94C8FD17A554D6002581F3 /* course frame@2x.png in Resources */,
 				2BC839491866DE2D002477AF /* button_search.png in Resources */,
 				2BD97FA718ABB88C00937C31 /* IAP_NoAdStoreUserPlace_bg_35_tw.png in Resources */,
+				2BFB3FF91999D1B600E5763C /* fbshare_1200x630.png in Resources */,
 				2BB2E1F118BA40CD008BB41B /* turn_straight.png in Resources */,
 				2B94C8FE17A554D6002581F3 /* gps.png in Resources */,
 				2B1C31D118FD772400CF021C /* IAP_NoAdStoreUserPlace_bg_35@2x copy.png in Resources */,
@@ -1238,9 +1332,11 @@
 				2B781E5A18B7AA4600DD22BA /* turn_left90.png in Resources */,
 				2BB2E1F418BA424C008BB41B /* turn_left45@2x.png in Resources */,
 				2B5D9A7617C7A57D00A22132 /* button_shop.png in Resources */,
+				2BFA635C1997BBA9004402A9 /* GoogleMaps.bundle in Resources */,
 				2B130735191E45E800F83D52 /* 好事多回家.tr in Resources */,
 				2B087A241861EBEF000E8D3B /* inner_showdow_bg.png in Resources */,
 				2BC8393D1866D882002477AF /* button_navigation.png in Resources */,
+				2B1200B3198E2AEF00E5DEAB /* buy5.png in Resources */,
 				2B5D9A7717C7A57D00A22132 /* button_shop@2x.png in Resources */,
 				2BC3D35B186691300092F02F /* background_main@2x.png in Resources */,
 				2B1C31D218FD772400CF021C /* IAP_NoAdStoreUserPlace_bg_35@2x.png in Resources */,
@@ -1287,6 +1383,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B1200B6198E2C1000E5DEAB /* IAPImageCell.m in Sources */,
 				2B9A432516DB955F00FD1A54 /* main.m in Sources */,
 				2BFF01621853537900DA9735 /* MarkerMenuFloatView.m in Sources */,
 				2B9A432916DB955F00FD1A54 /* AppDelegate.m in Sources */,
@@ -1303,6 +1400,7 @@
 				2BCC02A31839087E0018174B /* DebugGoogleMapViewController.m in Sources */,
 				2B036BBC1759CCEF003E4683 /* SavePlaceViewController.m in Sources */,
 				2B4B3121175AF25800426D60 /* SelectPlaceViewController.m in Sources */,
+				2B1200A7198E25E200E5DEAB /* BuyCollectionViewController.m in Sources */,
 				2B76744A175CDD91008E6566 /* RouteNavigationViewController.m in Sources */,
 				2B9351091775433600721094 /* DebugMenuViewController.m in Sources */,
 				2B831C2A177E779B006E35CD /* CarPanel1ViewController.m in Sources */,
@@ -1340,6 +1438,7 @@
 				2B89A7AA17B5E7550042539F /* en */,
 				2B89A7AD17B5EC4F0042539F /* zh-Hant */,
 				2BFF7A9919017BFB008AD0CA /* zh-Hans */,
+				2B1200A3198DBC6900E5DEAB /* nl */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1418,6 +1517,7 @@
 					"$(SRCROOT)",
 					/Data/Program/NavierIOS,
 					"$(PROJECT_DIR)",
+					/Users/Coming/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NavierIOS/NavierIOS-Prefix.pch";
@@ -1426,10 +1526,15 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../ios/framework/TestFlightSDK1.2.6\"",
+					/Data/ios/framework/Google/GoogleAnalyticsServicesiOS_3.09,
+					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-force_load",
+					/Data/ios/framework/Google/GoogleAnalyticsServicesiOS_3.09/libAdIdAccess.a,
+				);
 				PRODUCT_NAME = NavierHUD;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1526,6 +1631,7 @@
 					"$(SRCROOT)",
 					/Data/Program/NavierIOS,
 					"$(PROJECT_DIR)",
+					/Users/Coming/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NavierIOS/NavierIOS-Prefix.pch";
@@ -1534,10 +1640,15 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../ios/framework/TestFlightSDK1.2.6\"",
+					/Data/ios/framework/Google/GoogleAnalyticsServicesiOS_3.09,
+					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-force_load",
+					/Data/ios/framework/Google/GoogleAnalyticsServicesiOS_3.09/libAdIdAccess.a,
+				);
 				PRODUCT_NAME = NavierHUD;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1555,6 +1666,7 @@
 					"$(SRCROOT)",
 					/Data/Program/NavierIOS,
 					"$(PROJECT_DIR)",
+					/Users/Coming/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NavierIOS/NavierIOS-Prefix.pch";
@@ -1563,10 +1675,15 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../ios/framework/TestFlightSDK1.2.6\"",
+					/Data/ios/framework/Google/GoogleAnalyticsServicesiOS_3.09,
+					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-force_load",
+					/Data/ios/framework/Google/GoogleAnalyticsServicesiOS_3.09/libAdIdAccess.a,
+				);
 				PRODUCT_NAME = NavierHUD;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
