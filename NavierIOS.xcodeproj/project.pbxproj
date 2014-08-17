@@ -52,9 +52,17 @@
 		2B1DDF7918C0159F00DBC200 /* button_mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1DDF7718C0159F00DBC200 /* button_mail.png */; };
 		2B1DDF7A18C0159F00DBC200 /* button_mail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1DDF7818C0159F00DBC200 /* button_mail@2x.png */; };
 		2B1E249B196780E000188EAD /* googleLanguage.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B1E249A196780E000188EAD /* googleLanguage.plist */; };
+		2B1EF4F219A0BEEB0015C827 /* car_start_long.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2B1EF4F119A0BEEB0015C827 /* car_start_long.mp3 */; };
+		2B1EF4F519A0C0230015C827 /* car_start.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2B1EF4F419A0C0230015C827 /* car_start.mp3 */; };
+		2B1EF4FB19A0C7C80015C827 /* SelectCarPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1EF4FA19A0C7C80015C827 /* SelectCarPanelViewController.m */; };
 		2B1F14E8198D29190013390A /* cordiau.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B1F14E2198CF9B20013390A /* cordiau.ttf */; };
 		2B1F14E9198D291B0013390A /* upcil.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B1F14E3198CF9B20013390A /* upcil.ttf */; };
 		2B1F365D19094745007E0C9A /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B1F365C19094745007E0C9A /* GoogleMaps.framework */; };
+		2B20449E19A0E4650029E382 /* CarPanelImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B20449D19A0E4650029E382 /* CarPanelImageCell.m */; };
+		2B2044A419A0E6250029E382 /* carPanel1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B2044A019A0E6250029E382 /* carPanel1.png */; };
+		2B2044A519A0E6250029E382 /* carPanel1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B2044A119A0E6250029E382 /* carPanel1@2x.png */; };
+		2B2044A619A0E6250029E382 /* carPanel2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B2044A219A0E6250029E382 /* carPanel2.png */; };
+		2B2044A719A0E6250029E382 /* carPanel2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B2044A319A0E6250029E382 /* carPanel2@2x.png */; };
 		2B24E7741993A26E007EF85D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B24E7731993A26E007EF85D /* AdSupport.framework */; };
 		2B24E77A1993A374007EF85D /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B24E7791993A374007EF85D /* libsqlite3.0.dylib */; };
 		2B24ECA518CC0C1E0079CAD5 /* 裕文圖書館.tr in Resources */ = {isa = PBXBuildFile; fileRef = 2B24ECA418CC0C1E0079CAD5 /* 裕文圖書館.tr */; };
@@ -310,9 +318,19 @@
 		2B1DDF7718C0159F00DBC200 /* button_mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_mail.png; sourceTree = "<group>"; };
 		2B1DDF7818C0159F00DBC200 /* button_mail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_mail@2x.png"; sourceTree = "<group>"; };
 		2B1E249A196780E000188EAD /* googleLanguage.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = googleLanguage.plist; sourceTree = "<group>"; };
+		2B1EF4F119A0BEEB0015C827 /* car_start_long.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = car_start_long.mp3; sourceTree = "<group>"; };
+		2B1EF4F419A0C0230015C827 /* car_start.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = car_start.mp3; sourceTree = "<group>"; };
+		2B1EF4F919A0C7C80015C827 /* SelectCarPanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCarPanelViewController.h; sourceTree = "<group>"; };
+		2B1EF4FA19A0C7C80015C827 /* SelectCarPanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCarPanelViewController.m; sourceTree = "<group>"; };
 		2B1F14E2198CF9B20013390A /* cordiau.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = cordiau.ttf; sourceTree = "<group>"; };
 		2B1F14E3198CF9B20013390A /* upcil.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = upcil.ttf; sourceTree = "<group>"; };
 		2B1F365C19094745007E0C9A /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		2B20449C19A0E4650029E382 /* CarPanelImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarPanelImageCell.h; sourceTree = "<group>"; };
+		2B20449D19A0E4650029E382 /* CarPanelImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarPanelImageCell.m; sourceTree = "<group>"; };
+		2B2044A019A0E6250029E382 /* carPanel1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carPanel1.png; sourceTree = "<group>"; };
+		2B2044A119A0E6250029E382 /* carPanel1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "carPanel1@2x.png"; sourceTree = "<group>"; };
+		2B2044A219A0E6250029E382 /* carPanel2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carPanel2.png; sourceTree = "<group>"; };
+		2B2044A319A0E6250029E382 /* carPanel2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "carPanel2@2x.png"; sourceTree = "<group>"; };
 		2B24E7731993A26E007EF85D /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		2B24E7791993A374007EF85D /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		2B24ECA418CC0C1E0079CAD5 /* 裕文圖書館.tr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "裕文圖書館.tr"; sourceTree = "<group>"; };
@@ -584,6 +602,10 @@
 		2B1200A9198E2AC600E5DEAB /* Buy */ = {
 			isa = PBXGroup;
 			children = (
+				2B2044A019A0E6250029E382 /* carPanel1.png */,
+				2B2044A119A0E6250029E382 /* carPanel1@2x.png */,
+				2B2044A219A0E6250029E382 /* carPanel2.png */,
+				2B2044A319A0E6250029E382 /* carPanel2@2x.png */,
 				2B1200AA198E2AEF00E5DEAB /* buy1.png */,
 				2B1200AB198E2AEF00E5DEAB /* buy2.png */,
 				2B1200AC198E2AEF00E5DEAB /* buy3.png */,
@@ -939,6 +961,10 @@
 				2BD71FF4197F88F9002E7E92 /* CarPanel3ViewController.m */,
 				2BD72008197F9E65002E7E92 /* CarPanelViewController.h */,
 				2BD72009197F9E65002E7E92 /* CarPanelViewController.m */,
+				2B1EF4F919A0C7C80015C827 /* SelectCarPanelViewController.h */,
+				2B1EF4FA19A0C7C80015C827 /* SelectCarPanelViewController.m */,
+				2B20449C19A0E4650029E382 /* CarPanelImageCell.h */,
+				2B20449D19A0E4650029E382 /* CarPanelImageCell.m */,
 			);
 			name = CarPanel;
 			sourceTree = "<group>";
@@ -1024,6 +1050,8 @@
 		2BEB32CD19A09554007BD029 /* sound */ = {
 			isa = PBXGroup;
 			children = (
+				2B1EF4F419A0C0230015C827 /* car_start.mp3 */,
+				2B1EF4F119A0BEEB0015C827 /* car_start_long.mp3 */,
 				2BEB32D819A09ABF007BD029 /* popup.mp3 */,
 				2BEB32D619A098EF007BD029 /* switch-7.mp3 */,
 			);
@@ -1251,6 +1279,7 @@
 				2BC3D368186699250092F02F /* close.png in Resources */,
 				2BC3D37418669CA90092F02F /* button_menu.png in Resources */,
 				2BD97FA818ABB88C00937C31 /* IAP_NoAdStoreUserPlace_bg_35_tw@2x.png in Resources */,
+				2B1EF4F219A0BEEB0015C827 /* car_start_long.mp3 in Resources */,
 				2B6EC02A186338260008642C /* map_btn_pressed@2x.png in Resources */,
 				2B5B12A61868742A00C464C0 /* button_zoom_out.png in Resources */,
 				2B130737191E45E800F83D52 /* 緩緩到好事多.tr in Resources */,
@@ -1274,6 +1303,7 @@
 				2B66BD961867244400A9D75D /* icon_transparent32@2x.png in Resources */,
 				2B1200B1198E2AEF00E5DEAB /* buy3.png in Resources */,
 				2B1DDF7918C0159F00DBC200 /* button_mail.png in Resources */,
+				2B2044A719A0E6250029E382 /* carPanel2@2x.png in Resources */,
 				2B5B129C1868739500C464C0 /* marker_office.png in Resources */,
 				2B66BD8618671CC000A9D75D /* button_shift_right.png in Resources */,
 				2B94C8FC17A554D6002581F3 /* course frame.png in Resources */,
@@ -1306,6 +1336,7 @@
 				2B3FF26E196992EC004E1D8D /* 高雄家.gpx in Resources */,
 				2B9A1369186EF94200AB7945 /* icon_navi_left@2x.png in Resources */,
 				2B382156191DEADA0017F24A /* 自強家.tr in Resources */,
+				2B2044A619A0E6250029E382 /* carPanel2.png in Resources */,
 				2B781E5B18B7AA4600DD22BA /* turn_left90@2x.png in Resources */,
 				2B781E3F18B7875E00DD22BA /* car_location@2x.png in Resources */,
 				2BE6DA5717C39C2200DE20E8 /* dashboard@2x.png in Resources */,
@@ -1328,6 +1359,7 @@
 				2B66BD8418671CC000A9D75D /* button_shift_left.png in Resources */,
 				2B1F14E8198D29190013390A /* cordiau.ttf in Resources */,
 				2B3FF26D196992EC004E1D8D /* 永康家.gpx in Resources */,
+				2B1EF4F519A0C0230015C827 /* car_start.mp3 in Resources */,
 				2BC839451866D989002477AF /* top_button_v_separator.png in Resources */,
 				2B1E249B196780E000188EAD /* googleLanguage.plist in Resources */,
 				2BC3D37B1866CE0F0092F02F /* marker_menu_bg@2x.png in Resources */,
@@ -1376,10 +1408,12 @@
 				2B6EC00B18631BA20008642C /* h_seperator.png in Resources */,
 				2B79232F17C9C129009463F8 /* 3g_off.png in Resources */,
 				2B6EC029186338260008642C /* map_btn_pressed.png in Resources */,
+				2B2044A519A0E6250029E382 /* carPanel1@2x.png in Resources */,
 				2B79233017C9C129009463F8 /* 3g_off@2x.png in Resources */,
 				2BC839401866D882002477AF /* button_place@2x.png in Resources */,
 				2B79233117C9C129009463F8 /* gps_off.png in Resources */,
 				2B79233217C9C129009463F8 /* gps_off@2x.png in Resources */,
+				2B2044A419A0E6250029E382 /* carPanel1.png in Resources */,
 				2B15A20B17D0F39600F3AFE5 /* MarkerMenuFloat.xib in Resources */,
 				2B13073B191E46D000F83D52 /* 太平橋到南台.tr in Resources */,
 			);
@@ -1430,10 +1464,12 @@
 				2BD71FF5197F88F9002E7E92 /* CarPanel3ViewController.m in Sources */,
 				2B8C5CAD174134B700260836 /* PlaceSearchViewController.m in Sources */,
 				2BD71FF2197F88E3002E7E92 /* CarPanel2ViewController.m in Sources */,
+				2B1EF4FB19A0C7C80015C827 /* SelectCarPanelViewController.m in Sources */,
 				2BFF015F1853517700DA9735 /* PlaceSearchResultPanelView.m in Sources */,
 				2BCC02A31839087E0018174B /* DebugGoogleMapViewController.m in Sources */,
 				2B036BBC1759CCEF003E4683 /* SavePlaceViewController.m in Sources */,
 				2B4B3121175AF25800426D60 /* SelectPlaceViewController.m in Sources */,
+				2B20449E19A0E4650029E382 /* CarPanelImageCell.m in Sources */,
 				2B1200A7198E25E200E5DEAB /* BuyCollectionViewController.m in Sources */,
 				2B76744A175CDD91008E6566 /* RouteNavigationViewController.m in Sources */,
 				2B9351091775433600721094 /* DebugMenuViewController.m in Sources */,

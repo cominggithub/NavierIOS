@@ -63,6 +63,7 @@
     alert                           = nil;
     routeNavigationViewController   = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass ([RouteNavigationViewController class])];
     googleMapUIViewController       = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass ([GoogleMapUIViewController class])];
+    shareViewController             = [[ShareViewController alloc] initWithNibName:@"ShareView" bundle:nil];
     
     oriProtraitMapButtonFrame       = self.mapButton.frame;
     oriLandscapeMapButtonFrame      = self.mapButton.frame;
@@ -339,7 +340,6 @@
         return;
     }
 
-    
     [routeNavigationViewController startRouteNavigationFrom:routeStartPlace To:routeEndPlace];
     [self.navigationController pushViewController:routeNavigationViewController animated:TRUE];
 
@@ -671,7 +671,6 @@
     if (TRUE == isShowShareView)
     {
         isShareViewShown    = YES;
-        shareViewController = [[ShareViewController alloc] initWithNibName:@"ShareView" bundle:nil];
         [shareViewController showInView:self.view];
     }
 

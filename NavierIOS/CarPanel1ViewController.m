@@ -756,7 +756,7 @@
     {
         [self hideCarPanelMenu];
         [self inactive];
-        [self.navigationController popViewControllerAnimated:TRUE];
+        [self.navigationController popToRootViewControllerAnimated:TRUE];
     }
 }
 

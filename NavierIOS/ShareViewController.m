@@ -38,10 +38,12 @@
 
 - (void)viewDidLoad
 {
-    self.view.backgroundColor=[[UIColor blackColor] colorWithAlphaComponent:.6];
-    self.popUpView.layer.cornerRadius = 5;
-    self.popUpView.layer.shadowOpacity = 0.8;
-    self.popUpView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    self.view.backgroundColor           =[[UIColor blackColor] colorWithAlphaComponent:.0];
+    self.popUpView.backgroundColor      = [UIColor colorWithRed:6.0/255.0 green:60.0/255.0 blue:74.0/255.0 alpha:1];
+    self.popUpView.layer.borderColor    = [UIColor grayColor].CGColor;
+    self.popUpView.layer.cornerRadius   = 15;
+    self.popUpView.layer.shadowOpacity  = 0.8;
+    self.popUpView.layer.shadowOffset   = CGSizeMake(0.0f, 0.0f);
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -89,7 +91,8 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [aView addSubview:self.view];
-            [self showAnimate];
+        self.view.center = aView.center;
+        [self showAnimate];
     });
 }
 
