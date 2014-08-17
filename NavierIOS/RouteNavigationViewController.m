@@ -518,10 +518,17 @@
 
     if (!CGRectContainsPoint(carPanelMenuView.bounds, [tapRecognizer locationInView:carPanelMenuView]))
     {
+        if (YES == carPanelMenuView.hidden)
+        {
+            [SoundUtil playPopup];
+        }
         carPanelMenuView.hidden = !carPanelMenuView.hidden;
     }
     else if (carPanelMenuView.hidden)
+    {
+        [SoundUtil playPopup];
         carPanelMenuView.hidden = NO;
+    }
 }
 
 

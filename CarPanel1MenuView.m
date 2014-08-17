@@ -140,16 +140,20 @@
 
 -(IBAction) pressSpeedUnitMphButton:(id) sender
 {
+
+    [SoundUtil playSwitchSound];
     self.isSpeedUnitMph = TRUE;
 }
 
 -(IBAction) pressSpeedUnitKmhButton:(id) sender
 {
+    [SoundUtil playSwitchSound];
     self.isSpeedUnitMph = FALSE;
 }
 
 -(IBAction) pressPanelColor1Button:(id) sender
 {
+    [SoundUtil playSwitchSound];
     self.panelColor = self.panelColor1Button.backgroundColor;
 }
 
@@ -157,6 +161,7 @@
 {
     if (NO == self.lockColorSelection)
     {
+        [SoundUtil playSwitchSound];
         self.panelColor = self.panelColor2Button.backgroundColor;
     }
     else
@@ -172,6 +177,7 @@
 {
     if (NO == self.lockColorSelection)
     {
+        [SoundUtil playSwitchSound];
         self.panelColor = self.panelColor3Button.backgroundColor;
     }
     else
@@ -187,6 +193,7 @@
 {
     if (NO == self.lockColorSelection)
     {
+        [SoundUtil playSwitchSound];
         self.panelColor = self.panelColor4Button.backgroundColor;
     }
     else
@@ -202,6 +209,7 @@
 {
     if (NO == self.lockColorSelection)
     {
+        [SoundUtil playSwitchSound];
         self.panelColor = self.panelColor5Button.backgroundColor;
     }
     else
@@ -215,6 +223,7 @@
 
 -(IBAction) hudSwitchValueChanged:(id) sender
 {
+    [SoundUtil playSwitchSound];
     self.isHud = self.hudSwitch.isOn;
 }
 

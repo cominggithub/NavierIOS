@@ -223,6 +223,7 @@
     
     [SystemConfig setValue:CONFIG_CP1_COLOR uicolor:button.backgroundColor];
     self.color = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
+ 
 }
 
 -(IBAction) pressHudButton:(id) sender
@@ -235,7 +236,6 @@
 {
     [SystemConfig setValue:CONFIG_CP1_IS_SPEED_UNIT_MPH BOOL:TRUE];
     [self updateUIFromConfig];
-    
 }
 
 -(IBAction) pressKmhButton:(id) sender
@@ -261,6 +261,8 @@
 
 -(void) showCarPanelMenu
 {
+    logfn();
+    [SoundUtil playPopup];
     carPanelMenuView.hidden = NO;
 }
 
@@ -351,12 +353,15 @@
 
     if (!CGRectContainsPoint(carPanelMenuView.bounds, [recognizer locationInView:carPanelMenuView]))
     {
-
+        if (YES == carPanelMenuView.hidden)
+        {
+            [SoundUtil playPopup];
+        }
         carPanelMenuView.hidden = !carPanelMenuView.hidden;
     }
     else if (carPanelMenuView.hidden)
     {
-
+        [SoundUtil playPopup];
         carPanelMenuView.hidden = NO;
     }
 }

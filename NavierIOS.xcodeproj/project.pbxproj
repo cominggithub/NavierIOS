@@ -228,6 +228,8 @@
 		2BEB32C719A07C1B007BD029 /* share_fb_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BEB32C519A07C1B007BD029 /* share_fb_logo.png */; };
 		2BEB32C819A07C1B007BD029 /* share_twitter_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BEB32C619A07C1B007BD029 /* share_twitter_logo.png */; };
 		2BEB32CB19A07C4C007BD029 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB32CA19A07C4B007BD029 /* ShareViewController.m */; };
+		2BEB32D719A098EF007BD029 /* switch-7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2BEB32D619A098EF007BD029 /* switch-7.mp3 */; };
+		2BEB32D919A09ABF007BD029 /* popup.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2BEB32D819A09ABF007BD029 /* popup.mp3 */; };
 		2BECCE241709B78100F58CE0 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BECCE231709B78100F58CE0 /* iAd.framework */; };
 		2BFA63581997B7B7004402A9 /* fbshare_1136x640.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFA63571997B7B7004402A9 /* fbshare_1136x640.png */; };
 		2BFA635A1997B8F2004402A9 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BFA63591997B8F2004402A9 /* libGoogleAnalyticsServices.a */; };
@@ -519,6 +521,8 @@
 		2BEB32C619A07C1B007BD029 /* share_twitter_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_twitter_logo.png; sourceTree = "<group>"; };
 		2BEB32C919A07C4B007BD029 /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
 		2BEB32CA19A07C4B007BD029 /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
+		2BEB32D619A098EF007BD029 /* switch-7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "switch-7.mp3"; sourceTree = "<group>"; };
+		2BEB32D819A09ABF007BD029 /* popup.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = popup.mp3; sourceTree = "<group>"; };
 		2BECCE231709B78100F58CE0 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		2BFA63571997B7B7004402A9 /* fbshare_1136x640.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fbshare_1136x640.png; sourceTree = "<group>"; };
 		2BFA63591997B8F2004402A9 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
@@ -704,6 +708,7 @@
 		2B7929D017007FC300353349 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2BEB32CD19A09554007BD029 /* sound */,
 				2BFA63561997B781004402A9 /* Share */,
 				2B19239E198E5924000A6F5D /* GPX */,
 				2B1200A9198E2AC600E5DEAB /* Buy */,
@@ -1016,6 +1021,15 @@
 			name = CarPanel;
 			sourceTree = "<group>";
 		};
+		2BEB32CD19A09554007BD029 /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				2BEB32D819A09ABF007BD029 /* popup.mp3 */,
+				2BEB32D619A098EF007BD029 /* switch-7.mp3 */,
+			);
+			name = sound;
+			sourceTree = "<group>";
+		};
 		2BEBB82217BF0DD400B336E6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1217,6 +1231,7 @@
 				2BC839521866ECD8002477AF /* button_buy@2x.png in Resources */,
 				2BC3D369186699250092F02F /* close@2x.png in Resources */,
 				2BEB32C819A07C1B007BD029 /* share_twitter_logo.png in Resources */,
+				2BEB32D719A098EF007BD029 /* switch-7.mp3 in Resources */,
 				2B5B12A51868742A00C464C0 /* button_zoom_in@2x.png in Resources */,
 				2BFB3FFC1999D36C00E5763C /* protrait.png in Resources */,
 				2BD8CE811701EB7500BDA678 /* Default.png in Resources */,
@@ -1246,6 +1261,7 @@
 				2B5B12A71868742A00C464C0 /* button_zoom_out@2x.png in Resources */,
 				2B66BDA318672FE900A9D75D /* office34.png in Resources */,
 				2B067CE61850C6B600A0054E /* button_search_transparent.png in Resources */,
+				2BEB32D919A09ABF007BD029 /* popup.mp3 in Resources */,
 				2B94C8E517A5407C002581F3 /* jasmineupcbold.ttf in Resources */,
 				2BD97FA618ABB88C00937C31 /* IAP_NoAdStoreUserPlace_bg_4_tw@2x.png in Resources */,
 				2BEB32C319A07B87007BD029 /* ShareView.xib in Resources */,

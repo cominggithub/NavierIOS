@@ -529,22 +529,7 @@
 
 - (IBAction)pressCarPanel:(id)sender
 {
-
-    //
-    // **OR**
-    //
-    // Load the view controller with the identifier string myTabBar
-    // Change UIViewController to the appropriate class
-    //    UIViewController *carPanel = (UIViewController *)[secondStoryBoard instantiateViewControllerWithIdentifier:@"CarPanel"];
-    
-    // Then push the new view controller in the usual way:
-    //    [self.navigationController pushViewController:carPanel animated:YES];
-    
-//    [self.navigationController pushViewController:carPanel animated:TRUE];
-//    [FBUtil shareAppleStoreLink];
-//    [self shareAppStoreLink];
-//    [FBUtil shareAppleStoreLink:self];
-    [TwitterUtil shareAppStoreLink:self];
+    [self.navigationController pushViewController:carPanel animated:YES];
 }
 
 -(void)shareAppStoreLink

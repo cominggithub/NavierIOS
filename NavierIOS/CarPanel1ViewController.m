@@ -793,10 +793,17 @@
     
     if (!CGRectContainsPoint(carPanelMenuView.bounds, [tapRecognizer locationInView:carPanelMenuView]))
     {
+        if (carPanelMenuView.hidden == TRUE)
+        {
+            [SoundUtil playPopup];
+        }
         carPanelMenuView.hidden = !carPanelMenuView.hidden;
     }
     else if (carPanelMenuView.hidden)
+    {
+        [SoundUtil playPopup];
         carPanelMenuView.hidden = NO;
+    }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
