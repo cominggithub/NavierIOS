@@ -191,6 +191,7 @@
     
     [self updateUILanguage];
 
+    [self updateColorFromConfig];
 
     [_clockView active];
     [_systemStatusView active];
@@ -357,8 +358,21 @@
     int i;
     UIButton *button;
     UIColor *defaultColor;
+
+    if (_colorButtons.count < 1)
+    {
+        return;
+    }
     
-    defaultColor = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
+    button = [_colorButtons objectAtIndex:0];
+    if ([SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION])
+    {
+        defaultColor = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
+    }
+    else
+    {
+        defaultColor = button.backgroundColor;
+    }
     
     for( i=0; i<_colorButtons.count; i++)
     {
@@ -656,6 +670,12 @@
     
     carPanelMenuView.isHud              = [SystemConfig getBoolValue:CONFIG_CP1_IS_HUD];
     carPanelMenuView.isSpeedUnitMph     = [SystemConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
+
+    if (![SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION])
+    {
+        [SystemConfig setValue:CONFIG_CP1_COLOR uicolor:[UIColor greenColor]];
+    }
+    
     carPanelMenuView.panelColor         = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
 
     [self.view addSubview:carPanelMenuView];

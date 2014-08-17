@@ -178,10 +178,21 @@
 
 -(void)setIsHud:(BOOL)isHud
 {
+    _isHud = isHud;
     if ([self.contentView respondsToSelector:@selector(setIsHud:)])
     {
         [self.contentView setIsHud:isHud];
     }
+    
+    if (self.isHud)
+    {
+        [[UIScreen mainScreen] setBrightness:1.0];
+    }
+    else
+    {
+        [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
+    }
+    
 }
 
 -(void)setLocation:(CLLocationCoordinate2D)location
@@ -295,7 +306,7 @@
 
 -(void) checkIapItem
 {
-
+//    carPanelMenuView.lockColorSelection = ![SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION];
 }
 
 -(void)dismiss
