@@ -12,7 +12,7 @@
 #import "CarPanel1ViewController.h"
 #import <NaviUtil/CoordinateTranslator.h>
 #import <AVFoundation/AVFoundation.h>
-
+#import "ShareViewController.h"
 
 
 
@@ -22,6 +22,7 @@
 @interface ViewController ()
 {
     BOOL isBuyShown;
+    BOOL isShareViewShown;
 }
 
 @end
@@ -30,6 +31,7 @@
 {
     RouteNavigationViewController *routeNavigationViewController;
     GoogleMapUIViewController *googleMapUIViewController;
+    ShareViewController *shareViewController;
     SLComposeViewController *twitterViewController;
     UIViewController *carPanel;
     ADBannerView *adView;
@@ -67,6 +69,7 @@
     oriMapButtonAutoresizingMask    = self.mapButton.autoresizingMask;
     routeStartPlace                 = nil;
     routeEndPlace                   = nil;
+    isShareViewShown                = NO;
 
     xoffset = self.view.bounds.size.width > self.view.bounds.size.height ? 0 : self.view.bounds.size.height - self.view.bounds.size.width;
     
@@ -161,7 +164,9 @@
     [super viewDidAppear:animated];
     [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     [self showAdAnimated:NO];
-
+    
+    [self showShareView];
+    
 }
 
 
@@ -191,8 +196,13 @@
     }
     else if ([[notification name] isEqualToString:@"applicationDidBecomeActive"])
     {
+        logfn();
         [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+        isShareViewShown = FALSE;
+        [self showShareView];
     }
+    
+
 }
 
 #if 0
@@ -328,9 +338,11 @@
     {
         return;
     }
+
     
-    [self.navigationController pushViewController:routeNavigationViewController animated:TRUE];
     [routeNavigationViewController startRouteNavigationFrom:routeStartPlace To:routeEndPlace];
+    [self.navigationController pushViewController:routeNavigationViewController animated:TRUE];
+
 }
 
 #if 0
@@ -537,11 +549,9 @@
 
 -(void)shareAppStoreLink
 {
-    logfn();
     twitterViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
     NSString *titleToShare = @"i am a string a super string the most super string that ever existed in the world of the super string universe which as it happens is very super as well";
     
-    logfn();
     if (titleToShare.length > 140) {
         titleToShare = [titleToShare substringToIndex:140];
     }
@@ -549,7 +559,6 @@
     [twitterViewController setInitialText:titleToShare];
     
     if (![twitterViewController addURL:[NSURL URLWithString:@"http://google.com"]]) {
-        logfn();
         NSLog(@"Couldn't add.");
     }
     
@@ -657,5 +666,30 @@
 }
 
 
+-(void)showShareView
+{
+    
+    BOOL isShowShareView = FALSE;
+
+    if (YES == isShareViewShown)
+        return;
+    
+    if ([SystemConfig getBoolValue:CONFIG_IS_SHARE_ON_FB] == FALSE && [SystemConfig getBoolValue:CONFIG_IS_SHARE_ON_TWITTER] == FALSE)
+    {
+        if ([SystemConfig getIntValue:CONFIG_USE_COUNT] > 2)
+        {
+            isShowShareView = [SystemConfig getIntValue:CONFIG_USE_COUNT]%4 == 0;
+
+        }
+    }
+    
+    if (TRUE == isShowShareView)
+    {
+        isShareViewShown    = YES;
+        shareViewController = [[ShareViewController alloc] initWithNibName:@"ShareView" bundle:nil];
+        [shareViewController showInView:self.view];
+    }
+
+}
 
 @end

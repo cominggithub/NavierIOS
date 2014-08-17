@@ -416,6 +416,7 @@
 
 -(void) placeCourseLabel
 {
+#if 0
     float space;
     float labelOffset;
     int i;
@@ -464,6 +465,7 @@
     
     self.courseCutLabel.frame = CGRectMake(-labelSize.width, labelFrame.origin.y, labelFrame.size.width, labelFrame.size.height);
     [self updateCourse];
+#endif
     
 }
 

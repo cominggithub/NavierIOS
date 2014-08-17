@@ -68,6 +68,7 @@
     [self checkIapItem];
     [self active];
     
+    [self.guideRouteUIView startRouteNavigationFrom:self.startPlace To:self.endPlace];
     [GoogleUtil sendScreenView:@"Route Navigation"];
 }
 
@@ -162,10 +163,12 @@
     
 }
 
--(IBAction) pressLogoButton:(id) sender
+-(IBAction) pressBackButton:(id)sender
 {
+    logfn();
     [self hideRouteGuideMenu];
     [self.navigationController popViewControllerAnimated:TRUE];
+    
 }
 
 -(IBAction) pressHUDButton:(id) sender
@@ -219,8 +222,11 @@
 
 -(void) startRouteNavigationFrom:(Place*) startPlace To:(Place*) endPlace
 {
+    logfn();
     mlogAssertNotNil(startPlace);
     mlogAssertNotNil(endPlace);
+
+    logfn();
     
     self.startPlace = startPlace;
     self.endPlace   = endPlace;
@@ -229,7 +235,6 @@
     {
         [User addRecentPlace:self.endPlace];
         [User save];
-        [self.guideRouteUIView startRouteNavigationFrom:self.startPlace To:self.endPlace];
     }
     
 }
@@ -472,9 +477,9 @@
     {
         carPanelMenuView.hidden = YES;
         [LocationManager stopLocationSimulation];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self.navigationController popViewControllerAnimated:TRUE];
+
     }
-    
 }
 
 -(void) carPanel1MenuView:(CarPanel1MenuView*) cpm pressCloseButton:(BOOL) isPressed

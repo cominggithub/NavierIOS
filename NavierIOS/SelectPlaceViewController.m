@@ -194,7 +194,7 @@
             [self.delegate selectPlaceViewController:self placeSelected:selectedPlace];
         }
     }
-    [self dismissViewControllerAnimated:TRUE completion:nil];
+    [self.navigationController popViewControllerAnimated:TRUE];
 }
 
 

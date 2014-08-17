@@ -31,85 +31,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    NSError *error;
-    [GMSServices provideAPIKey:GOOGLE_API_Key];
-    [NaviUtil setGoogleAPIKey:GOOGLE_API_Key];
-    [NaviUtil setGooglePlaceAPIKey:GOOGLE_PLACE_API_Key];
-    [NaviUtil init];
-    [SystemConfig setFloatValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
-    [User save];
 
-    [Appirater setAppId:@"806144673"];    // Change for your "Your APP ID"
-    [Appirater setDaysUntilPrompt:0];     // Days from first entered the app until prompt
-#if RELEASE
-    [Appirater setUsesUntilPrompt:5];     // Number of uses until prompt
-#else
-    [Appirater setUsesUntilPrompt:100];     // Number of uses until prompt
-#endif
-    [Appirater setTimeBeforeReminding:2];
+    [self initSelf];
     
-#if DEBUG
-    [Appirater setDebug:NO];
-#else
-    [Appirater setDebug:NO];
-#endif
-    [Appirater appEnteredForeground:YES];
-    
-    if (0 == [Appirater useCount])
-    {
-        [RSSecrets removeKey:@"IAP_AdvancedVersion"];
-    }
-    
-    [SystemConfig setValue:CONFIG_USE_COUNT int:[SystemConfig getIntValue:CONFIG_USE_COUNT]+1];
-    
-    // mix voice guidance with playing music
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:&error];
-    // 23.002518, 120.203524
-
-    UIStoryboard *storyboard          = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-    buyViewController   = (BuyUIViewController *)[storyboard instantiateViewControllerWithIdentifier:NSStringFromClass ([BuyUIViewController class])];
-
-
-    [GoogleUtil initializeGoogleAnalytics];
-    [GoogleUtil setVerbose:FALSE];
-/*
-    Place *p1 = [[Place alloc] initWithName:@"甜蜜的家" address:@"冬山" coordinate:CLLocationCoordinate2DMake(23.011051, 120.194082)];
-    p1.placeType = kPlaceType_Home;
-    
-    Place *p2 = [[Place alloc] initWithName:@"血汗辦公室" address:@"南科" coordinate:CLLocationCoordinate2DMake(23.013895, 120.232277)];
-    p2.placeType = kPlaceType_Office;
-
-    Place *p3 = [[Place alloc] initWithName:@"台南牛肉湯" address:@"冬山" coordinate:CLLocationCoordinate2DMake(23.002992, 120.186701)];
-    p3.placeType = kPlaceType_Favor;
-
-    Place *p4 = [[Place alloc] initWithName:@"雞湯塊鼎王" address:@"冬山" coordinate:CLLocationCoordinate2DMake(22.989719, 120.201979)];
-    p4.placeType = kPlaceType_Favor;
-
-    Place *p5 = [[Place alloc] initWithName:@"搜尋-天然食品" address:@"冬山" coordinate:CLLocationCoordinate2DMake(22.990509, 120.225496)];
-    p5.placeType = kPlaceType_SearchedPlace;
-    
-
-    [User clearConfig];
-    [User addHomePlace:p1];
-    [User addOfficePlace:p2];
-    [User addFavorPlace:p3];
-    [User addFavorPlace:p4];
-
-    [User addRecentPlace:p5];
-    [User addRecentPlace:p4];
-    [User addRecentPlace:p3];
-    [User addRecentPlace:p2];
-    [User addRecentPlace:p1];
-*/
-#if DEBUG
-    [RSSecrets removeKey:@"IAP_AdvancedVersion"];
-//    [RSSecrets addKey:@"IAP_AdvancedVersion"];
-//    NSLog(@"%@: %@", @"IAP_AdvancedVersion", [RSSecrets hasKey:@"IAP_AdvancedVersion"]?@"TRUE":@"FALSE");
-#elif RELEASE_TEST
-    [RSSecrets addKey:@"IAP_AdvancedVersion"];
-#elif RELEASE
-#endif
     return YES;
 }
 
@@ -152,17 +76,19 @@
 {
 
     /* get the default brightness */
-    
+    logfn();
     [SystemConfig setFloatValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"applicationDidBecomeActive" object:self];
-    
-#if 0
-    if ([SystemConfig getIntValue:CONFIG_USE_COUNT] > 5 && [SystemConfig getIntValue:CONFIG_USE_COUNT] %2 == 0 &&
-        [SystemConfig getBoolValue:CONFIG_H_IS_AD] && (![SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION]))
-    {
-        [(UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController] pushViewController:buyViewController animated:TRUE];
-    }
+
+#if DEBUG
+
+#elif RELEASE_TEST
+
+#else
+    [self showIap];
 #endif
+
+    
     
 }
 
@@ -197,6 +123,116 @@
     return urlWasHandled;
 }
 
+#pragma mark -- init
+-(void) initSelf
+{
+    // Override point for customization after application launch.
+    NSError *error;
+    
+    
+    [self initGoogleSetting];
+    [self initNaviUtil];
+    [self initAppirater];
+    
+    [SystemConfig setFloatValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
+    
+    // mix voice guidance with playing music
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:&error];
+    
+    UIStoryboard *storyboard          = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+    buyViewController   = (BuyUIViewController *)[storyboard instantiateViewControllerWithIdentifier:NSStringFromClass ([BuyUIViewController class])];
+    
+    
+#if DEBUG
+    [RSSecrets removeKey:@"IAP_AdvancedVersion"];
+    //    [RSSecrets addKey:@"IAP_AdvancedVersion"];
+    //    NSLog(@"%@: %@", @"IAP_AdvancedVersion", [RSSecrets hasKey:@"IAP_AdvancedVersion"]?@"TRUE":@"FALSE");
+#elif RELEASE_TEST
+    [RSSecrets addKey:@"IAP_AdvancedVersion"];
+#elif RELEASE
+#endif
+    
+}
+-(void)initAppirater
+{
+    [Appirater setAppId:@"806144673"];    // Change for your "Your APP ID"
+    [Appirater setDaysUntilPrompt:0];     // Days from first entered the app until prompt
+#if RELEASE
+    [Appirater setUsesUntilPrompt:3];     // Number of uses until prompt
+#else
+    [Appirater setUsesUntilPrompt:100];     // Number of uses until prompt
+#endif
+    [Appirater setTimeBeforeReminding:2];
+    
+#if DEBUG
+    [Appirater setDebug:NO];
+#else
+    [Appirater setDebug:NO];
+#endif
+    [Appirater appEnteredForeground:YES];
+    
+    if (0 == [Appirater useCount])
+    {
+        [RSSecrets removeKey:@"IAP_AdvancedVersion"];
+    }
+    
+    [SystemConfig setValue:CONFIG_USE_COUNT int:[SystemConfig getIntValue:CONFIG_USE_COUNT]+1];
 
+}
 
+-(void)initDebugPlace
+{
+     Place *p1 = [[Place alloc] initWithName:@"甜蜜的家" address:@"冬山" coordinate:CLLocationCoordinate2DMake(23.011051, 120.194082)];
+     p1.placeType = kPlaceType_Home;
+     
+     Place *p2 = [[Place alloc] initWithName:@"血汗辦公室" address:@"南科" coordinate:CLLocationCoordinate2DMake(23.013895, 120.232277)];
+     p2.placeType = kPlaceType_Office;
+     
+     Place *p3 = [[Place alloc] initWithName:@"台南牛肉湯" address:@"冬山" coordinate:CLLocationCoordinate2DMake(23.002992, 120.186701)];
+     p3.placeType = kPlaceType_Favor;
+     
+     Place *p4 = [[Place alloc] initWithName:@"雞湯塊鼎王" address:@"冬山" coordinate:CLLocationCoordinate2DMake(22.989719, 120.201979)];
+     p4.placeType = kPlaceType_Favor;
+     
+     Place *p5 = [[Place alloc] initWithName:@"搜尋-天然食品" address:@"冬山" coordinate:CLLocationCoordinate2DMake(22.990509, 120.225496)];
+     p5.placeType = kPlaceType_SearchedPlace;
+     
+     
+     [User clearConfig];
+     [User addHomePlace:p1];
+     [User addOfficePlace:p2];
+     [User addFavorPlace:p3];
+     [User addFavorPlace:p4];
+     
+     [User addRecentPlace:p5];
+     [User addRecentPlace:p4];
+     [User addRecentPlace:p3];
+     [User addRecentPlace:p2];
+     [User addRecentPlace:p1];
+    
+     [User save];
+}
+
+-(void)initGoogleSetting
+{
+    [GMSServices provideAPIKey:GOOGLE_API_Key];
+    [GoogleUtil initializeGoogleAnalytics];
+    [GoogleUtil setVerbose:FALSE];
+}
+
+-(void)initNaviUtil
+{
+    [NaviUtil setGoogleAPIKey:GOOGLE_API_Key];
+    [NaviUtil setGooglePlaceAPIKey:GOOGLE_PLACE_API_Key];
+    [NaviUtil init];
+}
+
+-(void)showIap
+{
+    if ([SystemConfig getIntValue:CONFIG_USE_COUNT] > 5 && [SystemConfig getIntValue:CONFIG_USE_COUNT] %2 == 0 &&
+        [SystemConfig getBoolValue:CONFIG_H_IS_AD] && (![SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION]))
+    {
+        [(UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController] pushViewController:buyViewController animated:TRUE];
+    }
+}
 @end

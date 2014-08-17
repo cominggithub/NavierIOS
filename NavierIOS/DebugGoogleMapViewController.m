@@ -78,11 +78,5 @@
     }
 }
 
-- (void)mapView:(GMSMapView *)tmapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
-{
-    CGPoint p;
-    p = [tmapView.projection pointForCoordinate:coordinate];
-    
-}
 
 @end

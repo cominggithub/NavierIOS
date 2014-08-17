@@ -224,6 +224,10 @@
 		2BE6DA5817C39C2200DE20E8 /* indicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BE6DA5417C39C2200DE20E8 /* indicator@2x.png */; };
 		2BE6DA5917C39C2200DE20E8 /* indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BE6DA5517C39C2200DE20E8 /* indicator.png */; };
 		2BE6DA5A17C39C2200DE20E8 /* dashboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BE6DA5617C39C2200DE20E8 /* dashboard.png */; };
+		2BEB32C319A07B87007BD029 /* ShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BEB32C219A07B87007BD029 /* ShareView.xib */; };
+		2BEB32C719A07C1B007BD029 /* share_fb_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BEB32C519A07C1B007BD029 /* share_fb_logo.png */; };
+		2BEB32C819A07C1B007BD029 /* share_twitter_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BEB32C619A07C1B007BD029 /* share_twitter_logo.png */; };
+		2BEB32CB19A07C4C007BD029 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB32CA19A07C4B007BD029 /* ShareViewController.m */; };
 		2BECCE241709B78100F58CE0 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BECCE231709B78100F58CE0 /* iAd.framework */; };
 		2BFA63581997B7B7004402A9 /* fbshare_1136x640.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFA63571997B7B7004402A9 /* fbshare_1136x640.png */; };
 		2BFA635A1997B8F2004402A9 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BFA63591997B8F2004402A9 /* libGoogleAnalyticsServices.a */; };
@@ -510,6 +514,11 @@
 		2BE6DA5417C39C2200DE20E8 /* indicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "indicator@2x.png"; sourceTree = "<group>"; };
 		2BE6DA5517C39C2200DE20E8 /* indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indicator.png; sourceTree = "<group>"; };
 		2BE6DA5617C39C2200DE20E8 /* dashboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard.png; sourceTree = "<group>"; };
+		2BEB32C219A07B87007BD029 /* ShareView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareView.xib; sourceTree = "<group>"; };
+		2BEB32C519A07C1B007BD029 /* share_fb_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_fb_logo.png; sourceTree = "<group>"; };
+		2BEB32C619A07C1B007BD029 /* share_twitter_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_twitter_logo.png; sourceTree = "<group>"; };
+		2BEB32C919A07C4B007BD029 /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
+		2BEB32CA19A07C4B007BD029 /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
 		2BECCE231709B78100F58CE0 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		2BFA63571997B7B7004402A9 /* fbshare_1136x640.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fbshare_1136x640.png; sourceTree = "<group>"; };
 		2BFA63591997B8F2004402A9 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
@@ -583,6 +592,8 @@
 		2B17DC66199A1DB9004E9675 /* Share */ = {
 			isa = PBXGroup;
 			children = (
+				2BEB32C919A07C4B007BD029 /* ShareViewController.h */,
+				2BEB32CA19A07C4B007BD029 /* ShareViewController.m */,
 			);
 			name = Share;
 			sourceTree = "<group>";
@@ -752,6 +763,7 @@
 				2B89A7B417B60CE90042539F /* CarPanel1MenuView.xib */,
 				2B15A20A17D0F39600F3AFE5 /* MarkerMenuFloat.xib */,
 				2B067CE81850CD2400A0054E /* PlaceSearchResultPanel.xib */,
+				2BEB32C219A07B87007BD029 /* ShareView.xib */,
 			);
 			name = xib;
 			sourceTree = "<group>";
@@ -1049,6 +1061,8 @@
 		2BFA63561997B781004402A9 /* Share */ = {
 			isa = PBXGroup;
 			children = (
+				2BEB32C519A07C1B007BD029 /* share_fb_logo.png */,
+				2BEB32C619A07C1B007BD029 /* share_twitter_logo.png */,
 				2BFB3FFB1999D36C00E5763C /* protrait.png */,
 				2BFB3FF81999D1B600E5763C /* fbshare_1200x630.png */,
 				2BFA63571997B7B7004402A9 /* fbshare_1136x640.png */,
@@ -1202,6 +1216,7 @@
 				2B24ECA518CC0C1E0079CAD5 /* 裕文圖書館.tr in Resources */,
 				2BC839521866ECD8002477AF /* button_buy@2x.png in Resources */,
 				2BC3D369186699250092F02F /* close@2x.png in Resources */,
+				2BEB32C819A07C1B007BD029 /* share_twitter_logo.png in Resources */,
 				2B5B12A51868742A00C464C0 /* button_zoom_in@2x.png in Resources */,
 				2BFB3FFC1999D36C00E5763C /* protrait.png in Resources */,
 				2BD8CE811701EB7500BDA678 /* Default.png in Resources */,
@@ -1233,6 +1248,7 @@
 				2B067CE61850C6B600A0054E /* button_search_transparent.png in Resources */,
 				2B94C8E517A5407C002581F3 /* jasmineupcbold.ttf in Resources */,
 				2BD97FA618ABB88C00937C31 /* IAP_NoAdStoreUserPlace_bg_4_tw@2x.png in Resources */,
+				2BEB32C319A07B87007BD029 /* ShareView.xib in Resources */,
 				2B94C8F817A554D6002581F3 /* 3g.png in Resources */,
 				2B1200AF198E2AEF00E5DEAB /* buy1.png in Resources */,
 				2B94C8F917A554D6002581F3 /* 3g@2x.png in Resources */,
@@ -1284,6 +1300,7 @@
 				2BC3D3631866973F0092F02F /* car_panel1_menu_background@2x.png in Resources */,
 				2B66BDA218672FE900A9D75D /* home34@2x.png in Resources */,
 				2B067CE51850C6B600A0054E /* button_search_blue.png in Resources */,
+				2BEB32C719A07C1B007BD029 /* share_fb_logo.png in Resources */,
 				2BC3D37618669CA90092F02F /* button_settings.png in Resources */,
 				2BC3D37A1866CE0F0092F02F /* marker_menu_bg.png in Resources */,
 				2B66BD951867244400A9D75D /* icon_transparent32.png in Resources */,
@@ -1392,6 +1409,7 @@
 				2B9A437816DB9B5F00FD1A54 /* GoogleMapUIViewController.m in Sources */,
 				2BCFE04317031BE200636F58 /* RouteTableViewController.m in Sources */,
 				2B9F3032185AA8F400016518 /* CarPanel1MenuView.m in Sources */,
+				2BEB32CB19A07C4C007BD029 /* ShareViewController.m in Sources */,
 				2BB35829185F392C0038E318 /* DebugTransformationViewController.m in Sources */,
 				2BD71FF5197F88F9002E7E92 /* CarPanel3ViewController.m in Sources */,
 				2B8C5CAD174134B700260836 /* PlaceSearchViewController.m in Sources */,

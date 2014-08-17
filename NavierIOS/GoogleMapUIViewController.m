@@ -675,8 +675,8 @@
     }
     else
     {
-        [self. navigationController pushViewController:routeNavigationViewController animated:TRUE];
         [routeNavigationViewController startRouteNavigationFrom:mapManager.routeStartPlace To:mapManager.routeEndPlace];
+        [self. navigationController pushViewController:routeNavigationViewController animated:TRUE];
         [self hideMarkerMenuFloat];
     }
 }
@@ -778,9 +778,6 @@
 
 - (void)mapManager:(MapManager *)mm didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
 {
-    CGPoint p;
-    p = [mapManager.mapView.projection pointForCoordinate:coordinate];
-    
     if (YES == isShowMarkMenuFloat)
     {
         [self hideMarkerMenuFloat];
