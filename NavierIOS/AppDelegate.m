@@ -51,6 +51,7 @@
 {
     /* restore to default brightnes */
     [[UIScreen mainScreen] setBrightness:[SystemConfig getFloatValue:CONFIG_DEFAULT_BRIGHTNESS]];
+    [self inactive];
 
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
@@ -69,6 +70,7 @@
     
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     [[NSNotificationCenter defaultCenter] postNotificationName:@"applicationWillEnterForeground" object:self];
+
     
 }
 
@@ -76,9 +78,10 @@
 {
 
     /* get the default brightness */
-    logfn();
+
     [SystemConfig setFloatValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"applicationDidBecomeActive" object:self];
+    [self active];
 
 #if DEBUG
 
@@ -144,8 +147,8 @@
     
     
 #if DEBUG
-    [RSSecrets removeKey:@"IAP_AdvancedVersion"];
-    //    [RSSecrets addKey:@"IAP_AdvancedVersion"];
+//    [RSSecrets removeKey:@"IAP_AdvancedVersion"];
+        [RSSecrets addKey:@"IAP_AdvancedVersion"];
     //    NSLog(@"%@: %@", @"IAP_AdvancedVersion", [RSSecrets hasKey:@"IAP_AdvancedVersion"]?@"TRUE":@"FALSE");
 #elif RELEASE_TEST
     [RSSecrets addKey:@"IAP_AdvancedVersion"];
@@ -229,10 +232,28 @@
 
 -(void)showIap
 {
-    if ([SystemConfig getIntValue:CONFIG_USE_COUNT] > 5 && [SystemConfig getIntValue:CONFIG_USE_COUNT] %2 == 0 &&
+    if ([SystemConfig getIntValue:CONFIG_USE_COUNT] > 5 && [SystemConfig getIntValue:CONFIG_USE_COUNT] %4 == 0 &&
         [SystemConfig getBoolValue:CONFIG_H_IS_AD] && (![SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION]))
     {
         [(UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController] pushViewController:buyViewController animated:TRUE];
     }
 }
+
+- (void)active
+{
+    if (YES == [SystemConfig getBoolValue:CONFIG_H_IS_LOCATION_SIMULATOR])
+    {
+        [LocationManager stopMonitorLocation];
+    }
+    else
+    {
+        [LocationManager startMonitorLocation];
+    }
+}
+
+- (void)inactive
+{
+    [LocationManager stopMonitorLocation];
+}
+
 @end

@@ -293,15 +293,12 @@
     [SystemManager addDelegate:self];
     [LocationManager addDelegate:self];
     [self updateUIFromConfig];
-    [self.contentView active];
 }
 
 -(void) inactive
 {
     [SystemManager removeDelegate:self];
     [LocationManager removeDelegate:self];
-    [self.contentView inactive];
-
 }
 
 -(void) checkIapItem

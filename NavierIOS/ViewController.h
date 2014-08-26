@@ -23,6 +23,7 @@
 - (IBAction)pressMail:(id)sender;
 - (IBAction)pressTextRoute:(id)sender;
 - (IBAction)pressCarPanel:(id)sender;
+- (IBAction)pressShareButton:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) BOOL bannerIsVisible;
 @property (weak, nonatomic) IBOutlet UIButton *mapButton;

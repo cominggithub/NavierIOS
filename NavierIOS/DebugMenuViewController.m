@@ -158,6 +158,7 @@
 
     [LocationManager setCurrentManualPlace:[LocationManager getManualPlaceByIndex:(int)[_debugMenuPlacePickerView selectedRowInComponent:0]]];
 
+    
     [SystemConfig setValue:CONFIG_H_IS_DEBUG BOOL:_debugMenuIsDebugSwitch.on];
     [SystemConfig setValue:CONFIG_H_IS_AD BOOL:_debugMenuIsAdSwitch.on];
     [SystemConfig setValue:CONFIG_H_IS_DEBUG_ROUTE_DRAW BOOL:_debugMenuIsDebugRouteDrawSwitch.on];
@@ -175,6 +176,7 @@
 
 -(void) updateUIFromConfig
 {
+    
     _debugMenuIsDebugSwitch.on                  = [SystemConfig getBoolValue:CONFIG_H_IS_DEBUG];
     _debugMenuIsAdSwitch.on                     = [SystemConfig getBoolValue:CONFIG_H_IS_AD];
     _debugMenuIsDebugRouteDrawSwitch.on         = [SystemConfig getBoolValue:CONFIG_H_IS_DEBUG_ROUTE_DRAW];
@@ -190,6 +192,10 @@
 
 -(void) uiValueChanged:(id) sender
 {
+    if (_debugMenuIsSimulateCarMovementSwitch.on)
+    {
+        _debugMenuIsLocationSimulatorSwitch.on = YES;
+    }
     [self saveConfigFromUI];
     if (TRUE == [SystemConfig getBoolValue:CONFIG_H_IS_SIMULATE_CAR_MOVEMENT])
     {

@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *courseSELabel;
 @property (weak, nonatomic) IBOutlet UILabel *courseSLabel;
 @property (weak, nonatomic) IBOutlet UIView *courseView;
+@property (weak, nonatomic) IBOutlet UILabel *msgLabel;
 
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;

@@ -195,6 +195,9 @@
 
     [_clockView active];
     [_systemStatusView active];
+
+    self.msgLabel.hidden    = FALSE;
+    self.msgLabel.text      = [SystemManager getLanguageString:@"No GPS Signal"];
 }
 
 -(void) inactive
@@ -565,6 +568,7 @@
     _speedUnitLabel.textColor   = _color;
     _clockView.color            = _color;
     _systemStatusView.color     = _color;
+    _msgLabel.textColor         = _color;
     
     
     if (YES == [SystemConfig getBoolValue:CONFIG_H_IS_DEBUG])
@@ -639,6 +643,8 @@
 
 -(void) locationManager:(LocationManager *)locationManager update:(CLLocationCoordinate2D)location speed:(double)speed distance:(int)distance heading:(double)heading
 {
+    self.msgLabel.hidden    = TRUE;
+    
     if (YES == _isSpeedUnitMph)
     {
         self.speed = MS_TO_MPH(speed);

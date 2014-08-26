@@ -155,7 +155,6 @@
 #elif RELEASE
     self.debugConfigButton.hidden = YES;
 #endif
-    [self active];
     
     [GoogleUtil sendScreenView:@"Main Menu"];
 }
@@ -532,6 +531,12 @@
     [self.navigationController pushViewController:carPanel animated:YES];
 }
 
+- (IBAction)pressShareButton:(id)sender
+{
+//    [self.navigationController pushViewController:shareViewController animated:TRUE];
+    [shareViewController showInView:self.view];
+}
+
 -(void)shareAppStoreLink
 {
     twitterViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
@@ -589,23 +594,6 @@
 
 
 #pragma mark -- operation
-- (void)active
-{
-    if (YES == [SystemConfig getBoolValue:CONFIG_H_IS_LOCATION_SIMULATOR])
-    {
-        [LocationManager stopMonitorLocation];
-    }
-    else
-    {
-        [LocationManager startMonitorLocation];
-    }
-}
-
-- (void)inactive
-{
-    [LocationManager startMonitorLocation];
-}
-
 - (BOOL)checkNavigationCondition
 {
     if (FALSE == [NaviQueryManager mapServerReachable])
