@@ -16,6 +16,7 @@
 
 #import "RSSecrets.h"
 #import "BuyUIViewController.h"
+#import "BuyCollectionViewController.h"
 
 
 
@@ -27,6 +28,7 @@
 {
     AVAudioPlayer       *audioPlayer;
     BuyUIViewController *buyViewController;
+    BuyCollectionViewController *buyCollectionViewController;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -82,17 +84,6 @@
     [SystemConfig setFloatValue:CONFIG_DEFAULT_BRIGHTNESS float:[UIScreen mainScreen].brightness];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"applicationDidBecomeActive" object:self];
     [self active];
-
-#if DEBUG
-
-#elif RELEASE_TEST
-
-#else
-    [self showIap];
-#endif
-
-    
-    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -143,12 +134,12 @@
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:&error];
     
     UIStoryboard *storyboard          = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-    buyViewController   = (BuyUIViewController *)[storyboard instantiateViewControllerWithIdentifier:NSStringFromClass ([BuyUIViewController class])];
-    
+    buyViewController           = (BuyUIViewController *)[storyboard instantiateViewControllerWithIdentifier:NSStringFromClass ([BuyUIViewController class])];
+    buyCollectionViewController = (BuyCollectionViewController *)[storyboard instantiateViewControllerWithIdentifier:NSStringFromClass ([BuyCollectionViewController class])];
     
 #if DEBUG
-//    [RSSecrets removeKey:@"IAP_AdvancedVersion"];
-        [RSSecrets addKey:@"IAP_AdvancedVersion"];
+    [RSSecrets removeKey:@"IAP_AdvancedVersion"];
+//        [RSSecrets addKey:@"IAP_AdvancedVersion"];
     //    NSLog(@"%@: %@", @"IAP_AdvancedVersion", [RSSecrets hasKey:@"IAP_AdvancedVersion"]?@"TRUE":@"FALSE");
 #elif RELEASE_TEST
     [RSSecrets addKey:@"IAP_AdvancedVersion"];
@@ -235,7 +226,8 @@
     if ([SystemConfig getIntValue:CONFIG_USE_COUNT] > 5 && [SystemConfig getIntValue:CONFIG_USE_COUNT] %4 == 0 &&
         [SystemConfig getBoolValue:CONFIG_H_IS_AD] && (![SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION]))
     {
-        [(UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController] pushViewController:buyViewController animated:TRUE];
+        //[(UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController] pushViewController:buyViewController animated:TRUE];
+        [(UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController] pushViewController:buyCollectionViewController animated:TRUE];
     }
 }
 
@@ -249,6 +241,14 @@
     {
         [LocationManager startMonitorLocation];
     }
+    
+#if DEBUG
+    [self showIap];
+#elif RELEASE_TEST
+    
+#else
+    [self showIap];
+#endif
 }
 
 - (void)inactive

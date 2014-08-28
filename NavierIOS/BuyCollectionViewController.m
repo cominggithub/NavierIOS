@@ -7,6 +7,7 @@
 //
 
 #import "BuyCollectionViewController.h"
+#import <NaviUtil/SKProduct+category.h>
 #import "IAPImageCell.h"
 #import "GAI.h"
 #import "GAIFields.h"
@@ -28,7 +29,9 @@
 @interface BuyCollectionViewController ()
 {
     UIImage *selectedImage;
-    NSMutableArray *iapImages;
+
+    NSMutableArray *iapItems;
+    NSDictionary *iapImages;
 }
 
 @end
@@ -58,13 +61,43 @@
     // manual screen tracking
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
-    iapImages = [@[@"buy1.png",
-                 @"buy2.png",
-                 @"buy3.png",
-                 @"buy4.png",
-                 @"buy5.png",] mutableCopy];
-    
+    iapImages = [[NSDictionary alloc] initWithObjects:[@[@"buy1.png", @"buy2.png", @"buy3.png", @"buy4.png"] mutableCopy]
+                                              forKeys:[@[IAP_NO_AD_STORE_USER_PLACE, IAP_CAR_PANEL_2, IAP_CAR_PANEL_3, IAP_CAR_PANEL_4] mutableCopy]];
     // Do any additional setup after loading the view.
+}
+
+
+-(void) addIapItem:(NSString*) key
+{
+    SKProduct *product;
+    product = [NavierHUDIAPHelper productByKey:key];
+    if (nil != product)
+        [iapItems addObject:product];
+}
+
+-(void) loadIapItem
+{
+    iapItems = [[NSMutableArray alloc] initWithCapacity:4];
+    
+    if (FALSE == [SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION])
+        [self addIapItem:IAP_NO_AD_STORE_USER_PLACE];
+    
+    if (FALSE == [SystemConfig getBoolValue:CONFIG_IAP_IS_CAR_PANEL_2])
+        [self addIapItem:IAP_CAR_PANEL_2];
+
+    if (FALSE == [SystemConfig getBoolValue:CONFIG_IAP_IS_CAR_PANEL_3])
+        [self addIapItem:IAP_CAR_PANEL_3];
+    
+    if (FALSE == [SystemConfig getBoolValue:CONFIG_IAP_IS_CAR_PANEL_4])
+        [self addIapItem:IAP_CAR_PANEL_4];
+    
+    [self.collectionView reloadData];
+
+}
+
+-(UIImage*) getImageByIapKey:(NSString*) key
+{
+    return [UIImage imageNamed:[iapImages objectForKey:key]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,16 +108,14 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    // 隱藏 Navigation Bar
-    [[self navigationController] setNavigationBarHidden:YES animated:YES];
-    
+    [[self navigationController] setNavigationBarHidden:FALSE animated:YES];
+    [self loadIapItem];
     [GoogleUtil sendScreenView:@"Buy View"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    // 顯示 Navigation Bar
-    [[self navigationController] setNavigationBarHidden:NO animated:YES];
+
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -94,20 +125,19 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return iapImages.count;
+    return iapItems.count;
 }
 
 // 設定要顯示 cell
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identifier = @"iapImageCell";
+    SKProduct *product;
+    product = [iapItems objectAtIndex:indexPath.row];
     IAPImageCell *iapImageCell = (IAPImageCell*) [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     iapImageCell.backgroundColor = [UIColor whiteColor];
-//    logO(iapImageCell);
-//    logO(iapImageCell.imageView);
-    iapImageCell.imageView.image = [UIImage imageNamed:[iapImages objectAtIndex:indexPath.row]];
-
-//    iapImageCell.imageView.image = [UIImage imageNamed:@"buy1"];
+    iapImageCell.imageView.image = [self getImageByIapKey:product.productIdentifier];
+    iapImageCell.priceLabel.text = product.localizedPrice;
     
     return iapImageCell;
 }

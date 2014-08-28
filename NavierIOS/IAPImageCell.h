@@ -10,4 +10,5 @@
 
 @interface IAPImageCell : UICollectionViewCell
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @end

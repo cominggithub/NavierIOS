@@ -13,6 +13,7 @@
 #import <NaviUtil/CoordinateTranslator.h>
 #import <AVFoundation/AVFoundation.h>
 #import "ShareViewController.h"
+#import "BuyCollectionViewController.h"
 
 
 
@@ -32,6 +33,7 @@
     RouteNavigationViewController *routeNavigationViewController;
     GoogleMapUIViewController *googleMapUIViewController;
     ShareViewController *shareViewController;
+    BuyCollectionViewController *buyCollectionViewController;
     SLComposeViewController *twitterViewController;
     UIViewController *carPanel;
     ADBannerView *adView;
