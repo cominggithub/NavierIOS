@@ -119,6 +119,9 @@
     
 
 
+//    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,nil];
+//    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    
     
 }
 

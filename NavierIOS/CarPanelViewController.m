@@ -223,7 +223,6 @@
 {
     
     [self hideCarPanelMenu];
-    [self inactive];
     [self.navigationController popViewControllerAnimated:TRUE];
 }
 
@@ -272,7 +271,6 @@
 
 -(void) showCarPanelMenu
 {
-    logfn();
     [SoundUtil playPopup];
     carPanelMenuView.hidden = NO;
 }
@@ -290,15 +288,19 @@
 #pragma -- Operation
 -(void) active
 {
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     [SystemManager addDelegate:self];
     [LocationManager addDelegate:self];
     [self updateUIFromConfig];
+    [self.contentView active];
 }
 
 -(void) inactive
 {
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     [SystemManager removeDelegate:self];
     [LocationManager removeDelegate:self];
+    [self.contentView inactive];
 }
 
 -(void) checkIapItem
@@ -309,7 +311,6 @@
 -(void)dismiss
 {
     [self hideCarPanelMenu];
-    [self inactive];
     [self.navigationController popToRootViewControllerAnimated:TRUE];
 }
 

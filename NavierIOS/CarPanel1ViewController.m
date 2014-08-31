@@ -162,6 +162,7 @@
 
 -(void) active
 {
+    logfn();
     self.batteryLife    = [SystemManager getBatteryLife];
     self.networkStatus  = [SystemManager getNetworkStatus];
     self.speed          = 0;
@@ -170,15 +171,6 @@
     [SystemManager addDelegate:self];
     [LocationManager addDelegate:self];
     
-    if (YES == [SystemConfig getBoolValue:CONFIG_H_IS_LOCATION_SIMULATOR])
-    {
-        [LocationManager stopMonitorLocation];
-    }
-    else
-    {
-        [LocationManager startMonitorLocation];
-    }
-
     if (YES == [SystemConfig getBoolValue:CONFIG_IS_TRACK_LOCATION])
     {
         [LocationManager startLocationTracking];
@@ -202,10 +194,10 @@
 
 -(void) inactive
 {
+    logfn();
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     [SystemManager removeDelegate:self];
     [LocationManager removeDelegate:self];
-    [LocationManager stopMonitorLocation];
     [LocationManager stopLocationTracking];
     [_clockView inactive];
     [_systemStatusView inactive];

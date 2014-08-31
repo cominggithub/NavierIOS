@@ -271,50 +271,63 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="20" minimumInteritemSpacing="0.0" id="QFf-sx-owj">
-                            <size key="itemSize" width="384" height="320"/>
-                            <size key="headerReferenceSize" width="0.0" height="32"/>
+                            <size key="itemSize" width="336" height="288"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="48" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="iapImageCell" id="UlC-yd-Khm" customClass="IAPImageCell">
-                                <rect key="frame" x="48" y="44" width="384" height="320"/>
+                                <rect key="frame" x="48" y="60" width="336" height="288"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="384" height="320"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="336" height="288"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="iUT-2D-7NP">
-                                            <rect key="frame" x="0.0" y="32" width="384" height="189"/>
+                                            <rect key="frame" x="0.0" y="32" width="336" height="224"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XGM-xe-xdW">
-                                            <rect key="frame" x="73" y="230" width="99" height="30"/>
+                                            <rect key="frame" x="20" y="250" width="140" height="40"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Restore">
+                                            <state key="normal" title="Restore Purchases">
+                                                <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PRd-QK-nuW">
-                                            <rect key="frame" x="180" y="230" width="99" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="L5b-L6-dox">
+                                            <rect key="frame" x="180" y="250" width="131" height="40"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Buy">
+                                                <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sr6-Km-ZXk">
-                                            <rect key="frame" x="0.0" y="8" width="384" height="21"/>
+                                            <rect key="frame" x="0.0" y="8" width="336" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="description" id="lPW-Oo-db9">
+                                            <rect key="frame" x="230" y="71" width="101" height="79"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
+                                    <outlet property="buyButton" destination="L5b-L6-dox" id="S5U-lg-oqj"/>
+                                    <outlet property="descriptionTextView" destination="lPW-Oo-db9" id="SHl-0m-oao"/>
                                     <outlet property="imageView" destination="iUT-2D-7NP" id="XYq-Hu-s2r"/>
                                     <outlet property="priceLabel" destination="sr6-Km-ZXk" id="L9y-Ve-PUo"/>
+                                    <outlet property="restoreButton" destination="XGM-xe-xdW" id="BV3-HL-3Cc"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -1367,6 +1380,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tGm-kC-u2Y">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.027450980619999999" green="0.15686275059999999" blue="0.18823529780000001" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

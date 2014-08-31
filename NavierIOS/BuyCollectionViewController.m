@@ -29,8 +29,8 @@
 @interface BuyCollectionViewController ()
 {
     UIImage *selectedImage;
-
     NSMutableArray *iapItems;
+    NSMutableDictionary *buyButtons;
     NSDictionary *iapImages;
 }
 
@@ -61,8 +61,12 @@
     // manual screen tracking
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
-    iapImages = [[NSDictionary alloc] initWithObjects:[@[@"buy1.png", @"buy2.png", @"buy3.png", @"buy4.png"] mutableCopy]
+    iapImages = [[NSDictionary alloc] initWithObjects:[@[@"advanced_version", @"carPanel2", @"carPanel2", @"carPanel2"] mutableCopy]
                                               forKeys:[@[IAP_NO_AD_STORE_USER_PLACE, IAP_CAR_PANEL_2, IAP_CAR_PANEL_3, IAP_CAR_PANEL_4] mutableCopy]];
+    
+    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_main"]];
+    buyButtons  = [[NSMutableDictionary alloc] initWithCapacity:5];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -109,6 +113,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [[self navigationController] setNavigationBarHidden:FALSE animated:YES];
+
     [self loadIapItem];
     [GoogleUtil sendScreenView:@"Buy View"];
 }
@@ -137,11 +142,81 @@
     IAPImageCell *iapImageCell = (IAPImageCell*) [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     iapImageCell.backgroundColor = [UIColor whiteColor];
     iapImageCell.imageView.image = [self getImageByIapKey:product.productIdentifier];
-    iapImageCell.priceLabel.text = product.localizedPrice;
+    iapImageCell.priceLabel.text = [NSString stringWithFormat:@"%@  %@", product.localizedTitle, product.localizedPrice];
     
+    [iapImageCell.buyButton setTitle:[SystemManager getLanguageString:@"Restore Purchased"]
+                            forState:UIControlStateNormal];
+    [iapImageCell.buyButton setTitle:
+     [NSString stringWithFormat:@"%@ %ld",
+      [SystemManager getLanguageString:@"Buy"], (long)indexPath.row ]
+                            forState:UIControlStateNormal];
+    [iapImageCell.restoreButton setTitle:[SystemManager getLanguageString:iapImageCell.restoreButton.titleLabel.text]
+                                forState:UIControlStateNormal];
+
+//    [iapImageCell.restoreButton removeTarget:self action:@selector(pressRestoreButton:)    forControlEvents:UIControlEventTouchUpInside];
+    [iapImageCell.restoreButton addTarget:self action:@selector(pressRestoreButton:)    forControlEvents:UIControlEventTouchUpInside];
+
+    [iapImageCell.buyButton     addTarget:self action:@selector(pressBuyButton:)        forControlEvents:UIControlEventTouchUpInside];
+    iapImageCell.buyButton.accessibilityLabel = product.productIdentifier;
+    
+//    if (indexPath.row == 0)
+//        [iapImageCell.buyButton addTarget:self action:@selector(pressBuyButton0:)    forControlEvents:UIControlEventTouchUpInside];
+//    else if (indexPath.row == 1)
+//        [iapImageCell.buyButton addTarget:self action:@selector(pressBuyButton1:)    forControlEvents:UIControlEventTouchUpInside];
+//    else if (indexPath.row == 2)
+//        [iapImageCell.buyButton addTarget:self action:@selector(pressBuyButton2:)    forControlEvents:UIControlEventTouchUpInside];
+//    else if (indexPath.row == 3)
+//        [iapImageCell.buyButton addTarget:self action:@selector(pressBuyButton3:)    forControlEvents:UIControlEventTouchUpInside];
+    
+    if ([product.productIdentifier isEqualToString:IAP_NO_AD_STORE_USER_PLACE])
+    {
+        iapImageCell.descriptionTextView.layer.borderWidth = 3.0f;
+        iapImageCell.descriptionTextView.layer.borderColor = [[UIColor redColor] CGColor];
+        iapImageCell.descriptionTextView.layer.cornerRadius = 5;
+        iapImageCell.descriptionTextView.clipsToBounds = YES;
+        
+        iapImageCell.descriptionTextView.hidden = NO;
+        [iapImageCell.descriptionTextView setText: product.localizedDescription];
+    }
+    else
+    {
+        iapImageCell.descriptionTextView.hidden = YES;
+    }
+
+
     return iapImageCell;
 }
 
+
+-(void)pressRestoreButton:(UIButton*)sender
+{
+    logfn();
+}
+
+-(void)pressBuyButton:(UIButton*)sender
+{
+    logO(sender.accessibilityLabel);
+}
+
+-(void)pressBuyButton0:(UIButton*)senderON
+{
+    logfn();
+}
+
+-(void)pressBuyButton1:(UIButton*)sender
+{
+    logfn();
+}
+
+-(void)pressBuyButton2:(UIButton*)sender
+{
+    logfn();
+}
+
+-(void)pressBuyButton3:(UIButton*)sender
+{
+    logfn();
+}
 
 /*
 #pragma mark - Navigation

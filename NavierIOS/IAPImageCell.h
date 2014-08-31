@@ -10,5 +10,10 @@
 
 @interface IAPImageCell : UICollectionViewCell
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIButton *restoreButton;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UIButton *buyButton;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
+
 @end
+
