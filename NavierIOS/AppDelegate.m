@@ -232,11 +232,19 @@
 
 -(void)showIap
 {
+    logBool(buyCollectionViewController.buying);
+    
     if ([SystemConfig getIntValue:CONFIG_USE_COUNT] > 5 && [SystemConfig getIntValue:CONFIG_USE_COUNT] %4 == 0 &&
-        [SystemConfig getBoolValue:CONFIG_H_IS_AD] && (![SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION]))
+        [SystemConfig getBoolValue:CONFIG_H_IS_AD])
     {
-        //[(UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController] pushViewController:buyViewController animated:TRUE];
-        [(UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController] pushViewController:buyCollectionViewController animated:TRUE];
+    
+        if (YES == [NavierHUDIAPHelper hasUnbroughtIap] &&
+            IAP_STATUS_RETRIEVED == [NavierHUDIAPHelper retrieveIap] &&
+            NO == buyCollectionViewController.buying)
+        {
+            //[(UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController] pushViewController:buyViewController animated:TRUE];
+            [(UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController] pushViewController:buyCollectionViewController animated:TRUE];
+        }
     }
 }
 

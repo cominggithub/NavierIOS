@@ -104,7 +104,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveNotification:)
-                                                 name:IAPHelperProductUpdatedNotification
+                                                 name:IAP_EVENT_IAP_STATUS_RETRIEVED
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -182,32 +182,32 @@
 
 -(void) checkIAPItem
 {
-    if (YES == [SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION])
-    {
+    if (IAP_STATUS_RETRIEVED != [NavierHUDIAPHelper retrieveIap])
         self.buyButton.hidden = YES;
+    
+    if (YES == [NavierHUDIAPHelper hasUnbroughtIap])
+    {
+        self.buyButton.hidden = NO;
     }
     else
     {
-        self.buyButton.hidden = NO;
+        self.buyButton.hidden = YES;
     }
     self.bannerIsVisible = [SystemConfig getBoolValue:CONFIG_H_IS_AD] && (![SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION]);
 }
 
 - (void) receiveNotification:(NSNotification *) notification
 {
-    if ([[notification name] isEqualToString:IAPHelperProductUpdatedNotification])
+    if ([[notification name] isEqualToString:IAP_EVENT_IAP_STATUS_RETRIEVED])
     {
         [self checkIAPItem];
     }
     else if ([[notification name] isEqualToString:@"applicationDidBecomeActive"])
     {
-        logfn();
         [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
         isShareViewShown = FALSE;
         [self showShareView];
     }
-    
-
 }
 
 #if 0
@@ -538,6 +538,7 @@
 
 - (IBAction)pressShareButton:(id)sender
 {
+    logfn();
 //    [self.navigationController pushViewController:shareViewController animated:TRUE];
     [shareViewController showInView:self.view];
 }

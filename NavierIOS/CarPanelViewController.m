@@ -12,7 +12,7 @@
 #import "BuyUIViewController.h"
 
 #if DEBUG
-#define FILE_DEBUG FALSE
+#define FILE_DEBUG TRUE
 #elif RELEASE_TEST
 #define FILE_DEBUG FALSE
 #else
@@ -58,8 +58,10 @@
 
 - (void)viewDidLoad
 {
+    logfn();
     [super viewDidLoad];
     self.contentView    = (UIView<CarPanelViewProtocol>*)[self.view viewWithTag:10];
+    logO(self.contentView);
     tapGesture          = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
     [self.view addGestureRecognizer:tapGesture];
     

@@ -11,6 +11,17 @@
 #import "CarPanelImageCell.h"
 
 
+#if DEBUG
+#define FILE_DEBUG FALSE
+#elif RELEASE_TEST
+#define FILE_DEBUG FALSE
+#else
+#define FILE_DEBUG FALSE
+#endif
+
+#include "Log.h"
+
+
 @interface SelectCarPanelViewController ()
 {
     UIImage *selectedImage;
@@ -41,7 +52,7 @@
     
     iapImages = [@[@"carPanel1",
                    @"carPanel2",
-                   @"buy3.png",
+                   @"carPanel3",
                    @"buy4.png",
                    @"buy5.png",] mutableCopy];
     
@@ -91,6 +102,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self performSegueWithIdentifier:@"carPanel3Segue" sender:self];
+    return ;
     switch (indexPath.row)
     {
         case 0:
@@ -98,6 +111,9 @@
             break;
         case 1:
             [self performSegueWithIdentifier:@"carPanel2Segue" sender:self];
+            break;
+        case 2:
+            [self performSegueWithIdentifier:@"carPanel3Segue" sender:self];
             break;
         default:
             break;

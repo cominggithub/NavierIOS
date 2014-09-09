@@ -30,7 +30,8 @@
 "Not Set Yet" = "尚未設定";
 "Office"="辦公室";
 "Place" = "地點";
-"Purchase successfully" = "購買成功";
+"Purchase successful" = "購買成功";
+"Purchase failed" = "購買失敗";
 "Rate %@" = "給 %@ 評分";
 "Remind me later" = "改天吧";
 "Restore Purchases" = "恢復已購買";

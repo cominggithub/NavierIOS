@@ -52,6 +52,7 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>SWIsop3.ttf</string>
 		<string>upcil.ttf</string>
 		<string>cordiau.ttf</string>
 		<string>jasmineupcbold.ttf</string>

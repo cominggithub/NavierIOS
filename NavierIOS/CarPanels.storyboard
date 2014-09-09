@@ -167,7 +167,32 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="357" y="215"/>
+            <point key="canvasLocation" x="357" y="337"/>
+        </scene>
+        <!--Car Panel3 View Controller-->
+        <scene sceneID="IO6-c2-Dhx">
+            <objects>
+                <viewController id="YBv-nG-Ubb" customClass="CarPanel3ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rwX-0U-Der">
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view tag="10" contentMode="scaleToFill" id="eC4-NE-02c" userLabel="ContentView" customClass="CarPanel3View">
+                                <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration" label="ContentView"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="y6G-Zf-dZa"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ddh-3C-76C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="357" y="-458"/>
         </scene>
         <!--Car Panel2 View Controller-->
         <scene sceneID="k89-03-Wev">
@@ -193,7 +218,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tfj-nC-yXm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="357" y="-237"/>
+            <point key="canvasLocation" x="357" y="-63"/>
         </scene>
         <!--Select Car Panel Controller-->
         <scene sceneID="L7Y-Iw-AwR">
@@ -241,11 +266,12 @@
                     <connections>
                         <segue destination="T9q-4k-grU" kind="push" identifier="carPanel1Segue" id="JDi-3w-cXX"/>
                         <segue destination="5vR-lV-6uT" kind="push" identifier="carPanel2Segue" id="eie-jb-hfZ"/>
+                        <segue destination="YBv-nG-Ubb" kind="push" identifier="carPanel3Segue" id="76G-4o-7rS"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2iJ-39-Ckr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-434" y="-74"/>
+            <point key="canvasLocation" x="-458" y="-63"/>
         </scene>
     </scenes>
     <resources>

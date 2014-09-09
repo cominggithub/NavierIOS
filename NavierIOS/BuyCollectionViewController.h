@@ -10,4 +10,5 @@
 
 @interface BuyCollectionViewController : UICollectionViewController
 
+@property (nonatomic) BOOL buying;
 @end

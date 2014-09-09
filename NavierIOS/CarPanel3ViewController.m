@@ -10,6 +10,16 @@
 #import <NaviUtil/NaviUtil.h>
 #import "GoogleUtil.h"
 
+#if DEBUG
+#define FILE_DEBUG TRUE
+#elif RELEASE_TEST
+#define FILE_DEBUG TRUE
+#else
+#define FILE_DEBUG TRUE
+#endif
+
+#include "Log.h"
+
 @interface CarPanel3ViewController ()
 
 @end
@@ -39,6 +49,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    logfn();
     [super viewDidAppear:animated];
     [GoogleUtil sendScreenView:@"Car Panel 3"];
 }

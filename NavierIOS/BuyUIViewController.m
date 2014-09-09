@@ -67,16 +67,7 @@
 
 - (void)initSelf
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receiveNotification:)
-                                                 name:IAPHelperProductPurchasedNotification
-                                               object:nil];
 
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receiveNotification:)
-                                                 name:IAPHelperProductUpdatedNotification
-                                               object:nil];
     
 
     product = nil;
@@ -215,26 +206,27 @@
 
 - (void) receiveNotification:(NSNotification *) notification
 {
-    if ([[notification name] isEqualToString:IAPHelperProductPurchasedNotification])
-    {
-        NSString* productIdentifier = [notification object];
-#if FILE_DEBUG == TRUE
-
-        mlogDebug(@"%@: %@", IAPHelperProductPurchasedNotification, productIdentifier);
-#endif
-        if ([productIdentifier isEqualToString:@"com.coming.NavierHUD.Iap.AdvancedVersion"])
-        {
-            mlogDebug(@"%@: %@", IAPHelperProductPurchasedNotification, productIdentifier);
-            [self showAlertTitle:[SystemManager getLanguageString:@"Purchase successfully"]
-                         message:[NSString stringWithFormat:
-             [SystemManager getLanguageString:@"Thanks! %@ now is upgraded to Advanced version"], @"Naiver HUD"]];
-             
-        }
-    }
-    else if ([[notification name] isEqualToString:IAPHelperProductUpdatedNotification])
-    {
-        [self updateProduct];
-    }
+//    
+//    if ([[notification name] isEqualToString:IAPHelperProductPurchasedNotification])
+//    {
+//        NSString* productIdentifier = [notification object];
+//#if FILE_DEBUG == TRUE
+//
+//        mlogDebug(@"%@: %@", IAPHelperProductPurchasedNotification, productIdentifier);
+//#endif
+//        if ([productIdentifier isEqualToString:@"com.coming.NavierHUD.Iap.AdvancedVersion"])
+//        {
+//            mlogDebug(@"%@: %@", IAPHelperProductPurchasedNotification, productIdentifier);
+//            [self showAlertTitle:[SystemManager getLanguageString:@"Purchase successfully"]
+//                         message:[NSString stringWithFormat:
+//             [SystemManager getLanguageString:@"Thanks! %@ now is upgraded to Advanced version"], @"Naiver HUD"]];
+//             
+//        }
+//    }
+//    else if ([[notification name] isEqualToString:IAPHelperProductUpdatedNotification])
+//    {
+//        [self updateProduct];
+//    }
 }
 
 - (void) updateProduct

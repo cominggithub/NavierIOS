@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CarPanelViewController.h"
 
-@interface CarPanel3ViewController : UIViewController
+@interface CarPanel3ViewController : CarPanelViewController
 
 @end

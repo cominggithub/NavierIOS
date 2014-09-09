@@ -32,6 +32,8 @@
     NSMutableArray *iapItems;
     NSMutableDictionary *buyButtons;
     NSDictionary *iapImages;
+    UIAlertView  *alert;
+    BOOL isRestoreAlertPrompted;
 }
 
 @end
@@ -51,7 +53,8 @@
 {
     [super viewDidLoad];
 
-    id tracker = [[GAI sharedInstance] defaultTracker];
+    self.buying     = FALSE;
+    id tracker      = [[GAI sharedInstance] defaultTracker];
     
     // This screen name value will remain set on the tracker and sent with
     // hits until it is set to a new value or to nil.
@@ -67,10 +70,39 @@
     self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_main"]];
     buyButtons  = [[NSMutableDictionary alloc] initWithCapacity:5];
     
+    isRestoreAlertPrompted = FALSE;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveNotification:)
+                                                 name:IAP_EVENT_IAP_STATUS_RETRIEVED
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveNotification:)
+                                                 name:IAP_EVENT_IAP_STATUS_RETRIEVE_FAIL
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveNotification:)
+                                                 name:IAP_EVENT_TRANSACTION_RESTORE
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveNotification:)
+                                                 name:IAP_EVENT_TRANSACTION_FAILED
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveNotification:)
+                                                 name:IAP_EVENT_TRANSACTION_COMPLETE
+                                               object:nil];
+    
     // Do any additional setup after loading the view.
 }
 
-
+-(void) dismiss
+{
+    [self.navigationController popViewControllerAnimated:TRUE];
+}
 -(void) addIapItem:(NSString*) key
 {
     SKProduct *product;
@@ -82,6 +114,9 @@
 -(void) loadIapItem
 {
     iapItems = [[NSMutableArray alloc] initWithCapacity:4];
+
+    if (NO == [NavierHUDIAPHelper hasUnbroughtIap])
+        [self dismiss];
     
     if (FALSE == [SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION])
         [self addIapItem:IAP_NO_AD_STORE_USER_PLACE];
@@ -159,15 +194,6 @@
     [iapImageCell.buyButton     addTarget:self action:@selector(pressBuyButton:)        forControlEvents:UIControlEventTouchUpInside];
     iapImageCell.buyButton.accessibilityLabel = product.productIdentifier;
     
-//    if (indexPath.row == 0)
-//        [iapImageCell.buyButton addTarget:self action:@selector(pressBuyButton0:)    forControlEvents:UIControlEventTouchUpInside];
-//    else if (indexPath.row == 1)
-//        [iapImageCell.buyButton addTarget:self action:@selector(pressBuyButton1:)    forControlEvents:UIControlEventTouchUpInside];
-//    else if (indexPath.row == 2)
-//        [iapImageCell.buyButton addTarget:self action:@selector(pressBuyButton2:)    forControlEvents:UIControlEventTouchUpInside];
-//    else if (indexPath.row == 3)
-//        [iapImageCell.buyButton addTarget:self action:@selector(pressBuyButton3:)    forControlEvents:UIControlEventTouchUpInside];
-    
     if ([product.productIdentifier isEqualToString:IAP_NO_AD_STORE_USER_PLACE])
     {
         iapImageCell.descriptionTextView.layer.borderWidth = 3.0f;
@@ -190,44 +216,86 @@
 
 -(void)pressRestoreButton:(UIButton*)sender
 {
-    logfn();
+    self.buying = TRUE;
+    [NavierHUDIAPHelper restorePurchasedProduct];
 }
 
 -(void)pressBuyButton:(UIButton*)sender
 {
-    logO(sender.accessibilityLabel);
+    SKProduct* product;
+    mlogDebug(@"buy %@", sender.accessibilityLabel);
+    product = [NavierHUDIAPHelper productByKey:sender.accessibilityLabel];
+    if (nil != product)
+    {
+        self.buying = TRUE;
+        [NavierHUDIAPHelper buyProduct:product];
+    }
 }
 
--(void)pressBuyButton0:(UIButton*)senderON
+
+- (void) receiveNotification:(NSNotification *) notification
 {
-    logfn();
+    NSString* identifier;
+    
+    self.buying = FALSE;
+    identifier  = notification.object;
+
+    if ([notification.name isEqualToString:IAP_EVENT_TRANSACTION_COMPLETE])
+    {
+        if ([identifier isEqualToString:IAP_NO_AD_STORE_USER_PLACE])
+        {
+            [self showAlertTitle:[SystemManager getLanguageString:@"Purchase successfully"]
+                         message:[NSString stringWithFormat:
+                                [SystemManager getLanguageString:@"Thanks! %@ now is upgraded to Advanced version"], @"Naiver HUD"]];
+            
+        }
+        else
+        {
+            [self showAlertTitle:[SystemManager getLanguageString:@"Purchase successfully"]
+                         message:[NSString stringWithFormat:@""]];
+        }
+        
+    }
+    else if ([notification.name isEqualToString:IAP_EVENT_TRANSACTION_RESTORE] && FALSE == isRestoreAlertPrompted)
+    {
+
+        
+        if ([identifier isEqualToString:IAP_NO_AD_STORE_USER_PLACE])
+        {
+            [self showAlertTitle:[SystemManager getLanguageString:@"Purchase successfully"]
+                         message:[NSString stringWithFormat:
+                                  [SystemManager getLanguageString:@"Thanks! %@ now is upgraded to Advanced version"], @"Naiver HUD"]];
+            
+        }
+        else
+        {
+            [self showAlertTitle:[SystemManager getLanguageString:@"Purchase successful"]
+                         message:[NSString stringWithFormat:@""]];
+        }
+        
+        isRestoreAlertPrompted = TRUE;
+    }
+    else if ([notification.name isEqualToString:IAP_EVENT_TRANSACTION_FAILED])
+    {
+        [self showAlertTitle:[SystemManager getLanguageString:@"Purchase failed"]
+                     message:[NSString stringWithFormat:@""]];
+    }
+
+    [self loadIapItem];
 }
 
--(void)pressBuyButton1:(UIButton*)sender
+-(void) showAlertTitle:(NSString*) title message:(NSString*) message
 {
-    logfn();
+    if (nil == alert)
+    {
+        alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:[SystemManager getLanguageString:@"OK"] otherButtonTitles:nil,nil];
+        [alert show];
+    }
 }
 
--(void)pressBuyButton2:(UIButton*)sender
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    logfn();
+    alert = nil;
 }
-
--(void)pressBuyButton3:(UIButton*)sender
-{
-    logfn();
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 
 @end
