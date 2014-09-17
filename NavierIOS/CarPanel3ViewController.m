@@ -49,7 +49,6 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    logfn();
     [super viewDidAppear:animated];
     [GoogleUtil sendScreenView:@"Car Panel 3"];
 }

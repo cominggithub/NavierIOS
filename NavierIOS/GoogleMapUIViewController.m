@@ -414,7 +414,6 @@
 
 -(void) saveAsHome:(Place*)p
 {
-    logfn();
     mlogAssertNotNil(p);
     if (p.placeType != kPlaceType_SearchedPlace && p.placeType != kPlaceType_CurrentPlace)
     {
@@ -430,7 +429,6 @@
 
 -(void) saveAsOffice:(Place*)p
 {
-    logfn();
     mlogAssertNotNil(p);
     if (p.placeType != kPlaceType_SearchedPlace && p.placeType != kPlaceType_CurrentPlace)
     {
@@ -446,7 +444,6 @@
 
 -(void) saveAsFavor:(Place*)p
 {
-    logfn();
     mlogAssertNotNil(p);
     if (p.placeType != kPlaceType_SearchedPlace && p.placeType != kPlaceType_CurrentPlace)
     {

@@ -13,6 +13,7 @@
 #import "CarPanel1MenuView.h"
 #import "BuyUIViewController.h"
 #import "GoogleUtil.h"
+#import "LocationUpdateEvent.h"
 
 #if DEBUG
 #define FILE_DEBUG TRUE
@@ -129,6 +130,12 @@
     [self addBanner:self.contentView];
     [self showAdAnimated:NO];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveLocationUpdateEvent:)
+                                                 name:LOCATION_MANAGER_LOCATION_UPDATE_EVENT
+                                               object:nil];
+    
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -162,14 +169,13 @@
 
 -(void) active
 {
-    logfn();
     self.batteryLife    = [SystemManager getBatteryLife];
     self.networkStatus  = [SystemManager getNetworkStatus];
     self.speed          = 0;
     
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     [SystemManager addDelegate:self];
-    [LocationManager addDelegate:self];
+//    [LocationManager addDelegate:self];
     
     if (YES == [SystemConfig getBoolValue:CONFIG_IS_TRACK_LOCATION])
     {
@@ -194,10 +200,9 @@
 
 -(void) inactive
 {
-    logfn();
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     [SystemManager removeDelegate:self];
-    [LocationManager removeDelegate:self];
+//    [LocationManager removeDelegate:self];
     [LocationManager stopLocationTracking];
     [_clockView inactive];
     [_systemStatusView inactive];
@@ -845,5 +850,13 @@
     }
 }
 
+#pragma mark -- notification
+
+- (void)receiveLocationUpdateEvent:(NSNotification *)notification
+{
+    LocationUpdateEvent *event;
+    event = [notification.userInfo objectForKey:@"data"];
+    [self locationManager:NULL update:event.location speed:event.speed distance:event.distance heading:event.heading];
+}
 
 @end

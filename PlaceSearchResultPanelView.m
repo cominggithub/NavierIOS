@@ -102,7 +102,6 @@
         
         [self.scrollView addSubview:placeName];
         [self.scrollView addSubview:placeAddr];
-        logfn();
     }
     
     if (places.count > 0)

@@ -165,7 +165,6 @@
 
 -(IBAction) pressBackButton:(id)sender
 {
-    logfn();
     [self hideRouteGuideMenu];
     [self.navigationController popViewControllerAnimated:TRUE];
     
@@ -222,11 +221,9 @@
 
 -(void) startRouteNavigationFrom:(Place*) startPlace To:(Place*) endPlace
 {
-    logfn();
     mlogAssertNotNil(startPlace);
     mlogAssertNotNil(endPlace);
 
-    logfn();
     
     self.startPlace = startPlace;
     self.endPlace   = endPlace;

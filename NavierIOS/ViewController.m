@@ -538,7 +538,6 @@
 
 - (IBAction)pressShareButton:(id)sender
 {
-    logfn();
 //    [self.navigationController pushViewController:shareViewController animated:TRUE];
     [shareViewController showInView:self.view];
 }

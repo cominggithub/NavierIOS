@@ -232,7 +232,6 @@
 
 -(void)showIap
 {
-    logBool(buyCollectionViewController.buying);
     
     if ([SystemConfig getIntValue:CONFIG_USE_COUNT] > 5 && [SystemConfig getIntValue:CONFIG_USE_COUNT] %4 == 0 &&
         [SystemConfig getBoolValue:CONFIG_H_IS_AD])

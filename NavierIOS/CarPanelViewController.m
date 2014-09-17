@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <NaviUtil/NaviUtil.h>
 #import "BuyUIViewController.h"
+#import "LocationUpdateEvent.h"
 
 #if DEBUG
 #define FILE_DEBUG TRUE
@@ -58,10 +59,9 @@
 
 - (void)viewDidLoad
 {
-    logfn();
+
     [super viewDidLoad];
     self.contentView    = (UIView<CarPanelViewProtocol>*)[self.view viewWithTag:10];
-    logO(self.contentView);
     tapGesture          = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
     [self.view addGestureRecognizer:tapGesture];
     
@@ -79,6 +79,10 @@
     
     // Do any additional setup after loading the view.
     [self updateUIFromConfig];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveLocationUpdateEvent:)
+                                                 name:LOCATION_MANAGER_LOCATION_UPDATE_EVENT
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -292,7 +296,7 @@
 {
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     [SystemManager addDelegate:self];
-    [LocationManager addDelegate:self];
+//    [LocationManager addDelegate:self];
     [self updateUIFromConfig];
     [self.contentView active];
 }
@@ -301,7 +305,7 @@
 {
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     [SystemManager removeDelegate:self];
-    [LocationManager removeDelegate:self];
+//    [LocationManager removeDelegate:self];
     [self.contentView inactive];
 }
 
@@ -393,6 +397,15 @@
     
     mlogDebug(@"location update: %.8f, %.8f heading: %.1f", location.latitude, location.longitude, TO_ANGLE(heading));
 
+}
+
+#pragma mark -- notification
+
+- (void)receiveLocationUpdateEvent:(NSNotification *)notification
+{
+    LocationUpdateEvent *event;
+    event = [notification.userInfo objectForKey:@"data"];
+    [self locationManager:NULL update:event.location speed:event.speed distance:event.distance heading:event.heading];
 }
 
 #pragma mark -- Test
