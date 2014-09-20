@@ -27,7 +27,7 @@
 
 @interface CarPanelViewController ()
 {
-    CarPanel1MenuView           *carPanelMenuView;
+    CarPanelMenuView            *carPanelMenuView;
     UIButton                    *carPanelMenuLogoButton;
     UIButton                    *carPanelMenuHudButton;
     UIButton                    *carPanelMenuSpeedMphButton;
@@ -41,6 +41,7 @@
     
     NSTimer*                    headingTimer;
     NSMutableArray              *colorButtons;
+    CarPanelSetting*            setting;
 }
 
 
@@ -61,6 +62,7 @@
 {
 
     [super viewDidLoad];
+    setting             = [[CarPanelSetting alloc] initWithName:self.carPanelName];
     self.contentView    = (UIView<CarPanelViewProtocol>*)[self.view viewWithTag:10];
     tapGesture          = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
     [self.view addGestureRecognizer:tapGesture];
@@ -77,8 +79,8 @@
 
 
     
-    // Do any additional setup after loading the view.
-    [self updateUIFromConfig];
+
+    [self updateUIFromSetting];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveLocationUpdateEvent:)
                                                  name:LOCATION_MANAGER_LOCATION_UPDATE_EVENT
@@ -105,6 +107,7 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBarHidden = TRUE;
+    [GoogleUtil sendScreenView:self.carPanelName];
     [self active];
     [self checkIapItem];
 }
@@ -121,17 +124,16 @@
 }
 #pragma mark -- Update UI
 
--(void) updateUIFromConfig
+-(void) updateUIFromSetting
 {
-    carPanelMenuHudSwitch.on       = [SystemConfig getBoolValue:CONFIG_CP1_IS_HUD];
-    carPanelMenuCourseSwitch.on    = [SystemConfig getBoolValue:CONFIG_CP1_IS_COURSE];
+    carPanelMenuHudSwitch.on       = setting.isHud;
+    carPanelMenuCourseSwitch.on    = setting.isCourse;
     
-    self.isHud          = carPanelMenuHudSwitch.on;
-    self.isSpeedUnitMph = [SystemConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
+    self.isHud          = setting.isHud;
+    self.isSpeedUnitMph = setting.isSpeedUnitMph;
     
     if (YES == self.isSpeedUnitMph)
     {
-        
         [carPanelMenuSpeedMphButton setBackgroundColor:[UIColor blueColor]];
         [carPanelMenuSpeedKmhButton setBackgroundColor:[UIColor blackColor]];
     }
@@ -141,7 +143,7 @@
         [carPanelMenuSpeedKmhButton setBackgroundColor:[UIColor blueColor]];
     }
 
-    self.color = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
+    self.color = setting.selPrimaryColor;
 }
 
 #pragma mark -- Property
@@ -149,6 +151,7 @@
 {
     _color = color;
     self.contentView.color = self.color;
+    setting.selPrimaryColor = color;
 }
 
 -(void)setLockColorSelection:(BOOL)lockColorSelection
@@ -176,6 +179,7 @@
 
 -(void)setIsSpeedUnitMph:(BOOL)isSpeedUnitMph
 {
+    setting.isSpeedUnitMph = isSpeedUnitMph;
     if ([self.contentView respondsToSelector:@selector(setIsSpeedUnitMph:)])
     {
         [self.contentView setIsSpeedUnitMph:isSpeedUnitMph];
@@ -185,6 +189,7 @@
 -(void)setIsHud:(BOOL)isHud
 {
     _isHud = isHud;
+    setting.isHud = self.isHud;
     if ([self.contentView respondsToSelector:@selector(setIsHud:)])
     {
         [self.contentView setIsHud:isHud];
@@ -213,66 +218,26 @@
 
 -(void) addCarPanelMenu
 {
-    NSArray *xibContents                = [[NSBundle mainBundle] loadNibNamed:@"CarPanel1MenuView" owner:self options:nil];
+    NSArray *xibContents                = [[NSBundle mainBundle] loadNibNamed:@"CarPanelMenuView" owner:self options:nil];
     carPanelMenuView                    = [xibContents lastObject];
-    carPanelMenuView.accessibilityLabel = @"carPanel1MenuView";
+    carPanelMenuView.accessibilityLabel = @"carPanelMenuView";
     carPanelMenuView.delegate           = self;
     
-    carPanelMenuView.isHud              = [SystemConfig getBoolValue:CONFIG_CP1_IS_HUD];
-    carPanelMenuView.isSpeedUnitMph     = [SystemConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
-    carPanelMenuView.panelColor         = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
+    carPanelMenuView.isHud              = setting.isHud;
+    carPanelMenuView.isSpeedUnitMph     = setting.isSpeedUnitMph;
+
+    
+    carPanelMenuView.panelColor1Button.backgroundColor = [[setting primaryColors] objectAtIndex:0];
+    carPanelMenuView.panelColor2Button.backgroundColor = [[setting primaryColors] objectAtIndex:1];
+    carPanelMenuView.panelColor3Button.backgroundColor = [[setting primaryColors] objectAtIndex:2];
+    carPanelMenuView.panelColor4Button.backgroundColor = [[setting primaryColors] objectAtIndex:3];
+    carPanelMenuView.panelColor5Button.backgroundColor = [[setting primaryColors] objectAtIndex:4];
+    
+    
+    carPanelMenuView.panelColor         = setting.selPrimaryColor;
+    
     
     [self.view addSubview:carPanelMenuView];
-}
-
--(IBAction) pressLogoButton:(id) sender
-{
-    
-    [self hideCarPanelMenu];
-    [self.navigationController popViewControllerAnimated:TRUE];
-}
-
-
--(IBAction) pressColorButton:(id) sender
-{
-    UIButton *button = (UIButton*) sender;
-    
-    [SystemConfig setValue:CONFIG_CP1_COLOR uicolor:button.backgroundColor];
-    self.color = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
- 
-}
-
--(IBAction) pressHudButton:(id) sender
-{
-    [self hideCarPanelMenu];
-    self.isHud = !self.isHud;
-}
-
--(IBAction) pressMphButton:(id) sender
-{
-    [SystemConfig setValue:CONFIG_CP1_IS_SPEED_UNIT_MPH BOOL:TRUE];
-    [self updateUIFromConfig];
-}
-
--(IBAction) pressKmhButton:(id) sender
-{
-    
-    [SystemConfig setValue:CONFIG_CP1_IS_SPEED_UNIT_MPH BOOL:FALSE];
-    [self updateUIFromConfig];
-}
-
--(IBAction) switchValueChanged:(id) sender
-{
-    if (sender == carPanelMenuHudSwitch)
-    {
-        [SystemConfig setValue:CONFIG_CP1_IS_HUD BOOL:carPanelMenuHudSwitch.on];
-    }
-    else if (sender == carPanelMenuCourseSwitch)
-    {
-        [SystemConfig setValue:CONFIG_CP1_IS_COURSE BOOL:carPanelMenuCourseSwitch.on];
-    }
-    
-    [self updateUIFromConfig];
 }
 
 -(void) showCarPanelMenu
@@ -296,8 +261,7 @@
 {
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     [SystemManager addDelegate:self];
-//    [LocationManager addDelegate:self];
-    [self updateUIFromConfig];
+    [self updateUIFromSetting];
     [self.contentView active];
 }
 
@@ -305,7 +269,6 @@
 {
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     [SystemManager removeDelegate:self];
-//    [LocationManager removeDelegate:self];
     [self.contentView inactive];
 }
 
@@ -322,26 +285,22 @@
 
 
 #pragma mark -- delegate
--(void) carPanel1MenuView:(CarPanel1MenuView*) cpm changeColor:(UIColor*) color
+-(void) carPanel1MenuView:(CarPanelMenuView*) cpm changeColor:(UIColor*) color
 {
-    [SystemConfig setValue:CONFIG_CP1_COLOR uicolor:color];
-    self.color = [SystemConfig getUIColorValue:CONFIG_CP1_COLOR];
+    self.color = color;
 }
 
--(void) carPanel1MenuView:(CarPanel1MenuView*) cpm changeHud:(BOOL) isHud
+-(void) carPanel1MenuView:(CarPanelMenuView*) cpm changeHud:(BOOL) isHud
 {
-    [SystemConfig setValue:CONFIG_CP1_IS_HUD BOOL:isHud];
-    self.isHud = [SystemConfig getBoolValue:CONFIG_CP1_IS_HUD];
+    self.isHud = isHud;
 }
 
--(void) carPanel1MenuView:(CarPanel1MenuView*) cpm changeSpeedUnit:(BOOL) isMph
+-(void) carPanel1MenuView:(CarPanelMenuView*) cpm changeSpeedUnit:(BOOL) isMph
 {
-    
-    [SystemConfig setValue:CONFIG_CP1_IS_SPEED_UNIT_MPH BOOL:isMph];
-    self.isSpeedUnitMph = [SystemConfig getBoolValue:CONFIG_CP1_IS_SPEED_UNIT_MPH];
+    self.isSpeedUnitMph = isMph;
 }
 
--(void) carPanel1MenuView:(CarPanel1MenuView*) cpm pressLogoButton:(BOOL) isPressed
+-(void) carPanel1MenuView:(CarPanelMenuView*) cpm pressLogoButton:(BOOL) isPressed
 {
     if (YES == isPressed)
     {
@@ -349,7 +308,7 @@
     }
 }
 
--(void) carPanel1MenuView:(CarPanel1MenuView*) cpm pressCloseButton:(BOOL) isPressed
+-(void) carPanel1MenuView:(CarPanelMenuView*) cpm pressCloseButton:(BOOL) isPressed
 {
     if (YES == isPressed)
     {
@@ -357,7 +316,7 @@
     }
 }
 
--(void) carPanel1MenuView:(CarPanel1MenuView*) cpm pressBuyButton:(BOOL) isPressed
+-(void) carPanel1MenuView:(CarPanelMenuView*) cpm pressBuyButton:(BOOL) isPressed
 {
 
     carPanelMenuView.hidden = YES;

@@ -72,7 +72,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [GoogleUtil sendScreenView:@"Car Panel 2"];
 }
 -(void)viewDidAppear:(BOOL)animated
 {

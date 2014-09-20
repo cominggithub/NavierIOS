@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Coming. All rights reserved.
 //
 
-#import "CarPanel1MenuView.h"
+#import "CarPanelMenuView.h"
 #import <NaviUtil/NaviUtil.h>
 #import "UIColor+category.h"
 
 
 #include "Log.h"
 
-@implementation CarPanel1MenuView
+@implementation CarPanelMenuView
 {
     
     BOOL _isHud;

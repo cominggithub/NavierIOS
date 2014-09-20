@@ -8,16 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import <NaviUtil/CarPanelViewProtocol.h>
-#import "CarPanel1MenuView.h"
+#import "CarPanelMenuView.h"
 #import <CoreLocation/CoreLocation.h>
 #import <NaviUtil/SystemManager.h>
 #import <NaviUtil/LocationManager.h>
 
-@interface CarPanelViewController : UIViewController<CarPane1MenuViewDelegate, LocationManagerDelegate, SystemManagerDelegate>
+@interface CarPanelViewController : UIViewController<CarPanelMenuViewDelegate, LocationManagerDelegate, SystemManagerDelegate>
 @property (weak, nonatomic) IBOutlet UIView<CarPanelViewProtocol> *contentView;
 
 
 /* UI Control */
+@property (nonatomic, copy) NSString *carPanelName;
 @property (nonatomic) double speed;
 @property (nonatomic) double heading;
 @property (strong, nonatomic) UIColor *color;
