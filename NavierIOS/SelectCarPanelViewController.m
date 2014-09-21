@@ -102,6 +102,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self performSegueWithIdentifier:@"carPanel3Segue" sender:self];
+    return;
     if (indexPath.row == 0)
     {
         [self performSegueWithIdentifier:@"carPanel1Segue" sender:self];
