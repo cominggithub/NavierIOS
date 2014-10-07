@@ -273,11 +273,40 @@
                         <segue destination="T9q-4k-grU" kind="push" identifier="carPanel1Segue" id="JDi-3w-cXX"/>
                         <segue destination="5vR-lV-6uT" kind="push" identifier="carPanel2Segue" id="eie-jb-hfZ"/>
                         <segue destination="YBv-nG-Ubb" kind="push" identifier="carPanel3Segue" id="76G-4o-7rS"/>
+                        <segue destination="nQJ-DM-2X2" kind="push" identifier="carPanel4Segue" id="Lel-Qy-mPp"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2iJ-39-Ckr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-458" y="-63"/>
+            <point key="canvasLocation" x="-449" y="-295"/>
+        </scene>
+        <!--Car Panel4 View Controller-->
+        <scene sceneID="P5w-MC-7IT">
+            <objects>
+                <viewController id="nQJ-DM-2X2" customClass="CarPanel4ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1B7-D3-76L">
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view tag="10" contentMode="scaleToFill" id="Jbd-Ou-CSj" userLabel="ContentView" customClass="CarPanel4View">
+                                <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration" label="ContentView"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Lp3-qN-dxs"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="carPanelName" value="CarPanel3"/>
+                    </userDefinedRuntimeAttributes>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wmq-2f-Aqg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="357" y="-886"/>
         </scene>
     </scenes>
     <resources>
