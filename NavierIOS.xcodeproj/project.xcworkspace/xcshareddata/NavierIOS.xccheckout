@@ -10,33 +10,33 @@
 	<string>NavierIOS</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>1EAA302F-C5AC-4680-B42B-25082C8D1860</key>
+		<key>52D33C4D2803BD2105323156AF34A99B516677A3</key>
 		<string>https://github.com/cominggithub/NavierIOS.git</string>
-		<key>4280789B-C6C3-4686-9361-D742DFE73ECC</key>
+		<key>76BEA24E10A9516FC2BBAC6BC6F7FE30B1584C34</key>
 		<string>https://github.com/cominggithub/NaviUtil.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>NavierIOS.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>1EAA302F-C5AC-4680-B42B-25082C8D1860</key>
+		<key>52D33C4D2803BD2105323156AF34A99B516677A3</key>
 		<string>../..</string>
-		<key>4280789B-C6C3-4686-9361-D742DFE73ECC</key>
+		<key>76BEA24E10A9516FC2BBAC6BC6F7FE30B1584C34</key>
 		<string>../../../NaviUtil</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/cominggithub/NavierIOS.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>1EAA302F-C5AC-4680-B42B-25082C8D1860</string>
+	<string>52D33C4D2803BD2105323156AF34A99B516677A3</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>1EAA302F-C5AC-4680-B42B-25082C8D1860</string>
+			<string>52D33C4D2803BD2105323156AF34A99B516677A3</string>
 			<key>IDESourceControlWCCName</key>
 			<string>NavierIOS</string>
 		</dict>
@@ -44,7 +44,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>4280789B-C6C3-4686-9361-D742DFE73ECC</string>
+			<string>76BEA24E10A9516FC2BBAC6BC6F7FE30B1584C34</string>
 			<key>IDESourceControlWCCName</key>
 			<string>NaviUtil</string>
 		</dict>

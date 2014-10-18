@@ -230,7 +230,8 @@
         adView = [[ADBannerView alloc] init];
     }
     
-    [adView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+//    [adView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    adView.frame = CGRectMake(0, 0, [SystemManager lanscapeScreenRect].size.width, 50);
     adView.delegate                            = self;
     adView.accessibilityLabel                  = @"banner";
 

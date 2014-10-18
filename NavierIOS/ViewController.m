@@ -407,9 +407,10 @@
         adView = [[ADBannerView alloc] init];
     }
     
-    [adView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+//    [adView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     adView.delegate     = self;
 
+    adView.frame = CGRectMake(0, 0, [SystemManager lanscapeScreenRect].size.width, 50);
     [self.view addSubview:adView];
     [self showAdAnimated:NO];
 }

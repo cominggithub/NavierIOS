@@ -244,7 +244,8 @@
         adView = [[ADBannerView alloc] init];
     }
     
-    [adView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+//    [adView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    adView.frame = CGRectMake(0, 0, [SystemManager lanscapeScreenRect].size.width, 50);
     adView.delegate                            = self;
     adView.accessibilityLabel                  = @"banner";
     
@@ -629,7 +630,12 @@
         speed = 0;
     }
     
-    _speed = speed;
+    if (speed == 0 && self.speed > 10)
+    {
+        _speed = speed;
+        return;
+    }
+
     _speedLabel.text = [NSString stringWithFormat:@"%.0f", speed];
 //    _speedLabel.text = @"116";
 }
@@ -642,7 +648,7 @@
 {
     self.msgLabel.hidden    = TRUE;
     
-    if (YES == _isSpeedUnitMph)
+    if (YES == self.isSpeedUnitMph)
     {
         self.speed = MS_TO_MPH(speed);
     }

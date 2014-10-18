@@ -50,11 +50,20 @@
 //    self.view.backgroundColor   = [UIColor whiteColor];
     self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_main"]];
     
-    iapImages = [@[@"carPanel1",
+    if ([SystemManager lanscapeScreenRect].size.width >= 568)
+    {
+        
+        iapImages = [@[@"carPanel1",
                    @"carPanel2",
                    @"carPanel3",
-                   @"buy4.png",
-                   @"buy5.png",] mutableCopy];
+                   @"carPanel4"] mutableCopy];
+    }
+    else
+    {
+        iapImages = [@[@"carPanel1",
+                       @"carPanel2",
+                       @"carPanel3"] mutableCopy];
+    }
     
     // Do any additional setup after loading the view.
 }
@@ -102,7 +111,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    [self performSegueWithIdentifier:@"carPanel3Segue" sender:self];
+//    [self performSegueWithIdentifier:@"carPanel4Segue" sender:self];
 //    return;
     if (indexPath.row == 0)
     {

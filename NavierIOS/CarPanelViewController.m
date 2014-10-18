@@ -152,7 +152,14 @@
     _color = color;
     self.contentView.color = self.color;
     setting.selPrimaryColor = color;
+
+    if([self.contentView respondsToSelector:@selector(setSecondaryColor:)])
+    {
+        [self.contentView setSecondaryColor:[setting secondaryColorByPrimaryColor:self.color]];
+    }
 }
+
+
 
 -(void)setLockColorSelection:(BOOL)lockColorSelection
 {
