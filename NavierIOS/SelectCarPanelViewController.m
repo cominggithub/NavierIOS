@@ -9,10 +9,11 @@
 #import "SelectCarPanelViewController.h"
 #import <NaviUtil/NaviUtil.h>
 #import "CarPanelImageCell.h"
+#import "CarPanelSelector.h"
 
 
 #if DEBUG
-#define FILE_DEBUG FALSE
+#define FILE_DEBUG TRUE
 #elif RELEASE_TEST
 #define FILE_DEBUG FALSE
 #else
@@ -25,7 +26,7 @@
 @interface SelectCarPanelViewController ()
 {
     UIImage *selectedImage;
-    NSMutableArray *iapImages;
+    CarPanelSelector* carPanelSelector;
 }
 
 @end
@@ -49,22 +50,9 @@
 //    self.collectionView.backgroundColor    = [UIColor colorWithRed:6.0/255.0 green:60.0/255.0 blue:74.0/255.0 alpha:1];
 //    self.view.backgroundColor   = [UIColor whiteColor];
     self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_main"]];
+
     
-    if ([SystemManager lanscapeScreenRect].size.width >= 568)
-    {
-        
-        iapImages = [@[@"carPanel1",
-                   @"carPanel2",
-                   @"carPanel3",
-                   @"carPanel4"] mutableCopy];
-    }
-    else
-    {
-        iapImages = [@[@"carPanel1",
-                       @"carPanel2",
-                       @"carPanel3"] mutableCopy];
-    }
-    
+    carPanelSelector = [[CarPanelSelector alloc] init];
     // Do any additional setup after loading the view.
 }
 
@@ -80,6 +68,10 @@
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
     
     [GoogleUtil sendScreenView:@"Buy View"];
+    logfn();
+    [self.collectionView setContentOffset:CGPointZero animated:YES];
+    
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -95,7 +87,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return iapImages.count;
+    return carPanelSelector.iapImages.count;
 }
 
 // 設定要顯示 cell
@@ -104,31 +96,37 @@
     static NSString *identifier = @"carPanelImageCell";
     CarPanelImageCell *carPanelImageCell = (CarPanelImageCell*) [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
 //    carPanelImageCell.backgroundColor = [UIColor colorWithRed:6.0/255.0 green:60.0/255.0 blue:74.0/255.0 alpha:0.8];
-    carPanelImageCell.backgroundColor = [UIColor colorWithRed:255/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.15];
-    carPanelImageCell.imageView.image = [UIImage imageNamed:[iapImages objectAtIndex:indexPath.row]];
+    carPanelImageCell.backgroundColor       = [UIColor colorWithRed:255/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.15];
+    carPanelImageCell.imageView.image       = [UIImage imageNamed:[carPanelSelector.iapImages objectAtIndex:indexPath.row]];
     return carPanelImageCell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    [self performSegueWithIdentifier:@"carPanel4Segue" sender:self];
-//    return;
-    if (indexPath.row == 0)
+    NSString* selectedCarPanel;
+    
+    selectedCarPanel = [carPanelSelector.iapImages objectAtIndex:indexPath.row];
+    
+    [carPanelSelector useCarPanel:selectedCarPanel];
+    
+    if ([selectedCarPanel isEqualToString:CAR_PANEL_1])
     {
         [self performSegueWithIdentifier:@"carPanel1Segue" sender:self];
     }
-    else if (indexPath.row == 1)
+    else if ([selectedCarPanel isEqualToString:CAR_PANEL_2])
     {
         [self performSegueWithIdentifier:@"carPanel2Segue" sender:self];
     }
-    else if (indexPath.row == 2)
+    else if ([selectedCarPanel isEqualToString:CAR_PANEL_3])
     {
         [self performSegueWithIdentifier:@"carPanel3Segue" sender:self];
     }
-    else if (indexPath.row == 3)
+    else if ([selectedCarPanel isEqualToString:CAR_PANEL_4])
     {
         [self performSegueWithIdentifier:@"carPanel4Segue" sender:self];
     }
+    
+    [self.collectionView reloadData];
 }
 
 @end

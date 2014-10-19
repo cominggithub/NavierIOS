@@ -22,6 +22,7 @@
 		2B04D481184396E100233B2D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9A437416DB99D900FD1A54 /* SystemConfiguration.framework */; };
 		2B067CE91850CD2400A0054E /* PlaceSearchResultPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B067CE81850CD2400A0054E /* PlaceSearchResultPanel.xib */; };
 		2B087A2C1861ECE6000E8D3B /* inner_showdow_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B087A2B1861ECE6000E8D3B /* inner_showdow_bg@2x.png */; };
+		2B0E77A919F348C80007991C /* CarPanelSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0E77A819F348C80007991C /* CarPanelSelector.m */; };
 		2B1200A7198E25E200E5DEAB /* BuyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1200A6198E25E200E5DEAB /* BuyCollectionViewController.m */; };
 		2B1200AF198E2AEF00E5DEAB /* buy1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1200AA198E2AEF00E5DEAB /* buy1.png */; };
 		2B1200B0198E2AEF00E5DEAB /* buy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B1200AB198E2AEF00E5DEAB /* buy2.png */; };
@@ -314,6 +315,8 @@
 		2B036BBB1759CCEF003E4683 /* SavePlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavePlaceViewController.m; sourceTree = "<group>"; };
 		2B067CE81850CD2400A0054E /* PlaceSearchResultPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceSearchResultPanel.xib; sourceTree = "<group>"; };
 		2B087A2B1861ECE6000E8D3B /* inner_showdow_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inner_showdow_bg@2x.png"; sourceTree = "<group>"; };
+		2B0E77A719F348C80007991C /* CarPanelSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarPanelSelector.h; sourceTree = "<group>"; };
+		2B0E77A819F348C80007991C /* CarPanelSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarPanelSelector.m; sourceTree = "<group>"; };
 		2B1200A3198DBC6900E5DEAB /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2B1200A5198E25E200E5DEAB /* BuyCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyCollectionViewController.h; sourceTree = "<group>"; };
 		2B1200A6198E25E200E5DEAB /* BuyCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyCollectionViewController.m; sourceTree = "<group>"; };
@@ -996,6 +999,8 @@
 				2B1EF4FA19A0C7C80015C827 /* SelectCarPanelViewController.m */,
 				2B20449C19A0E4650029E382 /* CarPanelImageCell.h */,
 				2B20449D19A0E4650029E382 /* CarPanelImageCell.m */,
+				2B0E77A719F348C80007991C /* CarPanelSelector.h */,
+				2B0E77A819F348C80007991C /* CarPanelSelector.m */,
 			);
 			name = CarPanel;
 			sourceTree = "<group>";
@@ -1640,6 +1645,7 @@
 				2BCC02A31839087E0018174B /* DebugGoogleMapViewController.m in Sources */,
 				2B036BBC1759CCEF003E4683 /* SavePlaceViewController.m in Sources */,
 				2B4B3121175AF25800426D60 /* SelectPlaceViewController.m in Sources */,
+				2B0E77A919F348C80007991C /* CarPanelSelector.m in Sources */,
 				2B20449E19A0E4650029E382 /* CarPanelImageCell.m in Sources */,
 				2B1200A7198E25E200E5DEAB /* BuyCollectionViewController.m in Sources */,
 				2BB1C75419CDA87E00359A4C /* CarPanelMenuView.m in Sources */,
