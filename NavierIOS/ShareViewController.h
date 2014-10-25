@@ -10,6 +10,7 @@
 
 @interface ShareViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIView *popUpView;
+@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 
 - (void)showInView:(UIView *)aView;
 

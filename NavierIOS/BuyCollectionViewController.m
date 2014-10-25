@@ -64,7 +64,7 @@
     // manual screen tracking
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
-    iapImages = [[NSDictionary alloc] initWithObjects:[@[@"advanced_version", @"carPanel2", @"carPanel2", @"carPanel2"] mutableCopy]
+    iapImages = [[NSDictionary alloc] initWithObjects:[@[@"advanced_version", @"carPanel2", @"carPanel3", @"carPanel4"] mutableCopy]
                                               forKeys:[@[IAP_NO_AD_STORE_USER_PLACE, IAP_CAR_PANEL_2, IAP_CAR_PANEL_3, IAP_CAR_PANEL_4] mutableCopy]];
     
     self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_main"]];
@@ -127,8 +127,12 @@
     if (FALSE == [SystemConfig getBoolValue:CONFIG_IAP_IS_CAR_PANEL_3])
         [self addIapItem:IAP_CAR_PANEL_3];
     
-    if (FALSE == [SystemConfig getBoolValue:CONFIG_IAP_IS_CAR_PANEL_4])
-        [self addIapItem:IAP_CAR_PANEL_4];
+    // car panel 4 is not available for screen size 480x320
+    if ([SystemManager lanscapeScreenRect].size.width >= 568)
+    {
+        if (FALSE == [SystemConfig getBoolValue:CONFIG_IAP_IS_CAR_PANEL_4])
+            [self addIapItem:IAP_CAR_PANEL_4];
+    }
     
     [self.collectionView reloadData];
 
@@ -178,20 +182,14 @@
     iapImageCell.backgroundColor = [UIColor whiteColor];
     iapImageCell.imageView.image = [self getImageByIapKey:product.productIdentifier];
     iapImageCell.priceLabel.text = [NSString stringWithFormat:@"%@  %@", product.localizedTitle, product.localizedPrice];
-    
-    [iapImageCell.buyButton setTitle:[SystemManager getLanguageString:@"Restore Purchased"]
-                            forState:UIControlStateNormal];
-    [iapImageCell.buyButton setTitle:
-     [NSString stringWithFormat:@"%@ %ld",
-      [SystemManager getLanguageString:@"Buy"], (long)indexPath.row ]
+    [iapImageCell.buyButton setTitle: [SystemManager getLanguageString:@"Buy"]
                             forState:UIControlStateNormal];
     [iapImageCell.restoreButton setTitle:[SystemManager getLanguageString:iapImageCell.restoreButton.titleLabel.text]
                                 forState:UIControlStateNormal];
 
-//    [iapImageCell.restoreButton removeTarget:self action:@selector(pressRestoreButton:)    forControlEvents:UIControlEventTouchUpInside];
     [iapImageCell.restoreButton addTarget:self action:@selector(pressRestoreButton:)    forControlEvents:UIControlEventTouchUpInside];
-
     [iapImageCell.buyButton     addTarget:self action:@selector(pressBuyButton:)        forControlEvents:UIControlEventTouchUpInside];
+
     iapImageCell.buyButton.accessibilityLabel = product.productIdentifier;
     
     if ([product.productIdentifier isEqualToString:IAP_NO_AD_STORE_USER_PLACE])
@@ -202,7 +200,7 @@
         iapImageCell.descriptionTextView.clipsToBounds = YES;
         
         iapImageCell.descriptionTextView.hidden = NO;
-        [iapImageCell.descriptionTextView setText: product.localizedDescription];
+        iapImageCell.descriptionTextView.text = product.localizedDescription;
     }
     else
     {

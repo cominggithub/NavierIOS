@@ -28,7 +28,6 @@
 
 -(id)init
 {
-    logfn();
     self = [super init];
     
     if (self)
@@ -42,12 +41,10 @@
 
 -(void)initSelf
 {
-    logfn();
     segNumber = 0;
     carPanelUsageLog = [[NSUserDefaults standardUserDefaults] objectForKey:CAR_PANEL_USAGE_LOG];
     if (carPanelUsageLog == nil)
     {
-        logfn();
         [self resetLog];
     }
     
@@ -179,17 +176,11 @@
         [carPanelUsageList insertObject:cpu atIndex:i];
     }
     
-    logfn();
-    for (CarPanelUsage *cpu in carPanelUsageList)
-    {
-        logO(cpu);
-    }
     return carPanelUsageList;
 }
 
 -(void)dump
 {
-    printf("----------------\n");
     for (NSString* carPanel in carPanelUsageLog.allKeys)
     {
         CarPanelUsage *cpu = [self carPanelUsageByCarPanel:carPanel];

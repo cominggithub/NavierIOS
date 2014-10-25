@@ -24,7 +24,6 @@
 
 
 
-
 @interface CarPanelViewController ()
 {
     CarPanelMenuView            *carPanelMenuView;
@@ -42,8 +41,14 @@
     NSTimer*                    headingTimer;
     NSMutableArray              *colorButtons;
     CarPanelSetting*            setting;
+    
 }
 
+@property (nonatomic) float batteryLife;
+@property (nonatomic) BOOL networkEnabled;
+@property (nonatomic) BOOL gpsEnabled;
+
+@property (nonatomic, assign) double batteryStatus;
 
 @end
 
@@ -71,14 +76,12 @@
 
     self.lockColorSelection = FALSE;
     
-//    headingTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
-//                                     target:self
-//                                   selector:@selector(updateHeading)
-//                                   userInfo:nil
-//                                    repeats:YES];
+    headingTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                     target:self
+                                   selector:@selector(updateHeading)
+                                   userInfo:nil
+                                    repeats:YES];
 
-
-    
 
     [self updateUIFromSetting];
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -146,6 +149,14 @@
     self.color = setting.selPrimaryColor;
 }
 
+-(void)updateSystemStatus
+{
+    self.batteryLife       = [SystemManager getBatteryLife];
+    self.networkEnabled    = [SystemManager getNetworkStatus] > 0;
+    self.gpsEnabled        = [SystemManager getGpsStatus] > 0 ? TRUE:FALSE;
+    
+}
+
 #pragma mark -- Property
 -(void)setColor:(UIColor *)color
 {
@@ -186,10 +197,12 @@
 
 -(void)setIsSpeedUnitMph:(BOOL)isSpeedUnitMph
 {
-    setting.isSpeedUnitMph = isSpeedUnitMph;
+    _isSpeedUnitMph         = isSpeedUnitMph;
+    setting.isSpeedUnitMph  = self.isSpeedUnitMph;
+
     if ([self.contentView respondsToSelector:@selector(setIsSpeedUnitMph:)])
     {
-        [self.contentView setIsSpeedUnitMph:isSpeedUnitMph];
+        [self.contentView setIsSpeedUnitMph:self.isSpeedUnitMph];
     }
 }
 
@@ -220,6 +233,41 @@
         [self.contentView setLocation:location];
     }
 }
+
+-(void)setBatteryLife:(float)batteryLife
+{
+    _batteryLife = batteryLife;
+    
+    if ([self.contentView respondsToSelector:@selector(setBatteryLife:)])
+    {
+        [self.contentView setBatteryLife:self.batteryLife];
+    }
+}
+
+-(void)setNetworkEnabled:(BOOL)networkEnabled
+{
+    logfn();
+    _networkEnabled = networkEnabled;
+    logBool(_networkEnabled);
+    if ([self.contentView respondsToSelector:@selector(setNetworkEnabled:)])
+    {
+        logfn();
+        [self.contentView setNetworkEnabled:self.networkEnabled];
+    }
+}
+
+-(void)setGpsEnabled:(BOOL)gpsEnabled
+{
+    logfn();
+    _gpsEnabled = gpsEnabled;
+    logBool(_gpsEnabled);
+    if ([self.contentView respondsToSelector:@selector(setGpsEnabled:)])
+    {
+        logfn();
+        [self.contentView setGpsEnabled:self.gpsEnabled];
+    }
+}
+
 #pragma mark - Car Panel Menu
 
 
@@ -268,7 +316,13 @@
 {
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     [SystemManager addDelegate:self];
+    
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:UIDeviceBatteryLevelDidChangeNotification
+     object:self];
+    
     [self updateUIFromSetting];
+    [self updateSystemStatus];
     [self.contentView active];
 }
 
@@ -349,7 +403,7 @@
 
 -(void) locationManager:(LocationManager *)locationManager update:(CLLocationCoordinate2D)location speed:(double)speed distance:(int)distance heading:(double)heading
 {
-    if (YES == _isSpeedUnitMph)
+    if (YES == self.isSpeedUnitMph)
     {
         self.speed = MS_TO_MPH(speed);
     }
@@ -363,6 +417,22 @@
     
     mlogDebug(@"location update: %.8f, %.8f heading: %.1f", location.latitude, location.longitude, TO_ANGLE(heading));
 
+}
+
+-(void) networkStatusChangeWifi:(float) wifiStatus threeG:(float) threeGStatus
+{
+    self.networkEnabled= (wifiStatus + threeGStatus) > 0;
+}
+
+
+-(void) batteryStatusChange:(float) status
+{
+    self.batteryLife = status;
+}
+
+-(void) gpsStatusChange:(float) status
+{
+    self.gpsEnabled = status > 0 ? TRUE:FALSE;
 }
 
 #pragma mark -- notification

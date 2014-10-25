@@ -233,7 +233,7 @@
 -(void)showIap
 {
     
-    if ([SystemConfig getIntValue:CONFIG_USE_COUNT] > 5 && [SystemConfig getIntValue:CONFIG_USE_COUNT] %4 == 0 &&
+    if ([SystemConfig getIntValue:CONFIG_USE_COUNT] > 3 && [SystemConfig getIntValue:CONFIG_USE_COUNT] %4 == 0 &&
         [SystemConfig getBoolValue:CONFIG_H_IS_AD])
     {
     
@@ -241,7 +241,6 @@
             IAP_STATUS_RETRIEVED == [NavierHUDIAPHelper retrieveIap] &&
             NO == buyCollectionViewController.buying)
         {
-            //[(UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController] pushViewController:buyViewController animated:TRUE];
             [(UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController] pushViewController:buyCollectionViewController animated:TRUE];
         }
     }

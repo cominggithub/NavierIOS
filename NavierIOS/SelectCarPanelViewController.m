@@ -10,6 +10,7 @@
 #import <NaviUtil/NaviUtil.h>
 #import "CarPanelImageCell.h"
 #import "CarPanelSelector.h"
+#import "BuyCollectionViewController.h"
 
 
 #if DEBUG
@@ -27,6 +28,7 @@
 {
     UIImage *selectedImage;
     CarPanelSelector* carPanelSelector;
+    BuyCollectionViewController *buyCollectionViewController;
 }
 
 @end
@@ -51,7 +53,8 @@
 //    self.view.backgroundColor   = [UIColor whiteColor];
     self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_main"]];
 
-    
+    UIStoryboard *storyboard          = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+    buyCollectionViewController       = (BuyCollectionViewController *)[storyboard instantiateViewControllerWithIdentifier:NSStringFromClass ([BuyCollectionViewController class])];
     carPanelSelector = [[CarPanelSelector alloc] init];
     // Do any additional setup after loading the view.
 }
@@ -68,7 +71,6 @@
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
     
     [GoogleUtil sendScreenView:@"Buy View"];
-    logfn();
     [self.collectionView setContentOffset:CGPointZero animated:YES];
     
 
@@ -115,18 +117,46 @@
     }
     else if ([selectedCarPanel isEqualToString:CAR_PANEL_2])
     {
-        [self performSegueWithIdentifier:@"carPanel2Segue" sender:self];
+        if([SystemConfig getBoolValue:IAP_CAR_PANEL_2])
+        {
+            [self performSegueWithIdentifier:@"carPanel2Segue" sender:self];
+        }
+        else
+        {
+            [self showIap];
+        }
     }
     else if ([selectedCarPanel isEqualToString:CAR_PANEL_3])
     {
-        [self performSegueWithIdentifier:@"carPanel3Segue" sender:self];
+        if([SystemConfig getBoolValue:IAP_CAR_PANEL_3])
+        {
+            [self performSegueWithIdentifier:@"carPanel3Segue" sender:self];
+        }
+        else
+        {
+            [self showIap];
+        }
     }
     else if ([selectedCarPanel isEqualToString:CAR_PANEL_4])
     {
-        [self performSegueWithIdentifier:@"carPanel4Segue" sender:self];
+        if([SystemConfig getBoolValue:IAP_CAR_PANEL_4])
+        {
+            [self performSegueWithIdentifier:@"carPanel4Segue" sender:self];
+        }
+        else
+        {
+            [self showIap];
+        }
     }
     
+    [self.collectionView setContentOffset:CGPointZero animated:YES];
     [self.collectionView reloadData];
+}
+
+-(void)showIap
+{
+    [(UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController] pushViewController:buyCollectionViewController animated:TRUE];
+
 }
 
 @end

@@ -44,6 +44,8 @@
     self.popUpView.layer.cornerRadius   = 15;
     self.popUpView.layer.shadowOpacity  = 0.8;
     self.popUpView.layer.shadowOffset   = CGSizeMake(0.0f, 0.0f);
+    
+    self.titleLabel.text = [SystemManager getLanguageString:@"Share Navier HUD to Your Friends"];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }

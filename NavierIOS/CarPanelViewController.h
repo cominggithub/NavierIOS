@@ -22,9 +22,6 @@
 @property (nonatomic) double speed;
 @property (nonatomic) double heading;
 @property (strong, nonatomic) UIColor *color;
-@property (nonatomic) float batteryLife;
-@property (nonatomic) float networkStatus;
-@property (nonatomic) BOOL gpsEnabled;
 @property (nonatomic) BOOL isHud;
 @property (nonatomic) BOOL isCourse;
 @property (nonatomic) BOOL isSpeedUnitMph;
