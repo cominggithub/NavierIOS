@@ -246,24 +246,18 @@
 
 -(void)setNetworkEnabled:(BOOL)networkEnabled
 {
-    logfn();
     _networkEnabled = networkEnabled;
-    logBool(_networkEnabled);
     if ([self.contentView respondsToSelector:@selector(setNetworkEnabled:)])
     {
-        logfn();
         [self.contentView setNetworkEnabled:self.networkEnabled];
     }
 }
 
 -(void)setGpsEnabled:(BOOL)gpsEnabled
 {
-    logfn();
     _gpsEnabled = gpsEnabled;
-    logBool(_gpsEnabled);
     if ([self.contentView respondsToSelector:@selector(setGpsEnabled:)])
     {
-        logfn();
         [self.contentView setGpsEnabled:self.gpsEnabled];
     }
 }

@@ -136,15 +136,43 @@
     buyCollectionViewController = (BuyCollectionViewController *)[storyboard instantiateViewControllerWithIdentifier:NSStringFromClass ([BuyCollectionViewController class])];
     
 #if DEBUG
-    [RSSecrets removeKey:@"IAP_AdvancedVersion"];
+//    [RSSecrets removeKey:@"IAP_AdvancedVersion"];
 //    [self initDebugPlace];
-//        [RSSecrets addKey:@"IAP_AdvancedVersion"];
-    //    NSLog(@"%@: %@", @"IAP_AdvancedVersion", [RSSecrets hasKey:@"IAP_AdvancedVersion"]?@"TRUE":@"FALSE");
+      [RSSecrets removeKey:CONFIG_IAP_IS_ADVANCED_VERSION];
+      [RSSecrets removeKey:CONFIG_IAP_IS_CAR_PANEL_2];
+      [RSSecrets removeKey:CONFIG_IAP_IS_CAR_PANEL_3];
+      [RSSecrets removeKey:CONFIG_IAP_IS_CAR_PANEL_4];
+
+    
+//        [RSSecrets addKey:CONFIG_IAP_IS_ADVANCED_VERSION];
+//        [RSSecrets addKey:CONFIG_IAP_IS_CAR_PANEL_2];
+//        [RSSecrets addKey:CONFIG_IAP_IS_CAR_PANEL_3];
+//        [RSSecrets addKey:CONFIG_IAP_IS_CAR_PANEL_4];
+
+
+//
+
+    
+      //    NSLog(@"%@: %@", @"IAP_AdvancedVersion", [RSSecrets hasKey:@"IAP_AdvancedVersion"]?@"TRUE":@"FALSE");
 #elif RELEASE_TEST
     [RSSecrets addKey:@"IAP_AdvancedVersion"];
 #elif RELEASE
 #endif
-    
+
+//    BOOL isAdvanceVersion;
+//    BOOL isCarPanel2;
+//    BOOL isCarPanel3;
+//    BOOL isCarPanel4;
+//    
+//    isAdvanceVersion    = [SystemConfig getBoolValue:CONFIG_IAP_IS_ADVANCED_VERSION];
+//    isCarPanel2         = [SystemConfig getBoolValue:CONFIG_IAP_IS_CAR_PANEL_2];
+//    isCarPanel3         = [SystemConfig getBoolValue:CONFIG_IAP_IS_CAR_PANEL_3];
+//    isCarPanel4         = [SystemConfig getBoolValue:CONFIG_IAP_IS_CAR_PANEL_4];
+//    
+//    logBool(isAdvanceVersion);
+//    logBool(isCarPanel2);
+//    logBool(isCarPanel3);
+//    logBool(isCarPanel4);
 }
 -(void)initAppirater
 {
@@ -166,7 +194,10 @@
     
     if (0 == [Appirater useCount])
     {
-        [RSSecrets removeKey:@"IAP_AdvancedVersion"];
+        [RSSecrets removeKey:CONFIG_IAP_IS_ADVANCED_VERSION];
+        [RSSecrets removeKey:CONFIG_IAP_IS_CAR_PANEL_2];
+        [RSSecrets removeKey:CONFIG_IAP_IS_CAR_PANEL_3];
+        [RSSecrets removeKey:CONFIG_IAP_IS_CAR_PANEL_4];
     }
     
     [SystemConfig setValue:CONFIG_USE_COUNT int:[SystemConfig getIntValue:CONFIG_USE_COUNT]+1];
@@ -232,7 +263,6 @@
 
 -(void)showIap
 {
-    
     if ([SystemConfig getIntValue:CONFIG_USE_COUNT] > 3 && [SystemConfig getIntValue:CONFIG_USE_COUNT] %4 == 0 &&
         [SystemConfig getBoolValue:CONFIG_H_IS_AD])
     {
@@ -241,7 +271,12 @@
             IAP_STATUS_RETRIEVED == [NavierHUDIAPHelper retrieveIap] &&
             NO == buyCollectionViewController.buying)
         {
-            [(UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController] pushViewController:buyCollectionViewController animated:TRUE];
+            // if buyCollectionViewController is not visible, display it
+            if (buyCollectionViewController.onTop == FALSE) {
+                [(UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController] pushViewController:buyCollectionViewController animated:TRUE];
+            }
+            
+
         }
     }
 }

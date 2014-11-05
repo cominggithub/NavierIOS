@@ -106,18 +106,17 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString* selectedCarPanel;
-    
     selectedCarPanel = [carPanelSelector.iapImages objectAtIndex:indexPath.row];
-    
+
     [carPanelSelector useCarPanel:selectedCarPanel];
     
-    if ([selectedCarPanel isEqualToString:CAR_PANEL_1])
+    if ([selectedCarPanel isEqualToString:CAR_PANEL_1] == TRUE)
     {
         [self performSegueWithIdentifier:@"carPanel1Segue" sender:self];
     }
-    else if ([selectedCarPanel isEqualToString:CAR_PANEL_2])
+    else if ([selectedCarPanel isEqualToString:CAR_PANEL_2] == TRUE)
     {
-        if([SystemConfig getBoolValue:IAP_CAR_PANEL_2])
+        if([SystemConfig getBoolValue:CONFIG_IAP_IS_CAR_PANEL_2])
         {
             [self performSegueWithIdentifier:@"carPanel2Segue" sender:self];
         }
@@ -126,9 +125,9 @@
             [self showIap];
         }
     }
-    else if ([selectedCarPanel isEqualToString:CAR_PANEL_3])
+    else if ([selectedCarPanel isEqualToString:CAR_PANEL_3] == TRUE)
     {
-        if([SystemConfig getBoolValue:IAP_CAR_PANEL_3])
+        if([SystemConfig getBoolValue:CONFIG_IAP_IS_CAR_PANEL_3])
         {
             [self performSegueWithIdentifier:@"carPanel3Segue" sender:self];
         }
@@ -139,7 +138,7 @@
     }
     else if ([selectedCarPanel isEqualToString:CAR_PANEL_4])
     {
-        if([SystemConfig getBoolValue:IAP_CAR_PANEL_4])
+        if([SystemConfig getBoolValue:CONFIG_IAP_IS_CAR_PANEL_4] == TRUE)
         {
             [self performSegueWithIdentifier:@"carPanel4Segue" sender:self];
         }

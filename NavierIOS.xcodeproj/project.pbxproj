@@ -21,8 +21,6 @@
 		2B04D480184396D600233B2D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9A437216DB99D100FD1A54 /* QuartzCore.framework */; };
 		2B04D481184396E100233B2D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9A437416DB99D900FD1A54 /* SystemConfiguration.framework */; };
 		2B05983819FB275000042057 /* cp3_cum_ml@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B05983719FB275000042057 /* cp3_cum_ml@2x.png */; };
-		2B05983B19FB27AB00042057 /* cp4_heading_mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B05983919FB27AB00042057 /* cp4_heading_mask@2x.png */; };
-		2B05983C19FB27AB00042057 /* cp4_heading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B05983A19FB27AB00042057 /* cp4_heading@2x.png */; };
 		2B05983E19FB36C600042057 /* cp3_ml@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B05983D19FB36C600042057 /* cp3_ml@2x.png */; };
 		2B05984219FB387000042057 /* cp4_cum_ml@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B05984119FB387000042057 /* cp4_cum_ml@2x.png */; };
 		2B067CE91850CD2400A0054E /* PlaceSearchResultPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B067CE81850CD2400A0054E /* PlaceSearchResultPanel.xib */; };
@@ -78,6 +76,8 @@
 		2B39F924197A300100E7D829 /* 00忠孝路到緩緩.tr in Resources */ = {isa = PBXBuildFile; fileRef = 2B39F923197A300100E7D829 /* 00忠孝路到緩緩.tr */; };
 		2B3FF26D196992EC004E1D8D /* 永康家.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 2B3FF26B196992EC004E1D8D /* 永康家.gpx */; };
 		2B3FF26E196992EC004E1D8D /* 高雄家.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 2B3FF26C196992EC004E1D8D /* 高雄家.gpx */; };
+		2B43A4E21A04697D00157A6A /* cp4_heading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B43A4E11A04697D00157A6A /* cp4_heading@2x.png */; };
+		2B43A4E41A046AF000157A6A /* cp4_heading_mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B43A4E31A046AF000157A6A /* cp4_heading_mask@2x.png */; };
 		2B4B3121175AF25800426D60 /* SelectPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4B3120175AF25800426D60 /* SelectPlaceViewController.m */; };
 		2B5B12991868739500C464C0 /* marker_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B12911868739500C464C0 /* marker_home@2x.png */; };
 		2B5B129B1868739500C464C0 /* marker_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B12931868739500C464C0 /* marker_normal@2x.png */; };
@@ -315,8 +315,6 @@
 		2B036BBA1759CCEF003E4683 /* SavePlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavePlaceViewController.h; sourceTree = "<group>"; };
 		2B036BBB1759CCEF003E4683 /* SavePlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavePlaceViewController.m; sourceTree = "<group>"; };
 		2B05983719FB275000042057 /* cp3_cum_ml@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cp3_cum_ml@2x.png"; sourceTree = "<group>"; };
-		2B05983919FB27AB00042057 /* cp4_heading_mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cp4_heading_mask@2x.png"; sourceTree = "<group>"; };
-		2B05983A19FB27AB00042057 /* cp4_heading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cp4_heading@2x.png"; sourceTree = "<group>"; };
 		2B05983D19FB36C600042057 /* cp3_ml@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cp3_ml@2x.png"; sourceTree = "<group>"; };
 		2B05984119FB387000042057 /* cp4_cum_ml@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cp4_cum_ml@2x.png"; sourceTree = "<group>"; };
 		2B067CE81850CD2400A0054E /* PlaceSearchResultPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceSearchResultPanel.xib; sourceTree = "<group>"; };
@@ -379,6 +377,8 @@
 		2B39F923197A300100E7D829 /* 00忠孝路到緩緩.tr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "00忠孝路到緩緩.tr"; sourceTree = "<group>"; };
 		2B3FF26B196992EC004E1D8D /* 永康家.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "永康家.gpx"; path = "../../../../ios/gps/永康家.gpx"; sourceTree = "<group>"; };
 		2B3FF26C196992EC004E1D8D /* 高雄家.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "高雄家.gpx"; path = "../../../../ios/gps/高雄家.gpx"; sourceTree = "<group>"; };
+		2B43A4E11A04697D00157A6A /* cp4_heading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cp4_heading@2x.png"; sourceTree = "<group>"; };
+		2B43A4E31A046AF000157A6A /* cp4_heading_mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cp4_heading_mask@2x.png"; sourceTree = "<group>"; };
 		2B4B311F175AF25800426D60 /* SelectPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPlaceViewController.h; sourceTree = "<group>"; };
 		2B4B3120175AF25800426D60 /* SelectPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPlaceViewController.m; sourceTree = "<group>"; };
 		2B5B12911868739500C464C0 /* marker_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker_home@2x.png"; sourceTree = "<group>"; };
@@ -1116,9 +1116,9 @@
 				2BDDB09B19E4270F00025AD3 /* speed */,
 				2BDDB09719E4268200025AD3 /* cp4_arrow@2x.png */,
 				2BDDB0B019E4273700025AD3 /* cp4_kmh@2x.png */,
-				2B05983919FB27AB00042057 /* cp4_heading_mask@2x.png */,
-				2B05983A19FB27AB00042057 /* cp4_heading@2x.png */,
 				2BDDB0B119E4273700025AD3 /* cp4_mph@2x.png */,
+				2B43A4E11A04697D00157A6A /* cp4_heading@2x.png */,
+				2B43A4E31A046AF000157A6A /* cp4_heading_mask@2x.png */,
 			);
 			name = CarPanel4;
 			sourceTree = "<group>";
@@ -1460,7 +1460,6 @@
 				2BE42DF619F20F7900F8A576 /* cp3_cum_0@2x.png in Resources */,
 				2BDF962D19DC3DF0007C75F0 /* cp3_3g_off@2x.png in Resources */,
 				2BEB32D919A09ABF007BD029 /* popup.mp3 in Resources */,
-				2B05983B19FB27AB00042057 /* cp4_heading_mask@2x.png in Resources */,
 				2BE42DFC19F20F7900F8A576 /* cp3_cum_6@2x.png in Resources */,
 				2BE42E1719F20F9D00F8A576 /* cp4_cum_5@2x.png in Resources */,
 				2B94C8E517A5407C002581F3 /* jasmineupcbold.ttf in Resources */,
@@ -1542,7 +1541,7 @@
 				2BC3D37B1866CE0F0092F02F /* marker_menu_bg@2x.png in Resources */,
 				2BD72000197F8E21002E7E92 /* cp2_mph.png in Resources */,
 				2B16CFFF19BF2252008FE8F5 /* cp3_3g_on@2x.png in Resources */,
-				2B05983C19FB27AB00042057 /* cp4_heading@2x.png in Resources */,
+				2B43A4E21A04697D00157A6A /* cp4_heading@2x.png in Resources */,
 				2BDDB0AE19E4271A00025AD3 /* cp4_speed_8@2x.png in Resources */,
 				2BDDB0A719E4271A00025AD3 /* cp4_speed_1@2x.png in Resources */,
 				2B781E5D18B7AA4600DD22BA /* turn_right45@2x.png in Resources */,
@@ -1577,6 +1576,7 @@
 				2BB2E1F418BA424C008BB41B /* turn_left45@2x.png in Resources */,
 				2BDDB0E119E4278500025AD3 /* cp4_time_6@2x.png in Resources */,
 				2BFA635C1997BBA9004402A9 /* GoogleMaps.bundle in Resources */,
+				2B43A4E41A046AF000157A6A /* cp4_heading_mask@2x.png in Resources */,
 				2B130735191E45E800F83D52 /* 06好事多回家.tr in Resources */,
 				2B65755A19B2DC510080F1AE /* advanced_version@2x.png in Resources */,
 				2B1200B3198E2AEF00E5DEAB /* buy5.png in Resources */,

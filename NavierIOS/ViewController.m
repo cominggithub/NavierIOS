@@ -656,8 +656,8 @@
     // show share view at the second times
     if ([SystemConfig getBoolValue:CONFIG_IS_SHARE_ON_FB] == FALSE && [SystemConfig getBoolValue:CONFIG_IS_SHARE_ON_TWITTER] == FALSE)
     {
-//        if ([SystemConfig getIntValue:CONFIG_USE_COUNT] == 2 || [SystemConfig getIntValue:CONFIG_USE_COUNT] == 4 ||
-//            [SystemConfig getIntValue:CONFIG_USE_COUNT] == 6)
+        if ([SystemConfig getIntValue:CONFIG_USE_COUNT] == 3 || [SystemConfig getIntValue:CONFIG_USE_COUNT] == 5 ||
+            [SystemConfig getIntValue:CONFIG_USE_COUNT] == 7)
         {
             isShowShareView = YES;
         }

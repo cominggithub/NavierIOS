@@ -58,7 +58,6 @@
     }
     segNumber++;
     [self refershImages];
-    [self dump];
 }
 
 -(void)resetLog
@@ -184,7 +183,6 @@
     for (NSString* carPanel in carPanelUsageLog.allKeys)
     {
         CarPanelUsage *cpu = [self carPanelUsageByCarPanel:carPanel];
-        logO(cpu);
     }
 }
 @end

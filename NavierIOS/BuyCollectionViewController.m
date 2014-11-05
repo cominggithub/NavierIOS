@@ -157,11 +157,19 @@
     [GoogleUtil sendScreenView:@"Buy View"];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    self.onTop = TRUE;
+}
 - (void)viewWillDisappear:(BOOL)animated
 {
 
 }
 
+-(void)viewDidDisappear:(BOOL)animated
+{
+    self.onTop = FALSE;
+}
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;
@@ -237,10 +245,11 @@
     
     self.buying = FALSE;
     identifier  = notification.object;
-
+    // it seems that we dont need to display purchase message
+/*
     if ([notification.name isEqualToString:IAP_EVENT_TRANSACTION_COMPLETE])
     {
-        if ([identifier isEqualToString:IAP_NO_AD_STORE_USER_PLACE])
+        if ([identifier isEqualToString:IAP_ADVANCE_VERSION])
         {
             [self showAlertTitle:[SystemManager getLanguageString:@"Purchase successfully"]
                          message:[NSString stringWithFormat:
@@ -256,13 +265,11 @@
     }
     else if ([notification.name isEqualToString:IAP_EVENT_TRANSACTION_RESTORE] && FALSE == isRestoreAlertPrompted)
     {
-
-        
-        if ([identifier isEqualToString:IAP_NO_AD_STORE_USER_PLACE])
+        if ([identifier isEqualToString:IAP_ADVANCE_VERSION])
         {
             [self showAlertTitle:[SystemManager getLanguageString:@"Purchase successfully"]
                          message:[NSString stringWithFormat:
-                                  [SystemManager getLanguageString:@"Thanks! %@ now is upgraded to Advanced version"], @"Naiver HUD"]];
+                                  [SystemManager getLanguageString:@"Thanks! %@ now is upgraded to Advanced version111"], @"Naiver HUD"]];
             
         }
         else
@@ -278,12 +285,22 @@
         [self showAlertTitle:[SystemManager getLanguageString:@"Purchase failed"]
                      message:[NSString stringWithFormat:@""]];
     }
+*/
+    if ([NavierHUDIAPHelper hasUnbroughtIap] == TRUE)
+    {
+        [self loadIapItem];
+    }
+    else
+    {
+        [self.navigationController popViewControllerAnimated:TRUE];
+    }
+    
 
-    [self loadIapItem];
 }
 
 -(void) showAlertTitle:(NSString*) title message:(NSString*) message
 {
+    
     if (nil == alert)
     {
         alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:[SystemManager getLanguageString:@"OK"] otherButtonTitles:nil,nil];
@@ -294,6 +311,11 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     alert = nil;
+    if ([NavierHUDIAPHelper hasUnbroughtIap] == FALSE)
+    {
+        [self.navigationController popViewControllerAnimated:TRUE];
+    }
+
 }
 
 @end
