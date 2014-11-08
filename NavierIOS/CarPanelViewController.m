@@ -241,7 +241,6 @@
 -(void)setBatteryLife:(float)batteryLife
 {
     _batteryLife = batteryLife;
-    
     if ([self.contentView respondsToSelector:@selector(setBatteryLife:)])
     {
         [self.contentView setBatteryLife:self.batteryLife];

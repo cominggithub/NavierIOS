@@ -144,10 +144,10 @@
       [RSSecrets removeKey:CONFIG_IAP_IS_CAR_PANEL_4];
 
     
-//        [RSSecrets addKey:CONFIG_IAP_IS_ADVANCED_VERSION];
-//        [RSSecrets addKey:CONFIG_IAP_IS_CAR_PANEL_2];
-//        [RSSecrets addKey:CONFIG_IAP_IS_CAR_PANEL_3];
-//        [RSSecrets addKey:CONFIG_IAP_IS_CAR_PANEL_4];
+        [RSSecrets addKey:CONFIG_IAP_IS_ADVANCED_VERSION];
+        [RSSecrets addKey:CONFIG_IAP_IS_CAR_PANEL_2];
+        [RSSecrets addKey:CONFIG_IAP_IS_CAR_PANEL_3];
+        [RSSecrets addKey:CONFIG_IAP_IS_CAR_PANEL_4];
 
 
 //

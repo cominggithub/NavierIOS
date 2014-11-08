@@ -687,6 +687,9 @@
         [self. navigationController pushViewController:routeNavigationViewController animated:TRUE];
         [self hideMarkerMenuFloat];
     }
+    
+
+    
 }
 
 - (IBAction)pressTestButton:(id)sender
