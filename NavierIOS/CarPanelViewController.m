@@ -41,6 +41,8 @@
     NSTimer*                    headingTimer;
     NSMutableArray              *colorButtons;
     CarPanelSetting*            setting;
+    double                      zeroSpeedCount;
+    double                      rawSpeed;
     
 }
 
@@ -70,17 +72,18 @@
     setting             = [[CarPanelSetting alloc] initWithName:self.carPanelName];
     self.contentView    = (UIView<CarPanelViewProtocol>*)[self.view viewWithTag:10];
     tapGesture          = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+    zeroSpeedCount      = 0;
     [self.view addGestureRecognizer:tapGesture];
     
     [self addCarPanelMenu];
 
     self.lockColorSelection = FALSE;
     
-    headingTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
-                                     target:self
-                                   selector:@selector(updateHeading)
-                                   userInfo:nil
-                                    repeats:YES];
+//    headingTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
+//                                     target:self
+//                                   selector:@selector(updateHeading)
+//                                   userInfo:nil
+//                                    repeats:YES];
 
 
     [self updateUIFromSetting];
@@ -181,6 +184,7 @@
 
 -(void)setSpeed:(double)speed
 {
+    
     if ([self.contentView respondsToSelector:@selector(setSpeed:)])
     {
         [self.contentView setSpeed:speed];
@@ -261,6 +265,31 @@
         [self.contentView setGpsEnabled:self.gpsEnabled];
     }
 }
+
+#pragma mark -- Operation
+
+-(double)filterSpeed:(double)speed
+{
+    if (speed == 0)
+    {
+        zeroSpeedCount++;
+        if (zeroSpeedCount >= 2)
+        {
+            rawSpeed = 0;
+            return 0;
+        }
+        else
+        {
+            return rawSpeed;
+        }
+    }
+    
+    zeroSpeedCount  = 0;
+    rawSpeed        = speed;
+    
+    return rawSpeed;
+}
+
 
 #pragma mark - Car Panel Menu
 
@@ -397,19 +426,22 @@
 
 -(void) locationManager:(LocationManager *)locationManager update:(CLLocationCoordinate2D)location speed:(double)speed distance:(int)distance heading:(double)heading
 {
+    double filteredSpeed;
+    filteredSpeed = [self filterSpeed:speed];
+    
     if (YES == self.isSpeedUnitMph)
     {
-        self.speed = MS_TO_MPH(speed);
+        self.speed = MS_TO_MPH(filteredSpeed);
     }
     else
     {
-        self.speed = MS_TO_KMH(speed);
+        self.speed = MS_TO_KMH(filteredSpeed);
     }
     
-    self.heading = heading;
-    self.location = location;
+    self.heading    = heading;
+    self.location   = location;
     
-    mlogDebug(@"location update: %.8f, %.8f heading: %.1f", location.latitude, location.longitude, TO_ANGLE(heading));
+    mlogDebug(@"location update: %.8f, %.8f, speed: %.1f, heading: %.1f", location.latitude, location.longitude, speed, TO_ANGLE(heading));
 
 }
 

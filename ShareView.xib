@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShareViewController">
             <connections>
+                <outlet property="closeButton" destination="p5q-Zo-U0F" id="bjc-sa-Wdo"/>
                 <outlet property="popUpView" destination="3uJ-ut-zwN" id="36H-wa-pLq"/>
                 <outlet property="titleLabel" destination="YIP-d9-FRx" id="0z9-tz-YGK"/>
                 <outlet property="view" destination="iN0-l3-epB" id="nJH-wx-FX0"/>

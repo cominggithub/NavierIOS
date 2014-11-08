@@ -175,7 +175,6 @@
     
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     [SystemManager addDelegate:self];
-//    [LocationManager addDelegate:self];
     
     if (YES == [SystemConfig getBoolValue:CONFIG_IS_TRACK_LOCATION])
     {
@@ -202,7 +201,6 @@
 {
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     [SystemManager removeDelegate:self];
-//    [LocationManager removeDelegate:self];
     [LocationManager stopLocationTracking];
     [_clockView inactive];
     [_systemStatusView inactive];

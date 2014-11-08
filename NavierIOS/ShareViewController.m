@@ -46,6 +46,8 @@
     self.popUpView.layer.shadowOffset   = CGSizeMake(0.0f, 0.0f);
     
     self.titleLabel.text = [SystemManager getLanguageString:@"Share Navier HUD to Your Friends"];
+    [self.closeButton setTitle:[SystemManager getLanguageString:self.closeButton.titleLabel.text]
+                      forState:UIControlStateNormal];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -68,7 +70,7 @@
 }
 
 - (IBAction)pressShareOnFB:(id)sender {
-    [FBUtil shareAppleStoreLink];
+    [FBUtil shareAppStoreLink];
 }
 
 - (IBAction)pressShareOnTwitter:(id)sender {

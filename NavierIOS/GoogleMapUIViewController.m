@@ -605,6 +605,7 @@
 
 -(void) searchPlace:(NSString*) placeText
 {
+    logfn();
     self.spinner.hidden = FALSE;
     [self.spinner startAnimating];
     [mapManager searchPlace:placeText];
@@ -673,6 +674,15 @@
     }
     else
     {
+        if (mapManager.routeEndPlace.placeType == kPlaceType_Home ||
+            mapManager.routeEndPlace.placeType == kPlaceType_Favor ||
+            mapManager.routeEndPlace.placeType == kPlaceType_Office ||
+            mapManager.routeEndPlace.placeType == kPlaceType_SearchedPlace ||
+            mapManager.routeEndPlace.placeType == kPlaceType_None)
+        {
+            [User addRecentPlace:mapManager.routeEndPlace];
+            [User save];
+        }
         [routeNavigationViewController startRouteNavigationFrom:mapManager.routeStartPlace To:mapManager.routeEndPlace];
         [self. navigationController pushViewController:routeNavigationViewController animated:TRUE];
         [self hideMarkerMenuFloat];
@@ -882,6 +892,8 @@
 {
     [self hideMarkerMenuFloat];
     [mapManager moveToPlace:p];
+    mapManager.routeEndPlace = p;
+    
 }
 
 -(void) savePlaceViewController:(SavePlaceViewController*) spvc placeChanged:(BOOL) placeChanged place:(Place*) place

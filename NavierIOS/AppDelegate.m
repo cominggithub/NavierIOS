@@ -136,8 +136,8 @@
     buyCollectionViewController = (BuyCollectionViewController *)[storyboard instantiateViewControllerWithIdentifier:NSStringFromClass ([BuyCollectionViewController class])];
     
 #if DEBUG
-//    [RSSecrets removeKey:@"IAP_AdvancedVersion"];
-//    [self initDebugPlace];
+
+    [self initDebugPlace];
       [RSSecrets removeKey:CONFIG_IAP_IS_ADVANCED_VERSION];
       [RSSecrets removeKey:CONFIG_IAP_IS_CAR_PANEL_2];
       [RSSecrets removeKey:CONFIG_IAP_IS_CAR_PANEL_3];

@@ -62,6 +62,7 @@
 
 - (IBAction)preeSearchButton:(id)sender
 {
+    logfn();
     [self dismissAndSearchPlace:self.placeTextField.text];
 }
 
@@ -91,14 +92,13 @@
 
 - (void) dismissAndSearchPlace:(NSString*) place
 {
-
     if (nil != place)
         place = [place trim];
-    
+
     if( place.length > 0)
     {
-        GoogleMapUIViewController* gc = (GoogleMapUIViewController*) self.navigationController.parentViewController;
-//        self.presentingViewController;
+        GoogleMapUIViewController* gc = (GoogleMapUIViewController*) [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+        logO(gc);
         [User addSearchedPlaceText:place];
         [User save];
         [gc searchPlace:place];
