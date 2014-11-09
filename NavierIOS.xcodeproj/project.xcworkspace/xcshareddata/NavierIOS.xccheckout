@@ -16,7 +16,7 @@
 		<string>https://github.com/cominggithub/NaviUtil.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>NavierIOS.xcodeproj/project.xcworkspace</string>
+	<string>NavierIOS.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>52D33C4D2803BD2105323156AF34A99B516677A3</key>
