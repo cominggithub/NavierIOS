@@ -144,7 +144,6 @@
 - (void)viewDidUnload {
 
     [self setContentView:nil];
-    [LocationManager stopMonitorLocation];
     [super viewDidUnload];
 }
 

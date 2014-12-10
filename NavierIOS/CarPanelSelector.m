@@ -41,15 +41,24 @@
 
 -(void)initSelf
 {
+    logfn();
+    NSDictionary *tmpDic;
     segNumber = 0;
-    carPanelUsageLog = [[NSUserDefaults standardUserDefaults] objectForKey:CAR_PANEL_USAGE_LOG];
-    if (carPanelUsageLog == nil)
+    tmpDic = [[NSUserDefaults standardUserDefaults] objectForKey:CAR_PANEL_USAGE_LOG];
+    logClass(tmpDic);
+    if (tmpDic == nil)
     {
+        logfn();
         [self resetLog];
+    }
+    else
+    {
+        carPanelUsageLog = [NSMutableDictionary dictionaryWithDictionary:tmpDic];
     }
     
     for (NSString* carPanel in carPanelUsageLog.allKeys)
     {
+        logfn();
         CarPanelUsage *cpu = [self carPanelUsageByCarPanel:carPanel];
         if (cpu.usedSequenceNumber > segNumber)
         {
@@ -62,6 +71,7 @@
 
 -(void)resetLog
 {
+    logfn();
     segNumber = 0;
     
     carPanelUsageLog = [[NSMutableDictionary alloc] initWithCapacity:4];
@@ -132,6 +142,7 @@
 -(void)saveCarPanelUsage:(CarPanelUsage*)cpu
 {
     NSData *encodedObj;
+
     encodedObj = [NSKeyedArchiver archivedDataWithRootObject:cpu];
     [carPanelUsageLog setValue:encodedObj forKey:cpu.name];
 }
@@ -140,7 +151,6 @@
 {
     NSData *encodedObj;
     CarPanelUsage* cpu;
-    
     encodedObj = [carPanelUsageLog valueForKey:carPanel];
     cpu = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObj];
     return cpu;

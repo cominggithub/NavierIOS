@@ -242,50 +242,31 @@
 - (void) receiveNotification:(NSNotification *) notification
 {
     NSString* identifier;
+    SKProduct* product;
     
     self.buying = FALSE;
     identifier  = notification.object;
+    
+    
+    product = [NavierHUDIAPHelper productByKey:identifier];
+    
     // it seems that we dont need to display purchase message
-/*
-    if ([notification.name isEqualToString:IAP_EVENT_TRANSACTION_COMPLETE])
+
+    if ([notification.name isEqualToString:IAP_EVENT_TRANSACTION_COMPLETE] || [notification.name isEqualToString:IAP_EVENT_TRANSACTION_RESTORE])
     {
-        if ([identifier isEqualToString:IAP_ADVANCE_VERSION])
-        {
-            [self showAlertTitle:[SystemManager getLanguageString:@"Purchase successfully"]
-                         message:[NSString stringWithFormat:
-                                [SystemManager getLanguageString:@"Thanks! %@ now is upgraded to Advanced version"], @"Naiver HUD"]];
-            
-        }
-        else
-        {
-            [self showAlertTitle:[SystemManager getLanguageString:@"Purchase successfully"]
+        [self showAlertTitle:
+                        [NSString stringWithFormat:@"%@: %@", product.localizedTitle, [SystemManager getLanguageString:@"Purchase success"]]
                          message:[NSString stringWithFormat:@""]];
-        }
         
-    }
-    else if ([notification.name isEqualToString:IAP_EVENT_TRANSACTION_RESTORE] && FALSE == isRestoreAlertPrompted)
-    {
-        if ([identifier isEqualToString:IAP_ADVANCE_VERSION])
-        {
-            [self showAlertTitle:[SystemManager getLanguageString:@"Purchase successfully"]
-                         message:[NSString stringWithFormat:
-                                  [SystemManager getLanguageString:@"Thanks! %@ now is upgraded to Advanced version111"], @"Naiver HUD"]];
-            
-        }
-        else
-        {
-            [self showAlertTitle:[SystemManager getLanguageString:@"Purchase successful"]
-                         message:[NSString stringWithFormat:@""]];
-        }
         
-        isRestoreAlertPrompted = TRUE;
     }
     else if ([notification.name isEqualToString:IAP_EVENT_TRANSACTION_FAILED])
     {
-        [self showAlertTitle:[SystemManager getLanguageString:@"Purchase failed"]
+        [self showAlertTitle:
+         [NSString stringWithFormat:@"%@: %@", product.localizedTitle, [SystemManager getLanguageString:@"Purchase failed"]]
                      message:[NSString stringWithFormat:@""]];
     }
-*/
+
     if ([NavierHUDIAPHelper hasUnbroughtIap] == TRUE)
     {
         [self loadIapItem];
@@ -301,9 +282,9 @@
 -(void) showAlertTitle:(NSString*) title message:(NSString*) message
 {
     
-    if (nil == alert)
+//    if (nil == alert)
     {
-        alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:[SystemManager getLanguageString:@"OK"] otherButtonTitles:nil,nil];
+        alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:[SystemManager getLanguageString:@"OK"] otherButtonTitles:nil,nil];
         [alert show];
     }
 }
@@ -313,7 +294,10 @@
     alert = nil;
     if ([NavierHUDIAPHelper hasUnbroughtIap] == FALSE)
     {
-        [self.navigationController popViewControllerAnimated:TRUE];
+        // if view controller is visible, then pop it
+        if (self.isViewLoaded && self.view.window) {
+            [self.navigationController popViewControllerAnimated:TRUE];
+        }
     }
 
 }

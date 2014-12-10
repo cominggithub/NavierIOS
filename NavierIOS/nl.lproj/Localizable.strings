@@ -30,7 +30,8 @@
 "Not Set Yet" = "Nog niet ingesteld";
 "Office" = "Kantoor";
 "Place" = "Plaats";
-"Purchase successfully" = "Met success aangekocht";
+"Purchase success" = "aankoop succes";
+"Purchase failed" = "aankoop is mislukt";
 "Rate %@" = "Tarief %@";
 "Remind me later" = "Herrinner me later hieraan";
 "Restore Purchases" = "Herstel de aankopen";

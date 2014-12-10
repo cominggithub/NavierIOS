@@ -306,10 +306,6 @@
     {
         [LocationManager stopMonitorLocation];
     }
-    else
-    {
-        [LocationManager startMonitorLocation];
-    }
  
     [LocationManager startLocationTracking];
     
@@ -323,7 +319,6 @@
     
     [LocationManager stopLocationTracking];
 
-    [LocationManager stopMonitorLocation];
     carPanelMenuView.hidden = YES;
     
     [self.autoButton setTitle:@"Auto" forState:UIControlStateNormal];
